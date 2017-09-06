@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.timesheet"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="16"
+        android:targetSdkVersion="26" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <!-- For HTC -->
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+
+    <application
+        android:name="com.android.timesheet.App"
+        android:allowBackup="true"
+        android:debuggable="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar" >
+        <activity
+            android:name="com.android.timesheet.splash.SplashActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.android.timesheet.auth.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.android.timesheet.main.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TimeSheet.AppTheme" />
+
+        <!-- Admin screens -->
+        <activity
+            android:name="com.android.timesheet.admin.employee_master.EmployeeMaster"
+            android:screenOrientation="portrait"
+            android:theme="@style/TimeSheet.AppTheme" />
+        <activity
+            android:name="com.android.timesheet.admin.employee_project.EmployeeProject"
+            android:screenOrientation="portrait"
+            android:theme="@style/TimeSheet.AppTheme" />
+        <activity
+            android:name="com.android.timesheet.admin.project_master.ProjectMaster"
+            android:screenOrientation="portrait"
+            android:theme="@style/TimeSheet.AppTheme" />
+        <activity
+            android:name="com.android.timesheet.admin.summary.SummaryDetails"
+            android:screenOrientation="portrait"
+            android:theme="@style/TimeSheet.AppTheme" />
+
+        <!-- User screens -->
+        <activity
+            android:name="com.android.timesheet.user.sheet_entry.TimeSheetEntry"
+            android:screenOrientation="portrait"
+            android:theme="@style/TimeSheet.AppTheme" />
+        <activity
+            android:name="com.android.timesheet.profile.MyProfile"
+            android:screenOrientation="portrait"
+            android:theme="@style/TimeSheet.AppTheme" />
+        <activity
+            android:name="com.android.timesheet.shared.activities.WebViewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TimeSheet.AppTheme" />
+
+        <meta-data
+            android:name="android.support.VERSION"
+            android:value="26.0.1" />
+    </application>
+
+</manifest>

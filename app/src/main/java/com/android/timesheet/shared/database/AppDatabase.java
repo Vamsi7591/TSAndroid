@@ -1,0 +1,14 @@
+package com.android.timesheet.shared.database;
+
+import com.raizlabs.android.dbflow.annotation.Database;
+
+/**
+ * Created by vamsikonanki on 8/21/2017.
+ */
+@Database(name = AppDatabase.NAME, version = AppDatabase.VERSION)
+public class AppDatabase {
+
+    public static final String NAME = "TSWS";
+
+    public static final int VERSION = 1;
+}

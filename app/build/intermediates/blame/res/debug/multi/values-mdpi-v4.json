@@ -1,0 +1,83 @@
+[
+    {
+        "outputFile": "E:\\Vamsi\\TimeSheet\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-mdpi-v4\\values-mdpi-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 43,
+                    "endOffset": 94
+                },
+                "from": {
+                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-mdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 295,
+                        "endColumn": 43,
+                        "endOffset": 334
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 99,
+                    "endColumn": 47,
+                    "endOffset": 142
+                },
+                "from": {
+                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-mdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 340,
+                        "endColumn": 47,
+                        "endOffset": 383
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 147,
+                    "endColumn": 42,
+                    "endOffset": 185
+                },
+                "from": {
+                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-mdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 389,
+                        "endColumn": 42,
+                        "endOffset": 427
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 190,
+                    "endColumn": 43,
+                    "endOffset": 229
+                },
+                "from": {
+                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-mdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 433,
+                        "endColumn": 43,
+                        "endOffset": 472
+                    }
+                }
+            }
+        ]
+    }
+]

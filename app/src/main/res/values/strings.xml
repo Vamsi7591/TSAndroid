@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">TimeSheet</string>
+
+    <!--Admin-->
+    <string-array name="slider_list_items">
+        <item>Employee Master</item>
+        <item>Project Master</item>
+        <item>Employee Project</item>
+        <item>Summary Details</item>
+    </string-array>
+
+    <integer-array name="slider_list_images">
+        <item>@drawable/menu_user</item>
+        <item>@drawable/menu_help</item>
+        <item>@drawable/menu_shoppilist</item>
+        <item>@drawable/menu_orders</item>
+        <!--<item>@drawable/menu_settings</item>-->
+        <!--<item>@drawable/menu_faq</item>-->
+        <!--<item>@drawable/menu_share</item>-->
+        <!--<item>@drawable/menu_address</item>-->
+        <!--<item>@drawable/menu_cart</item>-->
+        <!--<item>@drawable/menu_rateus</item>-->
+    </integer-array>
+    <!--End of admin-->
+
+    <!--Hint-->
+    <string name="hint_em_code">Employee Code</string>
+    <string name="hint_password">Password</string>
+
+    <!--Authentication Validation errors-->
+    <string name="emp_code_required">"Employee code required"</string>
+    <string name="error_required_password">Password is required</string>
+    <string name="error_required_cpassword">Confirm Password is required</string>
+    <string name="error_no_current_password">Current password cannot be blank</string>
+    <string name="error_password_do_not_match">Passwords do not match</string>
+    <string name="error_password_minimum_character">Minimum 6 characters</string>
+    <string name="error_password_not_match">New password do not match</string>
+
+    <!--Fonts-->
+    <string name="font_lero">FONTLERO</string>
+    <string name="roboto_light">RobotoLight</string>
+    <string name="roboto_light_italic">RobotoLightItalic</string>
+    <string name="roboto_thin">RobotoThin</string>
+    <string name="roboto_thin_italic">RobotoThinItalic</string>
+    <string name="roboto_regular">RobotoRegular</string>
+    <string name="roboto_regular_italic">RobotoRegularItalic</string>
+    <string name="aleo_regular">AleoRegular</string>
+    <string name="lb_login">Login</string>
+    <string name="app_sub_heading">Time entires</string>
+
+    <!--Common-->
+    <string name="no_internet_connection">No Internet connection! Check your settings.</string>
+    <string name="tab_home">TimeSheet</string>
+    <string name="tab_week">Weekly</string>
+    <string name="tab_month">Monthly</string>
+    <string name="prompt_progress_title">Please Wait…</string>
+
+
+    <!--TimeSheet entry Validation errors-->
+    <string name="error_project_required">Project name required</string>
+    <string name="error_date_required">Date required</string>
+    <string name="error_start_required">Start time required</string>
+    <string name="error_end_required">End time required</string>
+    <string name="error_desc_required">Description required</string>
+
+</resources>

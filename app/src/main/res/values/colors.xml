@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorPrimary">#131381</color>-->
+    <color name="colorPrimary">#f47303</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#ef2e83fa</color>
+
+    <color name="colorGlowAccent">#fbc8fff9</color>
+    <color name="colorPrimaryTransparentFadeIn">#da0a0909</color>
+    <color name="colorPrimaryTransparent">#2bb3b3b3</color>
+    <color name="colorPrimaryTransparent1">#00b3b3b3</color>
+    <color name="colorPrimaryTransparent2">#52ded8d8</color>
+    <color name="colorPrimaryTransparentPopup">#949494</color>
+    <color name="colorAccent25">#4babedd8</color>
+    <color name="colorTabLayout">#dc302c3c</color>
+
+    <color name="colorBottomBG">#30b7bcbf</color>
+    <color name="colorLightTeal">#b483daf7</color>
+    <color name="colorBlurWhite">#a2ffffff</color>
+    <color name="colorBGBlur">#2097959e</color>
+
+    <color name="colorError">#e73d53</color>
+    <color name="colorError2">#f75395</color>
+
+    <color name="colorShine">#079977</color>
+    <color name="colorShine30">#09b68d</color>
+    <color name="colorShine50">#0ce4b1</color>
+
+    <color name="colorGreyish">#5b5c5c</color>
+    <color name="colorGreyish30">#787878</color>
+    <color name="colorGreyish50">#969696</color>
+    <color name="colorGreyish70">#bababa</color>
+
+    <color name="colorYellowTick">#fadfd508</color>
+    <color name="colorYellow">#8ff7ed26</color>
+    <color name="colorYellow70">#46f7ed26</color>
+    <color name="colorYellowGold">#e44d4909</color>
+    <color name="colorBlocked">#d5500460</color>
+
+    <color name="darker_gray_0">#00030303</color>
+    <color name="darker_gray_30">#4d030303</color>
+    <color name="darker_gray_40">#66030303</color>
+
+    <color name="colorPrimaryDark00">#fb3a3a3b</color>
+    <color name="colorPrimaryDark35">#1e3a3a3b</color>
+    <color name="colorPrimaryDark40">#2897959e</color>
+    <color name="colorPrimaryDark50">#3297959e</color>
+    <color name="colorPrimaryDark80">#50302c3c</color>
+    <color name="colorPrimaryDark90">#5a97959e</color>
+    <color name="colorPrimaryDark134">#8697959e</color>
+    <color name="colorPrimaryDark158">#9e302c3c</color>
+    <color name="colorPrimaryDark165">#a5302c3c</color>
+    <color name="colorPrimaryDarkBlur">#fb39393b</color>
+
+    <color name="white">#ffffff</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorWhiteGray">#9b9a9a</color>
+    <color name="colorWhite10">#0affffff</color>
+    <color name="colorWhite24">#18ffffff</color>
+    <color name="colorWhite48">#30ffffff</color>
+    <color name="colorWhite70">#46ffffff</color>
+    <color name="colorWhite96">#60ffffff</color>
+    <color name="colorWhite115">#73ffffff</color>
+
+    <color name="colorGrayHint">#7a7875</color>
+    <color name="colorGray">#49696a6b</color>
+    <color name="colorGrayDark">#98404045</color>
+    <color name="colorLightDark">#e1302c3c</color>
+    <!-- STEPPER Color Resource START-->
+    <color name="material_stepper_error">@color/colorError</color>
+    <color name="material_stepper_circle">@color/colorAccent</color>
+    <!-- STEPPER Color Resource END-->
+
+    <color name="chip">@color/colorPrimaryTransparent</color>
+    <color name="dark_grey">@color/colorPrimaryTransparent</color>
+    <color name="light_grey">#bbbbbb</color>
+
+    <color name="selected_color">#ffffaa</color>
+    <color name="selected_font_color">#999933</color>
+
+    <color name="deselected_color">#aaffaa</color>
+    <color name="deselected_font_color">#339933</color>
+
+
+    <color name="colorSheetText">#DE000000</color>
+    <color name="colorSheetTitle">#8A000000</color>
+    <color name="colorSheetDivider">#3f717171</color>
+
+    <color name="yellow">#ffff981e</color>
+    <color name="primary">#03A9F4</color>
+    <color name="color_stepsview_holder">#f0757c80</color>
+    <color name="orange">#fffaaa00</color>
+    <color name="black">#000000</color>
+</resources>

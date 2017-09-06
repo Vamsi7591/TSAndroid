@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.TabLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tabs"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:layout_gravity="bottom|end"
+    android:background="@drawable/bg_border"
+    android:visibility="visible"
+    app:tabGravity="fill"
+    app:tabIndicatorColor="@color/colorPrimary"
+    app:tabIndicatorHeight="@dimen/margin_5"
+    app:tabMode="fixed"
+    app:tabPaddingTop="5dp" />

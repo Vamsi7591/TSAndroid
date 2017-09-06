@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context="com.android.timesheet.user.sheet_entry.TimeSheetEntry">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:toolbarId="@+id/toolbar">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin_30"
+                        android:layout_marginStart="@dimen/margin_30">
+
+                        <com.android.timesheet.shared.widget.CustomFontTextView
+                            android:id="@+id/textViewToolbarTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/tv_font_size_20"
+                            android:visibility="visible"
+                            app:font="@string/roboto_thin" />
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.Toolbar>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:scrollbarStyle="insideInset">
+
+            <!--Your TimeSheet input-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_16"
+                android:layout_marginLeft="@dimen/margin_16"
+                android:layout_marginRight="@dimen/margin_16"
+                android:layout_marginTop="@dimen/margin_0"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/projectNamesLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="Project Name"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorGrayDark" />
+
+                    <Spinner
+                        android:id="@+id/spinnerProjects"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_spinner_background"
+                        android:gravity="end|center"
+                        android:spinnerMode="dialog"
+                        android:layout_gravity="center"
+                        android:popupBackground="@color/colorAccent"
+                        android:popupElevation="@dimen/padding_5"
+                        android:textAlignment="viewEnd"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black"
+                        tools:ignore="RtlCompat" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/error_project_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end|center"
+                    android:text=""
+                    android:visibility="gone"
+                    android:textAppearance="@style/TextAppearance.Design.Error"
+                    android:textColor="@color/colorError2" />
+
+                <LinearLayout
+                    android:id="@+id/dateLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_marginTop="@dimen/margin_0"
+                    android:gravity="center"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="Date"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorGrayDark" />
+
+                    <TextView
+                        android:id="@+id/pickerDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableEnd="@drawable/icon_calender"
+                        android:drawableRight="@drawable/icon_calender"
+                        android:gravity="end|center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black"/>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/error_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end|center"
+                    android:text=""
+                    android:visibility="gone"
+                    android:textAppearance="@style/TextAppearance.Design.Error"
+                    android:textColor="@color/colorError2" />
+
+                <LinearLayout
+                    android:id="@+id/startTimeLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_marginTop="@dimen/margin_0"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="Start Time"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorGrayDark" />
+
+                    <TextView
+                        android:id="@+id/startTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:drawableEnd="@drawable/icon_clock"
+                        android:drawableRight="@drawable/icon_clock"
+                        android:gravity="end|center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black"/>
+
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/error_start_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end|center"
+                    android:text=""
+                    android:visibility="gone"
+                    android:textAppearance="@style/TextAppearance.Design.Error"
+                    android:textColor="@color/colorError2" />
+
+                <LinearLayout
+                    android:id="@+id/endTimeLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_marginTop="@dimen/margin_0"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="End Time"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorGrayDark" />
+
+                    <TextView
+                        android:id="@+id/endTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableEnd="@drawable/icon_clock"
+                        android:drawableRight="@drawable/icon_clock"
+                        android:gravity="end|center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/error_end_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end|center"
+                    android:text=""
+                    android:visibility="visible"
+                    android:textAppearance="@style/TextAppearance.Design.Error"
+                    android:textColor="@color/colorError2" />
+
+                <LinearLayout
+                    android:id="@+id/descriptionLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableEnd="@drawable/icon_edit"
+                        android:drawableRight="@drawable/icon_edit"
+                        android:gravity="start|center"
+                        android:text="Description"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorGrayDark" />
+                    <TextView
+                        android:id="@+id/error_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center"
+                        android:text=""
+                        android:visibility="gone"
+                        android:textAppearance="@style/TextAppearance.Design.Error"
+                        android:textColor="@color/colorError2" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:background="@drawable/bg_edit_text_border">
+
+                        <EditText
+                            android:id="@+id/descriptionET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_10"
+                            android:background="@null"
+                            android:gravity="start"
+                            android:hint="Enter you description here..."
+                            android:minLines="6"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/colorGrayDark">
+
+                        </EditText>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/actionsLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_marginBottom="?attr/actionBarSize"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <Button
+                        android:id="@+id/modifyB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorPrimaryDark"
+                        android:gravity="center"
+                        android:text="Modify"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/cardview_dark_background" />
+
+                    <Button
+                        android:id="@+id/saveB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/colorAccent"
+                        android:gravity="center"
+                        android:text="Save"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/cardview_dark_background" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -1,0 +1,237 @@
+[
+    {
+        "outputFile": "E:\\Vamsi\\TimeSheet\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 45,
+                    "endOffset": 96
+                },
+                "from": {
+                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 486,
+                        "endColumn": 45,
+                        "endOffset": 527
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 101,
+                    "endColumn": 46,
+                    "endOffset": 143
+                },
+                "from": {
+                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 438,
+                        "endColumn": 46,
+                        "endOffset": 480
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 148,
+                    "endColumn": 43,
+                    "endOffset": 187
+                },
+                "from": {
+                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 42,
+                        "endColumn": 43,
+                        "endOffset": 81
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 192,
+                    "endColumn": 47,
+                    "endOffset": 235
+                },
+                "from": {
+                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 87,
+                        "endColumn": 47,
+                        "endOffset": 130
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 240,
+                    "endColumn": 42,
+                    "endOffset": 278
+                },
+                "from": {
+                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 136,
+                        "endColumn": 42,
+                        "endOffset": 174
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 283,
+                    "endColumn": 43,
+                    "endOffset": 322
+                },
+                "from": {
+                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 533,
+                        "endColumn": 43,
+                        "endOffset": 572
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 327,
+                    "endColumn": 44,
+                    "endOffset": 367
+                },
+                "from": {
+                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 343,
+                        "endColumn": 44,
+                        "endOffset": 383
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 372,
+                    "endColumn": 45,
+                    "endOffset": 413
+                },
+                "from": {
+                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 296,
+                        "endColumn": 45,
+                        "endOffset": 337
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 418,
+                    "endColumn": 43,
+                    "endOffset": 457
+                },
+                "from": {
+                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 205,
+                        "endColumn": 43,
+                        "endOffset": 244
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 462,
+                    "endColumn": 44,
+                    "endOffset": 502
+                },
+                "from": {
+                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 250,
+                        "endColumn": 44,
+                        "endOffset": 290
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 507,
+                    "endColumn": 45,
+                    "endOffset": 548
+                },
+                "from": {
+                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 389,
+                        "endColumn": 45,
+                        "endOffset": 430
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 553,
+                    "endLine": 17,
+                    "endColumn": 13,
+                    "endOffset": 825
+                },
+                "from": {
+                    "file": "C:\\Users\\vamsi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.1.aar\\9e12ad32564760e8f7f16d79342893e8\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endLine": 6,
+                        "endColumn": 13,
+                        "endOffset": 327
+                    }
+                }
+            }
+        ]
+    }
+]

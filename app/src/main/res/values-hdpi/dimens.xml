@@ -1,0 +1,18 @@
+<resources>
+    <!-- Values HDPI-->
+    <dimen name="logo_height">110dp</dimen>
+    <dimen name="logo_margin_top">150dp</dimen>
+    <dimen name="pipe_height">24dp</dimen>
+
+    <!--Text fonts-->
+    <dimen name="tv_font_menu">13sp</dimen>
+    <dimen name="tv_font_small">12sp</dimen>
+    <dimen name="tv_font_medium">14sp</dimen>
+    <dimen name="tv_font_large">16sp</dimen>
+    <dimen name="tv_font_xlarge">18sp</dimen>
+
+    <dimen name="btn_font_medium">18dp</dimen>
+    <dimen name="btn_font_large">20dp</dimen>
+    <dimen name="social_icons">62dp</dimen>
+
+</resources>
