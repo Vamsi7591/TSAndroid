@@ -15,7 +15,7 @@
         <android.support.design.widget.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="?android:attr/actionBarSize"
             android:fitsSystemWindows="true"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
@@ -24,14 +24,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
-                app:contentScrim="?attr/colorPrimary"
+                app:contentScrim="?android:attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:toolbarId="@+id/toolbar">
+                app:toolbarId="@+id/toolbar"
+                tools:targetApi="lollipop">
 
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
+                    android:layout_height="?android:attr/actionBarSize"
                     app:layout_collapseMode="pin"
                     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
@@ -48,10 +49,11 @@
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
-                            android:clickable="true"
                             android:gravity="center"
                             android:textAlignment="center"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/tv_font_size_20"
+                            android:text="@string/app_name"
                             android:visibility="visible"
                             app:font="@string/roboto_thin" />
 
@@ -67,7 +69,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_marginTop="?android:attr/actionBarSize"
             android:scrollbarStyle="insideInset">
 
             <!--Your TimeSheet input-->
@@ -83,7 +85,7 @@
                 <LinearLayout
                     android:id="@+id/projectNamesLL"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
+                    android:layout_height="@dimen/inputs_height"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:visibility="visible">
@@ -93,7 +95,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="start|center"
-                        android:text="Project Name"
+                        android:text="@string/project_name"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/colorGrayDark" />
 
@@ -101,13 +103,12 @@
                         android:id="@+id/spinnerProjects"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:background="@drawable/custom_spinner_background"
                         android:gravity="end|center"
-                        android:spinnerMode="dialog"
-                        android:layout_gravity="center"
                         android:popupBackground="@color/colorAccent"
-                        android:popupElevation="@dimen/padding_5"
+                        android:spinnerMode="dialog"
                         android:textAlignment="viewEnd"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/black"
@@ -121,14 +122,14 @@
                     android:layout_height="match_parent"
                     android:gravity="end|center"
                     android:text=""
-                    android:visibility="gone"
                     android:textAppearance="@style/TextAppearance.Design.Error"
-                    android:textColor="@color/colorError2" />
+                    android:textColor="@color/colorError2"
+                    android:visibility="invisible" />
 
                 <LinearLayout
                     android:id="@+id/dateLL"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
+                    android:layout_height="@dimen/inputs_height"
                     android:layout_marginTop="@dimen/margin_0"
                     android:gravity="center"
                     android:visibility="visible">
@@ -138,7 +139,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="start|center"
-                        android:text="Date"
+                        android:text="@string/date"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/colorGrayDark" />
 
@@ -151,7 +152,7 @@
                         android:drawableRight="@drawable/icon_calender"
                         android:gravity="end|center"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black" />
 
 
                 </LinearLayout>
@@ -162,14 +163,14 @@
                     android:layout_height="match_parent"
                     android:gravity="end|center"
                     android:text=""
-                    android:visibility="gone"
                     android:textAppearance="@style/TextAppearance.Design.Error"
-                    android:textColor="@color/colorError2" />
+                    android:textColor="@color/colorError2"
+                    android:visibility="invisible" />
 
                 <LinearLayout
                     android:id="@+id/startTimeLL"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
+                    android:layout_height="@dimen/inputs_height"
                     android:layout_marginTop="@dimen/margin_0"
                     android:gravity="center"
                     android:orientation="horizontal"
@@ -180,7 +181,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="start|center"
-                        android:text="Start Time"
+                        android:text="@string/start_time"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/colorGrayDark" />
 
@@ -193,24 +194,25 @@
                         android:drawableRight="@drawable/icon_clock"
                         android:gravity="end|center"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black" />
 
 
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/error_start_time"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="end|center"
                     android:text=""
-                    android:visibility="gone"
                     android:textAppearance="@style/TextAppearance.Design.Error"
-                    android:textColor="@color/colorError2" />
+                    android:textColor="@color/colorError2"
+                    android:visibility="invisible" />
 
                 <LinearLayout
                     android:id="@+id/endTimeLL"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
+                    android:layout_height="@dimen/inputs_height"
                     android:layout_marginTop="@dimen/margin_0"
                     android:gravity="center"
                     android:orientation="horizontal"
@@ -221,7 +223,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="start|center"
-                        android:text="End Time"
+                        android:text="@string/end_time"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/colorGrayDark" />
 
@@ -237,21 +239,22 @@
                         android:textColor="@color/black" />
 
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/error_end_time"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="end|center"
                     android:text=""
-                    android:visibility="visible"
                     android:textAppearance="@style/TextAppearance.Design.Error"
-                    android:textColor="@color/colorError2" />
+                    android:textColor="@color/colorError2"
+                    android:visibility="invisible" />
 
                 <LinearLayout
                     android:id="@+id/descriptionLL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_10"
+                    android:layout_marginTop="0dp"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:visibility="visible">
@@ -262,24 +265,26 @@
                         android:drawableEnd="@drawable/icon_edit"
                         android:drawableRight="@drawable/icon_edit"
                         android:gravity="start|center"
-                        android:text="Description"
+                        android:text="@string/description"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/colorGrayDark" />
+
                     <TextView
                         android:id="@+id/error_description"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="end|center"
                         android:text=""
-                        android:visibility="gone"
                         android:textAppearance="@style/TextAppearance.Design.Error"
-                        android:textColor="@color/colorError2" />
+                        android:textColor="@color/colorError2"
+                        android:visibility="invisible" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginTop="@dimen/margin_5"
-                        android:background="@drawable/bg_edit_text_border">
+                        android:background="@drawable/bg_edit_text_border"
+                        android:orientation="vertical">
 
                         <EditText
                             android:id="@+id/descriptionET"
@@ -288,12 +293,30 @@
                             android:layout_margin="@dimen/margin_10"
                             android:background="@null"
                             android:gravity="start"
-                            android:hint="Enter you description here..."
+                            android:hint="@string/enter_you_description_here"
                             android:minLines="6"
                             android:textColor="@color/black"
                             android:textColorHint="@color/colorGrayDark">
 
                         </EditText>
+
+                        <com.android.timesheet.shared.widget.CustomFontTextView
+                            android:id="@+id/description_count"
+                            style="@style/AppTheme.Text.TextView.Menu"
+                            android:layout_below="@+id/textInputLayoutAboutMe"
+                            android:layout_marginEnd="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:gravity="end"
+                            android:padding="@dimen/rl_margin_5"
+                            android:text="0/250"
+                            android:textColor="@color/colorGreyish"
+                            app:font="@string/roboto_regular_italic"
+                            tools:ignore="HardcodedText,ObsoleteLayoutParam">
+
+                            <requestFocus />
+
+                        </com.android.timesheet.shared.widget.CustomFontTextView>
+
 
                     </LinearLayout>
 
@@ -303,8 +326,8 @@
                 <LinearLayout
                     android:id="@+id/actionsLL"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_marginBottom="?attr/actionBarSize"
+                    android:layout_height="?android:attr/actionBarSize"
+                    android:layout_marginBottom="?android:attr/actionBarSize"
                     android:layout_marginTop="@dimen/margin_16"
                     android:gravity="center"
                     android:orientation="horizontal"
@@ -317,9 +340,9 @@
                         android:layout_weight="1"
                         android:background="@color/colorPrimaryDark"
                         android:gravity="center"
-                        android:text="Modify"
+                        android:text="@string/modify"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/cardview_dark_background" />
+                        android:textColor="@color/white" />
 
                     <Button
                         android:id="@+id/saveB"
@@ -328,9 +351,10 @@
                         android:layout_weight="1"
                         android:background="@color/colorAccent"
                         android:gravity="center"
-                        android:text="Save"
+                        android:text="@string/save"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/cardview_dark_background" />
+                        android:textColor="@color/white"
+                        tools:ignore="ButtonStyle" />
 
                 </LinearLayout>
 

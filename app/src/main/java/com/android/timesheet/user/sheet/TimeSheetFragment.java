@@ -12,14 +12,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 
 import com.android.timesheet.App;
 import com.android.timesheet.R;
 import com.android.timesheet.shared.events.TimeSheetValidEvent;
 import com.android.timesheet.shared.fragments.BaseFragment;
+import com.android.timesheet.shared.models.TimeSheet;
+import com.android.timesheet.shared.models.TimeSheetResponse;
 import com.android.timesheet.user.list.TimeSheetList;
+import com.android.timesheet.user.list.TimeSheetViewBehaviour;
 import com.squareup.otto.Subscribe;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,7 +33,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TimeSheetFragment extends BaseFragment<TimeSheetPresenter>  {
+public class TimeSheetFragment extends BaseFragment<TimeSheetPresenter> implements TimeSheetViewBehaviour {
 //implements SwipeRefreshLayout.OnRefreshListener
     public TimeSheetFragment() {
     }
@@ -40,6 +46,9 @@ public class TimeSheetFragment extends BaseFragment<TimeSheetPresenter>  {
 
     @BindView(R.id.swipeToRefresh)
     SwipeRefreshLayout mSwipeRefreshLayout;
+
+    @BindView(R.id.expandableListView)
+    ExpandableListView timeSheetELV;
 
     String TAG = "TimeSheetFragment";
 
@@ -115,5 +124,50 @@ public class TimeSheetFragment extends BaseFragment<TimeSheetPresenter>  {
         App.getInstance().getBus().unregister(this);
 
         super.onDestroyView();
+    }
+
+    @Override
+    public void onLoading() {
+
+    }
+
+    @Override
+    public void onComplete() {
+
+    }
+
+    @Override
+    public void onSuccess(List<TimeSheet> data) {
+
+    }
+
+    @Override
+    public void onFailed(Throwable e) {
+
+    }
+
+    @Override
+    public void fetchDayToDayTimeSheet() {
+
+    }
+
+    @Override
+    public void onDisconnected() {
+
+    }
+
+    @Override
+    public void reloadTimeSheet() {
+
+    }
+
+    @Override
+    public void onTimeSheetDeleted(int position) {
+
+    }
+
+    @Override
+    public void removedTimeSheet(TimeSheetResponse response) {
+
     }
 }

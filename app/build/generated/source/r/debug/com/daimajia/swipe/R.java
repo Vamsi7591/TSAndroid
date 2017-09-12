@@ -18,11 +18,11 @@ public final class R {
     }
     public static final class id {
         public static final int bottom = 0x7f09002a;
-        public static final int lay_down = 0x7f09007c;
-        public static final int left = 0x7f09007d;
-        public static final int pull_out = 0x7f0900a8;
-        public static final int right = 0x7f0900ac;
-        public static final int top = 0x7f090101;
+        public static final int lay_down = 0x7f09007e;
+        public static final int left = 0x7f09007f;
+        public static final int pull_out = 0x7f0900ab;
+        public static final int right = 0x7f0900af;
+        public static final int top = 0x7f090105;
     }
     public static final class styleable {
         public static final int[] SwipeLayout = { 0x7f04003e, 0x7f040062, 0x7f040095, 0x7f040112, 0x7f040146, 0x7f040158, 0x7f0401a8 };

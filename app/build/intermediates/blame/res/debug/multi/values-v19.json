@@ -1,28 +1,28 @@
-[
-    {
-        "outputFile": "E:\\Vamsi\\TimeSheet\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v19\\values-v19.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endLine": 23,
-                    "endColumn": 16,
-                    "endOffset": 1268
-                },
-                "from": {
-                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-v19\\styles.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 8,
-                        "startOffset": 63,
-                        "endLine": 24,
-                        "endColumn": 16,
-                        "endOffset": 1297
+{
+    "logs": [
+        {
+            "outputFile": "E:\\Vamsi\\TimeSheet\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v19\\values-v19.xml",
+            "map": [
+                {
+                    "source": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-v19\\styles.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "8",
+                        "startOffsets": "63",
+                        "endLines": "24",
+                        "endColumns": "16",
+                        "endOffsets": "1297"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "23",
+                        "endColumns": "16",
+                        "endOffsets": "1268"
                     }
                 }
-            }
-        ]
-    }
-]
+            ]
+        }
+    ]
+}

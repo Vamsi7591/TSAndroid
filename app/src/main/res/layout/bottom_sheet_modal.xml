@@ -12,7 +12,7 @@
     <com.android.timesheet.shared.widget.CustomFontTextView
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
         android:background="@drawable/bg_border"
         android:drawableLeft="@drawable/close_icon"
         android:drawableStart="@drawable/close_icon"

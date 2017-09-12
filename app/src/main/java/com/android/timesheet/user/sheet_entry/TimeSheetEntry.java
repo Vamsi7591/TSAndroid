@@ -11,13 +11,19 @@ import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -59,6 +65,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import butterknife.Optional;
 
 /**
  * Created by vamsikonanki on 8/22/2017.
@@ -84,6 +91,10 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
     @BindView(R.id.descriptionET)
     EditText descriptionET;
+
+    @Nullable
+    @BindView(R.id.description_count)
+    CustomFontTextView description_count;
 
     @BindView(R.id.modifyB)
     Button modifyB;
@@ -118,6 +129,8 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     ArrayList<String> projectNames = new ArrayList<>();
     private int height;
     private int width;
+    Animation animationRL, animationLR;
+
 
     @Override
     protected int layoutRestID() {
@@ -158,6 +171,16 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
         user = presenter().getCurrentUser();
 
+        /*Source :
+        * https://www.101apps.co.za/articles/using-view-animations-in-your-apps-a-tutorial.html
+        * https://www.androidhive.info/2013/06/android-working-with-xml-animations/#move
+        * */
+        animationRL = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.text_anim_rl);
+
+        animationLR = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.text_anim_lr);
+
         if (sheet != null) {
             Log.d(TAG, "TS : " + sheet.date);
             if (mMenu == null) {
@@ -192,7 +215,58 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
             disableViews(false, 0);
         }
 
-        closeKeyBoard();
+        if (user != null)
+            sheet.setEmpCode(user.empCode);
+
+        if (descriptionET != null)
+            descriptionET.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+                    if (actionId == EditorInfo.IME_ACTION_NEXT || actionId == EditorInfo.IME_ACTION_DONE ||
+                            (event.getAction() == KeyEvent.ACTION_DOWN)) {
+                        closeKeyBoard();
+                        return true;
+                    }
+
+                    return false;
+                }
+            });
+
+        descriptionET.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (500 != s.toString().length()) {
+                    description_count.setText(String.format("%d/500", s.toString().length()));
+
+                    if (s.toString().length() > 0) {
+                        clearSpecificError(error_description);
+                    } else
+                        showError(error_description, getResources().getString(R.string.error_desc_required));
+                }
+
+                description_count.setFitsSystemWindows(true);
+                description_count.requestFocus();
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+        });
+
+
+
+
+        clearErrors();
+
+
     }
 
     @OnClick(R.id.modifyB)
@@ -216,6 +290,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
         } else {
             /*submit time sheet entry*/
+            presenter().submitTimeSheet(sheet);
         }
     }
 
@@ -242,14 +317,22 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 //        textView.setError(errorStr);
         textView.setText(errorStr);
 //        textView.setTextColor(Color.BLACK);
+        textView.startAnimation(animationLR);
+    }
+
+    void clearSpecificError(TextView textView) {
+        if (textView.getVisibility() == View.VISIBLE) {
+            textView.startAnimation(animationRL);
+            textView.setVisibility(View.INVISIBLE);
+        }
     }
 
     void clearErrors() {
-        error_project_name.setVisibility(View.GONE);
-        error_date.setVisibility(View.GONE);
-        error_start_time.setVisibility(View.GONE);
-        error_end_time.setVisibility(View.GONE);
-        error_description.setVisibility(View.GONE);
+        error_project_name.setVisibility(View.INVISIBLE);
+        error_date.setVisibility(View.INVISIBLE);
+        error_start_time.setVisibility(View.INVISIBLE);
+        error_end_time.setVisibility(View.INVISIBLE);
+        error_description.setVisibility(View.INVISIBLE);
     }
 
 
@@ -342,10 +425,12 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
             startTime.setText(new StringBuilder().append(hourS).append(":").append(minS)
                     .append(" ").append(format));
             sheet.setStartTime(startTime.getText().toString());
+            clearSpecificError(error_start_time);
         } else {
             endTime.setText(new StringBuilder().append(hourS).append(":").append(minS)
                     .append(" ").append(format));
             sheet.setEndTime(endTime.getText().toString());
+            clearSpecificError(error_end_time);
         }
     }
 
@@ -456,7 +541,8 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
         if (o instanceof TimeSheetResponse) {
             //Instance of TimeSheetResponse
             TimeSheetResponse sheetResponse = (TimeSheetResponse) o;
-            Toast.makeText(this, sheetResponse.getMessage(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, sheetResponse.getMessage(), Toast.LENGTH_SHORT).show();
+            customToast(this.getCurrentFocus(), sheetResponse.getMessage());
             finish();
         } else if (o instanceof ProjectNamesResponse) {
             //Instance of TimeSheetResponse
@@ -493,9 +579,10 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
     public void closeKeyBoard() {
         // Check if no view has focus:
-        View view = TimeSheetEntry.this.getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        View view = this.getCurrentFocus();
+//        View view = new View(TimeSheetEntry.this);
+        InputMethodManager imm = (InputMethodManager) TimeSheetEntry.this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
@@ -508,6 +595,8 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
 //        if (userSelect)
         sheet.setProjectName(projectNames.get(i));
+
+        clearSpecificError(error_project_name);
 
         userSelect = true;
     }
@@ -552,19 +641,22 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
             @Override
             public void onDayLongPress(Date date) {
                 // show returned day
-                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
                 Log.v("Click", " : " + df.format(date));
             }
 
             @Override
             public void onDayPress(Date date) {
-                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
                 selectedDate = df.format(date);
                 dateSelected = date;
 //                dateSelected = convertCalFormat(selectedDate);
                 Log.v("Click", " : " + df.format(date));
                 pickerDate.setText(df.format(date));
                 sheet.setDate(df.format(date));
+                clearSpecificError(error_date);
+
+
 //                customToast(bottomSheetDialog.getCurrentFocus(),df.format(date));
 
                 int dayOfMonth = 0;
@@ -574,9 +666,9 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
                 if (!selectedDate.isEmpty()) {//mUser.dateOfBirth
 
                     String[] dobList = selectedDate.split("/");
-                    dayOfMonth = Integer.parseInt(dobList[0]);
+                    dayOfMonth = Integer.parseInt(dobList[2]);
                     monthOfYear = (Integer.parseInt(dobList[1]));
-                    year = Integer.parseInt(dobList[2]);
+                    year = Integer.parseInt(dobList[0]);
 
                 } else {
                     return;
@@ -586,7 +678,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 //                Calendar cal = Calendar.getInstance();
                 cal.clear();
                 cal.set(Calendar.YEAR, year);
-                cal.set(Calendar.MONTH, monthOfYear -1);
+                cal.set(Calendar.MONTH, monthOfYear - 1);
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
                 sheet.setWeekNo(String.valueOf(cal.get(Calendar.WEEK_OF_YEAR)));
@@ -598,7 +690,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
                 int mAge = calendar.get(Calendar.YEAR) - cal.get(Calendar.YEAR);*/
 
-                selectedDate = dayOfMonth + "/" + monthOfYear + "/" + year;
+                selectedDate = year + "/" + monthOfYear + "/" + dayOfMonth ;
 
             }
 
@@ -619,7 +711,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
     private Date convertDateFormat(String data) {
         try {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
             Date date = simpleDateFormat.parse(data);
             Log.d(TAG, " test==>" + date);
             return date;

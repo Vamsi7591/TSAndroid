@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -95,6 +96,8 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter> implements T
 
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mAdapter);
+
+        hideKeyboard();
     }
 
     @Override
@@ -218,6 +221,13 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter> implements T
             tv.setTextSize(18);
             snack.show();
         }
+    }
+
+    private void hideKeyboard() {
+
+        View view = new View(context);
+        InputMethodManager imm = (InputMethodManager) this.context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
 

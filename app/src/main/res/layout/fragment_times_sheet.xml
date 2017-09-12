@@ -20,7 +20,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/no_invitation_state_ai"
@@ -62,13 +62,24 @@
                 app:esv_message="@string/message_chat_empty"
                 app:esv_title="@string/title_chat_empty" />-->
 
+            <ExpandableListView
+                android:id="@+id/expandableListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/empty_state_view"
+                android:divider="@android:color/darker_gray"
+                android:dividerHeight="0.5dp"
+                android:visibility="gone"
+                android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" />
+
             <com.android.timesheet.user.list.TimeSheetList
                 android:id="@+id/room_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/empty_state_view"
                 android:layout_marginLeft="@dimen/margin_10"
-                android:layout_marginRight="@dimen/margin_10" />
+                android:layout_marginRight="@dimen/margin_10"
+                android:visibility="visible" />
 
         </RelativeLayout>
 

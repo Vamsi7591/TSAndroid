@@ -1,83 +1,26 @@
-[
-    {
-        "outputFile": "E:\\Vamsi\\TimeSheet\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xxhdpi-v4\\values-xxhdpi-v4.xml",
-        "map": [
-            {
-                "to": {
-                    "startLine": 2,
-                    "startColumn": 4,
-                    "startOffset": 55,
-                    "endColumn": 43,
-                    "endOffset": 94
-                },
-                "from": {
-                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-xxhdpi\\dimens.xml",
-                    "position": {
-                        "startLine": 2,
-                        "startColumn": 4,
-                        "startOffset": 57,
-                        "endColumn": 43,
-                        "endOffset": 96
+{
+    "logs": [
+        {
+            "outputFile": "E:\\Vamsi\\TimeSheet\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xxhdpi-v4\\values-xxhdpi-v4.xml",
+            "map": [
+                {
+                    "source": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-xxhdpi\\dimens.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "57,102,151,195",
+                        "endColumns": "43,47,42,43",
+                        "endOffsets": "96,145,189,234"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,99,147,190",
+                        "endColumns": "43,47,42,43",
+                        "endOffsets": "94,142,185,229"
                     }
                 }
-            },
-            {
-                "to": {
-                    "startLine": 3,
-                    "startColumn": 4,
-                    "startOffset": 99,
-                    "endColumn": 47,
-                    "endOffset": 142
-                },
-                "from": {
-                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-xxhdpi\\dimens.xml",
-                    "position": {
-                        "startLine": 3,
-                        "startColumn": 4,
-                        "startOffset": 102,
-                        "endColumn": 47,
-                        "endOffset": 145
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 4,
-                    "startColumn": 4,
-                    "startOffset": 147,
-                    "endColumn": 42,
-                    "endOffset": 185
-                },
-                "from": {
-                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-xxhdpi\\dimens.xml",
-                    "position": {
-                        "startLine": 4,
-                        "startColumn": 4,
-                        "startOffset": 151,
-                        "endColumn": 42,
-                        "endOffset": 189
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 5,
-                    "startColumn": 4,
-                    "startOffset": 190,
-                    "endColumn": 43,
-                    "endOffset": 229
-                },
-                "from": {
-                    "file": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-xxhdpi\\dimens.xml",
-                    "position": {
-                        "startLine": 5,
-                        "startColumn": 4,
-                        "startOffset": 195,
-                        "endColumn": 43,
-                        "endOffset": 234
-                    }
-                }
-            }
-        ]
-    }
-]
+            ]
+        }
+    ]
+}

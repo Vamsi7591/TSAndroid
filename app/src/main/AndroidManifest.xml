@@ -58,10 +58,12 @@
         <activity
             android:name=".user.sheet_entry.TimeSheetEntry"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:theme="@style/TimeSheet.AppTheme" />
         <activity
             android:name=".profile.MyProfile"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden"
             android:theme="@style/TimeSheet.AppTheme" />
         <activity
             android:name=".shared.activities.WebViewActivity"

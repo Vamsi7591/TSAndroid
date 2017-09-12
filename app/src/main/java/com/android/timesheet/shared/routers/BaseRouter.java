@@ -10,8 +10,10 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 
 import com.android.timesheet.App;
+import com.android.timesheet.R;
 import com.android.timesheet.main.MainActivity;
 import com.android.timesheet.shared.RestClient;
+import com.android.timesheet.shared.animation.SlideAnimationUtil;
 import com.android.timesheet.splash.SplashActivity;
 
 /**
@@ -73,4 +75,6 @@ public abstract class BaseRouter {
     public void openMainActivity() {
         openFreshActivity(MainActivity.class);
     }
+
+
 }

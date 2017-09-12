@@ -124,4 +124,5 @@
     <dimen name="thumb_h">54dp</dimen>
     <dimen name="drawer_width">250dp</dimen>
     <dimen name="margin_1">1dp</dimen>
+    <dimen name="inputs_height">40dp</dimen>
 </resources>

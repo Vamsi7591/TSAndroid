@@ -17,7 +17,7 @@
     <com.android.timesheet.shared.widget.calender.CenteringRecyclerView
         android:id="@+id/yearList"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
         android:layout_gravity="center_horizontal|center"
         android:orientation="horizontal"
         tools:ignore="RtlHardcoded,RtlSymmetry" />
@@ -34,7 +34,7 @@
     <!-- date toolbar -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="?android:attr/actionBarSize"
         android:paddingBottom="12dp"
         android:paddingEnd="15dp"
         android:paddingStart="15dp"

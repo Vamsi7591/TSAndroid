@@ -109,7 +109,7 @@ public class CalendarView extends LinearLayout {
         displayedposition = String.valueOf(_maxYear);
         _width = getDeviceWidth(context);
 
-        df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        df = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
 
         assignUiElements();
         assignClickHandlers();
@@ -347,12 +347,12 @@ public class CalendarView extends LinearLayout {
         int monthOfYear = 0;
         int year = 0;
 
-        if (!_selectedDate.isEmpty()) {//mUser.dateOfBirth
+        if (!_selectedDate.isEmpty()) {//mUser.dateOfBirth yyyy/MM/dd
 
             String[] dobList = _selectedDate.split("/");
-            dayOfMonth = Integer.parseInt(dobList[0]);
+            dayOfMonth = Integer.parseInt(dobList[2]);
             monthOfYear = (Integer.parseInt(dobList[1]));
-            year = Integer.parseInt(dobList[2]);
+            year = Integer.parseInt(dobList[0]);
             selectedDate = _currentDate;
             _selectedYear = year;
             displayedposition = String.valueOf(year);
@@ -468,7 +468,7 @@ public class CalendarView extends LinearLayout {
                 if (selectedDate != null) {
 
                     if (df == null)
-                        df = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                        df = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
 
                     //selectedDate.compareTo(date) == 0
                     if (df.format(date).equalsIgnoreCase(df.format(selectedDate))) {

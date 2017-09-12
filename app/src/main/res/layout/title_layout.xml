@@ -8,5 +8,5 @@
         style="@style/AppTheme.Text.TextView.Header"
         android:layout_width="match_parent"
         android:textColor="@color/black"
-        android:layout_height="?attr/actionBarSize" />
+        android:layout_height="?android:attr/actionBarSize" />
 </RelativeLayout>
