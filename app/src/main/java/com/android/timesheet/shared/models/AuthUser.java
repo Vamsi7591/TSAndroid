@@ -1,6 +1,5 @@
 package com.android.timesheet.shared.models;
 
-import android.text.Editable;
 import android.text.TextUtils;
 
 import com.android.timesheet.R;
@@ -18,6 +17,30 @@ public class AuthUser {
 
     public String password;
 
+    public AuthUser() {
+    }
+
+    public AuthUser(String empCode, String password) {
+        this.empCode = empCode;
+        this.password = password;
+    }
+
+    public String getEmpCode() {
+        return empCode;
+    }
+
+    public void setEmpCode(String empCode) {
+        this.empCode = empCode;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public static AuthUser loginUser(String empCode, String password) {//Editable
 
         AuthUser newUser = new AuthUser();
@@ -28,6 +51,7 @@ public class AuthUser {
     }
 
 
+    /*bUSINESS lOGIC*/
     public HashMap<ValidationError, Integer> validate() {
         HashMap<ValidationError, Integer> errors = new HashMap<>();
 

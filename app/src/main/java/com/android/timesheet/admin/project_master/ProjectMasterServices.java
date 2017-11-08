@@ -1,7 +1,7 @@
 package com.android.timesheet.admin.project_master;
 
-import com.android.timesheet.shared.models.AllEmployeesResponse;
 import com.android.timesheet.shared.models.ProjectNamesResponse;
+import com.android.timesheet.shared.models.RemoveProjectParams;
 import com.android.timesheet.shared.services.BaseService;
 import com.android.timesheet.shared.services.rest.IAdminService;
 
@@ -20,6 +20,10 @@ public class ProjectMasterServices extends BaseService<IAdminService>{
 
     public Observable<ProjectNamesResponse> allProjectNames() {
         return observe(prepare().allProjectNames());
+    }
+
+    public Observable removeProject(RemoveProjectParams removeProjectParams) {
+        return observe(prepare().removeProject(removeProjectParams.getProjectName()));
     }
 
 }

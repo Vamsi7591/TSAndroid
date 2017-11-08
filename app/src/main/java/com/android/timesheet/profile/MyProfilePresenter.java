@@ -48,4 +48,10 @@ public class MyProfilePresenter extends BasePresenter<BaseViewBehavior, MyProfil
     public User getCurrentUser(){
         return interactor().currentUser();
     }
+
+    public void clearUser(){
+
+        interactor().clearUser();
+
+    }
 }

@@ -2,15 +2,12 @@ package com.android.timesheet.user.sheet_entry;
 
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -26,12 +23,8 @@ import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -60,19 +53,17 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import butterknife.Optional;
 
 /**
  * Created by vamsikonanki on 8/22/2017.
  */
 
-public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implements BaseViewBehavior<Object>, AdapterView.OnItemSelectedListener {
-
+public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implements
+        BaseViewBehavior<Object>, AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.textViewToolbarTitle)
     CustomFontTextView textViewToolbarTitle;
@@ -118,9 +109,11 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     @BindView(R.id.error_description)
     TextView error_description;
 
+    private boolean fromTimeSheetList = false;
 
     String TAG = "TimeSheetEntry";
 
+    // Pojo
     TimeSheet sheet;
     User user;
     ProjectNamesResponse projectList;
@@ -130,7 +123,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     private int height;
     private int width;
     Animation animationRL, animationLR;
-
 
     @Override
     protected int layoutRestID() {
@@ -144,7 +136,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
     @Override
     protected String title() {
-        return "Time Sheet";
+        return "Time SheetEntry";
     }
 
     @Override
@@ -161,14 +153,19 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         Parcelable parcelable = getIntent().getParcelableExtra(Constant.KEYS.TIME_SHEET_DETAIL_KEY);
         sheet = Parcels.unwrap(parcelable);
+
+        if (sheet != null)
+            fromTimeSheetList = true;
+        else
+            fromTimeSheetList = false;
 
         textViewToolbarTitle.setText(title());
         textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
 
         spinnerProjects.setOnItemSelectedListener(this);
-
         user = presenter().getCurrentUser();
 
         /*Source :
@@ -191,12 +188,9 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
             //Custom spinner
             CustomSpinnerAdapter customSpinnerAdapter = new CustomSpinnerAdapter(TimeSheetEntry.this, projectNames);
             spinnerProjects.setAdapter(customSpinnerAdapter);
-
             pickerDate.setText(sheet.date);
-
 //            startTime.setText(sheet.startTime);
             showTime(Integer.parseInt(sheet.startTime.substring(0, 2)), Integer.parseInt(sheet.startTime.substring(3, 5)), true);
-
 //            endTime.setText(sheet.endTime);
             showTime(Integer.parseInt(sheet.endTime.substring(0, 2)), Integer.parseInt(sheet.endTime.substring(3, 5)), false);
 
@@ -261,17 +255,16 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
             }
         });
 
-
-
-
         clearErrors();
-
 
     }
 
     @OnClick(R.id.modifyB)
     void modify() {
         disableViews(true, 1);
+//        if (fromList)
+//        presenter().updateSheet(sheet);
+
     }
 
     @OnClick(R.id.saveB)
@@ -290,7 +283,11 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
         } else {
             /*submit time sheet entry*/
-            presenter().submitTimeSheet(sheet);
+
+            if (fromTimeSheetList) {
+                presenter().updateSheet(sheet);
+            } else
+                presenter().submitTimeSheet(sheet);
         }
     }
 
@@ -656,7 +653,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
                 sheet.setDate(df.format(date));
                 clearSpecificError(error_date);
 
-
 //                customToast(bottomSheetDialog.getCurrentFocus(),df.format(date));
 
                 int dayOfMonth = 0;
@@ -690,7 +686,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
                 int mAge = calendar.get(Calendar.YEAR) - cal.get(Calendar.YEAR);*/
 
-                selectedDate = year + "/" + monthOfYear + "/" + dayOfMonth ;
+                selectedDate = year + "/" + monthOfYear + "/" + dayOfMonth;
 
             }
 
@@ -707,7 +703,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
             calendarView.updateSelectedDate(dateSelected, selectedDate);
         }
     }
-
 
     private Date convertDateFormat(String data) {
         try {

@@ -5,13 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.timesheet.R;
-import com.android.timesheet.admin.employee_master.EmployeeMasterAdapter;
 import com.android.timesheet.shared.interfaces.OnItemClickListener;
-import com.android.timesheet.shared.models.Employee;
 import com.android.timesheet.shared.models.Project;
+import com.daimajia.swipe.SwipeLayout;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,6 +30,7 @@ public class ProjectMasterAdapter extends RecyclerView.Adapter<RecyclerView.View
     List<Project> projectList;
 
     OnItemClickListener listener;
+    SwipeLayout swipeLayout;
 
     public ProjectMasterAdapter(Context context, OnItemClickListener listener) {
         this.context = context;
@@ -82,6 +83,7 @@ public class ProjectMasterAdapter extends RecyclerView.Adapter<RecyclerView.View
         Project project = projectList.get(position);
 
         ((ProjectViewHolder) holder).bind(project, position);
+
     }
 
     @Override
@@ -100,6 +102,9 @@ public class ProjectMasterAdapter extends RecyclerView.Adapter<RecyclerView.View
         @BindView(R.id.code)
         TextView codeTV;
 
+        @BindView(R.id.trashing)
+        LinearLayout trashin;
+
         View itemView;
 
         ProjectViewHolder(Context context, View itemView, OnItemClickListener listener) {
@@ -117,6 +122,12 @@ public class ProjectMasterAdapter extends RecyclerView.Adapter<RecyclerView.View
             projectTV.setOnClickListener(view -> {
                 if (listener != null) {
                     listener.onItemClick(view, position);
+                }
+            });
+
+            trashin.setOnClickListener(view -> {
+                if (listener != null) {
+                    listener.onItemClickToDelete(view, position);
                 }
             });
         }

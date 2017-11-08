@@ -14,7 +14,8 @@ import com.android.timesheet.shared.views.BaseViewBehavior;
  * Created by vamsikonanki on 8/28/2017.
  */
 
-public class TimeSheetEntryPresenter extends BasePresenter<BaseViewBehavior, TimeSheetEntryInteractor, TimeSheetEntryRouter> {
+public class TimeSheetEntryPresenter extends BasePresenter<BaseViewBehavior, TimeSheetEntryInteractor,
+        TimeSheetEntryRouter> {
 
     public TimeSheetEntryPresenter(Context context) {
         super(context);
@@ -54,6 +55,23 @@ public class TimeSheetEntryPresenter extends BasePresenter<BaseViewBehavior, Tim
         });
     }
 
+    public void updateSheet(TimeSheet sheet) {
+        interactor().updateTS(sheet, new ServiceCallback<TimeSheetResponse>() {
+            @Override
+            public void onFailure(Throwable e) {
+                viewBehaviour().onFailed(e);
+                viewBehaviour().onComplete();
+            }
+
+            @Override
+            public void onSuccess(TimeSheetResponse data) {
+
+                viewBehaviour().onSuccess(data);
+            }
+        });
+    }
+
+
     public void getProjectNames(String empCode){
 
         interactor().getProjectNames(empCode, new ServiceCallback<ProjectNamesResponse>() {
@@ -71,7 +89,6 @@ public class TimeSheetEntryPresenter extends BasePresenter<BaseViewBehavior, Tim
     }
 
     public void removeTimeSheet(String empCode,String timeSheetId){
-
         interactor().removeTimeSheet(empCode, timeSheetId, new ServiceCallback<TimeSheetResponse>() {
             @Override
             public void onFailure(Throwable e) {
@@ -85,4 +102,6 @@ public class TimeSheetEntryPresenter extends BasePresenter<BaseViewBehavior, Tim
         });
 
     }
+
+
 }

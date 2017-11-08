@@ -41,7 +41,7 @@ public class WebViewActivity extends BaseActivity implements BaseViewBehavior {
     @BindView(R.id.textViewToolbarTitle)
     CustomFontTextView textViewToolbarTitle;
 
-    private String mTitle;
+    private String mTitle ="";
 
     private String mUrl;
 
@@ -57,8 +57,9 @@ public class WebViewActivity extends BaseActivity implements BaseViewBehavior {
 
     @Override
     protected String title() {
-        return "Company profile";
+        return mTitle;
     }
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -72,7 +73,7 @@ public class WebViewActivity extends BaseActivity implements BaseViewBehavior {
         mUrl = bundle.getString(Constant.KEYS.WEB_VIEW_URL);
         mTitle = bundle.getString(Constant.KEYS.WEB_VIEW_TITLE);
 
-        textViewToolbarTitle.setText(title());
+        textViewToolbarTitle.setText(mTitle);
         textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
 
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
@@ -81,6 +82,7 @@ public class WebViewActivity extends BaseActivity implements BaseViewBehavior {
         textViewToolbarTitle.setLayoutParams(lp);
 
         webView.loadUrl(mUrl);
+//        webView.set
         WebSettings settings = webView.getSettings();
         //settings.setJavaScriptEnabled(true);
         settings.setSupportZoom(true);

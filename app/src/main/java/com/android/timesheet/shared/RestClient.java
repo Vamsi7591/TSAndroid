@@ -1,11 +1,8 @@
 package com.android.timesheet.shared;
 
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.android.common.AppConfig;
-import com.android.timesheet.App;
 import com.android.timesheet.BuildConfig;
 import com.android.timesheet.shared.interceptors.SignedInterceptor;
 import com.google.gson.Gson;
@@ -46,7 +43,6 @@ public class RestClient {
         retrofitBuilder = createRetrofitBuilder();
     }
 
-
     Retrofit.Builder createRetrofitBuilder() {
         Gson gson = new GsonBuilder().registerTypeAdapter(Date.class,
                 new DateDeserializer()).excludeFieldsWithModifiers(Modifier.FINAL, Modifier.TRANSIENT,
@@ -72,10 +68,6 @@ public class RestClient {
         OkHttpClient client = clientBuilder.addInterceptor(interceptor).build();
 
         return retrofitBuilder.client(client).build();
-    }
-
-    protected SharedPreferences sharedPrefs() {
-        return PreferenceManager.getDefaultSharedPreferences(App.getAppContext());
     }
 
     public void reset() {

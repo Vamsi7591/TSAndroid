@@ -6,13 +6,14 @@ import android.os.Parcelable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.timesheet.App;
 import com.android.timesheet.R;
@@ -34,7 +35,9 @@ import butterknife.Unbinder;
  * Created by vamsikonanki on 8/22/2017.
  */
 
-public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter> implements TimeSheetViewBehaviour, OnItemClickListener {
+public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
+        implements TimeSheetViewBehaviour, OnItemClickListener,
+        SearchView.OnQueryTextListener {
 
      /*
     * It's VIPER design pattern
@@ -62,6 +65,9 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter> implements T
     @BindView(R.id.progress_bar)
     CircularProgressBar progressBar;
 
+    @BindView(R.id.idsearch)
+    SearchView searchView;
+
     public TimeSheetList(Context context) {
         super(context);
     }
@@ -74,30 +80,33 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter> implements T
         super(context, attrs, defStyleAttr);
     }
 
-
     @Override
     protected TimeSheetPresenter providePresenter() {
         return new TimeSheetPresenter(context, this);
     }
 
+
     @Override
     public void initialize() {
-        int resourceLayout = R.layout.fragment_with_recycler_view;
 
+        int resourceLayout = R.layout.fragment_with_recycler_view;
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         layoutInflater.inflate(resourceLayout, this);
 
         unbinder = ButterKnife.bind(this);
-
         mAdapter = new TimeSheetAdapter(context, this);
         linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setStackFromEnd(false);
         linearLayoutManager.setSmoothScrollbarEnabled(false);
-
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mAdapter);
 
         hideKeyboard();
+
+        searchView.setQueryHint("Search by Project Name");
+        searchView.setIconifiedByDefault(false);
+        searchView.setOnQueryTextListener(this);
+
     }
 
     @Override
@@ -120,7 +129,6 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter> implements T
 
         mAdapter.setItems(data);
         mAdapter.notifyDataSetChanged();
-
         onComplete();
     }
 
@@ -162,7 +170,6 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter> implements T
 
     @Override
     public void removedTimeSheet(TimeSheetResponse response) {
-
         if (response != null) {
             infoSnackBar(response.getMessage());
 //            Toast.makeText(getContext(), response.getMessage(), Toast.LENGTH_SHORT).show();
@@ -177,8 +184,10 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter> implements T
         TimeSheet sheet = mAdapter.getItem(position);
         switch (sheet.getRowType()) {
             case TimeSheet.TYPE_HEADER: {
+
                 Log.i(TAG, "onItemClick : " + sheet.getHeader());
-                App.getInstance().removeAuthorization();
+                presenter().dayTimeSheet(sheet.getHeader());
+//                App.getInstance().removeAuthorization();
                 break;
             }
             case TimeSheet.TYPE_BODY: {
@@ -224,11 +233,25 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter> implements T
     }
 
     private void hideKeyboard() {
-
         View view = new View(context);
         InputMethodManager imm = (InputMethodManager) this.context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        assert imm != null;
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
 
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        if ( TextUtils.isEmpty ( newText ) ) {
+            mAdapter.getFilter().filter("");
+        } else {
+            mAdapter.getFilter().filter(newText.toString());
+        }
+        return true;
+    }
 }
+

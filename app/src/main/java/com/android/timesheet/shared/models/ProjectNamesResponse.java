@@ -57,7 +57,8 @@ public class ProjectNamesResponse implements Serializable {
     }
 
     @Nullable
-    public List<Project> getProjectList() {
+    public List<Project> getProjectList()
+    {
         return projectList;
     }
 

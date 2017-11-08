@@ -1,8 +1,7 @@
 package com.android.timesheet.splash;
 
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import com.android.timesheet.R;

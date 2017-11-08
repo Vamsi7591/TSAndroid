@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="btn_font_large">20dp</dimen>
+    <dimen name="btn_font_medium">18dp</dimen>
+    <dimen name="logo_height">110dp</dimen>
+    <dimen name="logo_margin_top">150dp</dimen>
+    <dimen name="pipe_height">24dp</dimen>
+    <dimen name="social_icons">62dp</dimen>
+    <dimen name="tv_font_large">16sp</dimen>
+    <dimen name="tv_font_medium">14sp</dimen>
+    <dimen name="tv_font_menu">13sp</dimen>
+    <dimen name="tv_font_small">12sp</dimen>
+    <dimen name="tv_font_xlarge">18sp</dimen>
+    <style name="Base.Widget.AppCompat.DrawerArrowToggle" parent="Base.Widget.AppCompat.DrawerArrowToggle.Common">
+          <item name="barLength">18.66dp</item>
+          <item name="gapBetweenBars">3.33dp</item>
+          <item name="drawableSize">24dp</item>
+     </style>
+</resources>

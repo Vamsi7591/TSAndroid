@@ -3,10 +3,10 @@ package com.android.timesheet.user.list;
 import android.content.Context;
 import android.content.Intent;
 
-import com.android.timesheet.R;
 import com.android.timesheet.shared.Constant;
 import com.android.timesheet.shared.models.TimeSheet;
 import com.android.timesheet.shared.routers.BaseRouter;
+import com.android.timesheet.user.list.headerSerialize.HeaderSerialize;
 import com.android.timesheet.user.sheet_entry.TimeSheetEntry;
 
 import org.parceler.Parcels;
@@ -24,6 +24,12 @@ public class TimeSheetRouter extends BaseRouter{
     public void openTimeSheet(TimeSheet sheet) {
         Intent intent = new Intent(context, TimeSheetEntry.class);
         intent.putExtra(Constant.KEYS.TIME_SHEET_DETAIL_KEY, Parcels.wrap(sheet));
+        context.startActivity(intent);
+    }
+
+    public void dayTimeSheet(String  sheet) {
+        Intent intent = new Intent(context, HeaderSerialize.class);
+        intent.putExtra(Constant.KEYS.TIME_SHEET_HEADER_KEY, sheet);
         context.startActivity(intent);
     }
 }

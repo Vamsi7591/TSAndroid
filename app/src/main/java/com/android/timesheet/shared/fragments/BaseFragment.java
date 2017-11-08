@@ -73,14 +73,17 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(layoutResID(), container, false);
-//        ButterKnife.bind(this, view);
+
         unbinder = ButterKnife.bind(this, view);
-
-//        initializer();
-
         return view;
     }
 
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+    }
 
     protected void initializer(){
         //TODO Some init variables
@@ -89,17 +92,10 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     @Override
     public void onResume() {
         super.onResume();
-
-        /*if (isSubscriber()) {
-            App.getInstance().getBus().register(this);
-        }*/
     }
 
     @Override
     public void onPause() {
-        /*if (isSubscriber()) {
-            App.getInstance().getBus().unregister(this);
-        }*/
 
         if (mPresenter != null) {
             presenter().onPause();
@@ -111,7 +107,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     @Override
     public void onDestroy() {
         if (getView() != null) {
-//            ButterKnife.unbind(getView());
             unbinder.unbind();
         }
 
@@ -198,6 +193,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
             getBaseActivity().setTitle(title);
         }
     }
+
+
+
 
 
     //endregion

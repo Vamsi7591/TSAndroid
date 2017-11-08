@@ -50,7 +50,7 @@ public class Project implements Serializable {
         this.commonFlag = commonFlag;
     }
 
-    public Project(String projectCode, String projectName, String commonFlag) {
+    public Project(String projectCode, String projectName, @Nullable String commonFlag) {
         this.projectCode = projectCode;
         this.projectName = projectName;
         this.commonFlag = commonFlag;

@@ -13,7 +13,6 @@ import android.widget.Toast;
 import com.android.timesheet.R;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.User;
-import com.android.timesheet.shared.models.UserResponse;
 import com.android.timesheet.shared.models.ValidationError;
 import com.android.timesheet.shared.util.InternetUtils;
 import com.android.timesheet.shared.widget.CustomFontTextView;
@@ -21,8 +20,6 @@ import com.android.timesheet.shared.widget.CustomFontTextView;
 import java.util.HashMap;
 
 import butterknife.BindView;
-import butterknife.BindViews;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -117,6 +114,7 @@ public class LoginActivity extends BaseActivity<AuthPresenter> implements AuthVi
             presenter().openMainActivity();
         }
 //        presenter().openSplash();
+
     }
 
     @Override

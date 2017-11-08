@@ -24,6 +24,7 @@ public class TimeSheet implements Serializable {
     @SerializedName("timesheetId")
     public long timeSheetId;
 
+    @Nullable
     @SerializedName("date")
     public String date;
 
@@ -54,7 +55,7 @@ public class TimeSheet implements Serializable {
 
     public int rowType;
 
-    public TimeSheet(long timeSheetId, String date, String startTime, String projectName, String endTime, String taskDescription, String totalHours) {
+    public TimeSheet( @Nullable long timeSheetId,  @Nullable String date, String startTime, String projectName, String endTime, String taskDescription, String totalHours) {
         this.timeSheetId = timeSheetId;
         this.date = date;
         this.startTime = startTime;
@@ -72,7 +73,7 @@ public class TimeSheet implements Serializable {
         setRowType(TYPE_HEADER);
     }
 
-    public TimeSheet(String date, String startTime, String projectName, String endTime, String taskDescription, String empCode, String weekNo) {
+    public TimeSheet(@Nullable String date, String startTime, String projectName, String endTime, String taskDescription, String empCode, String weekNo) {
         this.date = date;
         this.startTime = startTime;
         this.projectName = projectName;
@@ -92,12 +93,12 @@ public class TimeSheet implements Serializable {
     public void setTimeSheetId(@Nullable long timeSheetId) {
         this.timeSheetId = timeSheetId;
     }
-
+    @Nullable
     public String getDate() {
         return date;
     }
-
-    public void setDate(String date) {
+    @Nullable
+    public void setDate(@Nullable String date) {
         this.date = date;
     }
 
@@ -141,7 +142,7 @@ public class TimeSheet implements Serializable {
         this.totalHours = totalHours;
     }
 
-    public TimeSheet(long timeSheetId, String date, String startTime, String projectName, String endTime, String taskDescription, String totalHours, String header) {
+    public TimeSheet(  @Nullable long timeSheetId, String date, String startTime, String projectName, String endTime, String taskDescription, String totalHours, String header) {
         this.timeSheetId = timeSheetId;
         this.date = date;
         this.startTime = startTime;
@@ -185,8 +186,6 @@ public class TimeSheet implements Serializable {
     public void setWeekNo(@Nullable String weekNo) {
         this.weekNo = weekNo;
     }
-
-
 
     public HashMap<ValidationError, Integer> validateTimeSheetEntry() {
         HashMap<ValidationError, Integer> errors = new HashMap<>();

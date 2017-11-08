@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.android.timesheet.shared.interactors.BaseInteractor;
 import com.android.timesheet.shared.models.ProjectNamesResponse;
+import com.android.timesheet.shared.models.RemoveProjectParams;
+import com.android.timesheet.shared.models.TimeSheetResponse;
 import com.android.timesheet.shared.services.ServiceCallback;
 import com.android.timesheet.shared.services.ServiceSubscriber;
 
@@ -36,4 +38,34 @@ public class ProjectMasterInteractor extends BaseInteractor<ProjectMasterService
             }
         });
     }
+
+    public void removedProj(RemoveProjectParams removeProjectParams, ServiceCallback<String> callback) {
+
+        service().removeProject(removeProjectParams).subscribe(new ServiceSubscriber<TimeSheetResponse>() {
+
+            @Override
+            public void onDisconnected() {
+            }
+
+            @Override
+            public void onFailure(Throwable e) {
+                callback.onFailure(e);
+            }
+
+            @Override
+
+            public void onSuccess(TimeSheetResponse recommendation) {
+
+                if (recommendation!=null) {
+
+                    String uniqueResult;
+                    uniqueResult = recommendation.getMessage();
+
+                    callback.onSuccess(uniqueResult);
+
+                }
+            }
+        });
+    }
+
 }

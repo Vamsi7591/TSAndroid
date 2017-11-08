@@ -11,7 +11,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +28,7 @@ import com.android.timesheet.slider.Slider;
 import com.android.timesheet.user.monthly.MonthlyFragment;
 import com.android.timesheet.user.sheet.TimeSheetFragment;
 import com.android.timesheet.user.weekly.WeeklyFragment;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.List;
 
@@ -39,7 +39,6 @@ import butterknife.BindView;
  */
 
 public class MainActivity extends BaseActivity<MainPresenter> {
-
 
     @BindView(R.id.coordinator_layout)
     CoordinatorLayout coordinatorLayout;
@@ -73,14 +72,17 @@ public class MainActivity extends BaseActivity<MainPresenter> {
     WeeklyFragment weeklyFragment;
     MonthlyFragment monthlyFragment;
 
+    private FirebaseAnalytics firebaseAnalytics;
     TabbedFragmentPagerAdapter mTabAdapter;
     User user = new User();
-    boolean isAdmin = false;
+    //    boolean isAdmin = false;
+    boolean isUser = false;
 
     @Override
     protected int layoutRestID() {
         return R.layout.activity_main;
     }
+
 
     @Override
     protected String title() {
@@ -100,43 +102,48 @@ public class MainActivity extends BaseActivity<MainPresenter> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         user = presenter().getCurrentUser();
 
-        if (user != null)
-            if (user.getEmpRole().equalsIgnoreCase("Admin")) {
-                isAdmin = true;
-                setUpDrawerLayout();
-                new Slider(this, user);
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-                mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.app_name, R.string.app_name) {
-                    public void onDrawerClosed(View view) {
-                        super.onDrawerClosed(view);
+        Bundle bundle = new Bundle();
+        bundle.putString("name",user.empName);
+        bundle.putString("email",user.emailId);
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "user_Info");
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
+        if (user != null) {
+//                isAdmin = true;
+            setUpDrawerLayout();
+            new Slider(this, user);
+
+            mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                    toolbar, R.string.app_name, R.string.app_name) {
+                public void onDrawerClosed(View view) {
+                    super.onDrawerClosed(view);
+                }
+
+                public void onDrawerOpened(View drawerView) {
+                    super.onDrawerOpened(drawerView);
+
+                }
+
+                public void onDrawerSlide(View drawerView, float slideOffset) {
+                    float min = 0.7f;
+                    float max = 1.0f;
+                    float scaleFactor = (max - ((max - min) * slideOffset));
+                    float moveFactor = (linearmLeftDrawer.getWidth() * slideOffset);
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                        coordinatorLayout.setTranslationX(moveFactor);
+                        coordinatorLayout.setScaleY(scaleFactor);
+                        coordinatorLayout.setScaleX(scaleFactor);
                     }
-
-                    public void onDrawerOpened(View drawerView) {
-                        super.onDrawerOpened(drawerView);
-                    }
-
-                    public void onDrawerSlide(View drawerView, float slideOffset) {
-                        float min = 0.7f;
-                        float max = 1.0f;
-                        float scaleFactor = (max - ((max - min) * slideOffset));
-                        float moveFactor = (linearmLeftDrawer.getWidth() * slideOffset);
-
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                            coordinatorLayout.setTranslationX(moveFactor);
-                            coordinatorLayout.setScaleY(scaleFactor);
-                            coordinatorLayout.setScaleX(scaleFactor);
-                        }
-                    }
-                };
-                mDrawerLayout.setDrawerListener(mDrawerToggle);
-                mDrawerLayout.setDrawerElevation(0f);
-            } else
-                isAdmin = false;
-        else
-            isAdmin = false;
+                }
+            };
+            mDrawerLayout.setDrawerListener(mDrawerToggle);
+            mDrawerLayout.setDrawerElevation(0f);
+        }
 
         timeSheetFragment = new TimeSheetFragment();
         weeklyFragment = new WeeklyFragment();
@@ -263,7 +270,6 @@ public class MainActivity extends BaseActivity<MainPresenter> {
                 //int position = (int) tab.getTag();
                 int position = (int) tab.getPosition();
                 tab.setIcon(tabInfo.get(position).activeIcon);
-
 
                 viewPager.setCurrentItem(position);
                 //setTitle(tab.getText());

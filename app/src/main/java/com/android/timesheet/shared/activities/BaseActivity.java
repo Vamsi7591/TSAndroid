@@ -6,24 +6,18 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
-import com.android.timesheet.App;
 import com.android.timesheet.R;
 import com.android.timesheet.shared.presenters.BasePresenter;
 import com.android.timesheet.shared.presenters.Presenter;
-import com.android.timesheet.shared.widget.CircularProgressBar;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crash.FirebaseCrash;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,7 +27,6 @@ import butterknife.ButterKnife;
  */
 
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements Presenter {
-
 
     @Nullable
     @BindView(R.id.app_bar)
@@ -46,6 +39,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     @Nullable
     @BindView(R.id.toolbar_layout)
     protected CollapsingToolbarLayout toolbarLayout;
+
+
 
     /*@Nullable
     @BindView(R.id.toolbar_image)
@@ -66,12 +61,13 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     @BindView(R.id.toolbar)
     protected Toolbar toolbar;
 
-
     private T mPresenter;
 
     protected Menu mMenu;
 
     protected ActionBar actionBar;
+
+    private FirebaseAnalytics firebaseAnalytics;
 
     protected boolean isBackButtonFromMain = false;
 
@@ -110,11 +106,8 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     @Override
     public T presenter() {
         if (mPresenter == null) {
-            mPresenter = providePresenter();
-
-            if (mPresenter == null) {
-                throw new RuntimeException("Presenter must be initialized first");
-            }
+//            throw new RuntimeException("Presenter must be initialized first");
+            mPresenter = providePresenter();// returns null
         }
 
         return mPresenter;
@@ -123,13 +116,30 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     protected T providePresenter() {
         return null;
     }
-
-
     //region Lifecycle
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler(){
+            @Override
+            public void uncaughtException(Thread thread, Throwable ex) {
+                FirebaseCrash.report(ex);
+            }
+        });
+
+        Bundle bundle = new Bundle();
+        bundle.putString("name","");
+        bundle.putString("email","");
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "user_Info");
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
+        FirebaseCrash.log("Here is exception");
+        FirebaseCrash.report(new Exception("oops !"));
 
         int layoutResID = layoutRestID();
         if (layoutResID > 0) {
@@ -166,14 +176,33 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             Window w = getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }*/
+
+        /*This below method is used for call back operations*/
+        /*testMethod(new ServiceCallback<User>() {
+            @Override
+            public void onFailure(Throwable e) {
+
+            }
+
+            @Override
+            public void onSuccess(User data) {
+
+            }
+        });*/
+
     }
+
+   /* public void testMethod(ServiceCallback<User> callback) {
+        callback.onFailure(null);
+        callback.onSuccess(null);
+    }*/
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
     }
 
-//    protected MenuItem menuItemSwitch = null;
+    //    protected MenuItem menuItemSwitch = null;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         int menuResID = menuResID();
@@ -270,13 +299,4 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     }
 
     //endregion
-
-
-
-
-
-
-
-
-
 }

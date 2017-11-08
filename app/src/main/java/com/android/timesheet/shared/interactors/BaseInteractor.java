@@ -1,8 +1,6 @@
 package com.android.timesheet.shared.interactors;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 
 import com.android.timesheet.shared.models.User;
@@ -103,6 +101,10 @@ public abstract class BaseInteractor<T extends BaseService> {
 
     public User currentUser() {
         return store(UserStore.class).getCurrentUser();
+    }
+
+    public void clearUser() {
+         store(UserStore.class).clearUser();
     }
 
     public void unsubscribe() {

@@ -39,6 +39,22 @@ public class TimeSheetEntryInteractor extends BaseInteractor<TimeSheetEntryServi
         });
     }
 
+    public void updateTS(TimeSheet sheet, ServiceCallback<TimeSheetResponse> callback) {
+
+        service().updateTimeSheet(sheet).subscribe(new ServiceSubscriber<TimeSheetResponse>() {
+            @Override
+            public void onFailure(Throwable e) {
+                callback.onFailure(e);
+            }
+
+            @Override
+            public void onSuccess(TimeSheetResponse data) {
+                callback.onSuccess(data);
+            }
+        });
+    }
+
+
     public void getProjectNames(String empCode, ServiceCallback<ProjectNamesResponse> callback) {
 
         service().getProjectNames(empCode).subscribe(new ServiceSubscriber<ProjectNamesResponse>() {

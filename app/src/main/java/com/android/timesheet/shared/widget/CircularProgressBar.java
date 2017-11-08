@@ -31,12 +31,13 @@ public class CircularProgressBar extends View {
         super(context, attrs, defStyleAttr);
 
         int circleColor = ContextCompat.getColor(getContext(), android.R.color.darker_gray);
-        int borderWidth = 4;
+        int borderWidth = 10;
 
         if (attrs != null) {
             TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.CircularProgressBar, 0, 0);
             try {
                 circleColor = typedArray.getColor(R.styleable.CircularProgressBar_circleColor, circleColor);
+                borderWidth = typedArray.getInt(R.styleable.CircularProgressBar_cp_circleWidth, borderWidth);
             } finally {
                 typedArray.recycle();
             }

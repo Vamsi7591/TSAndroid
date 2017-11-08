@@ -15,8 +15,13 @@ import java.io.Serializable;
 @Parcel
 public class Employee implements Serializable {
 
+
     @SerializedName("empCode")
     public String empCode;
+
+    @Nullable
+    @SerializedName("adminempcode")
+    public String adminempcode;
 
     @SerializedName("empName")
     public String empName;
@@ -31,20 +36,33 @@ public class Employee implements Serializable {
     @SerializedName("password")
     public String password;
 
+    @SerializedName("projectname")
+    public String projectname;
+
     @Nullable
     @SerializedName("createdBy")
     public String createdBy;
 
-    public Employee(String empCode, String empName, String empRole, String empEmailId, String password, String createdBy) {
+    public Employee(String empCode,String adminempcode, String empName, String empRole, String empEmailId, String password, String createdBy, String projectname) {
         this.empCode = empCode;
+        this.adminempcode =  adminempcode;
         this.empName = empName;
         this.empRole = empRole;
         this.empEmailId = empEmailId;
         this.password = password;
         this.createdBy = createdBy;
+        this.projectname = projectname;
     }
 
     public Employee() {
+    }
+
+    public String getProjectname() {
+        return projectname;
+    }
+
+    public void setProjectname(String projectname) {
+        this.projectname = projectname;
     }
 
     public String getEmpCode() {
@@ -95,5 +113,16 @@ public class Employee implements Serializable {
 
     public void setCreatedBy(@Nullable String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    @Nullable
+    public String getAdminempcode() {
+        return adminempcode;
+    }
+
+    public void setAdminempcode(@Nullable String adminempcode)
+
+    {
+        this.adminempcode = adminempcode;
     }
 }

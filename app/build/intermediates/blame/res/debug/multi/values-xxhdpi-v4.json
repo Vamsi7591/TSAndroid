@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\Vamsi\\TimeSheet\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xxhdpi-v4\\values-xxhdpi-v4.xml",
+            "outputFile": "D:\\git\\TSAndroid\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-xxhdpi-v4\\values-xxhdpi-v4.xml",
             "map": [
                 {
-                    "source": "E:\\Vamsi\\TimeSheet\\app\\src\\main\\res\\values-xxhdpi\\dimens.xml",
+                    "source": "D:\\git\\TSAndroid\\app\\src\\main\\res\\values-xxhdpi\\dimens.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

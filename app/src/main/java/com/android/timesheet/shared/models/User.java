@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import com.android.timesheet.shared.database.AppDatabase;
 import com.google.gson.annotations.SerializedName;
 import com.raizlabs.android.dbflow.annotation.Column;
-import com.raizlabs.android.dbflow.annotation.ModelView;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
@@ -18,34 +17,68 @@ import java.io.Serializable;
  * Created by vamsikonanki on 8/18/2017.
  */
 @Table(database = AppDatabase.class, name = "user")
-@Parcel(analyze={User.class})
+@Parcel(analyze = {User.class})
 public class User extends BaseModel implements Serializable {
 
     @PrimaryKey
-    @SerializedName("empCode")
-    @Column(name = "empCode")
-    public String empCode;
+
+    @SerializedName("adminempcode")
+    @Column(name = "adminempcode")
+    public String adminempcode;
 
     @SerializedName("empName")
     @Column(name = "empName")
     public String empName;
 
-    @SerializedName("empRole")
-    @Column(name = "empRole")
-    public String empRole;
-
     @SerializedName("empEmailid")
     @Column(name = "empEmailid")
     public String emailId;
 
+    @SerializedName("password")
+    @Column(name = "password")
+    public String password;
+
+    @SerializedName("empRole")
+    @Column(name = "empRole")
+    public String empRole;
+
+    @SerializedName("empCode")
+    @Column(name = "empCode")
+    public String empCode;
+
+    @SerializedName("date")
+    @Column(name = "date")
+    public String date;
+
+    @SerializedName("projectName")
+    @Column (name = "projectName")
+    public String projectName;
+
+
+
     public User() {
+
     }
 
-    public User(String empCode, String empName, String empRole, String emailId) {
-        this.empCode = empCode;
+    public User(@Nullable  String adminempcode , String empName, String emailId,String password,
+                String empRole,String empCode ,String projectName ) {
+
+        this.adminempcode = adminempcode;
         this.empName = empName;
-        this.empRole = empRole;
         this.emailId = emailId;
+        this.password = password;
+        this.empRole = empRole;
+        this.empCode = empCode;
+        this.projectName = projectName;
+
+    }
+
+    public String getAdminempcode() {
+        return adminempcode;
+    }
+
+    public void setAdminempcode(String adminempcode) {
+        this.adminempcode = adminempcode;
     }
 
     public String getEmpCode() {
@@ -80,6 +113,14 @@ public class User extends BaseModel implements Serializable {
         this.emailId = emailId;
     }
 
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -101,4 +142,6 @@ public class User extends BaseModel implements Serializable {
         this.emailId = user.emailId;
         save();
     }
+
+
 }

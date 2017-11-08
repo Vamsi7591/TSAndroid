@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\Vamsi\\TimeSheet\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v23\\values-v23.xml",
+            "outputFile": "D:\\git\\TSAndroid\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v23\\values-v23.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\vamsi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.1.aar\\d746fe4a2931301b72c5d90c2d295e82\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\wks-p02-012\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.1.aar\\ef41e99caee8ce60e8d503f682b68597\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,19,32,33,34,35,36",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
@@ -15,7 +15,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\vamsi\\.gradle\\caches\\transforms-1\\files-1.1\\cardview-v7-26.0.1.aar\\d9478db6e8a5e1d81c2b4b393f19bffb\\res\\values-v23\\values-v23.xml",
+                    "source": "C:\\Users\\wks-p02-012\\.gradle\\caches\\transforms-1\\files-1.1\\cardview-v7-26.0.1.aar\\03322f52d1c9f7821e2ab3cd31b5542d\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="CircularProgressBar">
         <attr name="circleColor" format="reference"/>
+        <attr name="cp_circleWidth" format="integer"/>
     </declare-styleable>
 
     <!-- CircularImageView Custom Styling -->

@@ -19,7 +19,8 @@ import java.util.List;
  * Created by vamsikonanki on 8/22/2017.
  */
 
-public class TimeSheetPresenter extends BasePresenter<TimeSheetViewBehaviour, com.android.timesheet.user.list.TimeSheetInteractor, TimeSheetRouter> {
+public class TimeSheetPresenter extends BasePresenter<TimeSheetViewBehaviour,
+        com.android.timesheet.user.list.TimeSheetInteractor, TimeSheetRouter> {
 
 
     public TimeSheetPresenter(Context context) {
@@ -117,5 +118,9 @@ public class TimeSheetPresenter extends BasePresenter<TimeSheetViewBehaviour, co
 
     public void openTimeSheet(TimeSheet sheet) {
         router().openTimeSheet(sheet);
+    }
+
+    public void dayTimeSheet(String sheet) {
+        router().dayTimeSheet(sheet);
     }
 }

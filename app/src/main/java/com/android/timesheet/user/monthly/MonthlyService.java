@@ -1,6 +1,6 @@
 package com.android.timesheet.user.monthly;
 
-import com.android.timesheet.shared.models.User;
+import com.android.timesheet.shared.models.MonthParams;
 import com.android.timesheet.shared.services.BaseService;
 import com.android.timesheet.shared.services.rest.IUserService;
 
@@ -16,7 +16,7 @@ public class MonthlyService extends BaseService<IUserService> {
         return super.prepare(IUserService.class);
     }
 
-    public Observable getMonthReport(User user) {
-        return observe(prepare().getMonthReport(user.empCode,"",""));
+    public Observable getMonthReport(MonthParams monthParams) {
+        return observe(prepare().getMonthReport(monthParams.getEmpCode(),monthParams.getMonthNo(),monthParams.getYear()));
     }
 }

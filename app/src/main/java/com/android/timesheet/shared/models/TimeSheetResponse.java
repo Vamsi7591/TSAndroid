@@ -4,9 +4,6 @@ import android.support.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
 
-import org.parceler.Parcel;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +26,7 @@ public class TimeSheetResponse {
     @Nullable
     @SerializedName("data")
     public List<TimeSheet> timeSheetList = new ArrayList<>();
+
 
     public boolean isStatus() {
         return status;

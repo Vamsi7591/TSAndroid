@@ -32,8 +32,8 @@ public class SliderBaseAdapter extends BaseAdapter {
         this.activity = activity;
 
         slide_classes.add(EmployeeMaster.class);//1
-        slide_classes.add(EmployeeProject.class);//2
         slide_classes.add(ProjectMaster.class);//3
+        slide_classes.add(EmployeeProject.class);//2
         slide_classes.add(SummaryDetails.class);//4
     }
 

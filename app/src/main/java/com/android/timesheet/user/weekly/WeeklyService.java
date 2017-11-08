@@ -1,6 +1,6 @@
 package com.android.timesheet.user.weekly;
 
-import com.android.timesheet.shared.models.User;
+import com.android.timesheet.shared.models.WeekParams;
 import com.android.timesheet.shared.services.BaseService;
 import com.android.timesheet.shared.services.rest.IUserService;
 
@@ -17,7 +17,7 @@ public class WeeklyService extends BaseService<IUserService>{
         return super.prepare(IUserService.class);
     }
 
-    public Observable getWeekReport(User user) {
-        return observe(prepare().getWeekReport(user.empCode,"",""));
+    public Observable getWeekReport(WeekParams weekParams) {
+        return observe(prepare().getWeekReport(weekParams.getEmpCode(),weekParams.getWeekNo(),weekParams.getYear()));
     }
 }

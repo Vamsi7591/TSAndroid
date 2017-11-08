@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">1086639837312-nqjc6f05h2cv9ksfr3pe9lurvf3mf4i6.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://time-sheet-fc706.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">1086639837312</string>
+    <string name="google_api_key" translatable="false">AIzaSyDz2FHzRQcDIdVi-N41kD0XTpuLp88kXKs</string>
+    <string name="google_app_id" translatable="false">1:1086639837312:android:2c1b43b55aea2a18</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDz2FHzRQcDIdVi-N41kD0XTpuLp88kXKs</string>
+    <string name="google_storage_bucket" translatable="false">time-sheet-fc706.appspot.com</string>
+    <string name="project_id" translatable="false">time-sheet-fc706</string>
+</resources>

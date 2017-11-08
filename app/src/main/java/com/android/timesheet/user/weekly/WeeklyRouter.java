@@ -13,4 +13,6 @@ public class WeeklyRouter extends BaseRouter {
     public WeeklyRouter(Context context) {
         super(context);
     }
+
+
 }

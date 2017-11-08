@@ -3,8 +3,6 @@ package com.android.timesheet.shared.presenters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.provider.Settings;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 
 import com.android.timesheet.shared.interactors.BaseInteractor;
 import com.android.timesheet.shared.routers.BaseRouter;
@@ -63,7 +61,8 @@ public abstract class BasePresenter<V extends BaseViewBehavior, I extends BaseIn
         }
     }
 
-    public void openMainActivity() {
+    public void openMainActivity()
+        {
         router().openMainActivity();
     }
 

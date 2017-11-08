@@ -5,6 +5,7 @@ import com.android.timesheet.shared.exceptions.NetworkException;
 import com.android.timesheet.shared.models.ServerErrorResponse;
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
@@ -52,17 +53,23 @@ public abstract class ServiceSubscriber<T> extends Subscriber<T> {
 
         if (e instanceof UnknownHostException) {
             onDisconnected();
+            System.out.println("UnknownHostException:" + e.getMessage());
         } else if (e instanceof SocketTimeoutException) {
             onDisconnected();
+            System.out.println("SocketTimeoutException:" + e.getMessage());
         } else if (e instanceof OnErrorNotImplementedException) {
+            onDisconnected();
             System.out.println("OnErrorNotImplementedException:" + e.getMessage());
+        }else if(e instanceof ConnectException){
+            onDisconnected();
+            System.out.println("ConnectException:" + e.getMessage());
         }
-    }
 
-    public abstract void onFailure(Throwable e);
+    }
 
     public void onDisconnected() {
     }
 
+    public abstract void onFailure(Throwable e);
     public abstract void onSuccess(T data);
 }

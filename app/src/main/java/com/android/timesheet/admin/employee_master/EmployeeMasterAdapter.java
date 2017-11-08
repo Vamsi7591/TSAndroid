@@ -11,8 +11,6 @@ import android.widget.TextView;
 import com.android.timesheet.R;
 import com.android.timesheet.shared.interfaces.OnItemClickListener;
 import com.android.timesheet.shared.models.Employee;
-import com.android.timesheet.shared.models.TimeSheet;
-import com.android.timesheet.user.list.TimeSheetAdapter;
 
 import java.util.Collections;
 import java.util.List;
@@ -107,6 +105,9 @@ public class EmployeeMasterAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         @BindView(R.id.email)
         TextView emailTV;
 
+        @BindView(R.id.trashed)
+        LinearLayout trash;
+
         View itemView;
 
         EmployeeViewHolder(Context context, View itemView, OnItemClickListener listener) {
@@ -126,6 +127,14 @@ public class EmployeeMasterAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 if (listener != null) {
                     listener.onItemClick(view, position);
                 }
+            } );
+
+            trash.setOnClickListener(view -> {
+                if (listener != null) {
+                    listener.onItemClickToDelete(view, position);
+
+                }
+
             });
         }
     }

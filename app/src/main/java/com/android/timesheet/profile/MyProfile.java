@@ -2,6 +2,7 @@ package com.android.timesheet.profile;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import com.android.common.AppConfig;
 import com.android.timesheet.R;
+import com.android.timesheet.auth.LoginActivity;
+import com.android.timesheet.password.ChangePassword;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.activities.WebViewActivity;
 import com.android.timesheet.shared.models.Project;
@@ -21,7 +24,6 @@ import com.android.timesheet.shared.util.FontUtils;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 import com.android.timesheet.shared.widget.CustomFontTextView;
 import com.android.timesheet.shared.widget.TokenizeTextView;
-import com.android.timesheet.user.sheet_entry.TimeSheetEntry;
 import com.android.timesheet.utils.WidgetUtils;
 
 import java.util.ArrayList;
@@ -34,8 +36,8 @@ import butterknife.OnClick;
  * Created by vamsikonanki on 8/22/2017.
  */
 
-public class MyProfile extends BaseActivity<MyProfilePresenter> implements BaseViewBehavior<ProjectNamesResponse> {
-
+public class MyProfile extends BaseActivity<MyProfilePresenter> implements
+        BaseViewBehavior<ProjectNamesResponse> {
 
     @BindView(R.id.textViewToolbarTitle)
     CustomFontTextView textViewToolbarTitle;
@@ -64,10 +66,9 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements BaseV
     @BindView(R.id.textViewLogOut)
     TextView textViewLogOut;
 
-
+    public static final String NUMBER = "8012841680";
 
     String TAG = "Profile";
-
     User user;
 
     @Override
@@ -120,13 +121,42 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements BaseV
             InputMethodManager imm = (InputMethodManager) MyProfile.this.getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+
+        textViewChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View view) {
+
+                Intent i = new Intent(getApplicationContext(), ChangePassword.class);
+                startActivity(i);
+
+            }
+        });
+
+        textViewContactUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + MyProfile.NUMBER));
+                startActivity(intent);
+            }
+        });
+
+        textViewLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                presenter().clearUser();
+                Intent in =new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(in);
+            }
+        });
+
     }
 
     @Override
     protected void onResume() {
 
         closeKeyBoard();
-
         super.onResume();
     }
 

@@ -2,6 +2,7 @@ package com.android.timesheet.admin.employee_master;
 
 import com.android.timesheet.shared.models.AllEmployeesResponse;
 import com.android.timesheet.shared.models.Employee;
+import com.android.timesheet.shared.models.RemoveEmployeeParams;
 import com.android.timesheet.shared.services.BaseService;
 import com.android.timesheet.shared.services.rest.IAdminService;
 
@@ -19,21 +20,10 @@ public class EmployeeMasterServices extends BaseService<IAdminService> {
     }
 
     public Observable<AllEmployeesResponse> getEmployees() {
+
         return observe(prepare().getEmployee());
     }
 
-    public Observable<AllEmployeesResponse> addEmployee(Employee employee) {
-        return observe(prepare().addEmployee(employee.createdBy,
-                employee.empName,
-                employee.empEmailId,
-                employee.password,
-                employee.empRole));
-    }
-
-    public Observable<AllEmployeesResponse> removeEmployee(Employee employee) {
-        return observe(prepare().removeEmployee(employee.createdBy,
-                employee.empCode));
-    }
 
     public Observable<AllEmployeesResponse> updateEmployee(Employee employee) {
         return observe(prepare().updateEmployee(employee.createdBy,
@@ -41,4 +31,8 @@ public class EmployeeMasterServices extends BaseService<IAdminService> {
                 employee.password,
                 employee.empRole));
     }
+    public Observable removeEmployee(RemoveEmployeeParams removeEmployeeParams) {
+        return observe(prepare().removeEmployee(removeEmployeeParams.getAdminempcode(),removeEmployeeParams.getEmpcode()));
+    }
+
 }

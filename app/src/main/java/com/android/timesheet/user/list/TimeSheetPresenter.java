@@ -13,11 +13,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +23,8 @@ import java.util.Map;
  * Created by vamsikonanki on 8/22/2017.
  */
 
-public class TimeSheetPresenter extends BasePresenter<TimeSheetViewBehaviour, TimeSheetInteractor, TimeSheetRouter> {
+public class TimeSheetPresenter extends BasePresenter<TimeSheetViewBehaviour, TimeSheetInteractor,
+        TimeSheetRouter> {
 
 
     public TimeSheetPresenter(Context context) {
@@ -61,28 +60,6 @@ public class TimeSheetPresenter extends BasePresenter<TimeSheetViewBehaviour, Ti
                 List<TimeSheet> arrayList = new ArrayList<>();
                 arrayList = data;
 
-//                Collections.sort(arrayList, new Comparator<TimeSheet>() {
-//                    @Override
-//                    public int compare(TimeSheet s1, TimeSheet s2) {
-////                        return Long.compare(s1.timeSheetId , s2.timeSheetId);
-//                        return (int) (s1.timeSheetId - s2.timeSheetId);
-//                    }
-//                });
-
-//                Collections.sort(arrayList, Collections.reverseOrder());
-
-//                Collections.sort(arrayList, new Comparator<TimeSheet>() {
-//
-//                    @Override
-//                    public int compare(TimeSheet date1, TimeSheet date2){
-//                        return date1.date.compareTo(date2.date);
-//                    }
-//                });
-
-//                Collections.sort(arrayList, new StringDateComparator());
-
-//                Collections.reverseOrder();
-
                 for (int i = 0; i < arrayList.size(); i++) {
 
                     ArrayList<TimeSheet> today_retroList = new ArrayList<>();
@@ -98,11 +75,6 @@ public class TimeSheetPresenter extends BasePresenter<TimeSheetViewBehaviour, Ti
                 }
 
                 arrayList = new ArrayList<>();
-
-               /* if(sortByValues(today_retroHashMap).entrySet().size() >0) {
-                    today_retroHashMap.clear();
-                    today_retroHashMap = sortByValues(today_retroHashMap);
-                }*/
 
                 for (HashMap.Entry today : today_retroHashMap.entrySet()) {
 
@@ -201,5 +173,9 @@ public class TimeSheetPresenter extends BasePresenter<TimeSheetViewBehaviour, Ti
 
     public void openTimeSheet(TimeSheet sheet) {
         router().openTimeSheet(sheet);
+    }
+
+    public void dayTimeSheet(String sheet) {
+        router().dayTimeSheet(sheet);
     }
 }

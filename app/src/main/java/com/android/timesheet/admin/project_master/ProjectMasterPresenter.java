@@ -3,6 +3,8 @@ package com.android.timesheet.admin.project_master;
 import android.content.Context;
 
 import com.android.timesheet.shared.models.ProjectNamesResponse;
+import com.android.timesheet.shared.models.RemoveProjectParams;
+import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.presenters.BasePresenter;
 import com.android.timesheet.shared.services.ServiceCallback;
 import com.android.timesheet.shared.views.BaseViewBehavior;
@@ -26,6 +28,10 @@ public class ProjectMasterPresenter extends BasePresenter<BaseViewBehavior,Proje
         return new ProjectMasterInteractor(context);
     }
 
+    protected User getCurrentUser() {
+        return interactor().currentUser();
+    }
+
     @Override
     protected ProjectMasterRouter provideRouter() {
         return new ProjectMasterRouter(context);
@@ -44,6 +50,25 @@ public class ProjectMasterPresenter extends BasePresenter<BaseViewBehavior,Proje
 
                 viewBehaviour().onSuccess(data.getProjectList());
             }
+        });
+    }
+
+
+    public void removeEmp(RemoveProjectParams removeProjectParams) {
+
+        interactor().removedProj(removeProjectParams, new ServiceCallback<String>() {
+
+            @Override
+            public void onFailure(Throwable e) {
+                viewBehaviour().onFailed(e);
+            }
+
+            @Override
+            public void onSuccess(String data) {
+                viewBehaviour().onSuccess(data);
+            }
+
+
         });
     }
 }

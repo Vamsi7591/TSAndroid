@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "E:\\Vamsi\\TimeSheet\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v13\\values-v13.xml",
+            "outputFile": "D:\\git\\TSAndroid\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v13\\values-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\vamsi\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.1.aar\\d746fe4a2931301b72c5d90c2d295e82\\res\\values-v13\\values-v13.xml",
+                    "source": "C:\\Users\\wks-p02-012\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.0.1.aar\\ef41e99caee8ce60e8d503f682b68597\\res\\values-v13\\values-v13.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

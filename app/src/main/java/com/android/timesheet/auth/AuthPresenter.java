@@ -12,7 +12,6 @@ import com.android.timesheet.shared.presenters.BasePresenter;
 import com.android.timesheet.shared.services.ServiceCallback;
 
 import java.util.HashMap;
-import java.util.UUID;
 
 /**
  * Created by vamsikonanki on 8/18/2017.
@@ -30,6 +29,7 @@ public class AuthPresenter extends BasePresenter<AuthViewBehavior<User>, AuthInt
 
     @Override
     protected AuthInteractor provideInteractor() {
+
         return new AuthInteractor(context);
     }
 
@@ -40,7 +40,8 @@ public class AuthPresenter extends BasePresenter<AuthViewBehavior<User>, AuthInt
 
     //region Login
     public void submitLogin(Editable empCode, Editable password) {
-        AuthUser authUser = AuthUser.loginUser(empCode.toString(), password.toString());
+        AuthUser authUser = new AuthUser(empCode.toString(), password.toString());
+//        AuthUser authUser = AuthUser.loginUser(empCode.toString(), password.toString());
 
         HashMap<ValidationError, Integer> errors = authUser.validate();
 
@@ -82,6 +83,7 @@ public class AuthPresenter extends BasePresenter<AuthViewBehavior<User>, AuthInt
                 public void onFailure(Throwable e) {
                     viewBehaviour().onFailed(e);
                     viewBehaviour().onComplete();
+                    router().logout();
                 }
 
             });
@@ -111,7 +113,7 @@ public class AuthPresenter extends BasePresenter<AuthViewBehavior<User>, AuthInt
     }
 
 
-    public void openSplash(){
+    public void openSplash() {
         router().openMainActivity();
     }
 

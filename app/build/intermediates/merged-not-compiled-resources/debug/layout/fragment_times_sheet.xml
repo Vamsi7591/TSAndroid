@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeToRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--Your Invitation lis is empty-->
+            <LinearLayout
+                android:id="@+id/empty_state_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/no_invitation_state_ai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rate_middle" />
+
+                <TextView
+                    android:id="@+id/body_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="You have no records yet."
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/cardview_dark_background" />
+
+                <TextView
+                    android:id="@+id/body_2"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/margin_20"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:gravity="center"
+                    android:lines="3"
+                    android:text="Click “+” icon to enter your TimeSheet."
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Menu"
+                    android:textColor="@color/cardview_dark_background"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+            <!--<com.dineconnect.android.shared.widget.CommonEmptyStateView
+                android:id="@+id/empty_state_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:esv_icon="@drawable/icon_nb_chat_active"
+                app:esv_message="@string/message_chat_empty"
+                app:esv_title="@string/title_chat_empty" />-->
+
+            <ExpandableListView
+                android:id="@+id/expandableListView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/empty_state_view"
+                android:divider="@android:color/darker_gray"
+                android:dividerHeight="0.5dp"
+                android:visibility="gone"
+                android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" />
+
+            <com.android.timesheet.user.list.TimeSheetList
+                android:id="@+id/room_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/empty_state_view"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginRight="@dimen/margin_10"
+                android:visibility="visible" />
+
+        </RelativeLayout>
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</RelativeLayout>

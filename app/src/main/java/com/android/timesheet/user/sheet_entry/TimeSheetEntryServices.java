@@ -37,5 +37,18 @@ public class TimeSheetEntryServices extends BaseService<IUserService> {
         return observe(prepare().removeTimeSheet(empCode,timeSheetId));
     }
 
+    public Observable updateTimeSheet(TimeSheet sheet) {
+        return observe(prepare().updateTimeSheet(
+                sheet.empCode,
+                sheet.date,
+                sheet.projectName,
+                sheet.taskDescription,
+                sheet.startTime,
+                sheet.endTime,
+                sheet.timeSheetId
+        ));
+    }
+
+
 
 }

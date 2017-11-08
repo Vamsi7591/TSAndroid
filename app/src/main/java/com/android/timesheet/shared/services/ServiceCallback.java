@@ -5,6 +5,7 @@ package com.android.timesheet.shared.services;
  */
 public interface ServiceCallback<U> {
 
+    /*U means Data model/pojo */
     void onFailure(Throwable e);
 
     void onSuccess(U data);
