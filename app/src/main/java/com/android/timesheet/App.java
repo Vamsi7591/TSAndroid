@@ -20,7 +20,6 @@ import com.squareup.otto.Bus;
 public class App extends Application {
 
     private static Context mContext;
-    private Bus mBus;
 
     String TAG = "App";
 
@@ -36,7 +35,7 @@ public class App extends Application {
 
         mContext = getApplicationContext();
 
-        // This instantiates DBFlow
+        /*This instantiates DBFlow Library*/
         initDatabase();
     }
 
@@ -56,22 +55,36 @@ public class App extends Application {
         initDatabase();
     }
 
+    /**
+     * Initializes DBFlow, loading the main application Database holder via reflection one time only.
+     * This will trigger all creations, updates, and instantiation for each database defined.
+     *
+     * @code new FlowConfig The configuration instance that will help shape how DBFlow gets constructed.
+     * @code reset() Resets all databases and associated files.
+     * @code destroy() Release reference to context and {@link FlowConfig}
+     */
     public void initDatabase() {
         FlowManager.reset();
         FlowManager.destroy();
 
-        FlowManager.init(
-                new FlowConfig
-                        .Builder(this)
-                        .addDatabaseConfig(new DatabaseConfig.Builder(AppDatabase.class).build())
-                        .build());
+        FlowManager.init(new FlowConfig
+                .Builder(this)
+                .addDatabaseConfig(new DatabaseConfig.Builder(AppDatabase.class).build())
+                .build());
     }
+
+
+    /**
+     * Instantiate a Bus and access it throughout the application by calling {@code App.getBus()}.
+     *
+     * @return mBus instance of Bus.
+     */
+    private Bus mBus;
 
     public Bus getBus() {
         if (mBus == null) {
             mBus = new Bus();
         }
-
         return mBus;
     }
 
