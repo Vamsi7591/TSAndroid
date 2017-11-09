@@ -5,6 +5,7 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#ef2e83fa</color>
 
+    <color name="colorThemeBlue">#ef1d57a7</color>
     <color name="colorGlowAccent">#fbc8fff9</color>
     <color name="colorPrimaryTransparentFadeIn">#da0a0909</color>
     <color name="colorPrimaryTransparent">#2bb3b3b3</color>

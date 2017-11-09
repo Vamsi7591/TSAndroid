@@ -38,10 +38,15 @@ public class AuthPresenter extends BasePresenter<AuthViewBehavior<User>, AuthInt
         return new AuthRouter(context);
     }
 
-    //region Login
-    public void submitLogin(Editable empCode, Editable password) {
+    /**
+     * User authentication required fields for {@code submitLogin(empCode,password)}
+     *
+     * @param empCode  - User employee code.
+     * @param password - User password.
+     * @return data - It returns the result where user valid or not.
+     */
+    void submitLogin(Editable empCode, Editable password) {
         AuthUser authUser = new AuthUser(empCode.toString(), password.toString());
-//        AuthUser authUser = AuthUser.loginUser(empCode.toString(), password.toString());
 
         HashMap<ValidationError, Integer> errors = authUser.validate();
 
@@ -62,6 +67,7 @@ public class AuthPresenter extends BasePresenter<AuthViewBehavior<User>, AuthInt
 
 
             interactor().submitLogin(auth, new ServiceCallback<UserResponse>() {
+
                 @Override
                 public void onSuccess(UserResponse userResponse) {
 
@@ -89,7 +95,6 @@ public class AuthPresenter extends BasePresenter<AuthViewBehavior<User>, AuthInt
             });
         }
     }
-    // end
 
     public class MyException extends Exception {
 

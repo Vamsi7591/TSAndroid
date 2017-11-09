@@ -13,6 +13,7 @@
         android:id="@+id/rlActivity_login"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/city_orange"
         tools:ignore="ScrollViewSize">
 
         <ScrollView
@@ -35,7 +36,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/margin_30"
                     android:selectAllOnFocus="true"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@drawable/ic_launcher"
                     tools:ignore="ContentDescription" />
 
                 <LinearLayout
@@ -51,8 +52,10 @@
                         style="@style/AppTheme.Text.TextView.Header"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/app_name"
-                        android:textColor="@color/black"
+                        android:text="@string/time_sheet"
+                        android:textColor="@color/colorThemeBlue"
+                        android:textSize="26sp"
+                        android:textStyle="bold"
                         android:visibility="visible"
                         app:fonts="@string/aleo_regular" />
 
@@ -146,7 +149,7 @@
                 style="@style/AppTheme.Action.TextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/primary"
+                android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:text="@string/lb_login"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.Button.Inverse"
