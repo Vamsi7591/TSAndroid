@@ -211,7 +211,7 @@ public class ProjectMaster extends BaseActivity<ProjectMasterPresenter>
     public void onItemClickToDelete(View view, int position) {
 
         User user = presenter().getCurrentUser();
-        RemoveProjectParams removeProjectParams = new RemoveProjectParams(user.projectName);
+        RemoveProjectParams removeProjectParams = new RemoveProjectParams (data.get(position).getProjectName());;
         presenter().removeEmp(removeProjectParams);
         onProjectsDeleted(position);
 

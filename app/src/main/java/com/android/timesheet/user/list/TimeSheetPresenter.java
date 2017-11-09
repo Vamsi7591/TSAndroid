@@ -26,7 +26,6 @@ import java.util.Map;
 public class TimeSheetPresenter extends BasePresenter<TimeSheetViewBehaviour, TimeSheetInteractor,
         TimeSheetRouter> {
 
-
     public TimeSheetPresenter(Context context) {
         super(context);
     }

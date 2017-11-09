@@ -23,7 +23,7 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -199,7 +199,8 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements Bas
 
         PieDataSet dataSet = new PieDataSet(yEntrys, "Week Report");
         PieData data = new PieData(xEntrys, dataSet);
-        data.setValueFormatter(new PercentFormatter());
+        data.setValueFormatter(new LargeValueFormatter());
+
 
         weekChart.setData(data);
         weekChart.setDescription("This is Week Chart");

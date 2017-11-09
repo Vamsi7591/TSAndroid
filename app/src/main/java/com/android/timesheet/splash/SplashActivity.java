@@ -11,7 +11,9 @@ import com.android.timesheet.shared.views.BaseViewBehavior;
 
 public class SplashActivity extends BaseActivity<SplashPresenter> implements BaseViewBehavior<User> {
 
-    public String TAG = "SplashActivity";//.this.getLocalClassName();
+    public String TAG = "SplashActivity";
+
+ /*   .this.getLocalClassName();*/
 
     /*
     * It's VIPER design pattern
@@ -41,7 +43,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Bas
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_splash);
+/*       setContentView(R.layout.activity_splash);*/
         Log.i(TAG, "onCreate");
 
         User user = new User();

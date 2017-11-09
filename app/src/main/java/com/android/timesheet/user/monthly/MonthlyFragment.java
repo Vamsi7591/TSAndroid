@@ -37,7 +37,7 @@ import butterknife.BindView;
  * Created by vamsikonanki on 8/23/2017.
  */
 
-public class MonthlyFragment extends BaseFragment<MonthlyPresenter>implements BaseViewBehavior<List<Month>> {
+public class MonthlyFragment extends BaseFragment<MonthlyPresenter>implements BaseViewBehavior<List<Month>>  {
 
     @BindView(R.id.spinner_Month)
     Spinner monthSpinner;
@@ -87,6 +87,11 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter>implements Ba
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        lineChart.setTouchEnabled(true);
+        CustomMarkerView customMarkerView = new CustomMarkerView(getContext(), R.layout.markerview);
+        lineChart.setMarkerView(customMarkerView);
+        lineChart.setDrawMarkerViews(true);
 
         Calendar calender = Calendar.getInstance();
 
@@ -259,7 +264,6 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter>implements Ba
 
         LineData data = new LineData(xValues, dataSets);
 
-        // set data
         lineChart.setData(data);
         lineChart.invalidate();
         lineChart.animateXY(1000, 3000);
@@ -277,4 +281,6 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter>implements Ba
         noDataFound.setVisibility(View.VISIBLE);
 
     }
+
+
 }

@@ -17,6 +17,9 @@ public class AddEmployeeServices extends BaseService<IAdminService> {
         return super.prepare(IAdminService.class);
     }
 
+    /* addEmployee method for collect employee detils using  AddEmployeeParams Class
+
+    */
     public Observable addEmployee(AddEmployeeParams addEmployeeParams) {
         return observe(prepare().addEmployee(
                 addEmployeeParams.getAdminempcode(),

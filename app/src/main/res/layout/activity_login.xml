@@ -103,7 +103,7 @@
                             android:maxLines="1"
                             android:nextFocusDown="@+id/editTextPassword"
                             android:paddingTop="@dimen/layout_action_padding_5"
-                            android:text="e010"
+
                             android:textColor="@color/colorAccent" />
                     </android.support.design.widget.TextInputLayout>
 
@@ -127,7 +127,7 @@
                             android:maxLines="1"
                             android:nextFocusDown="@+id/textViewLogin"
                             android:paddingTop="@dimen/layout_action_padding_5"
-                            android:text="prisam@1"
+
                             android:textColor="@color/colorAccent" />
                     </android.support.design.widget.TextInputLayout>
 

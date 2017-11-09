@@ -70,7 +70,6 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
 
         String empName = employeeName.getText().toString();
         String eMAil = eMail_Id.getText().toString();
-
         String password = password_Employee.getText().toString();
 
         if (empName.isEmpty() || eMAil.isEmpty() || password.isEmpty()) {
@@ -162,8 +161,6 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
                 checkFieldsForEmptyValues();
             }
         });
-
-
 
         closeKeyBoard();
         submit.setOnClickListener(new View.OnClickListener() {

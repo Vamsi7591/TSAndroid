@@ -84,26 +84,28 @@ public class EmpMaster_Serialize extends BaseActivity<EmpSerializePresenter>
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!gone ) {
+                if (!gone) {
                     submit.setVisibility(View.GONE);
                     gone = true;
-                } else  {
+                } else {
                     submit.setVisibility(View.VISIBLE);
                     gone = false;
                     toggleButton.setEnabled(true);
                     password.setEnabled(true);
                     edit.setVisibility(View.INVISIBLE);
                 }
-//                else
-//                    submit.setVisibility(View.GONE);
-//                   gone = true;
+/*                else
+                    submit.setVisibility(View.GONE);
+                   gone = true;*/
             }
         });
 
-
+/*  ToolbarTitle */
         textViewToolbarTitle.setText(title());
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
         textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+
+        /*  ToolbarTitle End */
 
         empName.setEnabled(false);
         empCode.setEnabled(false);
@@ -139,7 +141,7 @@ public class EmpMaster_Serialize extends BaseActivity<EmpSerializePresenter>
                 } else
                     empData.setEmpRole("U");
 
-                if (user != null && password() ) {
+                if (user != null && password()) {
                     UpdateEmployeeParams updateEmployeeParams = new UpdateEmployeeParams(user.empCode, empCode.getText().toString(), password.getText().toString(), empData.getEmpRole());
                     presenter().updateEmp(updateEmployeeParams);
 //                    submit.isEnabled();
@@ -161,8 +163,8 @@ public class EmpMaster_Serialize extends BaseActivity<EmpSerializePresenter>
             return false;
         } else
 
-            inputPassword.setError(null );
-            return true;
+            inputPassword.setError(null);
+        return true;
 
     }
 

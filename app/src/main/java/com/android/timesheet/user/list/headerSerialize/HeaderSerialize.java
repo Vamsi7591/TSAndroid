@@ -104,7 +104,7 @@ public class HeaderSerialize extends BaseActivity<HeaderSerializePresenter> impl
             view = layoutInflater.inflate(R.layout.activity_date_info, null, true);
         }
 
-//        todayDate=data.get(0).getDate();
+      /*todayDate=data.get(0).getDate();*/
 
     }
 

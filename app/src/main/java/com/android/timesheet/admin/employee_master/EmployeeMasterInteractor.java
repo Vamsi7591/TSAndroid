@@ -36,12 +36,12 @@ public class EmployeeMasterInteractor extends BaseInteractor<EmployeeMasterServi
             public void onSuccess(AllEmployeesResponse recommendation) {
 
 //                List<Employee> uniqueResult = new ArrayList<>();
-//
-//                if (recommendation.code == 200)
+
+                if (recommendation.code == 200)
 //                    uniqueResult = recommendation.getEmployeeList();
-                callback.onSuccess(recommendation);
-//
-//                callback.onSuccess(recommendation);
+                    callback.onSuccess(recommendation);
+                else
+                    callback.onSuccess(null);
             }
         });
     }
@@ -63,7 +63,7 @@ public class EmployeeMasterInteractor extends BaseInteractor<EmployeeMasterServi
 
             public void onSuccess(AllEmployeesResponse recommendation) {
 
-                if (recommendation!=null) {
+                if (recommendation != null) {
 
                     String uniqueResult;
                     uniqueResult = recommendation.getMessage();

@@ -67,10 +67,11 @@ public class App extends Application {
         FlowManager.reset();
         FlowManager.destroy();
 
-        FlowManager.init(new FlowConfig
-                .Builder(this)
-                .addDatabaseConfig(new DatabaseConfig.Builder(AppDatabase.class).build())
-                .build());
+        FlowManager.init(
+                new FlowConfig
+                        .Builder(this)
+                        .addDatabaseConfig(new DatabaseConfig.Builder(AppDatabase.class).build())
+                        .build());
     }
 
 

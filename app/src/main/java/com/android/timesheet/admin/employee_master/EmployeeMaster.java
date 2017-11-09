@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.timesheet.R;
 import com.android.timesheet.admin.emp_serialize.EmpMaster_Serialize;
@@ -41,7 +40,7 @@ import butterknife.BindView;
  */
 
 public class EmployeeMaster extends BaseActivity<EmployeeMasterPresenter> implements
-        BaseViewBehavior<Object>, OnItemClickListener, RecyclerView.OnItemTouchListener, Serializable {
+        BaseViewBehavior<List<Employee>>, OnItemClickListener, RecyclerView.OnItemTouchListener, Serializable {
 
     @BindView(R.id.empty_state_view)
     LinearLayout empty_state_view;
@@ -57,8 +56,8 @@ public class EmployeeMaster extends BaseActivity<EmployeeMasterPresenter> implem
     EmployeeMasterAdapter mAdapter;
     LinearLayoutManager linearLayoutManager;
 
-    Object data;
-List <Employee> dataEmp;
+    List<Employee> data;
+
     @Override
     protected int layoutRestID() {
         return R.layout.activity_employee_master;
@@ -89,10 +88,7 @@ List <Employee> dataEmp;
         super.onCreate(savedInstanceState);
 
 //        unbinder = ButterKnife.bind(this);
-
-        data = new ArrayList<>();
-        dataEmp = new ArrayList<>();
-
+        data = new ArrayList<Employee>();
 
         mAdapter = new EmployeeMasterAdapter(this, this);
         linearLayoutManager = new LinearLayoutManager(this);
@@ -102,11 +98,9 @@ List <Employee> dataEmp;
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mAdapter);
 
-
         textViewToolbarTitle.setText(title());
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
         textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
-
 
         if (mMenu == null) {
             showMenu();
@@ -120,6 +114,7 @@ List <Employee> dataEmp;
             toolbar.inflateMenu(R.menu.home_menu);
         }
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -172,57 +167,57 @@ List <Employee> dataEmp;
 
     }
 
+/**
+ * @param data
+
+*
+* */
+
     @Override
-    public void onSuccess(Object data) {
-
-        if (data instanceof AllEmployeesResponse) {
-
-            AllEmployeesResponse allEmployeesResponse = (AllEmployeesResponse) data;
-            dataEmp = allEmployeesResponse.getEmployeeList();
-
-        }
+    public void onSuccess(List<Employee> data) {
 
         User user = presenter().getCurrentUser();
-        if (dataEmp.size() != 0) {
-            this.data = data;
-            mAdapter.setItems(dataEmp);
-            empty_state_view.setVisibility(View.GONE);
-        }
 
-        else
+//        if (data instanceof AllEmployeesResponse) {
+//            AllEmployeesResponse allEmployeesResponse = (AllEmployeesResponse) data;
+//            empListResponse = allEmployeesResponse.getEmployeeList();
+//
+//        }
+
+       if (data.size() != 0) {
+
+           this.data = data;
+
+            mAdapter.setItems(data);
+            empty_state_view.setVisibility(View.GONE);
+        } else
             empty_state_view.setVisibility(View.VISIBLE);
 
         int i = 0;
-        for (Employee list : dataEmp) {
+        for (Employee list : data) {
 
             if (list.getEmpCode().equals(user.empCode)) {
-
-                dataEmp.remove(i);
+                data.remove(i);
                 break;
             }
-
-            else if (data instanceof String) {
-            /*Assign or remove response string*/
-                String response = (String) data;
-//                RemoveEmployeeParams removeEmployeeParams = new RemoveEmployeeParams(user.empCode, dataEmp.get(position).empCode);
-//                presenter().removeEmp(removeEmployeeParams);
-
-                Toast.makeText(EmployeeMaster.this, response, Toast.LENGTH_LONG).show();
-            }
-
-
             i = i + 1;
-
         }
 
+//        if (data instanceof String) {
+//            String response = (String) data;
+//            Toast.makeText(EmployeeMaster.this, response, Toast.LENGTH_LONG).show();
+//        }
 
-
-    }
+        }
 
     @Override
     public void onFailed(Throwable e) {
 
     }
+
+    /**
+    * @param position :-navigate to EmpMaster_Serialize class when employee list item is clicked
+     * */
 
     @Override
     public void onItemClick(View view, int position) {
@@ -230,7 +225,7 @@ List <Employee> dataEmp;
         Employee model = mAdapter.getItem(position);
         Intent i = new Intent(this, EmpMaster_Serialize.class);
         Gson gson = new Gson();
-        String personString = gson.toJson(dataEmp.get(position));
+        String personString = gson.toJson(data.get(position));
         i.putExtra("jsonObject", personString);
         startActivity(i);
 
@@ -248,19 +243,30 @@ List <Employee> dataEmp;
         }
 
     }
-
+/**
+* @param position :- {@link com.android.timesheet.shared.presenters.Presenter}
+ *                 position observes which item to delete in employee list
+ *
+ *                {@link EmployeeMasterServices }
+ *                Service call for remove employee
+ */
     @Override
     public void onItemClickToDelete(View view, int position) {
 
 //        TimeSheet sheet = mAdapter.getItem(position);
         User user = presenter().getCurrentUser();
         if (user != null) {
-            RemoveEmployeeParams removeEmployeeParams = new RemoveEmployeeParams(user.empCode, dataEmp.get(position).empCode);
+            RemoveEmployeeParams removeEmployeeParams = new RemoveEmployeeParams(user.empCode, data.get(position).getEmpCode());
             presenter().removeEmp(removeEmployeeParams);
+            onEmployeeDeleted(position);
 
         }
 
     }
+
+    /**
+     @param msg :infoSnackBar is diplay when service or network error
+     */
 
     public void infoSnackBar(String msg) {
         if (recyclerView != null) {
