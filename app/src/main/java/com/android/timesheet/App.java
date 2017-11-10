@@ -5,6 +5,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.multidex.MultiDex;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.timesheet.shared.database.AppDatabase;
 import com.android.timesheet.shared.store_models.UserStore;
@@ -37,7 +42,12 @@ public class App extends Application {
 
         /*This instantiates DBFlow Library*/
         initDatabase();
+
+
+
     }
+
+
 
     public static Context getAppContext() {
         return mContext;
@@ -89,4 +99,19 @@ public class App extends Application {
         return mBus;
     }
 
+    public void customToast(String message) {
+        Context context = getApplicationContext();
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+
+        View customToastRoot = inflater.inflate(R.layout.custom_toast, null);
+
+        TextView messageText = (TextView) customToastRoot.findViewById(R.id.messageTV);
+        messageText.setText(message);
+
+        Toast customToast = new Toast(context);
+        customToast.setView(customToastRoot);
+        customToast.setGravity(Gravity.BOTTOM, 0, 200);
+        customToast.setDuration(Toast.LENGTH_LONG);
+        customToast.show();
+    }
 }

@@ -12,10 +12,12 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ImageSpan;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.timesheet.R;
 import com.android.timesheet.shared.util.FontUtils;
@@ -135,7 +137,6 @@ public class WidgetUtils {
         }
         return true;
     }
-
 
     public static void showDialog(Context context,
                                   int layout,

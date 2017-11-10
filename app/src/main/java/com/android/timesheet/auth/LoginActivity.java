@@ -8,8 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.android.timesheet.App;
 import com.android.timesheet.R;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.User;
@@ -73,11 +73,16 @@ public class LoginActivity extends BaseActivity<AuthPresenter> implements AuthVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*int layoutResID = layoutRestID();
-        if (layoutResID > 0) {
-            setContentView(layoutResID);
-            ButterKnife.bind(this);
-        }*/
+
+        /* @implSpec Instead of regular {@code setContentView(R.layout.activity_login)} syntax
+         * here I'm using {@code layoutResID()} method by following VIPER design pattern coding principal's
+         *
+           int layoutResID = layoutRestID();
+           if (layoutResID > 0) {
+              setContentView(layoutResID);
+              ButterKnife.bind(this);
+           }
+         */
     }
 
     @Override
@@ -86,11 +91,11 @@ public class LoginActivity extends BaseActivity<AuthPresenter> implements AuthVi
 
         User user = new User();
         user = presenter().getCurrentUser();
-        if (user != null)
-            Log.d(TAG, "stored user : " + user.toString());
-//        if (user.exists())
-        onSuccess(user);
 
+        if (user != null) {
+            Log.d(TAG, "stored user : " + user.toString());
+            onSuccess(user);
+        }
         super.onResume();
     }
 
@@ -107,19 +112,15 @@ public class LoginActivity extends BaseActivity<AuthPresenter> implements AuthVi
     @Override
     public void onSuccess(User data) {
         onComplete();
-//        user = data;
-//        Toast.makeText(LoginActivity.this, user.empRole, Toast.LENGTH_SHORT).show();
 
-        if(data!= null){
+        if (data != null) {
             presenter().openMainActivity();
         }
-//        presenter().openSplash();
-
     }
 
     @Override
     public void onFailed(Throwable e) {
-        Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        App.getInstance().customToast(e.getMessage());
     }
 
     @Override
@@ -145,6 +146,9 @@ public class LoginActivity extends BaseActivity<AuthPresenter> implements AuthVi
 
         textInputLayoutPassword.setErrorEnabled(false);
         textInputLayoutPassword.setError(null);
+
+        editTextECode.setCursorVisible(false);
+        editTextPassword.setCursorVisible(false);
     }
 
     public void infoSnackBar(String msg) {

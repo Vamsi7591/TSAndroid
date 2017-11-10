@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -67,30 +67,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearAdmin"
-            android:layout_marginTop="60dp"
-            android:orientation="horizontal" >
+            android:layout_marginTop="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:orientation="horizontal"
+            tools:ignore="UnknownIdInLayout">
 
             <Button
                 android:id="@+id/assignProject"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:background="#0ab345"
-                android:textSize="20dp"
-                android:textStyle="bold"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Assign" />
+                android:background="@null"
+                android:drawableTop="@drawable/ic_thumb_up_black"
+                android:text="Assign"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/removeProject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:background="#d11336"
-                android:textStyle="normal"
-                android:textSize="16dp"
                 android:layout_weight="1"
-                android:text="Remove" />
+                android:background="@null"
+                android:drawableTop="@drawable/ic_thumb_down_black"
+                android:text="Remove"
+                android:textColor="@color/colorWhite115"
+                android:textSize="16dp"
+                android:textStyle="normal" />
         </LinearLayout>
 
 
@@ -105,17 +109,17 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000"
                 android:layout_weight="1"
                 android:text="Employee Names"
+                android:textColor="#000"
                 android:textSize="18dp" />
 
             <Spinner
                 android:id="@+id/employe_Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:spinnerMode="dialog"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:spinnerMode="dialog" />
         </LinearLayout>
 
         <LinearLayout
@@ -127,20 +131,20 @@
 
 
             <TextView
+                android:id="@+id/proj_Names"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/proj_Names"
-                android:textColor="#000"
                 android:layout_weight="1"
                 android:text="Project Name"
+                android:textColor="#000"
                 android:textSize="18dp" />
 
             <Spinner
                 android:id="@+id/proj_Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawSelectorOnTop="true"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:drawSelectorOnTop="true" />
 
 
         </LinearLayout>
@@ -152,29 +156,29 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/linearAdmin"
             android:layout_marginTop="260dp"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/assignRealProject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:visibility="gone"
-                android:textColor="#fff"
-                android:background="#0ab345"
                 android:layout_weight="1"
-                android:text="Assign" />
+                android:background="#0ab345"
+                android:gravity="center"
+                android:text="Assign"
+                android:textColor="#fff"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/removeRealProject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:visibility="gone"
-                android:textColor="#fff"
-                android:background="#d11336"
                 android:layout_weight="1"
-                android:text="Remove" />
+                android:background="#d11336"
+                android:text="Remove"
+                android:textColor="#fff"
+                android:visibility="gone" />
         </LinearLayout>
 
     </RelativeLayout>

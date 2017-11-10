@@ -283,7 +283,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
         } else {
             /*submit time sheet entry*/
-
             if (fromTimeSheetList) {
                 presenter().updateSheet(sheet);
             } else

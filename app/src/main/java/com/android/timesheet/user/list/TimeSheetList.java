@@ -246,10 +246,10 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        if ( TextUtils.isEmpty ( newText ) ) {
+        if (TextUtils.isEmpty(newText)) {
             mAdapter.getFilter().filter("");
         } else {
-            mAdapter.getFilter().filter(newText.toString());
+            mAdapter.getFilter().filter(newText);
         }
         return true;
     }

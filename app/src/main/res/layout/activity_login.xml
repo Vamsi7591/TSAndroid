@@ -91,8 +91,9 @@
                         android:layout_marginLeft="@dimen/activity_vertical_margin"
                         android:layout_marginRight="@dimen/activity_vertical_margin"
                         android:hint="@string/hint_em_code"
-                        android:textColorHint="@color/black"
-                        app:errorTextAppearance="@style/AppTheme.TextInputLayout.ErrorAppearance">
+                        android:textColorHint="@color/colorAccent"
+                        app:errorTextAppearance="@style/AppTheme.TextInputLayout.ErrorAppearance"
+                        app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance">
 
                         <EditText
                             android:id="@+id/editTextECode"
@@ -103,8 +104,8 @@
                             android:maxLines="1"
                             android:nextFocusDown="@+id/editTextPassword"
                             android:paddingTop="@dimen/layout_action_padding_5"
-
-                            android:textColor="@color/colorAccent" />
+                            android:textColor="@color/black"
+                            app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -115,8 +116,9 @@
                         android:layout_marginLeft="@dimen/activity_vertical_margin"
                         android:layout_marginRight="@dimen/activity_vertical_margin"
                         android:hint="@string/hint_password"
-                        android:textColorHint="@color/black"
-                        app:errorTextAppearance="@style/AppTheme.TextInputLayout.ErrorAppearance">
+                        android:textColorHint="@color/colorAccent"
+                        app:errorTextAppearance="@style/AppTheme.TextInputLayout.ErrorAppearance"
+                        app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance">
 
                         <EditText
                             android:id="@+id/editTextPassword"
@@ -127,8 +129,8 @@
                             android:maxLines="1"
                             android:nextFocusDown="@+id/textViewLogin"
                             android:paddingTop="@dimen/layout_action_padding_5"
-
-                            android:textColor="@color/colorAccent" />
+                            android:textColor="@color/black"
+                            app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance" />
                     </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>

@@ -109,8 +109,6 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
         empName.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
         projName.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
-
-
         User user = presenter().getCurrentUser();
         if (user != null) {
             presenter().getAllEmpDetails();
@@ -123,9 +121,11 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
                 isAssignVisible = true;
                 assign.setTextSize(20);
                 assign.setTypeface(null, Typeface.BOLD);
+                assign.setTextColor(getColor(R.color.white));
 
                 remove.setTextSize(18);
                 remove.setTypeface(null, Typeface.NORMAL);
+                remove.setTextColor(getColor(R.color.colorWhite115));
 
                 clearUI();
 
@@ -139,10 +139,12 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
                 isAssignVisible = false;
                 remove.setTextSize(20);
                 remove.setTypeface(null, Typeface.BOLD);
+                remove.setTextColor(getColor(R.color.white));
 
                 assign.setTextSize(18);
                 assign.setTypeface(null, Typeface.NORMAL);
-//
+                assign.setTextColor(getColor(R.color.colorWhite115));
+
                 clearUI();
             }
         });
@@ -176,7 +178,6 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
                         + " : " + projName.getSelectedItem().toString());
 
                 // Service Calls //
-
                 User user = presenter().getCurrentUser();
                 if (user != null) {
                     AssignEmpParams assignEmpParams = new AssignEmpParams(dataEmp.get(selectedEmployeeNamePos - 1).empCode, projName.getSelectedItem().toString());
@@ -184,12 +185,8 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
 
                 }
 
-//                getRemoveEmployees(empMasterData.get(selectedEmployeeNamePos - 1).getEmpcode(), project_Name.getSelectedItem().toString());
-
                 clearUI();
-
             }
-
         });
 
 
@@ -207,7 +204,6 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
                         if (!empName.getSelectedItem().toString().equalsIgnoreCase("Select")) {
 
                             presenter().unAssignProj(dataEmp.get(selectedEmployeeNamePos - 1).empCode);
-                          //   unAssignSpinner(empMasterData.get(selectedEmployeeNamePos - 1).getEmpcode());
                             realAssign.setVisibility(View.VISIBLE);
 
                         } else {
@@ -319,7 +315,6 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
                 adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, projNamesList);
                 projName.setAdapter(adapter);
             }
-
 
         }
 
