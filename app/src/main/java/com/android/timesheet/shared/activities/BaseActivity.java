@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import com.android.timesheet.R;
 import com.android.timesheet.shared.presenters.BasePresenter;
 import com.android.timesheet.shared.presenters.Presenter;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
 
 import butterknife.BindView;
@@ -67,7 +66,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     protected ActionBar actionBar;
 
-    private FirebaseAnalytics firebaseAnalytics;
+//    private FirebaseAnalytics firebaseAnalytics;
 
     protected boolean isBackButtonFromMain = false;
 
@@ -123,7 +122,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         super.onCreate(savedInstanceState);
 
 
-        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
+//        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler(){
             @Override
@@ -132,14 +131,14 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             }
         });
 
-        Bundle bundle = new Bundle();
+        /*Bundle bundle = new Bundle();
         bundle.putString("name","");
         bundle.putString("email","");
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "user_Info");
-        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);*/
 
-        FirebaseCrash.log("Here is exception");
-        FirebaseCrash.report(new Exception("oops !"));
+        /*FirebaseCrash.log("Here is exception");
+        FirebaseCrash.report(new Exception("oops !"));*/
 
         int layoutResID = layoutRestID();
         if (layoutResID > 0) {

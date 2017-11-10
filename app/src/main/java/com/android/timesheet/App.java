@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.multidex.MultiDex;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,16 +22,15 @@ import com.squareup.otto.Bus;
  * Created by vamsikonanki on 8/18/2017.
  */
 
-public class App extends Application {
+public class App extends Application implements Thread.UncaughtExceptionHandler {
 
     private static Context mContext;
-
+    private Thread.UncaughtExceptionHandler _androidUncaughtExceptionHandler;
     String TAG = "App";
 
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        MultiDex.install(this);
     }
 
     @Override
@@ -40,13 +39,15 @@ public class App extends Application {
 
         mContext = getApplicationContext();
 
+        /*Instantiating exception handling globally*/
+        _androidUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
+        Thread.setDefaultUncaughtExceptionHandler(this);
+
         /*This instantiates DBFlow Library*/
         initDatabase();
 
 
-
     }
-
 
 
     public static Context getAppContext() {
@@ -101,7 +102,7 @@ public class App extends Application {
 
     public void customToast(String message) {
         Context context = getApplicationContext();
-        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View customToastRoot = inflater.inflate(R.layout.custom_toast, null);
 
@@ -113,5 +114,15 @@ public class App extends Application {
         customToast.setGravity(Gravity.BOTTOM, 0, 200);
         customToast.setDuration(Toast.LENGTH_LONG);
         customToast.show();
+    }
+
+    @Override
+    public void uncaughtException(Thread thread, Throwable throwable) {
+
+        Log.v(TAG, throwable.getMessage());
+
+        /*Let Android show the default error dialog*/
+        _androidUncaughtExceptionHandler.uncaughtException(thread, throwable);
+
     }
 }

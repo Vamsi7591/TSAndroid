@@ -1,6 +1,7 @@
 package com.android.timesheet.admin.summary;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -75,16 +76,6 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
 
     int selectedEmployeeNamePos = 0;
 
-
-    @Override
-    protected SummaryDetailsPresenter providePresenter() {
-        return new SummaryDetailsPresenter(this, this);
-    }
-//    @Override
-//    protected int menuResID() {
-//        return R.menu.home_menu;
-//    }
-
     @Override
     protected String title() {
         return "Summary Details";
@@ -100,10 +91,13 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected SummaryDetailsPresenter providePresenter() {
+        return new SummaryDetailsPresenter(this, this);
+    }
 
-        ButterKnife.bind(this);
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         textViewToolbarTitle.setText(title());
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
