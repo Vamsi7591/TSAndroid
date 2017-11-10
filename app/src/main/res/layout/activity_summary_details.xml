@@ -1,156 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.design.widget.CoordinatorLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/coordinator_layout"
+    android:layout_marginBottom="@dimen/margin_16"
+    android:layout_marginLeft="@dimen/margin_16"
+    android:layout_marginRight="@dimen/margin_16"
+    android:layout_marginTop="@dimen/margin_0"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     >
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="@dimen/margin_30"
-                    android:layout_marginStart="@dimen/margin_30">
-
-                    <com.android.timesheet.shared.widget.CustomFontTextView
-                        android:id="@+id/textViewToolbarTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:clickable="true"
-                        android:gravity="center"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/tv_font_size_20"
-                        android:visibility="visible"
-                        app:font="@string/roboto_thin" />
-
-                </RelativeLayout>
-
-            </android.support.v7.widget.Toolbar>
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <TableLayout
-
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        android:layout_marginTop="?attr/actionBarSize"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+    <LinearLayout
+        android:id="@+id/first1"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_marginRight="40dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="5dp"
+            android:layout_marginLeft="10sp"
+            android:textColor="#060606"
             android:layout_weight="1"
+            android:gravity="center|start"
             android:text="Employee Name"
             android:textSize="18dp" />
 
         <Spinner
             android:id="@+id/empName_spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_marginRight="40dp"
-            android:layout_weight="1" />
+            android:layout_height="match_parent"
+            android:layout_marginRight="25sp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/custom_spinner_background"
+            android:gravity="end|center"
+            android:popupBackground="@color/colorAccent"
+            android:popupElevation="@dimen/padding_5"
+            android:textAlignment="viewEnd"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            tools:ignore="RtlCompat" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/second"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?actionBarSize"
+        android:layout_below="@+id/first1"
+        android:layout_marginRight="40dp"
         android:orientation="horizontal"
 
         >
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10sp"
+            android:textColor="#060606"
             android:layout_weight="1"
+            android:gravity="center|start"
             android:text="Project Name"
             android:textSize="18dp" />
 
         <Spinner
             android:id="@+id/ProjName_spinner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="7dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:gravity="center"
-            android:paddingBottom="5dp" />
-
-        <ImageView
-            android:id="@+id/loadBarChart"
-            android:layout_width="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_height="28dp"
-            android:background="@drawable/ic_arrow_forward_black_24dp" />
-
+            android:layout_marginRight="25sp"
+            android:background="@drawable/custom_spinner_background"
+            android:gravity="end|center"
+            android:popupBackground="@color/colorAccent"
+            android:popupElevation="@dimen/padding_5"
+            android:textAlignment="viewEnd"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            tools:ignore="RtlCompat" />
     </LinearLayout>
 
-    <LinearLayout
+         <LinearLayout
+        android:id="@+id/third"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?actionBarSize"
+        android:layout_below="@+id/second"
+
+        android:layout_marginRight="40dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10sp"
+            android:textColor="#060606"
             android:layout_weight="1"
-            android:text="Select Year"
+            android:gravity="center|start"
+                       android:text="Select Year"
             android:textSize="18dp" />
 
         <Spinner
             android:id="@+id/yearSpinSum"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="40dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginRight="25sp"
             android:layout_weight="1"
-            android:gravity="center"
-            android:paddingBottom="5dp" />
+            android:gravity="end|center"
+            android:popupBackground="@color/colorAccent"
+            android:popupElevation="@dimen/padding_5"
+            android:textAlignment="viewEnd"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            tools:ignore="RtlCompat" />
 
     </LinearLayout>
+
+        <ImageView
+            android:id="@+id/loadBarChart"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/ic_arrow_forward_black_24dp" />
+
+
+    </RelativeLayout>
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart"
@@ -185,6 +177,6 @@
 
     </RelativeLayout>
 
-</TableLayout>
+</LinearLayout>
     </RelativeLayout>
-</android.support.design.widget.CoordinatorLayout>
+

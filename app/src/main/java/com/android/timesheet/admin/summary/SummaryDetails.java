@@ -72,6 +72,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
     List<String> projNamesList;
     List<Employee> dataEmp;
     List<Project> dataProj;
+
     int selectedEmployeeNamePos = 0;
 
 
@@ -108,6 +109,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
         textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
 
+        data=new ArrayList<>();
         dataEmp = new ArrayList<>();
         dataProj = new ArrayList<>();
         empNameList = new ArrayList<String>();
@@ -117,13 +119,18 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
         projName.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
         User user = presenter().getCurrentUser();
+
+
         loadBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!user.empCode.isEmpty() &&
                         !String.valueOf(projName.getSelectedItem()).isEmpty()
                         && !String.valueOf(cYear).isEmpty()) {
-                    ProjectSum_Params projectSum_params = new ProjectSum_Params(user.empCode, String.valueOf(projName.getSelectedItem()), String.valueOf(cYear));
+
+
+                    ProjectSum_Params projectSum_params;
+                    projectSum_params = new ProjectSum_Params(dataEmp.get(selectedEmployeeNamePos-1).getEmpCode(), String.valueOf(projName.getSelectedItem()), String.valueOf(cYear));
                     presenter().fetchSummaryData(projectSum_params);
 //
                 }
@@ -141,10 +148,6 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
             presenter().fetchEmployees();
             presenter().getProjectNames(user.getEmpCode());
         }
-
-//        presenter().getProjectNames(dataEmp.get(selectedEmployeeNamePos - 1).getEmpCode());
-
-
         data = new ArrayList<>();
         Calendar calender = Calendar.getInstance();
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -30,17 +31,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10sp"
+                    android:textColor="#060606"
                     android:layout_weight="1"
                     android:gravity="center|start"
                     android:text="Select Week No"
-                    android:textSize="18dp" />
+                    android:textSize="19dp" />
 
                 <Spinner
                     android:id="@+id/spinner_week"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+
+                    android:layout_marginRight="25sp"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="center|start" />
+                    android:background="@drawable/custom_spinner_background"
+                    android:gravity="end|center"
+                    android:popupBackground="@color/colorAccent"
+                    android:popupElevation="@dimen/padding_5"
+                    android:textAlignment="viewEnd"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black"
+                    tools:ignore="RtlCompat"
+                    />
 
 
             </LinearLayout>
@@ -54,19 +67,32 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="10sp"
+                    android:textColor="#060606"
                     android:layout_weight="1"
                     android:gravity="center|start"
                     android:text="Select Year"
-                    android:textSize="18dp" />
+                    android:textSize="19dp" />
 
                 <Spinner
                     android:id="@+id/year_Spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+
+                    android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="center|start" />
+                  android:layout_marginRight="25sp"
+                    android:background="@drawable/custom_spinner_background"
+                    android:gravity="end|center"
+                    android:popupBackground="@color/colorAccent"
+                    android:popupElevation="@dimen/padding_5"
+                    android:textAlignment="viewEnd"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/black"
+                    tools:ignore="RtlCompat"
+
+                    />
 
             </LinearLayout>
 
@@ -102,6 +128,7 @@
                 android:layout_above="@+id/noDataFound"
                 android:layout_centerInParent="true"
                 android:background="@drawable/ic_empty" />
+
 
             <TextView
                 android:id="@+id/noDataFound"
