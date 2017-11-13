@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -28,24 +29,25 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center|start"
                     android:text="Select Week No"
-                    android:textSize="19dp" />
+                    android:textSize="@dimen/tv_font_size_18" />
 
                 <Spinner
                     android:id="@+id/spinner_week"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="end|center"
+                    android:layout_gravity="end"
+                    android:gravity="end"
                     android:popupElevation="@dimen/padding_5"
                     android:textAlignment="viewEnd"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    tools:ignore="RtlCompat" />
+                    android:theme="@style/AppTheme.Spinner"
+                    tools:ignore="RtlCompat"
+                    tools:targetApi="lollipop" />
 
 
             </LinearLayout>
@@ -59,24 +61,25 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center|start"
                     android:text="Select Year"
-                    android:textSize="19dp" />
+                    android:textSize="@dimen/tv_font_size_18" />
 
                 <Spinner
                     android:id="@+id/year_Spinner"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:gravity="end|center"
+                    android:layout_gravity="end"
+                    android:gravity="end"
                     android:popupElevation="@dimen/padding_5"
                     android:textAlignment="viewEnd"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    tools:ignore="RtlCompat" />
+                    android:theme="@style/AppTheme.Spinner"
+                    tools:ignore="RtlCompat"
+                    tools:targetApi="lollipop" />
 
             </LinearLayout>
 
@@ -87,7 +90,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:background="@drawable/ic_arrow_forward_black_24dp" />
+                android:background="@drawable/bg_circle"
+                android:rotation="180"
+                app:srcCompat="@drawable/back_arrow_orange" />
 
         </RelativeLayout>
 

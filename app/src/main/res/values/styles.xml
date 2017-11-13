@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -199,6 +199,7 @@
     <style name="AppTheme.Spinner">
         <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
         <item name="android:spinnerDropDownItemStyle">@style/SpinnerDropDownItem</item>
+        <item name="android:minWidth">80dp</item>
     </style>
 
     <style name="SpinnerItem">
@@ -208,7 +209,8 @@
     </style>
 
     <style name="SpinnerDropDownItem">
-        <item name="android:gravity">right|center_vertical</item>
-        <item name="android:paddingRight">16dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment" tools:targetApi="jelly_bean_mr1">center</item>
     </style>
 </resources>
