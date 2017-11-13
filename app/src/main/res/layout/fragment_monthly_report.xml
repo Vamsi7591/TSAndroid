@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/margin_16"
     android:layout_marginLeft="@dimen/margin_16"
     android:layout_marginRight="@dimen/margin_16"
@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -39,18 +39,12 @@
                     android:id="@+id/spinner_Month"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
                     android:layout_gravity="center"
-                    android:layout_marginRight="25sp"
                     android:layout_weight="1"
-                    android:background="@drawable/custom_spinner_background"
                     android:gravity="end|center"
-
-                    android:popupBackground="@color/colorAccent"
                     android:popupElevation="@dimen/padding_5"
                     android:textAlignment="viewEnd"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/black"
                     tools:ignore="RtlCompat" />
 
 
@@ -77,15 +71,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_marginRight="25sp"
                     android:layout_weight="1"
-                    android:background="@drawable/custom_spinner_background"
                     android:gravity="end|center"
-                    android:popupBackground="@color/colorAccent"
                     android:popupElevation="@dimen/padding_5"
                     android:textAlignment="viewEnd"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/black"
                     tools:ignore="RtlCompat" />
 
             </LinearLayout>
@@ -107,8 +97,10 @@
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"
             android:layout_width="match_parent"
-            android:layout_height="330sp"
+            android:layout_height="match_parent"
             android:layout_above="@+id/seekBar1"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginRight="@dimen/margin_10"
             android:layout_marginTop="0dp"
             android:visibility="visible" />
 
@@ -128,7 +120,7 @@
             <TextView
                 android:id="@+id/noDataFound"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:text="No data found"

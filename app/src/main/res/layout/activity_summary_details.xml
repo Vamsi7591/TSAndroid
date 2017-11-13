@@ -46,7 +46,6 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/margin_0"
                             android:layout_marginRight="@dimen/margin_0"
-                            android:clickable="true"
                             android:gravity="center"
                             android:textAlignment="center"
                             android:textSize="@dimen/tv_font_size_20"
@@ -92,7 +91,6 @@
                             android:layout_weight="1"
                             android:gravity="center|start"
                             android:text="Employee Name"
-                            android:textColor="#060606"
                             android:textSize="18dp" />
 
                         <Spinner
@@ -102,11 +100,11 @@
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:gravity="end|center"
-                            android:popupBackground="@color/colorAccent"
                             android:popupElevation="@dimen/padding_5"
                             android:textAlignment="viewEnd"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                            tools:ignore="RtlCompat" />
+                            tools:ignore="RtlCompat"
+                            tools:targetApi="lollipop" />
 
                     </LinearLayout>
 
@@ -123,7 +121,6 @@
                             android:layout_weight="1"
                             android:gravity="center|start"
                             android:text="Project Name"
-                            android:textColor="#060606"
                             android:textSize="18dp" />
 
                         <Spinner
@@ -133,11 +130,12 @@
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:gravity="end|center"
-                            android:popupBackground="@color/colorAccent"
                             android:popupElevation="@dimen/padding_5"
                             android:textAlignment="viewEnd"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                            tools:ignore="RtlCompat" />
+                            android:theme="@style/AppTheme.Spinner"
+                            tools:ignore="RtlCompat"
+                            tools:targetApi="lollipop" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -153,7 +151,6 @@
                             android:layout_weight="1"
                             android:gravity="center|start"
                             android:text="Select Year"
-                            android:textColor="#060606"
                             android:textSize="18dp" />
 
                         <Spinner
@@ -163,11 +160,12 @@
                             android:layout_gravity="center"
                             android:layout_weight="1"
                             android:gravity="end|center"
-                            android:popupBackground="@color/colorAccent"
                             android:popupElevation="@dimen/padding_5"
                             android:textAlignment="viewEnd"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                            tools:ignore="RtlCompat" />
+                            android:theme="@style/AppTheme.Spinner"
+                            tools:ignore="RtlCompat"
+                            tools:targetApi="lollipop" />
 
                     </LinearLayout>
                 </LinearLayout>
