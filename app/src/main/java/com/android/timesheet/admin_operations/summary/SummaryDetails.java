@@ -251,10 +251,11 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
 
             if (dataProj != null) {
                 for (int i = 0; i < dataProj.size(); i++) {
-                    projNamesList.add(dataProj.get(i).getProjectName());
-                    barChart.setVisibility(View.VISIBLE);
-                    noDataFoundRL.setVisibility(View.GONE);
+                    projNamesList.add(dataProj.get(i).getProjectName().trim());
                 }
+
+                barChart.setVisibility(View.VISIBLE);
+                noDataFoundRL.setVisibility(View.GONE);
 
                 adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, projNamesList);
                 projName.setAdapter(adapter);
@@ -268,7 +269,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
             empNameList.add("Select");
 
             for (int i = 0; i < dataEmp.size(); i++) {
-                empNameList.add(dataEmp.get(i).getEmpName());
+                empNameList.add(dataEmp.get(i).getEmpName().trim());
             }
             adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, empNameList);
 //        employee_Name.setPrompt("Select Category");

@@ -64,6 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="?attr/actionBarSize"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -95,14 +96,15 @@
 
                         <Spinner
                             android:id="@+id/empName_spinner"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
+                            android:layout_gravity="end"
                             android:gravity="end|center"
                             android:popupElevation="@dimen/padding_5"
+                            android:spinnerMode="dropdown"
                             android:textAlignment="viewEnd"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:theme="@style/AppTheme.Spinner"
                             tools:ignore="RtlCompat"
                             tools:targetApi="lollipop" />
 
@@ -125,16 +127,15 @@
 
                         <Spinner
                             android:id="@+id/ProjName_spinner"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
+                            android:layout_gravity="end"
                             android:gravity="end|center"
                             android:popupElevation="@dimen/padding_5"
+                            android:spinnerMode="dropdown"
                             android:textAlignment="viewEnd"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                             android:theme="@style/AppTheme.Spinner"
-                            tools:ignore="RtlCompat"
                             tools:targetApi="lollipop" />
                     </LinearLayout>
 
@@ -146,7 +147,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center|start"
@@ -155,16 +156,15 @@
 
                         <Spinner
                             android:id="@+id/yearSpinSum"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
+                            android:layout_gravity="end"
                             android:gravity="end|center"
                             android:popupElevation="@dimen/padding_5"
+                            android:spinnerMode="dropdown"
                             android:textAlignment="viewEnd"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                             android:theme="@style/AppTheme.Spinner"
-                            tools:ignore="RtlCompat"
                             tools:targetApi="lollipop" />
 
                     </LinearLayout>
@@ -179,7 +179,9 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="5dp"
                     android:layout_marginRight="5dp"
-                    android:background="@drawable/ic_arrow_forward_black_24dp" />
+                    android:background="@drawable/bg_circle"
+                    android:rotation="180"
+                    app:srcCompat="@drawable/back_arrow_orange" />
 
             </RelativeLayout>
 

@@ -6,7 +6,7 @@
     android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.android.timesheet.admin_operations.project_master.ProjectMaster">
+    tools:context="com.android.timesheet.admin_operations.project_master.list_projects.ProjectMaster">
 
     <RelativeLayout
         android:layout_width="match_parent"

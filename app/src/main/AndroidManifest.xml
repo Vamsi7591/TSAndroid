@@ -36,7 +36,7 @@
 
         <!-- Admin screens -->
         <activity
-            android:name=".admin_operations.employee_master.EmployeeMaster"
+            android:name=".admin_operations.employee_master.list_employee.EmployeeMaster"
             android:screenOrientation="portrait"
             android:theme="@style/TimeSheet.AppTheme" />
         <activity
@@ -44,7 +44,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/TimeSheet.AppTheme" />
         <activity
-            android:name=".admin_operations.project_master.ProjectMaster"
+            android:name=".admin_operations.project_master.list_projects.ProjectMaster"
             android:screenOrientation="portrait"
             android:theme="@style/TimeSheet.AppTheme" />
         <activity
@@ -54,7 +54,7 @@
 
         <!-- User screens -->
         <activity
-            android:name=".user_operations.sheet_entry.TimeSheetEntry"
+            android:name=".user_operations.sheet_list.sheet_entry.TimeSheetEntry"
             android:screenOrientation="portrait"
             android:theme="@style/TimeSheet.AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -65,7 +65,7 @@
             android:windowSoftInputMode="stateAlwaysHidden" />-->
 
         <activity
-            android:name=".user_operations.list.headerSerialize.HeaderSerialize"
+            android:name=".user_operations.sheet_list.sheet_header.HeaderSerialize"
             android:screenOrientation="portrait"
             />
 
@@ -82,10 +82,10 @@
             android:name=".common_operations.password.ChangePassword"
             android:screenOrientation="portrait"
             android:theme="@style/TimeSheet.AppTheme" />
-        <activity android:name=".admin_operations.emp_serialize.EmpMaster_Serialize" />
-        <activity android:name=".admin_operations.project_master.proj_serialize.Proj_MasterSerialize" />
-        <activity android:name=".admin_operations.employee_master.addEmployee.AddEmployee" />
-        <activity android:name=".admin_operations.project_master.addProject.AddProject" />
+        <activity android:name=".admin_operations.employee_master.edit_employee.EditEmployeeMaster" />
+        <activity android:name=".admin_operations.project_master.edit_project.Proj_MasterSerialize" />
+        <activity android:name=".admin_operations.employee_master.add_employee.AddEmployee" />
+        <activity android:name=".admin_operations.project_master.add_project.AddProject" />
 
 
 

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.android.timesheet.admin_operations.project_master.proj_serialize.Proj_MasterSerialize">
+    tools:context="com.android.timesheet.admin_operations.project_master.edit_project.Proj_MasterSerialize">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"

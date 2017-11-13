@@ -10,9 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.timesheet.R;
-import com.android.timesheet.admin_operations.employee_master.EmployeeMaster;
+import com.android.timesheet.admin_operations.employee_master.list_employee.EmployeeMaster;
 import com.android.timesheet.admin_operations.employee_project.EmployeeProject;
-import com.android.timesheet.admin_operations.project_master.ProjectMaster;
+import com.android.timesheet.admin_operations.project_master.list_projects.ProjectMaster;
 import com.android.timesheet.admin_operations.summary.SummaryDetails;
 import com.android.timesheet.common_operations.main.MainActivity;
 
