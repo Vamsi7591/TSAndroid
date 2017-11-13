@@ -5,6 +5,7 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#ef2e83fa</color>
 
+
     <color name="colorControlNormal">@color/colorAccent</color>
     <color name="colorControlActivated">@color/colorPrimary</color>
     <color name="colorControlHighlight">@color/colorPrimary</color>
