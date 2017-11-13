@@ -8,10 +8,10 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.android.timesheet.App;
+import com.android.timesheet.app.App;
 import com.android.timesheet.R;
 import com.android.timesheet.shared.presenters.BasePresenter;
-import com.android.timesheet.utils.LogUtils;
+import com.android.timesheet.shared.utils.LogUtils;
 
 import butterknife.BindView;
 

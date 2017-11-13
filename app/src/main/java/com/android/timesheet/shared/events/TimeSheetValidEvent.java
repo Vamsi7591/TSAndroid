@@ -1,6 +1,6 @@
 package com.android.timesheet.shared.events;
 
-import com.android.timesheet.utils.LogUtils;
+import com.android.timesheet.shared.utils.LogUtils;
 
 /**
  * Created by vamsikonanki on 8/28/2017.

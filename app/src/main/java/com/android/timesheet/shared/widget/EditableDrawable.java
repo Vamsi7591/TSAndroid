@@ -14,7 +14,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 
-import com.android.timesheet.App;
+import com.android.timesheet.app.App;
 import com.android.timesheet.R;
 
 

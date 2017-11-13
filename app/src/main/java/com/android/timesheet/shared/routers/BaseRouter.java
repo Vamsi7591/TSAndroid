@@ -9,12 +9,10 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 
-import com.android.timesheet.App;
-import com.android.timesheet.R;
-import com.android.timesheet.main.MainActivity;
+import com.android.timesheet.app.App;
+import com.android.timesheet.common_operations.main.MainActivity;
 import com.android.timesheet.shared.RestClient;
-import com.android.timesheet.shared.animation.SlideAnimationUtil;
-import com.android.timesheet.splash.SplashActivity;
+import com.android.timesheet.common_operations.splash.SplashActivity;
 
 /**
  * Created by vamsikonanki on 8/18/2017.

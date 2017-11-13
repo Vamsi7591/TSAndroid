@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_employee_serialization"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/margin_30"
+                    android:layout_marginStart="@dimen/margin_30">
+
+                    <com.android.timesheet.shared.widget.CustomFontTextView
+                        android:id="@+id/textViewToolbarTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/margin_0"
+                        android:layout_marginRight="@dimen/margin_0"
+                        android:clickable="true"
+                        android:gravity="center"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/tv_font_size_20"
+                        android:visibility="visible"
+                        app:font="@string/roboto_thin" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/profile"
+                        android:layout_width="100sp"
+                        android:layout_height="100sp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="60dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_launcher" />
+
+
+                    <TextView
+                        android:id="@+id/employee_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"
+                        android:text="Employee name"
+                        android:textColor="#939393"
+                        android:textSize="@dimen/tv_font_size_18" />
+
+                    <EditText
+                        android:id="@+id/emp_Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Employee Name"
+                        android:inputType="textPersonName"
+                        android:textColor="#060404" />
+
+
+                    <TextView
+                        android:id="@+id/input_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5sp"
+                        android:layout_marginTop="5sp"
+                        android:text="Employee Code"
+                        android:textColor="#939393"
+                        android:textSize="@dimen/tv_font_size_18" />
+
+                    <EditText
+                        android:id="@+id/emp_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Employee Code"
+                        android:textColor="#060404" />
+
+
+                    <TextView
+                        android:id="@+id/input_layout_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5sp"
+                        android:text="E_Mail"
+                        android:textColor="#939393"
+                        android:textSize="@dimen/tv_font_size_18" />
+
+                    <EditText
+                        android:id="@+id/input_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="E_Mail id"
+                        android:inputType="textEmailAddress"
+                        android:textColor="#060404" />
+
+
+                    <TextView
+                        android:id="@+id/inputLayout_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5sp"
+                        android:text="password"
+                        android:textColor="#939393"
+                        android:textSize="@dimen/tv_font_size_18" />
+                    >
+
+                    <EditText
+                        android:id="@+id/password_Emp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:maxLength="30"
+                        android:minLines="6"
+                        android:textColor="#060404" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearAdmin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/linear"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/margin_10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/left_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5sp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="AdminAccess"
+                        android:textSize="@dimen/tv_font_size_18" />
+
+                    <ToggleButton
+                        android:id="@+id/toggleButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50sp"
+                        android:textOff="Off"
+                        android:textOn="On" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mLlayoutBottomButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/linearAdmin"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/edit_ButtoN"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#005eff"
+                        android:text="Edit"
+                        android:textColor="#fff" />
+
+                    <Button
+                        android:id="@+id/submit_Btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#005eff"
+                        android:text="Submit"
+                        android:textColor="#fff"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
+

@@ -1,0 +1,28 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\Vamsi\\wilco\\TSAndroid\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-v19\\values-v19.xml",
+            "map": [
+                {
+                    "source": "E:\\Vamsi\\wilco\\TSAndroid\\app\\src\\main\\res\\values-v19\\styles.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "8",
+                        "startOffsets": "63",
+                        "endLines": "24",
+                        "endColumns": "16",
+                        "endOffsets": "1297"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "23",
+                        "endColumns": "16",
+                        "endOffsets": "1268"
+                    }
+                }
+            ]
+        }
+    ]
+}
