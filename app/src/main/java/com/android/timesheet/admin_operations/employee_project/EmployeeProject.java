@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -37,32 +36,32 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
         BaseViewBehavior<Object>, AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.assignProject)
-    Button assign;
+    Button assignTabBtn;
 
     @BindView(R.id.removeProject)
-    Button remove;
+    Button removeTabBtn;
 
-    @BindView(R.id.employe_Name)
-    Spinner empName;
+    @BindView(R.id.employeeName)
+    Spinner empNameSp;
 
-    @BindView(R.id.proj_Name)
-    Spinner projName;
+    @BindView(R.id.projectName)
+    Spinner projectNameSp;
 
-    @BindView(R.id.assignRealProject)
-    Button realAssign;
+    @BindView(R.id.assignProjectToEmp)
+    Button assignProjectToEmpBtn;
 
-    @BindView(R.id.removeRealProject)
-    Button realRemove;
+    @BindView(R.id.removeProjectFromEmp)
+    Button removeProjectFromEmpBtn;
 
-    @BindView(R.id.textViewToolbarTitle)
-    CustomFontTextView textViewToolbarTitle;
+    @BindView(R.id.toolbarTitleTv)
+    CustomFontTextView toolbarTitleTv;
 
     boolean isAssignVisible = true;
     ArrayAdapter adapter;
-    List<String> empNameList;
-    List<String> projNamesList;
-    List<Employee> dataEmp;
-    List<Project> dataProj;
+    List<String> employeeSpinnerList;
+    List<String> projectSpinnerList;
+    List<Employee> employeesList;
+    List<Project> projectsList;
     int selectedEmployeeNamePos = 0;
 
     private static final String TAG = "Employee_Project";
@@ -71,11 +70,6 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
     protected int layoutRestID() {
         return R.layout.activity_employee_project;
     }
-
-//    @Override
-//    protected int menuResID() {
-//        return R.menu.home_menu;
-//    }
 
     @Override
     protected String title() {
@@ -96,136 +90,127 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        textViewToolbarTitle.setText(title());
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
-        textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+        toolbarTitleTv.setText(title());
+//        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) toolbarTitleTv.getLayoutParams();
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
 
-        dataEmp = new ArrayList<>();
-        dataProj = new ArrayList<>();
-        empNameList = new ArrayList<String>();
-        projNamesList = new ArrayList<String>();
+        employeesList = new ArrayList<>();
+        projectsList = new ArrayList<>();
+        employeeSpinnerList = new ArrayList<>();
+        projectSpinnerList = new ArrayList<>();
 
 
-        empName.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
-        projName.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+        empNameSp.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+        projectNameSp.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
         User user = presenter().getCurrentUser();
         if (user != null) {
             presenter().getAllEmpDetails();
         }
 
-        assign.setOnClickListener(new View.OnClickListener() {
+        assignTabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 isAssignVisible = true;
-                assign.setTextSize(20);
-                assign.setTypeface(null, Typeface.BOLD);
-                assign.setTextColor(getColor(R.color.white));
+                assignTabBtn.setTextSize(20);
+                assignTabBtn.setTypeface(null, Typeface.BOLD);
+                assignTabBtn.setTextColor(getColor(R.color.white));
 
-                remove.setTextSize(18);
-                remove.setTypeface(null, Typeface.NORMAL);
-                remove.setTextColor(getColor(R.color.colorWhite115));
+                removeTabBtn.setTextSize(18);
+                removeTabBtn.setTypeface(null, Typeface.NORMAL);
+                removeTabBtn.setTextColor(getColor(R.color.colorWhite115));
 
-                clearUI();
+                clearUI(true);
 
             }
         });
 
-        remove.setOnClickListener(new View.OnClickListener() {
+        removeTabBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 isAssignVisible = false;
-                remove.setTextSize(20);
-                remove.setTypeface(null, Typeface.BOLD);
-                remove.setTextColor(getColor(R.color.white));
+                removeTabBtn.setTextSize(20);
+                removeTabBtn.setTypeface(null, Typeface.BOLD);
+                removeTabBtn.setTextColor(getColor(R.color.white));
 
-                assign.setTextSize(18);
-                assign.setTypeface(null, Typeface.NORMAL);
-                assign.setTextColor(getColor(R.color.colorWhite115));
+                assignTabBtn.setTextSize(18);
+                assignTabBtn.setTypeface(null, Typeface.NORMAL);
+                assignTabBtn.setTextColor(getColor(R.color.colorWhite115));
 
-                clearUI();
+                clearUI(true);
             }
         });
 
-        realAssign.setOnClickListener(new View.OnClickListener() {
+        assignProjectToEmpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Log.v(TAG, "AssignEmployeesToProject : " +
-                        empName.getSelectedItem().toString()
-                        + " : " + dataEmp.get(selectedEmployeeNamePos - 1).getEmpCode()
-                        + " : " + projName.getSelectedItem().toString());
+                        empNameSp.getSelectedItem().toString()
+                        + " : " + employeesList.get(selectedEmployeeNamePos - 1).getEmpCode()
+                        + " : " + projectNameSp.getSelectedItem().toString());
 
                 // Service Call //
                 User user = presenter().getCurrentUser();
                 if (user != null) {
-                    AssignEmpParams assignEmpParams = new AssignEmpParams(dataEmp.get(selectedEmployeeNamePos - 1).empCode, projName.getSelectedItem().toString());
+                    AssignEmpParams assignEmpParams = new AssignEmpParams(employeesList.get(selectedEmployeeNamePos - 1).empCode, projectNameSp.getSelectedItem().toString());
                     presenter().assignEmp(assignEmpParams);
                 }
 
-                clearUI();
+                clearUI(true);
             }
         });
 
-        realRemove.setOnClickListener(new View.OnClickListener() {
+        removeProjectFromEmpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.v(TAG, "RemoveEmployeesFromProject : " +
-                        empName.getSelectedItem().toString()
-                        + " : " + dataEmp.get(selectedEmployeeNamePos - 1).getEmpCode()
-                        + " : " + projName.getSelectedItem().toString());
+                        empNameSp.getSelectedItem().toString()
+                        + " : " + employeesList.get(selectedEmployeeNamePos - 1).getEmpCode()
+                        + " : " + projectNameSp.getSelectedItem().toString());
 
                 // Service Calls //
                 User user = presenter().getCurrentUser();
                 if (user != null) {
-                    AssignEmpParams assignEmpParams = new AssignEmpParams(dataEmp.get(selectedEmployeeNamePos - 1).empCode, projName.getSelectedItem().toString());
+                    AssignEmpParams assignEmpParams = new AssignEmpParams(employeesList.get(selectedEmployeeNamePos - 1).empCode, projectNameSp.getSelectedItem().toString());
                     presenter().removeEmp(assignEmpParams);
 
                 }
 
-                clearUI();
+                clearUI(true);
             }
         });
 
 
-        empName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        empNameSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                String selectedItem = parent.getItemAtPosition(position).toString(); //this is your selected item
                  /*If user selected spinner call projects service*/
 
-                selectedEmployeeNamePos = empName.getSelectedItemPosition();
+                selectedEmployeeNamePos = empNameSp.getSelectedItemPosition();
 
                 if (isAssignVisible) {
                     // Assign
-                    if (!empName.getSelectedItem().toString().isEmpty()) {
+                    if (!empNameSp.getSelectedItem().toString().isEmpty()) {
 
-                        if (!empName.getSelectedItem().toString().equalsIgnoreCase("Select")) {
-
-                            presenter().unAssignProj(dataEmp.get(selectedEmployeeNamePos - 1).empCode);
-                            realAssign.setVisibility(View.VISIBLE);
-
+                        if (!empNameSp.getSelectedItem().toString().equalsIgnoreCase("Select")) {
+                            presenter().unAssignProj(employeesList.get(selectedEmployeeNamePos - 1).empCode);
                         } else {
-                            projName.setAdapter(null);
-                            clearUI();
+                            projectNameSp.setAdapter(null);
+                            clearUI(false);
                         }
                     }
                 } else {
                     // Remove
-                    if (!empName.getSelectedItem().toString().isEmpty()) {
+                    if (!empNameSp.getSelectedItem().toString().isEmpty()) {
 
-                        if (!empName.getSelectedItem().toString().equalsIgnoreCase("Select")) {
-//                            getProjectsNames(empMasterData.get(selectedEmployeeNamePos - 1).getEmpcode());
-
-                                presenter().getProjectNames(dataEmp.get(selectedEmployeeNamePos - 1).empCode);
-//                                presenter().getProjectNames(user.empCode);
-                            realRemove.setVisibility(View.VISIBLE);
-                        }
-
-                        else {
-                            projName.setAdapter(null);
-                            clearUI();
+                        if (!empNameSp.getSelectedItem().toString().equalsIgnoreCase("Select")) {
+                            presenter().getProjectNames(employeesList.get(selectedEmployeeNamePos - 1).empCode);
+                        } else {
+                            projectNameSp.setAdapter(null);
+                            clearUI(false);
                         }
                     }
 
@@ -238,25 +223,24 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
         });
 
 
-        projName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        projectNameSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                int selectedPos = project_Name.getSelectedItemPosition();
 
                 if (isAssignVisible) {
                     // Assign
-                    if (!projName.getSelectedItem().toString().isEmpty()) {
-                        if (!projName.getSelectedItem().toString().equalsIgnoreCase("Select"))
-                            realAssign.setVisibility(View.VISIBLE);
+                    if (!projectNameSp.getSelectedItem().toString().isEmpty()) {
+                        if (!projectNameSp.getSelectedItem().toString().equalsIgnoreCase("Select"))
+                            assignProjectToEmpBtn.setVisibility(View.VISIBLE);
                         else
-                            realAssign.setVisibility(View.GONE);
+                            assignProjectToEmpBtn.setVisibility(View.GONE);
                     }
                 } else {
                     // Remove
-                    if (!projName.getSelectedItem().toString().isEmpty()) {
-                        if (!projName.getSelectedItem().toString().equalsIgnoreCase("Select"))
-                            realRemove.setVisibility(View.VISIBLE);
+                    if (!projectNameSp.getSelectedItem().toString().isEmpty()) {
+                        if (!projectNameSp.getSelectedItem().toString().equalsIgnoreCase("Select"))
+                            removeProjectFromEmpBtn.setVisibility(View.VISIBLE);
                         else
-                            realRemove.setVisibility(View.GONE);
+                            removeProjectFromEmpBtn.setVisibility(View.GONE);
 
                     }
                 }
@@ -267,22 +251,21 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
 
             }
         });
-
 
 
     }
 
 
+    public void clearUI(boolean flag) {
 
+        if (flag) {
+            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, employeeSpinnerList);
+            empNameSp.setAdapter(adapter);
+        }
 
-    public void clearUI() {
-
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, empNameList);
-        empName.setAdapter(adapter);
-        projName.setAdapter(null);
-
-        realAssign.setVisibility(View.GONE);
-        realRemove.setVisibility(View.GONE);
+        projectNameSp.setAdapter(null);
+        assignProjectToEmpBtn.setVisibility(View.GONE);
+        removeProjectFromEmpBtn.setVisibility(View.GONE);
 
     }
 
@@ -303,41 +286,35 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
         if (o instanceof ProjectNamesResponse) {
             /*Projects response List<Projects>*/
             ProjectNamesResponse projectNamesResponse = (ProjectNamesResponse) o;
-            dataProj = projectNamesResponse.getProjectList();
+            projectsList = projectNamesResponse.getProjectList();
 
-            projNamesList = new ArrayList<>();
-            projNamesList.add("Select");
+            projectSpinnerList = new ArrayList<>();
+            projectSpinnerList.add("Select");
 
-            if (dataProj != null) {
-                for (int i = 0; i < dataProj.size(); i++) {
-                    projNamesList.add(dataProj.get(i).getProjectName());
+            if (projectsList != null) {
+                for (int i = 0; i < projectsList.size(); i++) {
+                    projectSpinnerList.add(projectsList.get(i).getProjectName());
                 }
-                adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, projNamesList);
-                projName.setAdapter(adapter);
+                adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, projectSpinnerList);
+                projectNameSp.setAdapter(adapter);
             }
 
-        }
-
-        else if (o instanceof AllEmployeesResponse) {
+        } else if (o instanceof AllEmployeesResponse) {
             /*Employees response List<Employees>*/
             AllEmployeesResponse response = (AllEmployeesResponse) o;
-            dataEmp = response.getEmployeeList();
+            employeesList = response.getEmployeeList();
 
+            employeeSpinnerList = new ArrayList<>();
+            employeeSpinnerList.add("Select");
 
-            empNameList = new ArrayList<>();
-            empNameList.add("Select");
-
-            for (int i = 0; i < dataEmp.size(); i++) {
-
-                empNameList.add(dataEmp.get(i).getEmpName());
+            for (int i = 0; i < employeesList.size(); i++) {
+                employeeSpinnerList.add(employeesList.get(i).getEmpName());
             }
-            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, empNameList);
+            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, employeeSpinnerList);
 //        employee_Name.setPrompt("Select Category");
-            empName.setAdapter(adapter);
-        }
-
-        else if (o instanceof String) {
-            /*Assign or remove response string*/
+            empNameSp.setAdapter(adapter);
+        } else if (o instanceof String) {
+            /*Assign or removeTabBtn response string*/
             String response = (String) o;
             Toast.makeText(EmployeeProject.this, response, Toast.LENGTH_LONG).show();
         }

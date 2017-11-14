@@ -6,7 +6,7 @@ import android.content.Intent;
 import com.android.timesheet.shared.Constant;
 import com.android.timesheet.shared.models.TimeSheet;
 import com.android.timesheet.shared.routers.BaseRouter;
-import com.android.timesheet.user_operations.sheet_list.sheet_header.HeaderSerialize;
+import com.android.timesheet.user_operations.sheet_list.sheet_header.HeaderActivity;
 import com.android.timesheet.user_operations.sheet_list.sheet_entry.TimeSheetEntry;
 
 import org.parceler.Parcels;
@@ -28,7 +28,7 @@ public class TimeSheetRouter extends BaseRouter{
     }
 
     public void dayTimeSheet(String  sheet) {
-        Intent intent = new Intent(context, HeaderSerialize.class);
+        Intent intent = new Intent(context, HeaderActivity.class);
         intent.putExtra(Constant.KEYS.TIME_SHEET_HEADER_KEY, sheet);
         context.startActivity(intent);
     }

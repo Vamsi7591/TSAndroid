@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator_layout"
@@ -92,7 +91,7 @@
                         android:layout_marginLeft="@dimen/activity_vertical_margin"
                         android:layout_marginRight="@dimen/activity_vertical_margin"
                         android:hint="@string/hint_em_code"
-                        android:textColorHint="@color/colorAccent"
+                        android:textColorHint="@color/colorPrimary"
                         app:errorTextAppearance="@style/AppTheme.TextInputLayout.ErrorAppearance"
                         app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance">
 
@@ -117,7 +116,7 @@
                         android:layout_marginLeft="@dimen/activity_vertical_margin"
                         android:layout_marginRight="@dimen/activity_vertical_margin"
                         android:hint="@string/hint_password"
-                        android:textColorHint="@color/colorAccent"
+                        android:textColorHint="@color/colorPrimary"
                         app:errorTextAppearance="@style/AppTheme.TextInputLayout.ErrorAppearance"
                         app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance">
 
@@ -164,5 +163,11 @@
 
     </RelativeLayout>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </android.support.design.widget.CoordinatorLayout>

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainDrawerLayout"
     android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,8 +13,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
-        android:background="@color/white"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".common_operations.main.MainActivity">
 
         <RelativeLayout
@@ -35,7 +35,8 @@
                     android:fitsSystemWindows="true"
                     app:contentScrim="?android:attr/colorPrimary"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                    app:toolbarId="@+id/toolbar">
+                    app:toolbarId="@+id/toolbar"
+                    tools:ignore="NewApi">
 
                     <android.support.v7.widget.Toolbar
                         android:id="@+id/toolbar"
@@ -51,7 +52,7 @@
                             android:layout_marginStart="@dimen/margin_30">
 
                             <com.android.timesheet.shared.widget.CustomFontTextView
-                                android:id="@+id/textViewToolbarTitle"
+                                android:id="@+id/toolbarTitleTv"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginLeft="@dimen/margin_30"
@@ -75,11 +76,12 @@
                 android:id="@+id/viewPagerHome"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/app_bar"
+                android:layout_marginBottom="?attr/actionBarSize"
+                android:layout_marginTop="0dp"
                 android:background="@color/white"
-                android:layout_marginTop="?attr/actionBarSize"
-                android:layout_marginBottom="?android:attr/actionBarSize"
                 android:fitsSystemWindows="true"
                 android:visibility="visible" />
 

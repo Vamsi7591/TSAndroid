@@ -7,10 +7,11 @@ import android.support.design.widget.TextInputLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.android.timesheet.app.App;
 import com.android.timesheet.R;
+import com.android.timesheet.app.App;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.models.ValidationError;
@@ -38,6 +39,9 @@ public class LoginActivity extends BaseActivity<AuthPresenter> implements AuthVi
     EditText editTextECode;
     @BindView(R.id.editTextPassword)
     EditText editTextPassword;
+
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
 
     @BindView(R.id.textViewLogin)
     CustomFontTextView textViewLogin;
@@ -107,6 +111,7 @@ public class LoginActivity extends BaseActivity<AuthPresenter> implements AuthVi
     @Override
     public void onComplete() {
         Log.i(TAG, "onComplete");
+        progressBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -120,6 +125,7 @@ public class LoginActivity extends BaseActivity<AuthPresenter> implements AuthVi
 
     @Override
     public void onFailed(Throwable e) {
+        onComplete();
         App.getInstance().customToast(e.getMessage());
     }
 
@@ -133,8 +139,11 @@ public class LoginActivity extends BaseActivity<AuthPresenter> implements AuthVi
     public void login() {
         clearErrors();
         if (InternetUtils.isInternetConnected(LoginActivity.this)) {
+            progressBar.setVisibility(View.VISIBLE);
             presenter().submitLogin(editTextECode.getText(), editTextPassword.getText());
-//            presenter().submitLogin("E010", "prisam@1");
+            /* To hard code inputs use below values
+              "E010", "prisam@1"
+              */
         } else {
             infoSnackBar(getString(R.string.no_internet_connection));
         }

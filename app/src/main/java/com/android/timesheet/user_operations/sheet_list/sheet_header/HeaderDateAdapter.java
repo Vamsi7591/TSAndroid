@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ import java.util.TimeZone;
  * Created by Vijay on 20.07.2017
  */
 
-public class DateInfoAdapter extends ArrayAdapter<TimeSheet> {
+public class HeaderDateAdapter extends ArrayAdapter<TimeSheet> {
 
     List<TimeSheet> dateInfoPojo;
     Context context;
@@ -33,7 +34,7 @@ public class DateInfoAdapter extends ArrayAdapter<TimeSheet> {
 
 
     @SuppressLint("StringFormatInvalid")
-    public DateInfoAdapter(Context context, int resource, List<TimeSheet> dateInfoPojo) {
+    public HeaderDateAdapter(Context context, int resource, List<TimeSheet> dateInfoPojo) {
         super(context, resource, dateInfoPojo);
         this.dateInfoPojo = dateInfoPojo;
         this.context = context;
@@ -41,7 +42,7 @@ public class DateInfoAdapter extends ArrayAdapter<TimeSheet> {
 
 
         //Add time dynamically
-
+        @SuppressLint("SimpleDateFormat")
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
         timeFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 
@@ -66,35 +67,34 @@ public class DateInfoAdapter extends ArrayAdapter<TimeSheet> {
 
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
         if (convertView == null) {
-            LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.activity_date_info, null, true);
-
+            convertView = LayoutInflater.from(this.context).inflate(this.resource, parent,
+                    false);
         }
 
-        TimeSheet DateInfoPojo = getItem(position);
+        TimeSheet dateInfo = getItem(position);
 
         TextView txtname = (TextView) convertView.findViewById(R.id.projName);
-        txtname.setText(DateInfoPojo.getProjectName());
+        txtname.setText(dateInfo.getProjectName());
 
         TextView txttask = (TextView) convertView.findViewById(R.id.taskDesc);
-        txttask.setText(DateInfoPojo.getTaskDescription());
+        txttask.setText(dateInfo.getTaskDescription());
 
         TextView txtstart = (TextView) convertView.findViewById(R.id.startTime);
-        txtstart.setText(DateInfoPojo.getStartTime());
+        txtstart.setText(dateInfo.getStartTime());
 
         TextView txtend = (TextView) convertView.findViewById(R.id.endTime);
-        txtend.setText(DateInfoPojo.getEndTime());
+        txtend.setText(dateInfo.getEndTime());
 
         TextView txttotal = (TextView) convertView.findViewById(R.id.totalHrs);
-        txttotal.setText(DateInfoPojo.getTotalHours());
+        txttotal.setText(dateInfo.getTotalHours());
 
         TextView totalHours = (TextView) convertView.findViewById(R.id.totalHours);
         totalHours.setVisibility(View.GONE);
 
-        if ((lastPos -1) == position) {
+        if ((lastPos - 1) == position) {
             totalHours.setVisibility(View.VISIBLE);
             totalHours.setText(val);
         }

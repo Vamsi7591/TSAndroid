@@ -25,28 +25,28 @@ import com.android.timesheet.shared.widget.CustomFontTextView;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
 import static com.raizlabs.android.dbflow.config.FlowManager.getContext;
 
-public class HeaderSerialize extends BaseActivity<HeaderSerializePresenter> implements
+public class HeaderActivity extends BaseActivity<HeaderPresenter> implements
         BaseViewBehavior<TimeSheetResponse>, AdapterView.OnItemSelectedListener {
 
-    private static final String TAG = "HeaderSerialize";
+    private static final String TAG = "HeaderActivity";
     ListView lv;
 
     List<TimeSheet> todayPojoList;
     String todayDate;
 
-    @BindView(R.id.textViewToolbarTitle)
+    @BindView(R.id.toolbarTitleTv)
     CustomFontTextView textViewToolbarTitle;
 
-   android.support.v7.widget.Toolbar toolbar;
     @Override
     protected int layoutRestID() {
-        return R.layout.activity_header_serialize;
+        return R.layout.activity_header_date;
     }
 
     @Override
@@ -60,8 +60,8 @@ public class HeaderSerialize extends BaseActivity<HeaderSerializePresenter> impl
     }
 
     @Override
-    protected HeaderSerializePresenter providePresenter() {
-        return new HeaderSerializePresenter(this, this);
+    protected HeaderPresenter providePresenter() {
+        return new HeaderPresenter(this, this);
     }
 
 
@@ -89,7 +89,7 @@ public class HeaderSerialize extends BaseActivity<HeaderSerializePresenter> impl
 
         lv = (ListView) findViewById(R.id.date_listView);
         if (todayPojoList != null) {
-            DateInfoAdapter adapter = new DateInfoAdapter(getApplicationContext(), R.layout.activity_date_info, todayPojoList);
+            HeaderDateAdapter adapter = new HeaderDateAdapter(getApplicationContext(), R.layout.activity_header_date_inflator, todayPojoList);
             lv.setAdapter(adapter);
         }
 
@@ -101,7 +101,7 @@ public class HeaderSerialize extends BaseActivity<HeaderSerializePresenter> impl
         if (view == null) {
 
             LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(R.layout.activity_date_info, null, true);
+            view = layoutInflater.inflate(R.layout.activity_header_date_inflator, null, true);
         }
 
       /*todayDate=data.get(0).getDate();*/
@@ -127,9 +127,10 @@ public class HeaderSerialize extends BaseActivity<HeaderSerializePresenter> impl
     public void onSuccess(TimeSheetResponse data) {
 
         if (data != null && data.status) {
+            todayPojoList = new ArrayList<>();
             todayPojoList = data.getTimeSheetList();
             if (todayPojoList != null) {
-                DateInfoAdapter adapter = new DateInfoAdapter(getApplicationContext(), R.layout.activity_date_info, todayPojoList);
+                HeaderDateAdapter adapter = new HeaderDateAdapter(this, R.layout.activity_header_date_inflator, todayPojoList);
                 lv.setAdapter(adapter);
             }
         }

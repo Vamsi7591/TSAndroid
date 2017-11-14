@@ -49,7 +49,7 @@ public class MainActivity extends BaseActivity<MainPresenter> {
     @BindView(R.id.viewPagerHome)
     NonSwipeableViewPager viewPager;
 
-    @BindView(R.id.textViewToolbarTitle)
+    @BindView(R.id.toolbarTitleTv)
     CustomFontTextView textViewToolbarTitle;
 
     @BindView(R.id.mLeftDrawer)
@@ -80,7 +80,7 @@ public class MainActivity extends BaseActivity<MainPresenter> {
 
     @Override
     protected int layoutRestID() {
-        return R.layout.activity_main;
+        return R.layout.activity_landing_screen;
     }
 
 

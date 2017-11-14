@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/padding_5"
+        android:paddingRight="@dimen/padding_5">
+
+        <TextView
+            android:id="@+id/projName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_40"
+            android:gravity="center"
+            android:text="Project Name"
+            android:textColor="#2996f5"
+            android:textSize="@dimen/tv_font_size_20" />
+
+        <TextView
+            android:id="@+id/taskDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="10dp"
+            android:text="Tasc desc"
+            android:textColor="@color/black"
+            android:textSize="@dimen/tv_font_size_18" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp">
+
+            <TableRow
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/startTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="Start time"
+                    android:textAlignment="viewStart"
+                    android:textColor="#0d0d0d" />
+
+                <TextView
+                    android:id="@+id/endTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="End time"
+                    android:textColor="#0d0d0d" />
+
+                <TextView
+                    android:id="@+id/totalHrs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="Total hrs"
+                    android:textColor="#0d0d0d" />
+
+            </TableRow>
+        </TableLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="0dp"
+                android:background="@drawable/back_arrow_orange"
+                android:rotation="270" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/totalHours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="#0d0d0d"
+            android:textSize="@dimen/tv_font_size_20"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</LinearLayout>

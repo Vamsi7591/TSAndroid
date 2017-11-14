@@ -62,7 +62,7 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
     @BindView(R.id.general_recycler_view)
     RecyclerView recyclerView;
 
-    @BindView(R.id.progress_bar)
+    @BindView(R.id.progressBar)
     CircularProgressBar progressBar;
 
     @BindView(R.id.idsearch)

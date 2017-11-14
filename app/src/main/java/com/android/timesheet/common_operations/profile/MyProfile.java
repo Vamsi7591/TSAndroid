@@ -39,7 +39,7 @@ import butterknife.OnClick;
 public class MyProfile extends BaseActivity<MyProfilePresenter> implements
         BaseViewBehavior<ProjectNamesResponse> {
 
-    @BindView(R.id.textViewToolbarTitle)
+    @BindView(R.id.toolbarTitleTv)
     CustomFontTextView textViewToolbarTitle;
 
     @BindView(R.id.textViewProjects)

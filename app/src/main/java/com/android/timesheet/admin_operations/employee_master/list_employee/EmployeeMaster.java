@@ -48,7 +48,7 @@ public class EmployeeMaster extends BaseActivity<EmployeeMasterPresenter> implem
     @BindView(R.id.general_recycler_view)
     RecyclerView recyclerView;
 
-    @BindView(R.id.textViewToolbarTitle)
+    @BindView(R.id.toolbarTitleTv)
     CustomFontTextView textViewToolbarTitle;
 
     String TAG = "Employee Master";

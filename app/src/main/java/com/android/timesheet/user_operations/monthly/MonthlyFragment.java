@@ -21,6 +21,7 @@ import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -37,7 +38,7 @@ import butterknife.BindView;
  * Created by vamsikonanki on 8/23/2017.
  */
 
-public class MonthlyFragment extends BaseFragment<MonthlyPresenter>implements BaseViewBehavior<List<Month>>  {
+public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements BaseViewBehavior<List<Month>> {
 
     @BindView(R.id.spinner_Month)
     Spinner monthSpinner;
@@ -50,7 +51,6 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter>implements Ba
 
     @BindView(R.id.line_Arrow)
     ImageView loadLine;
-
 
     @BindView(R.id.noDataFoundRL)
     RelativeLayout noDataFound;
@@ -180,7 +180,7 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter>implements Ba
     @Override
     public void onSuccess(List<Month> dataLine) {
 
-        if (dataLine.size()> 0) {
+        if (dataLine.size() > 0) {
 
             lineChart.setVisibility(View.VISIBLE);
             noDataFound.setVisibility(View.GONE);
@@ -216,13 +216,12 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter>implements Ba
         ArrayList<String> projNames = new ArrayList<String>(month_retroHashMap.keySet());
 
         List<Integer> colorList = new ArrayList<>();
-        colorList.add(Color.RED);
-        colorList.add(Color.BLACK);
-        colorList.add(Color.GREEN);
         colorList.add(Color.BLUE);
+        colorList.add(Color.MAGENTA);
+        colorList.add(Color.GREEN);
+        colorList.add(Color.RED);
         colorList.add(Color.GRAY);
         colorList.add(Color.CYAN);
-
 
         for (int i = 0; i < month_retroHashMap.size(); i++) {
 
@@ -238,40 +237,53 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter>implements Ba
                 projectName = month_data.get(k).getProjectname();
 
                 if (i == 0)
-                    if (k == 0) {
-                        xValues.add("Week " + month_data.get(k).getWeekno());
+                    if (k == 2) {
+                        xValues.add("Week:" + month_data.get(k).getWeekno());
                     } else
-                        xValues.add(month_data.get(k).getWeekno());
+                        xValues.add("W:" +month_data.get(k).getWeekno());
             }
 
             LineDataSet set1;
             set1 = new LineDataSet(yVals, projectName);
-            set1.setFillAlpha(110);
-
             set1.setColor(colorList.get(i));
             set1.setCircleColor(colorList.get(i));
-            set1.setLineWidth(1.75f);
-            set1.setCircleRadius(5f);
-            set1.setDrawCircleHole(false);
+            set1.setLineWidth(2f);
+            set1.setCircleRadius(6f);
+            set1.setDrawCircleHole(true);
             set1.setHighLightColor(Color.WHITE);
             set1.setValueTextSize(9f);
             set1.setDrawFilled(true);
-            set1.setFillColor(Color.CYAN);
-            dataSets.add(set1); // add the datasets
+            set1.setFillColor(Color.LTGRAY);
+            dataSets.add(set1); // add the data sets
 
         }
 
+        lineChart.setDrawGridBackground(false);
+        lineChart.getXAxis().setDrawGridLines(false); // disable grid lines for the XAxis
+        lineChart.getAxisLeft().setDrawGridLines(false); // disable grid lines for the left YAxis
+        lineChart.getAxisRight().setDrawGridLines(false); // disable grid lines for the right YAxis
+        lineChart.getXAxis().setDrawAxisLine(false);// remove left side line
+        lineChart.getAxisRight().setDrawLabels(false);
+        lineChart.getAxisLeft().setDrawLabels(false);
+//        lineChart.getXAxis().setDrawLabels(false); // Top values hide
+
+        lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        lineChart.getAxisLeft().setEnabled(false);
+        lineChart.getAxisRight().setEnabled(false);
+
+        lineChart.setDoubleTapToZoomEnabled(true);
+        lineChart.setPinchZoom(true);
 
         LineData data = new LineData(xValues, dataSets);
-
         lineChart.setData(data);
-        lineChart.invalidate();
-        lineChart.animateXY(1000, 3000);
-        lineChart.setDescription("Monthly report");
+        lineChart.setDescription("");//Monthly report
 
         Legend l = lineChart.getLegend();
-
         l.setForm(Legend.LegendForm.LINE);
+
+        lineChart.notifyDataSetChanged();
+        lineChart.invalidate();
+        lineChart.animateXY(1000, 3000);
     }
 
     @Override

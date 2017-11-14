@@ -16,15 +16,15 @@ import java.util.List;
  * Created by Vijay on 20.07.2017
  */
 
-public class HeaderSerializeInteractor extends BaseInteractor<HeaderSerializeServices> {
+public class HeaderInteractor extends BaseInteractor<HeaderServices> {
 
-    public HeaderSerializeInteractor(Context context) {
+    public HeaderInteractor(Context context) {
         super(context);
     }
 
     @Override
-    protected HeaderSerializeServices provideService() {
-        return new HeaderSerializeServices();
+    protected HeaderServices provideService() {
+        return new HeaderServices();
     }
 
     public void getDayTimeSheet(HeaderParams headerParams, ServiceCallback<TimeSheetResponse> callback) {

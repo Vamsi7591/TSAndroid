@@ -33,7 +33,7 @@ public class AddProject extends BaseActivity<AddProjectPresenter> implements
     @BindView(R.id.submit_Button)
     Button submitBtn;
 
-    @BindView(R.id.textViewToolbarTitle)
+    @BindView(R.id.toolbarTitleTv)
     CustomFontTextView textViewToolbarTitle;
 
     public void checkField(){

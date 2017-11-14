@@ -48,7 +48,7 @@ public class ProjectMaster extends BaseActivity<ProjectMasterPresenter>
     @BindView(R.id.general_recycler_view)
     RecyclerView recyclerView;
 
-    @BindView(R.id.textViewToolbarTitle)
+    @BindView(R.id.toolbarTitleTv)
     CustomFontTextView textViewToolbarTitle;
 
     List<Project> data;

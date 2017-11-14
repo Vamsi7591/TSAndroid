@@ -20,6 +20,7 @@ import com.android.timesheet.shared.models.Week;
 import com.android.timesheet.shared.models.WeekParams;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -175,7 +176,7 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements Bas
             }
         });
 
-                User user = presenter().getCurrentUser();
+        User user = presenter().getCurrentUser();
         if (user != null) {
             WeekParams weekParams = new WeekParams(user.empCode, cWeek, cYear);
             presenter().fetchWeekData(weekParams);
@@ -187,31 +188,56 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements Bas
 
     public void loadPie(List<Week> arrayList) {
 
-        ArrayList<Entry> yEntrys = new ArrayList<Entry>();
-        ArrayList<String> xEntrys = new ArrayList<String>();
+        ArrayList<Entry> yEntries = new ArrayList<Entry>();
+        ArrayList<String> xEntries = new ArrayList<String>();
+        String[] projectNames = new String[arrayList.size()];
 
         for (int i = 0; i < arrayList.size(); i++) {
+            yEntries.add(new Entry(Float.parseFloat(arrayList.get(i).getDuration()), i));
 
-            yEntrys.add(new Entry(Float.parseFloat(arrayList.get(i).getDuration()), i));
+            /*if (Float.parseFloat(arrayList.get(i).getDuration()) <= 1)
+                xEntries.add("hour in \n"+ arrayList.get(i).getProjectname().trim());//Hour
+            else
+                xEntries.add("hours in \n"+ arrayList.get(i).getProjectname().trim());//Hours*/
 
-            xEntrys.add(arrayList.get(i).getProjectname());
+            xEntries.add(arrayList.get(i).getProjectname().trim());
+//            projectNames[i] = arrayList.get(i).getProjectname();
         }
 
-        PieDataSet dataSet = new PieDataSet(yEntrys, "Week Report");
-        PieData data = new PieData(xEntrys, dataSet);
+
+        PieDataSet dataSet = new PieDataSet(yEntries, "");//Week Report
+        PieData data = new PieData(xEntries, dataSet);
         data.setValueFormatter(new LargeValueFormatter());
 
-
         weekChart.setData(data);
-        weekChart.setDescription("This is Week Chart");
+        weekChart.setDescription("");//This is Week Chart
+        weekChart.setSoundEffectsEnabled(true);
 
-        weekChart.setDrawHoleEnabled(true);
-        weekChart.setTransparentCircleRadius(25f);
-        weekChart.setHoleRadius(25f);
+        if (arrayList.size() > 1) {
+            weekChart.setDrawHoleEnabled(false);
+        } else {
+            weekChart.setDrawHoleEnabled(true);
+            weekChart.setTransparentCircleRadius(25f);
+            weekChart.setHoleRadius(25f);
+        }
 
-        dataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
-        data.setValueTextSize(13f);
+        dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+        data.setValueTextSize(14f);
         data.setValueTextColor(Color.DKGRAY);
+        data.setHighlightEnabled(true);
+
+        Legend legend = weekChart.getLegend();
+        legend.setWordWrapEnabled(true);
+        legend.setPosition(Legend.LegendPosition.LEFT_OF_CHART_CENTER);
+        legend.setFormSize(10f);// set the size of the legend forms/shapes
+        legend.setForm(Legend.LegendForm.CIRCLE);// set what type of form/shape should be used
+        legend.setTextSize(12f);
+        legend.setTextColor(Color.BLACK);
+//        legend.setXEntrySpace(5f); // set the space between the legend entries on the x-axis
+//        legend.setYEntrySpace(5f);
+//        legend.setExtra(ColorTemplate.JOYFUL_COLORS, projectNames);// set custom labels and colors
+        legend.setEnabled(false);
+        weekChart.notifyDataSetChanged();
 
         weekChart.animateXY(1400, 1400);
 
@@ -232,11 +258,10 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements Bas
     public void onSuccess(List<Week> arrayList) {
 
         if (arrayList.size() > 0) {
-
             loadPie(arrayList);
             weekChart.setVisibility(View.VISIBLE);
             noDataFoundRL.setVisibility(View.GONE);
-        } else  {
+        } else {
             weekChart.setVisibility(View.GONE);
             noDataFoundRL.setVisibility(View.VISIBLE);
         }
@@ -247,6 +272,5 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements Bas
     public void onFailed(Throwable e) {
         weekChart.setVisibility(View.GONE);
         noDataFoundRL.setVisibility(View.VISIBLE);
-
     }
 }

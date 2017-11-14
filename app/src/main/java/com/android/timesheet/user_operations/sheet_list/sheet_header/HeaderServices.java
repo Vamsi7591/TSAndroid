@@ -10,7 +10,7 @@ import rx.Observable;
  * Created by Vijay on 20.07.2017
  */
 
-public class HeaderSerializeServices extends BaseService<IUserService> {
+public class HeaderServices extends BaseService<IUserService> {
 
     @Override
     protected IUserService prepare() {

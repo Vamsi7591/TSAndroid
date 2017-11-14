@@ -38,7 +38,7 @@ public class WebViewActivity extends BaseActivity implements BaseViewBehavior {
     @BindView(R.id.circular_progress_bar)
     CircularProgressBar progressBar;
 
-    @BindView(R.id.textViewToolbarTitle)
+    @BindView(R.id.toolbarTitleTv)
     CustomFontTextView textViewToolbarTitle;
 
     private String mTitle ="";

@@ -8,9 +8,9 @@ import com.android.timesheet.shared.routers.BaseRouter;
  * Created by Vijay on 20.07.2017
  */
 
-public class HeaderSerializeRouter extends BaseRouter {
+public class HeaderRouter extends BaseRouter {
 
-    public HeaderSerializeRouter(Context context) {
+    public HeaderRouter(Context context) {
         super(context);
     }
 

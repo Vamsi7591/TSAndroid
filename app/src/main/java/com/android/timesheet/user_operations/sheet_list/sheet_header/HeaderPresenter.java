@@ -13,26 +13,26 @@ import com.android.timesheet.shared.views.BaseViewBehavior;
  * Created by Vijay on 20.07.2017
  */
 
-public class HeaderSerializePresenter extends BasePresenter<BaseViewBehavior, HeaderSerializeInteractor,
-        HeaderSerializeRouter> {
+public class HeaderPresenter extends BasePresenter<BaseViewBehavior, HeaderInteractor,
+        HeaderRouter> {
 
 
-    public HeaderSerializePresenter(Context context) {
+    public HeaderPresenter(Context context) {
         super(context);
     }
 
-    public HeaderSerializePresenter(Context context, BaseViewBehavior mViewBehavior) {
+    public HeaderPresenter(Context context, BaseViewBehavior mViewBehavior) {
         super(context, (BaseViewBehavior) mViewBehavior);
     }
 
     @Override
-    protected HeaderSerializeInteractor provideInteractor() {
-        return new HeaderSerializeInteractor(context);
+    protected HeaderInteractor provideInteractor() {
+        return new HeaderInteractor(context);
     }
 
     @Override
-    protected HeaderSerializeRouter provideRouter() {
-        return new HeaderSerializeRouter(context);
+    protected HeaderRouter provideRouter() {
+        return new HeaderRouter(context);
     }
 
     protected User getCurrentUser() {

@@ -1,28 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="bottom"
+    android:layout_gravity="bottom|center"
     android:layout_marginBottom="?android:attr/actionBarSize"
     android:layout_marginLeft="15dp"
     android:layout_marginRight="15dp"
-    android:gravity="bottom"
+    android:background="@drawable/bg_border_blue"
+    android:gravity="bottom|center"
     android:orientation="horizontal"
-    android:background="@drawable/bg_border"
     android:padding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:gravity="center">
 
-        <ImageView
-            android:layout_width="@dimen/icons_36"
-            android:layout_height="@dimen/icons_36"
-            android:background="@drawable/ic_info_black"
-            android:contentDescription="@string/app_name" />
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/banner_dot_orange_active"
+                android:contentDescription="@string/app_name" />
+
+            <com.android.timesheet.shared.widget.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="i"
+                android:textColor="@color/white"
+                android:textSize="@dimen/tv_font_size_20"
+                android:textStyle="bold"
+                app:fonts="@string/aleo_regular" />
+        </FrameLayout>
 
         <TextView
             android:id="@+id/messageTV"

@@ -35,16 +35,16 @@ public class Proj_MasterSerialize extends BaseActivity<ProjSerializePresenter>
     @BindView(R.id.projCode_Edit)
     EditText getProjectCode;
 
-    @BindView(R.id.toggleButton)
+    @BindView(R.id.adminAccessTBtn)
     ToggleButton toggleButton;
 
     @BindView(R.id.edit_Btn)
     Button edit_Button;
 
-    @BindView(R.id.submit_Btn)
+    @BindView(R.id.submitBtn)
     Button submit_Btn;
 
-    @BindView(R.id.textViewToolbarTitle)
+    @BindView(R.id.toolbarTitleTv)
     CustomFontTextView textViewToolbarTitle;
 
     boolean gone = false;

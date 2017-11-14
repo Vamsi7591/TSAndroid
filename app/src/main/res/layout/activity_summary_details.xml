@@ -41,7 +41,7 @@
                         android:layout_marginStart="@dimen/margin_30">
 
                         <com.android.timesheet.shared.widget.CustomFontTextView
-                            android:id="@+id/textViewToolbarTitle"
+                            android:id="@+id/toolbarTitleTv"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/margin_0"
@@ -180,8 +180,7 @@
                     android:layout_marginEnd="5dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/bg_circle"
-                    android:rotation="180"
-                    app:srcCompat="@drawable/back_arrow_orange" />
+                    app:srcCompat="@drawable/right_white_arrow" />
 
             </RelativeLayout>
 

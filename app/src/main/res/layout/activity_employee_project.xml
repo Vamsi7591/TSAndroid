@@ -41,7 +41,7 @@
                         android:layout_marginStart="@dimen/margin_30">
 
                         <com.android.timesheet.shared.widget.CustomFontTextView
-                            android:id="@+id/textViewToolbarTitle"
+                            android:id="@+id/toolbarTitleTv"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/margin_0"
@@ -61,12 +61,10 @@
 
         </android.support.design.widget.AppBarLayout>
 
-
         <LinearLayout
-            android:id="@+id/mLlayoutBottomButtons"
+            android:id="@+id/mActionsLL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linearAdmin"
             android:layout_marginTop="?attr/actionBarSize"
             android:background="@color/colorPrimary"
             android:orientation="horizontal"
@@ -81,7 +79,7 @@
                 android:drawableTop="@drawable/ic_thumb_up_black"
                 android:text="Assign"
                 android:textColor="@color/white"
-                android:textSize="20dp"
+                android:textSize="@dimen/tv_font_size_20"
                 android:textStyle="bold" />
 
             <Button
@@ -93,59 +91,70 @@
                 android:drawableTop="@drawable/ic_thumb_down_black"
                 android:text="Remove"
                 android:textColor="@color/colorWhite115"
-                android:textSize="16dp"
+                android:textSize="@dimen/tv_font_size_16"
                 android:textStyle="normal" />
         </LinearLayout>
 
 
         <LinearLayout
+            android:id="@+id/mEmpLL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_below="@+id/mActionsLL"
+            android:layout_marginTop="@dimen/margin_20"
             android:orientation="horizontal"
             android:padding="10dp">
 
-
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Employee Names"
                 android:textColor="#000"
-                android:textSize="18dp" />
+                android:textSize="@dimen/tv_font_size_18" />
 
             <Spinner
-                android:id="@+id/employe_Name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:spinnerMode="dialog" />
+                android:id="@+id/employeeName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:gravity="end"
+                android:popupElevation="@dimen/padding_5"
+                android:textAlignment="viewEnd"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:theme="@style/AppTheme.Spinner"
+                tools:ignore="RtlCompat"
+                tools:targetApi="lollipop" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/mProjectLL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="170dp"
+            android:layout_below="@+id/mEmpLL"
             android:orientation="horizontal"
             android:padding="10dp">
 
-
             <TextView
-                android:id="@+id/proj_Names"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Project Name"
                 android:textColor="#000"
-                android:textSize="18dp" />
+                android:textSize="@dimen/tv_font_size_18" />
 
             <Spinner
-                android:id="@+id/proj_Name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawSelectorOnTop="true" />
-
+                android:id="@+id/projectName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:gravity="end"
+                android:popupElevation="@dimen/padding_5"
+                android:textAlignment="viewEnd"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:theme="@style/AppTheme.Spinner"
+                tools:ignore="RtlCompat"
+                tools:targetApi="lollipop" />
 
         </LinearLayout>
 
@@ -154,29 +163,33 @@
             android:id="@+id/layoutBottomButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linearAdmin"
-            android:layout_marginTop="260dp"
+            android:layout_below="@+id/mProjectLL"
+            android:layout_margin="@dimen/margin_10"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/assignRealProject"
+                android:id="@+id/assignProjectToEmp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#0ab345"
+                android:drawableBottom="@drawable/ic_thumb_up_black"
                 android:gravity="center"
                 android:text="Assign"
+                android:textAllCaps="false"
                 android:textColor="#fff"
                 android:visibility="gone" />
 
             <Button
-                android:id="@+id/removeRealProject"
+                android:id="@+id/removeProjectFromEmp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:background="#d11336"
+                android:drawableBottom="@drawable/ic_thumb_down_black"
                 android:text="Remove"
+                android:textAllCaps="false"
                 android:textColor="#fff"
                 android:visibility="gone" />
         </LinearLayout>

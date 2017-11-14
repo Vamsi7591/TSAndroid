@@ -61,7 +61,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
     @BindView(R.id.noDataFoundRL)
     RelativeLayout noDataFoundRL;
 
-    @BindView(R.id.textViewToolbarTitle)
+    @BindView(R.id.toolbarTitleTv)
     CustomFontTextView textViewToolbarTitle;
 
     int cYear = 2011;

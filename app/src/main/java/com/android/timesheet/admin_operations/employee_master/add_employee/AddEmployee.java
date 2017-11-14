@@ -47,13 +47,13 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
     @BindView(R.id.input_Employee_name)
     TextInputLayout emapInputName;
 
-    @BindView(R.id.toggleButton)
+    @BindView(R.id.adminAccessTBtn)
     ToggleButton toggleButton;
 
     @BindView(R.id.submit_Buttontn)
     Button submit;
 
-    @BindView(R.id.textViewToolbarTitle)
+    @BindView(R.id.toolbarTitleTv)
     CustomFontTextView textViewToolbarTitle;
 
     public final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(

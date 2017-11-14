@@ -43,7 +43,7 @@ public class ChangePassword extends BaseActivity<ChangePasswordPresenter> implem
     @BindView(R.id.sbtbtn)
     Button submit;
 
-    @BindView(R.id.textViewToolbarTitle)
+    @BindView(R.id.toolbarTitleTv)
     CustomFontTextView textViewToolbarTitle;
 
     private String old_Password, new_Password, confirm_Password;

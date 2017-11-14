@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -38,14 +35,15 @@
                     android:layout_marginStart="@dimen/margin_30">
 
                     <com.android.timesheet.shared.widget.CustomFontTextView
-                        android:id="@+id/textViewToolbarTitle"
+                        android:id="@+id/toolbarTitleTv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/margin_0"
-                        android:layout_marginRight="@dimen/margin_0"
+                        android:layout_marginRight="@dimen/margin_20"
                         android:clickable="true"
                         android:gravity="center"
                         android:textAlignment="center"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/tv_font_size_20"
                         android:visibility="visible"
                         app:font="@string/roboto_thin" />
@@ -66,7 +64,9 @@
         <ListView
             android:id="@+id/date_listView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:divider="@null"
+            tools:listitem="@layout/activity_header_date" />
 
 
     </RelativeLayout>

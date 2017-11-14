@@ -42,7 +42,7 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
 
         /*Instantiating exception handling globally*/
         _androidUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
-        Thread.setDefaultUncaughtExceptionHandler(this);
+//        Thread.setDefaultUncaughtExceptionHandler(this);
 
         /*This instantiates DBFlow Library*/
         initDatabase();
@@ -113,7 +113,7 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
         Toast customToast = new Toast(context);
         customToast.setView(customToastRoot);
         customToast.setGravity(Gravity.BOTTOM, 0, 200);
-        customToast.setDuration(Toast.LENGTH_LONG);
+        customToast.setDuration(Toast.LENGTH_SHORT);
         customToast.show();
     }
 

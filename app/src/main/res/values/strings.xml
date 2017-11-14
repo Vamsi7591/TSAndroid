@@ -63,7 +63,7 @@
     <string name="error_start_required">Start time required</string>
     <string name="error_end_required">End time required</string>
     <string name="error_desc_required">Description required</string>
-    <string name="enter_you_description_here">Enter you description here...</string>
+    <string name="enter_you_description_here">Enter you description here…</string>
     <string name="description">Description</string>
     <string name="project_name">Project Name</string>
     <string name="date">Date</string>
@@ -72,5 +72,10 @@
     <string name="modify">Modify</string>
     <string name="save">Save</string>
     <string name="total_hours">Total Hours : %s</string>
+
+    <!--Labels-->
+    <string name="lb_submit">Submit</string>
+    <string name="lb_edit">Edit</string>
+    <string name="lb_ts_entry">Time Sheet Entry</string>
 
 </resources>

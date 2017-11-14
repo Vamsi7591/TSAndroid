@@ -12,7 +12,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Display;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,9 +28,9 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.android.timesheet.R;
+import com.android.timesheet.app.App;
 import com.android.timesheet.shared.Constant;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.Project;
@@ -65,7 +64,7 @@ import butterknife.OnClick;
 public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implements
         BaseViewBehavior<Object>, AdapterView.OnItemSelectedListener {
 
-    @BindView(R.id.textViewToolbarTitle)
+    @BindView(R.id.toolbarTitleTv)
     CustomFontTextView textViewToolbarTitle;
 
     @BindView(R.id.spinnerProjects)
@@ -87,11 +86,11 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     @BindView(R.id.description_count)
     CustomFontTextView description_count;
 
-    @BindView(R.id.modifyB)
-    Button modifyB;
+    @BindView(R.id.modifyBtn)
+    Button modifyBtn;
 
-    @BindView(R.id.saveB)
-    Button saveB;
+    @BindView(R.id.saveBtn)
+    Button saveBtn;
 
     /*Error text views*/
     @BindView(R.id.error_project_name)
@@ -116,13 +115,13 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     // Pojo
     TimeSheet sheet;
     User user;
-    ProjectNamesResponse projectList;
+    ProjectNamesResponse projectsListResponse;
 
     //    List<String> projectNames = new ArrayList<>();
     ArrayList<String> projectNames = new ArrayList<>();
     private int height;
     private int width;
-    Animation animationRL, animationLR;
+    Animation animationRL, animationLR,animationFOut,animationFIn;
 
     @Override
     protected int layoutRestID() {
@@ -194,7 +193,10 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 //            endTime.setText(sheet.endTime);
             showTime(Integer.parseInt(sheet.endTime.substring(0, 2)), Integer.parseInt(sheet.endTime.substring(3, 5)), false);
 
-            descriptionET.setText(sheet.taskDescription);
+            if (!sheet.taskDescription.isEmpty()) {
+                descriptionET.setText(sheet.taskDescription);
+                description_count.setText(String.format("%d/500", sheet.taskDescription.length()));
+            }
             disableViews(true, 0);
         } else {
             sheet = new TimeSheet();
@@ -259,15 +261,12 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
     }
 
-    @OnClick(R.id.modifyB)
+    @OnClick(R.id.modifyBtn)
     void modify() {
         disableViews(true, 1);
-//        if (fromList)
-//        presenter().updateSheet(sheet);
-
     }
 
-    @OnClick(R.id.saveB)
+    @OnClick(R.id.saveBtn)
     void save() {
         clearErrors();
 
@@ -438,18 +437,28 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
                 startTime.setEnabled(false);
                 endTime.setEnabled(false);
                 descriptionET.setEnabled(false);
-                saveB.setVisibility(View.GONE);
-                modifyB.setVisibility(View.VISIBLE);
+                saveBtn.setVisibility(View.GONE);
+                modifyBtn.setVisibility(View.VISIBLE);
             } else {
                 startTime.setEnabled(true);
                 endTime.setEnabled(true);
                 descriptionET.setEnabled(true);
-                saveB.setVisibility(View.VISIBLE);
-                modifyB.setVisibility(View.GONE);
+                descriptionET.setSelection(descriptionET.getText().length());
+
+                modifyBtn.setVisibility(View.GONE);
+                animationFOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
+                modifyBtn.setAnimation(animationFOut);
+
+                saveBtn.setVisibility(View.VISIBLE);
+                animationFIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+                saveBtn.setAnimation(animationFIn);
             }
         } else {
-            saveB.setVisibility(View.VISIBLE);
-            modifyB.setVisibility(View.GONE);
+            modifyBtn.setVisibility(View.GONE);
+
+            saveBtn.setVisibility(View.VISIBLE);
+            animationFIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+            saveBtn.setAnimation(animationFIn);
         }
     }
 
@@ -485,7 +494,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_menu_delete)
             presenter().removeTimeSheet(user.empCode, String.valueOf(sheet.timeSheetId));
-
 
         return super.onOptionsItemSelected(item);
     }
@@ -535,20 +543,16 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     @Override
     public void onSuccess(Object o) {
         if (o instanceof TimeSheetResponse) {
-            //Instance of TimeSheetResponse
             TimeSheetResponse sheetResponse = (TimeSheetResponse) o;
-//            Toast.makeText(this, sheetResponse.getMessage(), Toast.LENGTH_SHORT).show();
-            customToast(this.getCurrentFocus(), sheetResponse.getMessage());
+            App.getInstance().customToast(sheetResponse.getMessage());
             finish();
         } else if (o instanceof ProjectNamesResponse) {
-            //Instance of TimeSheetResponse
-            projectList = (ProjectNamesResponse) o;
-            if (projectList.status) {
+            projectsListResponse = (ProjectNamesResponse) o;
+            if (projectsListResponse.status) {
 //                projectNames.add("Select Project");
-                for (Project project : projectList.getProjectList()) {
+                for (Project project : projectsListResponse.getProjectList()) {
                     projectNames.add(project.getProjectName());
                 }
-
                 /*
                 //Creating the ArrayAdapter instance having the bank name list
                 ArrayAdapter aa = new ArrayAdapter(this, R.layout.project_name_spinner_item, projectNames);
@@ -560,7 +564,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
                 //Custom spinner
                 CustomSpinnerAdapter customSpinnerAdapter = new CustomSpinnerAdapter(TimeSheetEntry.this, projectNames);
                 spinnerProjects.setAdapter(customSpinnerAdapter);
-
 //                spinnerProjects.setPrompt("Select project");
             }
         } else if (o instanceof String) {
@@ -576,7 +579,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     public void closeKeyBoard() {
         // Check if no view has focus:
         View view = this.getCurrentFocus();
-//        View view = new View(TimeSheetEntry.this);
         InputMethodManager imm = (InputMethodManager) TimeSheetEntry.this.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -587,13 +589,8 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//        Toast.makeText(getApplicationContext(), projectNames.get(i), Toast.LENGTH_LONG).show();
-
-//        if (userSelect)
         sheet.setProjectName(projectNames.get(i));
-
         clearSpecificError(error_project_name);
-
         userSelect = true;
     }
 
@@ -620,7 +617,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
         bottomSheetDialog.setCancelable(false);
         bottomSheetDialog.setCanceledOnTouchOutside(true);
         BottomSheetBehavior mBehavior = BottomSheetBehavior.from((View) view.getParent());
-//        if (peekHeight != 0)
         mBehavior.setPeekHeight(475 * 3);
         mBehavior.setState(3);
         bottomSheetDialog.show();
@@ -678,15 +674,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
                 sheet.setWeekNo(String.valueOf(cal.get(Calendar.WEEK_OF_YEAR)));
 
-                /*int _m = monthOfYear;
-                String strDob = dayOfMonth + "/" + _m + "/" + year;
-
-                Calendar calendar = Calendar.getInstance();
-
-                int mAge = calendar.get(Calendar.YEAR) - cal.get(Calendar.YEAR);*/
-
                 selectedDate = year + "/" + monthOfYear + "/" + dayOfMonth;
-
             }
 
             @Override
@@ -713,23 +701,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
             e.printStackTrace();
         }
         return null;
-    }
-
-    // My custom toast
-    public void customToast(View view, String message) {
-        Context context = getApplicationContext();
-        LayoutInflater inflater = getLayoutInflater();
-
-        View customToastRoot = inflater.inflate(R.layout.custom_toast, null);
-
-        TextView messageText = (TextView) customToastRoot.findViewById(R.id.messageTV);
-        messageText.setText(message);
-
-        Toast customToast = new Toast(context);
-        customToast.setView(customToastRoot);
-        customToast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
-        customToast.setDuration(Toast.LENGTH_LONG);
-        customToast.show();
     }
 
 }
