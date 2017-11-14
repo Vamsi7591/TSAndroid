@@ -3,12 +3,12 @@ package com.android.timesheet.admin_operations.employee_master.edit_employee;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -37,7 +37,7 @@ public class EditEmployeeMaster extends BaseActivity<EditEmployeeMasterPresenter
     EditText eMail;
 
     @BindView(R.id.inputLayout_password)
-    TextView inputPassword;
+    TextInputLayout inputPassword;
 
     @BindView(R.id.password_Emp)
     EditText password;
@@ -58,7 +58,7 @@ public class EditEmployeeMaster extends BaseActivity<EditEmployeeMasterPresenter
 
     @Override
     protected String title() {
-        return "Employee Master";
+        return "Update Employee Master";
     }
 
     @Override

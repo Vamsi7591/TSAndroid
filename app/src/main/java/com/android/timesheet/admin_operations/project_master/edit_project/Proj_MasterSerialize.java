@@ -56,7 +56,7 @@ public class Proj_MasterSerialize extends BaseActivity<ProjSerializePresenter>
 
     @Override
     protected String title() {
-        return "Project Master";
+        return "Modify Project Master";
     }
 
     @Override

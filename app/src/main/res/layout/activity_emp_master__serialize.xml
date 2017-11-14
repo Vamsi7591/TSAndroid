@@ -88,15 +88,15 @@
                         android:src="@drawable/ic_launcher" />
 
 
-                    <TextView
+                    <android.support.design.widget.TextInputLayout
                         android:id="@+id/employee_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="20dp"
                         android:text="Employee name"
                         android:textColor="#939393"
-                        android:textSize="@dimen/tv_font_size_18" />
+                        android:textSize="@dimen/tv_font_size_18" >
 
                     <EditText
                         android:id="@+id/emp_Name"
@@ -105,17 +105,17 @@
                         android:hint="Employee Name"
                         android:inputType="textPersonName"
                         android:textColor="#060404" />
+                    </android.support.design.widget.TextInputLayout>
 
-
-                    <TextView
+                    <android.support.design.widget.TextInputLayout
                         android:id="@+id/input_code"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
                         android:layout_marginTop="5sp"
                         android:text="Employee Code"
                         android:textColor="#939393"
-                        android:textSize="@dimen/tv_font_size_18" />
+                        android:textSize="@dimen/tv_font_size_18" >
 
                     <EditText
                         android:id="@+id/emp_code"
@@ -124,15 +124,15 @@
                         android:hint="Employee Code"
                         android:textColor="#060404" />
 
-
-                    <TextView
+                    </android.support.design.widget.TextInputLayout>
+                    <android.support.design.widget.TextInputLayout
                         android:id="@+id/input_layout_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
                         android:text="E_Mail"
                         android:textColor="#939393"
-                        android:textSize="@dimen/tv_font_size_18" />
+                        android:textSize="@dimen/tv_font_size_18" >
 
                     <EditText
                         android:id="@+id/input_email"
@@ -141,17 +141,17 @@
                         android:hint="E_Mail id"
                         android:inputType="textEmailAddress"
                         android:textColor="#060404" />
+                    </android.support.design.widget.TextInputLayout>
 
-
-                    <TextView
+                    <android.support.design.widget.TextInputLayout
                         android:id="@+id/inputLayout_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5sp"
                         android:text="password"
                         android:textColor="#939393"
-                        android:textSize="@dimen/tv_font_size_18" />
-                    >
+                        android:textSize="@dimen/tv_font_size_18" >
+
 
                     <EditText
                         android:id="@+id/password_Emp"
@@ -162,7 +162,7 @@
                         android:maxLength="30"
                         android:minLines="6"
                         android:textColor="#060404" />
-
+                    </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
 

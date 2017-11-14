@@ -50,7 +50,7 @@ public class AddProject extends BaseActivity<AddProjectPresenter> implements
 
     @Override
     protected String title() {
-        return "Add Projects";
+        return "Add Projects Master";
     }
 
     @Override

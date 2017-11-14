@@ -86,7 +86,7 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
 
     @Override
     protected String title() {
-        return "Add Employee";
+        return "Add Employee Master";
     }
 
     @Override

@@ -20,7 +20,9 @@ import com.android.timesheet.shared.models.ProjectSum_Params;
 import com.android.timesheet.shared.models.ProjectSum_Response;
 import com.android.timesheet.shared.models.ProjectSummary;
 import com.android.timesheet.shared.models.User;
+import com.android.timesheet.shared.util.FontUtils;
 import com.android.timesheet.shared.views.BaseViewBehavior;
+import com.android.timesheet.shared.widget.CustomFontTextView;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -59,7 +61,8 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
     @BindView(R.id.noDataFoundRL)
     RelativeLayout noDataFoundRL;
 
-
+    @BindView(R.id.textViewToolbarTitle)
+    CustomFontTextView textViewToolbarTitle;
 
     int cYear = 2011;
     ArrayList<Integer> yearList = new ArrayList<Integer>();
@@ -107,6 +110,9 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
 
         User user = presenter().getCurrentUser();
 
+        textViewToolbarTitle.setText(title());
+        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
+        textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
 
         loadBar.setOnClickListener(new View.OnClickListener() {
             @Override
