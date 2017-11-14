@@ -18,13 +18,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.android.timesheet.R;
+import com.android.timesheet.common_operations.slider.Slider;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.adapters.TabbedFragmentPagerAdapter;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.util.FontUtils;
 import com.android.timesheet.shared.widget.CustomFontTextView;
 import com.android.timesheet.shared.widget.NonSwipeableViewPager;
-import com.android.timesheet.common_operations.slider.Slider;
 import com.android.timesheet.user_operations.monthly.MonthlyFragment;
 import com.android.timesheet.user_operations.sheet_exp_list.TimeSheetFragment;
 import com.android.timesheet.user_operations.weekly.WeeklyFragment;
@@ -112,6 +112,8 @@ public class MainActivity extends BaseActivity<MainPresenter> {
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "user_Info");
         firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
 
+
+
         if (user != null) {
 //                isAdmin = true;
             setUpDrawerLayout();
@@ -166,8 +168,6 @@ public class MainActivity extends BaseActivity<MainPresenter> {
                 viewPager.setCurrentItem(0);
             }*/
         }
-
-
     }
 
     @Override

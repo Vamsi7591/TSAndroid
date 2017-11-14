@@ -125,8 +125,8 @@ public class ChangePassword extends BaseActivity<ChangePasswordPresenter> implem
 
                 if (!new_Password.matches(confirm_Password)
                         || (old_Password.equalsIgnoreCase(confirm_Password)
-                        || old_Password.length() <= 4
-                        || new_Password.length() <= 4)) {
+                        || old_Password.length() <= 6
+                        || new_Password.length() <= 6)) {
 
                     Toast.makeText(getApplicationContext(), "Incorrect values entered.", Toast.LENGTH_LONG).show();
 
