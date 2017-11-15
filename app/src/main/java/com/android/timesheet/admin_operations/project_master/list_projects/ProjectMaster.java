@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.android.timesheet.R;
 import com.android.timesheet.admin_operations.project_master.add_project.AddProject;
-import com.android.timesheet.admin_operations.project_master.edit_project.Proj_MasterSerialize;
+import com.android.timesheet.admin_operations.project_master.edit_project.EditProject;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.interfaces.OnItemClickListener;
 import com.android.timesheet.shared.models.AllEmployeesResponse;
@@ -42,7 +42,7 @@ public class ProjectMaster extends BaseActivity<ProjectMasterPresenter>
         implements BaseViewBehavior<List<Project>>, OnItemClickListener, RecyclerView.OnItemTouchListener, Serializable {
 
 
-    @BindView(R.id.empty_state_view)
+    @BindView(R.id.emptyStateLL)
     LinearLayout empty_state_view;
 
     @BindView(R.id.general_recycler_view)
@@ -185,7 +185,7 @@ public class ProjectMaster extends BaseActivity<ProjectMasterPresenter>
     @Override
     public void onItemClick(View view, int position) {
 
-        Intent i = new Intent(this, Proj_MasterSerialize.class);
+        Intent i = new Intent(this, EditProject.class);
         Gson gson = new Gson();
         String personString = gson.toJson(data.get(position));
         i.putExtra("jsonObject", personString);

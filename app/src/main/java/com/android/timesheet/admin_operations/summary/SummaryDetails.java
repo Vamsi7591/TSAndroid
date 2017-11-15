@@ -296,7 +296,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
         }
 
         if (o instanceof String) {
-            /*Assign or remove response string*/
+            /*Assign or removeEmployee response string*/
             String response = (String) o;
             Toast.makeText(SummaryDetails.this, response, Toast.LENGTH_LONG).show();
         }

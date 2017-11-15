@@ -34,8 +34,8 @@ public class User extends BaseModel implements Serializable {
     @Column(name = "empEmailid")
     public String emailId;
 
-    @SerializedName("password")
-    @Column(name = "password")
+    @SerializedName("checkPassword")
+    @Column(name = "checkPassword")
     public String password;
 
     @SerializedName("empRole")

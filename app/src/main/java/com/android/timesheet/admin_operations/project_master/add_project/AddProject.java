@@ -65,7 +65,7 @@ public class AddProject extends BaseActivity<AddProjectPresenter> implements
 
     @Override
     protected int layoutRestID() {
-        return R.layout.activity_add_project;
+        return R.layout.activity_project_add;
     }
 
     @Override

@@ -28,10 +28,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".common_operations.auth.LoginActivity"
+            android:name=".common_operations.login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".common_operations.main.MainActivity"
+            android:name=".common_operations.landing.LandingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TimeSheet.AppTheme" />
 
@@ -76,13 +76,21 @@
             android:screenOrientation="portrait"
             android:theme="@style/TimeSheet.AppTheme" />
         <activity
-            android:name=".admin_operations.employee_master.edit_employee.EditEmployeeMaster"
+            android:name=".admin_operations.employee_master.edit_employee.EditEmployee"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".admin_operations.project_master.edit_project.Proj_MasterSerialize" />
-        <activity android:name=".admin_operations.employee_master.add_employee.AddEmployee" />
-        <activity android:name=".admin_operations.project_master.add_project.AddProject" />
-
+        <activity
+            android:name=".admin_operations.project_master.edit_project.EditProject"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".admin_operations.employee_master.add_employee.AddEmployee"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".admin_operations.project_master.add_project.AddProject"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
     </application>
 

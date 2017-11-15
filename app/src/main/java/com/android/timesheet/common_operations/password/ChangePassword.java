@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.timesheet.R;
-import com.android.timesheet.common_operations.auth.LoginActivity;
+import com.android.timesheet.common_operations.login.LoginActivity;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.ChangePasswordParams;
 import com.android.timesheet.shared.models.ChangePasswordPojo;

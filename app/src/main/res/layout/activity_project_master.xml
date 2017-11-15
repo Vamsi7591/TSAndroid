@@ -65,7 +65,7 @@
 
         <!--Your Employees lis is empty-->
         <LinearLayout
-            android:id="@+id/empty_state_view"
+            android:id="@+id/emptyStateLL"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="?android:attr/actionBarSize"
@@ -117,7 +117,7 @@
             android:id="@+id/general_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/empty_state_view"
+            android:layout_below="@+id/emptyStateLL"
             android:layout_marginBottom="@dimen/margin_10"
             android:layout_marginLeft="@dimen/margin_10"
             android:layout_marginRight="@dimen/margin_10"

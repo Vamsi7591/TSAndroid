@@ -37,7 +37,7 @@ public class TimeSheetFragment extends BaseFragment<TimeSheetPresenter> implemen
     public TimeSheetFragment() {
     }
 
-    @BindView(R.id.empty_state_view)
+    @BindView(R.id.emptyStateLL)
     LinearLayout empty_state_view;
 
     @BindView(R.id.room_list)

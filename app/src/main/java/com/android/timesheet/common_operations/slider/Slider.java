@@ -8,7 +8,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.timesheet.R;
-import com.android.timesheet.common_operations.main.MainActivity;
+import com.android.timesheet.common_operations.landing.LandingActivity;
 import com.android.timesheet.common_operations.profile.MyProfile;
 import com.android.timesheet.shared.models.User;
 
@@ -45,7 +45,7 @@ public class Slider {
                 Intent intent = new Intent(context, MyProfile.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 context.startActivity(intent);
-                ((MainActivity) context).closeDrawer();
+                ((LandingActivity) context).closeDrawer();
             }
         });
     }

@@ -20,7 +20,7 @@ public class EmployeeMasterPresenter extends BasePresenter<BaseViewBehavior,
         super(context);
     }
 
-    public EmployeeMasterPresenter(Context context, BaseViewBehavior mViewBehavior) {
+    public EmployeeMasterPresenter(Context context, BaseViewBehavior<Object> mViewBehavior) {
         super(context, mViewBehavior);
     }
 
@@ -44,20 +44,17 @@ public class EmployeeMasterPresenter extends BasePresenter<BaseViewBehavior,
             @Override
             public void onFailure(Throwable e) {
                 viewBehaviour().onFailed(e);
-                viewBehaviour().onComplete();
             }
 
             @Override
             public void onSuccess(AllEmployeesResponse data) {
-
-                    viewBehaviour().onSuccess(data.getEmployeeList());
-
+                viewBehaviour().onSuccess(data);
             }
         });
     }
 
 
-    public void removeEmp(RemoveEmployeeParams removeEmployeeParams) {
+    void removeEmp(RemoveEmployeeParams removeEmployeeParams) {
 
         interactor().removedEmp(removeEmployeeParams, new ServiceCallback<String>() {
 
@@ -70,8 +67,6 @@ public class EmployeeMasterPresenter extends BasePresenter<BaseViewBehavior,
             public void onSuccess(String data) {
                 viewBehaviour().onSuccess(data);
             }
-
-
         });
     }
 }

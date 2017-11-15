@@ -10,7 +10,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 
 import com.android.timesheet.app.App;
-import com.android.timesheet.common_operations.main.MainActivity;
+import com.android.timesheet.common_operations.landing.LandingActivity;
 import com.android.timesheet.shared.RestClient;
 import com.android.timesheet.common_operations.splash.SplashActivity;
 
@@ -71,7 +71,7 @@ public abstract class BaseRouter {
     }
 
     public void openMainActivity() {
-        openFreshActivity(MainActivity.class);
+        openFreshActivity(LandingActivity.class);
     }
 
 

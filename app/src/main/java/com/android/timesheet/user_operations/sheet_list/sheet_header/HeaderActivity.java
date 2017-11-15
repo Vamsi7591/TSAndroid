@@ -46,7 +46,7 @@ public class HeaderActivity extends BaseActivity<HeaderPresenter> implements
 
     @Override
     protected int layoutRestID() {
-        return R.layout.activity_header_date;
+        return R.layout.activity_timesheet_header;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class HeaderActivity extends BaseActivity<HeaderPresenter> implements
 
         lv = (ListView) findViewById(R.id.date_listView);
         if (todayPojoList != null) {
-            HeaderDateAdapter adapter = new HeaderDateAdapter(getApplicationContext(), R.layout.activity_header_date_inflator, todayPojoList);
+            HeaderDateAdapter adapter = new HeaderDateAdapter(getApplicationContext(), R.layout.activity_timesheet_header_inflator, todayPojoList);
             lv.setAdapter(adapter);
         }
 
@@ -101,7 +101,7 @@ public class HeaderActivity extends BaseActivity<HeaderPresenter> implements
         if (view == null) {
 
             LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(R.layout.activity_header_date_inflator, null, true);
+            view = layoutInflater.inflate(R.layout.activity_timesheet_header_inflator, null, true);
         }
 
       /*todayDate=data.get(0).getDate();*/
@@ -130,7 +130,7 @@ public class HeaderActivity extends BaseActivity<HeaderPresenter> implements
             todayPojoList = new ArrayList<>();
             todayPojoList = data.getTimeSheetList();
             if (todayPojoList != null) {
-                HeaderDateAdapter adapter = new HeaderDateAdapter(this, R.layout.activity_header_date_inflator, todayPojoList);
+                HeaderDateAdapter adapter = new HeaderDateAdapter(this, R.layout.activity_timesheet_header_inflator, todayPojoList);
                 lv.setAdapter(adapter);
             }
         }

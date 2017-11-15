@@ -7,13 +7,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.android.timesheet.R;
+import com.android.timesheet.app.App;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.AddEmployeeParams;
 import com.android.timesheet.shared.models.User;
@@ -29,32 +29,32 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
         BaseViewBehavior<String> {
 
 
-    @BindView(R.id.employee_Name)
-    EditText employeeName;
+    @BindView(R.id.employeeNameEt)
+    EditText employeeNameEt;
 
-    @BindView(R.id.email_ID)
-    EditText eMail_Id;
+    @BindView(R.id.emailIdEt)
+    EditText emailIdEt;
 
-    @BindView(R.id.emp_Password)
-    EditText password_Employee;
+    @BindView(R.id.passwordEt)
+    EditText passwordEt;
 
-    @BindView(R.id.passwordInputLayout)
-    TextInputLayout passwordInputLayout;
+    @BindView(R.id.passwordTIL)
+    TextInputLayout passwordTIL;
 
-    @BindView(R.id.email_Input_layout)
-    TextInputLayout input_layout_email;
+    @BindView(R.id.emailTIL)
+    TextInputLayout emailTIL;
 
-    @BindView(R.id.input_Employee_name)
-    TextInputLayout emapInputName;
+    @BindView(R.id.employeeTIL)
+    TextInputLayout employeeTIL;
 
     @BindView(R.id.adminAccessTBtn)
-    ToggleButton toggleButton;
+    ToggleButton adminAccessTBtn;
 
-    @BindView(R.id.submit_Buttontn)
-    Button submit;
+    @BindView(R.id.submitBtn)
+    CustomFontTextView submitBtn;
 
     @BindView(R.id.toolbarTitleTv)
-    CustomFontTextView textViewToolbarTitle;
+    CustomFontTextView toolbarTitleTv;
 
     public final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
             "[a-zA-Z0-9+._%-+]{1,256}" +
@@ -66,27 +66,11 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
                     ")+"
     );
 
-    public void checkFieldsForEmptyValues() {
-
-        String empName = employeeName.getText().toString();
-        String eMAil = eMail_Id.getText().toString();
-        String password = password_Employee.getText().toString();
-
-        if (empName.isEmpty() || eMAil.isEmpty() || password.isEmpty()) {
-            submit.setVisibility(View.GONE);
-            submit.setEnabled(false);
-        } else if (checkName()&&checkEmail(eMAil) && password() ) {
-            submit.setVisibility(View.VISIBLE);
-            submit.setEnabled(true);
-        } else {
-            submit.setVisibility(View.GONE);
-            submit.setEnabled(false);
-        }
-    }
+    Animation animationFOut, animationFIn, animationShake;
 
     @Override
     protected String title() {
-        return "Add Employee Master";
+        return "Add Employee";
     }
 
     @Override
@@ -101,92 +85,102 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
 
     @Override
     protected int layoutRestID() {
-        return R.layout.activity_add_employee;
+        return R.layout.activity_employee_add;
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        checkFieldsForEmptyValues();
-
-        employeeName.addTextChangedListener(new TextWatcher() {
+        employeeNameEt.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                checkFieldsForEmptyValues();
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                checkFieldsForEmptyValues();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                checkFieldsForEmptyValues();
+//                checkFieldsForEmptyValues();
+                if (s.toString().length() >= 2) {
+                    checkName();
+                }
             }
         });
 
-        eMail_Id.addTextChangedListener(new TextWatcher() {
+        emailIdEt.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                checkFieldsForEmptyValues();
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                checkFieldsForEmptyValues();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                checkFieldsForEmptyValues();
+//                checkFieldsForEmptyValues();
+                if (s.toString().length() > 6) {
+                    checkEmail(s.toString());
+                }
             }
         });
 
-        password_Employee.addTextChangedListener(new TextWatcher() {
+        passwordEt.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                checkFieldsForEmptyValues();
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                checkFieldsForEmptyValues();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                checkFieldsForEmptyValues();
+//                checkFieldsForEmptyValues();
+                if (s.toString().length() > 6) {
+                    checkPassword();
+                }
             }
         });
 
-        closeKeyBoard();
-        submit.setOnClickListener(new View.OnClickListener() {
+        submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String eMAil = eMail_Id.getText().toString();
-                checkEmail(eMAil);
-                User user = presenter().getCurrentUser();
-                if (user != null) {
-                    AddEmployeeParams addEmployeeParams = new AddEmployeeParams(
-                            user.getEmpCode(),
-                            employeeName.getText().toString(),
-                            eMail_Id.getText().toString(),
-                            password_Employee.getText().toString(),
-                            toggleButton.isChecked() ? "A" : "U");
-                    presenter().updateEmp(addEmployeeParams);
+                String eMAil = emailIdEt.getText().toString();
+                /* If any one fails goes to else statement
+                * First checkName()
+                * Second checkEmail() &
+                * Third checkPassword()*/
+                if (checkName() && checkEmail(eMAil) && checkPassword()) {
+                    User user = presenter().getCurrentUser();
+                    if (user != null) {
+                        AddEmployeeParams addEmployeeParams = new AddEmployeeParams(
+                                user.getEmpCode(),
+                                employeeNameEt.getText().toString(),
+                                emailIdEt.getText().toString(),
+                                passwordEt.getText().toString(),
+                                adminAccessTBtn.isChecked() ? "A" : "U");
+                        presenter().updateEmp(addEmployeeParams);
+                    }
+                } else {
+                    submitBtn.setVisibility(View.GONE);
+                    submitBtn.setVisibility(View.VISIBLE);
+                    submitBtn.setAnimation(animationShake);
                 }
-
             }
         });
 
-        textViewToolbarTitle.setText(title());
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
-        textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+        toolbarTitleTv.setText(title());
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
 
+//        checkFieldsForEmptyValues();
+        animationShake = AnimationUtils.loadAnimation(getBaseContext(), R.anim.shake_animation);
+
+        closeKeyBoard();
     }
 
     @Override
@@ -202,52 +196,73 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
     public void closeKeyBoard() {
         this.getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
     }
 
-    public boolean password() {
-        if (password_Employee.getText().toString().length() < 6) {
-            passwordInputLayout.setError("Minimum six characters");
+    public boolean checkPassword() {
+        if (passwordEt.getText().toString().length() == 0) {
+            passwordTIL.setError("Password is required");
             return false;
+        } else if (passwordEt.getText().toString().length() < 6) {
+            passwordTIL.setError("Minimum six characters required");
+            return false;
+        } else {
+            passwordTIL.setError(null);
+            return true;
         }
-        passwordInputLayout.setError(null);
-        return true;
-
     }
+
     private boolean checkEmail(String eMAil) {
-        if( ! EMAIL_ADDRESS_PATTERN.matcher(eMAil).matches()){
-            input_layout_email.setError("InValid Email");
+        if (eMAil.length() == 0) {
+            emailTIL.setError("Email address is required");
             return false;
-        } else{
-            input_layout_email.setError(null);
+        } else if (!EMAIL_ADDRESS_PATTERN.matcher(eMAil).matches()) {
+            emailTIL.setError("Invalid Email address");
+            return false;
+        } else {
+            emailTIL.setError(null);
             return true;
         }
     }
 
-    private boolean checkName(){
-        if (employeeName.getText().toString().length()<2){
-            emapInputName.setError("Invalid Name");
-            return  false;
-        }
-else {
-            emapInputName.setError(null);
+    private boolean checkName() {
+        if (employeeNameEt.getText().toString().length() == 0) {
+            employeeTIL.setError("Name is required");
+            return false;
+        } else if (employeeNameEt.getText().toString().length() < 2) {
+            employeeTIL.setError("Invalid Name");
+            return false;
+        } else {
+            employeeTIL.setError(null);
             return true;
         }
+    }
 
+    public void checkFieldsForEmptyValues() {
+
+        String empName = employeeNameEt.getText().toString();
+        String eMAil = emailIdEt.getText().toString();
+        String password = passwordEt.getText().toString();
+
+        if (checkName() && checkEmail(eMAil) && checkPassword()) {
+            submitBtn.setVisibility(View.VISIBLE);
+            animationFIn = AnimationUtils.loadAnimation(getBaseContext(), R.anim.fade_in);
+            submitBtn.setAnimation(animationFIn);
+        } else {
+            submitBtn.setVisibility(View.VISIBLE);
+            animationFOut = AnimationUtils.loadAnimation(getBaseContext(), R.anim.fade_out);
+            submitBtn.setAnimation(animationFOut);
+        }
     }
 
     @Override
-    public void onSuccess(String data) {
-        Toast.makeText(getBaseContext(), data, Toast.LENGTH_LONG).show();
+    public void onSuccess(String response) {
+        App.getInstance().customToast(response);
         finish();
-
     }
-
 
     @Override
     public void onFailed(Throwable e) {
-        Toast.makeText(getBaseContext(), e.getMessage().toString(), Toast.LENGTH_LONG).show();
+        App.getInstance().customToast(e.getMessage());
         finish();
-
     }
 }

@@ -2,7 +2,7 @@ package com.android.timesheet.common_operations.splash;
 
 import android.content.Context;
 
-import com.android.timesheet.common_operations.auth.LoginActivity;
+import com.android.timesheet.common_operations.login.LoginActivity;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.presenters.BasePresenter;
 import com.android.timesheet.shared.views.BaseViewBehavior;

@@ -14,7 +14,7 @@ import com.android.timesheet.admin_operations.employee_master.list_employee.Empl
 import com.android.timesheet.admin_operations.employee_project.EmployeeProject;
 import com.android.timesheet.admin_operations.project_master.list_projects.ProjectMaster;
 import com.android.timesheet.admin_operations.summary.SummaryDetails;
-import com.android.timesheet.common_operations.main.MainActivity;
+import com.android.timesheet.common_operations.landing.LandingActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +63,7 @@ public class SliderBaseAdapter extends BaseAdapter {
         SliderViewHolder sliderViewholder;
 
         if (convertView == null) {
-            v = activity.getLayoutInflater().inflate(R.layout.activity_drawlayout_list_inflator, null, true);
+            v = activity.getLayoutInflater().inflate(R.layout.activity_drawer_layout_list_item, null, true);
             sliderViewholder = new SliderViewHolder();
             sliderViewholder.title = (TextView) v.findViewById(R.id.slider_inflator_textview);
             sliderViewholder.imageView = (ImageView) v.findViewById(R.id.slider_inflator_imagebutton);
@@ -80,13 +80,13 @@ public class SliderBaseAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (position == 12) {
-                    ((MainActivity) activity).closeDrawer();
+                    ((LandingActivity) activity).closeDrawer();
                 } else {
                     Intent intent = new Intent(activity, slide_classes.get(position));
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     activity.startActivity(intent);
 
-                    ((MainActivity) activity).closeDrawer();
+                    ((LandingActivity) activity).closeDrawer();
                 }
             }
         });

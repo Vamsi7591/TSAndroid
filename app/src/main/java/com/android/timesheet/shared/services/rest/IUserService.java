@@ -72,7 +72,7 @@ public interface IUserService {
     @GET("updateemployee")
     Observable<TimeSheetResponse> updateEmployee(@Query("adminempcode") String adminempcode,
                                                  @Query("empcode") String empcode,
-                                                 @Query("password") String password,
+                                                 @Query("checkPassword") String password,
                                                  @Query("emprole") String emprole);
 
 

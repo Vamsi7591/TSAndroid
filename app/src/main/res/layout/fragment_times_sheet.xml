@@ -14,7 +14,7 @@
 
             <!--Your Invitation lis is empty-->
             <LinearLayout
-                android:id="@+id/empty_state_view"
+                android:id="@+id/emptyStateLL"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -57,7 +57,7 @@
                 android:id="@+id/expandableListView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/empty_state_view"
+                android:layout_below="@+id/emptyStateLL"
                 android:divider="@android:color/darker_gray"
                 android:dividerHeight="0.5dp"
                 android:visibility="gone"
@@ -67,7 +67,7 @@
                 android:id="@+id/room_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/empty_state_view"
+                android:layout_below="@+id/emptyStateLL"
                 android:layout_marginLeft="@dimen/margin_10"
                 android:layout_marginRight="@dimen/margin_10"
                 android:visibility="visible" />

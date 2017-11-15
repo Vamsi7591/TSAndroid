@@ -31,12 +31,21 @@ public abstract class BasePresenter<V extends BaseViewBehavior, I extends BaseIn
         this.mViewBehavior = mViewBehavior;
     }
 
+    /**
+     * @return mViewBehavior - View component
+     *
+     *
+     *
+     */
     protected V viewBehaviour() {
         return mViewBehavior;
     }
 
     protected abstract I provideInteractor();
 
+    /**
+     * @return mInteractor -
+     */
     protected I interactor() {
         if (mInteractor == null) {
             mInteractor = provideInteractor();

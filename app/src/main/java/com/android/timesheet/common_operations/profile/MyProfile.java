@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.android.common.AppConfig;
 import com.android.timesheet.R;
-import com.android.timesheet.common_operations.auth.LoginActivity;
+import com.android.timesheet.common_operations.login.LoginActivity;
 import com.android.timesheet.common_operations.password.ChangePassword;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.activities.WebViewActivity;

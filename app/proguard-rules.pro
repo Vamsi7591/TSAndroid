@@ -36,7 +36,7 @@
 -keep class com.crashlytics.** { *; }
 -dontwarn com.crashlytics.**
 
-#remove debugging Log API Calls.
+#removeEmployee debugging Log API Calls.
 -dontskipnonpubliclibraryclasses
 -dontobfuscate
 -forceprocessing
@@ -48,7 +48,7 @@
     public static *** v(...);
 }
 
-#As i said remove all library files from config.
+#As i said removeEmployee all library files from config.
 -keep class com.facebook.** { *; }
 -keep class com.androidquery.** { *; }
 -keep class com.google.** { *; }

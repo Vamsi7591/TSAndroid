@@ -125,7 +125,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
     @Override
     protected int layoutRestID() {
-        return R.layout.activity_time_sheet_details;
+        return R.layout.activity_timesheet_details;
     }
 
     @Override
@@ -185,8 +185,8 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
             projectNames.add(sheet.projectName);
             //Custom spinner
-            CustomSpinnerAdapter customSpinnerAdapter = new CustomSpinnerAdapter(TimeSheetEntry.this, projectNames);
-            spinnerProjects.setAdapter(customSpinnerAdapter);
+            ProjectsSpinnerAdapter projectsSpinnerAdapter = new ProjectsSpinnerAdapter(TimeSheetEntry.this, projectNames);
+            spinnerProjects.setAdapter(projectsSpinnerAdapter);
             pickerDate.setText(sheet.date);
 //            startTime.setText(sheet.startTime);
             showTime(Integer.parseInt(sheet.startTime.substring(0, 2)), Integer.parseInt(sheet.startTime.substring(3, 5)), true);
@@ -340,7 +340,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     @OnClick(R.id.startTime)
     void showStartTimeClock() {
         LayoutInflater inflater = this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.title_layout, null);
+        View dialogView = inflater.inflate(R.layout.view_title, null);
         TextView texts = (TextView) dialogView.findViewById(R.id.title);
         texts.setText("Select Start Time");
 
@@ -363,7 +363,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     void showEndTimeClock() {
 
         LayoutInflater inflater = this.getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.title_layout, null);
+        View dialogView = inflater.inflate(R.layout.view_title, null);
         TextView texts = (TextView) dialogView.findViewById(R.id.title);
         texts.setText("Select End Time");
 
@@ -555,15 +555,15 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
                 }
                 /*
                 //Creating the ArrayAdapter instance having the bank name list
-                ArrayAdapter aa = new ArrayAdapter(this, R.layout.project_name_spinner_item, projectNames);
+                ArrayAdapter aa = new ArrayAdapter(this, R.layout.view_spinner_dropdown_item, projectNames);
                 aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 //Setting the ArrayAdapter data on the Spinner
                 spinnerProjects.setAdapter(aa);
                 */
 
                 //Custom spinner
-                CustomSpinnerAdapter customSpinnerAdapter = new CustomSpinnerAdapter(TimeSheetEntry.this, projectNames);
-                spinnerProjects.setAdapter(customSpinnerAdapter);
+                ProjectsSpinnerAdapter projectsSpinnerAdapter = new ProjectsSpinnerAdapter(TimeSheetEntry.this, projectNames);
+                spinnerProjects.setAdapter(projectsSpinnerAdapter);
 //                spinnerProjects.setPrompt("Select project");
             }
         } else if (o instanceof String) {
@@ -606,7 +606,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
     private void showBottomSheet(String titleText, Integer peekHeight) {
 
-        View view = this.getLayoutInflater().inflate(R.layout.bottom_sheet_modal, null);
+        View view = this.getLayoutInflater().inflate(R.layout.view_bottom_sheet, null);
         com.android.timesheet.shared.widget.calender.CalendarView
                 calendarView = (com.android.timesheet.shared.widget.calender.CalendarView) view.findViewById(R.id.calenderView);
         TextView title = (TextView) view.findViewById(R.id.title);

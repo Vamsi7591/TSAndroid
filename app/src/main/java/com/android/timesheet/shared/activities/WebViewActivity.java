@@ -47,7 +47,7 @@ public class WebViewActivity extends BaseActivity implements BaseViewBehavior {
 
     @Override
     protected int layoutRestID() {
-        return R.layout.activity_with_webview;
+        return R.layout.activity_web_view;
     }
 
     @Override

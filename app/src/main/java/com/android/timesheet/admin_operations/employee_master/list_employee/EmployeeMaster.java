@@ -9,15 +9,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.common.AppConfig;
 import com.android.timesheet.R;
-import com.android.timesheet.admin_operations.employee_master.edit_employee.EditEmployeeMaster;
 import com.android.timesheet.admin_operations.employee_master.add_employee.AddEmployee;
+import com.android.timesheet.admin_operations.employee_master.edit_employee.EditEmployee;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.interfaces.OnItemClickListener;
 import com.android.timesheet.shared.models.AllEmployeesResponse;
@@ -40,23 +39,23 @@ import butterknife.BindView;
  */
 
 public class EmployeeMaster extends BaseActivity<EmployeeMasterPresenter> implements
-        BaseViewBehavior<List<Employee>>, OnItemClickListener, RecyclerView.OnItemTouchListener, Serializable {
+        BaseViewBehavior<Object>, OnItemClickListener, Serializable {
 
-    @BindView(R.id.empty_state_view)
-    LinearLayout empty_state_view;
+    @BindView(R.id.emptyStateLL)
+    LinearLayout emptyStateLL;
 
     @BindView(R.id.general_recycler_view)
     RecyclerView recyclerView;
 
     @BindView(R.id.toolbarTitleTv)
-    CustomFontTextView textViewToolbarTitle;
+    CustomFontTextView toolbarTitleTv;
 
     String TAG = "Employee Master";
 
-    EmployeeMasterAdapter mAdapter;
+    EmployeeMasterAdapter employeeAdapter;
     LinearLayoutManager linearLayoutManager;
 
-    List<Employee> data;
+    List<Employee> employeesList;
 
     @Override
     protected int layoutRestID() {
@@ -87,41 +86,42 @@ public class EmployeeMaster extends BaseActivity<EmployeeMasterPresenter> implem
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        unbinder = ButterKnife.bind(this);
-        data = new ArrayList<Employee>();
+        employeesList = new ArrayList<Employee>();
+        employeeAdapter = new EmployeeMasterAdapter(this, this);
 
-        mAdapter = new EmployeeMasterAdapter(this, this);
         linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setStackFromEnd(false);
         linearLayoutManager.setSmoothScrollbarEnabled(false);
 
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(mAdapter);
+        recyclerView.setAdapter(employeeAdapter);
 
-        textViewToolbarTitle.setText(title());
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
-        textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+        toolbarTitleTv.setText(title());
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
 
         if (mMenu == null) {
             showMenu();
         }
-
     }
 
     private void showMenu() {
-        Menu menu = toolbar.getMenu();
+        Menu menu = null;
+        if (toolbar != null) {
+            menu = toolbar.getMenu();
+        }
         if (menu == null || menu.size() == 0) {
-            toolbar.inflateMenu(R.menu.home_menu);
+            if (toolbar != null) {
+                toolbar.inflateMenu(R.menu.home_menu);
+            }
         }
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if (item.getItemId() == R.id.action_menu_home) {
-            Intent timesheet_Add = new Intent(this, AddEmployee.class);
-            startActivity(timesheet_Add);
+            Intent addEmployee = new Intent(this, AddEmployee.class);
+            startActivity(addEmployee);
         }
 
         presenter().fetchEmployees();
@@ -163,111 +163,106 @@ public class EmployeeMaster extends BaseActivity<EmployeeMasterPresenter> implem
     }
 
     @Override
-    public void onComplete() {
-
-    }
-
-/**
- * @param data
-
-*
-* */
-
-    @Override
-    public void onSuccess(List<Employee> data) {
-
-        User user = presenter().getCurrentUser();
-
-//        if (data instanceof AllEmployeesResponse) {
-//            AllEmployeesResponse allEmployeesResponse = (AllEmployeesResponse) data;
-//            empListResponse = allEmployeesResponse.getEmployeeList();
-//
-//        }
-
-       if (data.size() != 0) {
-
-           this.data = data;
-
-            mAdapter.setItems(data);
-            empty_state_view.setVisibility(View.GONE);
-        } else
-            empty_state_view.setVisibility(View.VISIBLE);
-
-        int i = 0;
-        for (Employee list : data) {
-
-            if (list.getEmpCode().equals(user.empCode)) {
-                data.remove(i);
-                break;
-            }
-            i = i + 1;
-        }
-
-//        if (data instanceof String) {
-//            String response = (String) data;
-//            Toast.makeText(EmployeeMaster.this, response, Toast.LENGTH_LONG).show();
-//        }
-
-        }
-
-    @Override
     public void onFailed(Throwable e) {
 
     }
 
+    @Override
+    public void onComplete() {
+
+    }
+
     /**
-    * @param position :-navigate to EditEmployeeMaster class when employee list item is clicked
-     * */
+     * @param genericResponse - success result
+     */
+    @Override
+    public void onSuccess(Object genericResponse) {
+
+        User user = presenter().getCurrentUser();
+
+        if (genericResponse instanceof AllEmployeesResponse) {
+
+            AllEmployeesResponse allEmployeesResponse = (AllEmployeesResponse) genericResponse;
+            List<Employee> employeeListResponse = allEmployeesResponse.getEmployeeList();
+
+            if (employeeListResponse != null) {
+                if (employeeListResponse.size() != 0) {
+                    this.employeesList = employeeListResponse;
+                    employeeAdapter.setItems(employeeListResponse);
+                    emptyStateLL.setVisibility(View.GONE);
+                } else
+                    emptyStateLL.setVisibility(View.VISIBLE);
+
+                /* Object wise operation on for loop - preferred way*/
+                for (Employee employee : employeeListResponse) {
+                    if (employee.getEmpCode().equals(user.empCode)) {
+                        employeeListResponse.remove(employee);
+                        break;
+                    }
+                }
+
+                /*Index wise operations on for loop - not preferred
+                for (int i = 0; i < employeesList.size(); i++) {
+                    if (employeesList.get(i).getEmpCode().equals(user.empCode)) {
+                        employeesList.removeEmployee(i);
+                        break;
+                    }
+                }*/
+            }
+        } else if (genericResponse instanceof String) {
+            String response = (String) genericResponse;
+            if (response.contains("Success") && deletePosition != -1)
+                onEmployeeDeleted(deletePosition);
+        }
+    }
+
+
+    /**
+     * @param position :-navigate to EditEmployee class when
+     *                 employee selects list item
+     */
 
     @Override
     public void onItemClick(View view, int position) {
 
-        Employee model = mAdapter.getItem(position);
-        Intent i = new Intent(this, EditEmployeeMaster.class);
-        Gson gson = new Gson();
-        String personString = gson.toJson(data.get(position));
-        i.putExtra("jsonObject", personString);
-        startActivity(i);
+        Employee employee = employeeAdapter.getItem(position);
+        Gson gson = new Gson(); //Convert object to string using Gson()
+        String employeeJson = gson.toJson(employee);//employeesList.get(position)
 
+        Intent editEmployee = new Intent(this, EditEmployee.class);
+        editEmployee.putExtra(AppConfig.EMPLOYEE_OBJECT, employeeJson);
+        startActivity(editEmployee);
     }
 
     public void onEmployeeDeleted(int position) {
-        mAdapter.remove(position);
-        mAdapter.notifyDataSetChanged();
-    }
-
-    public void removedEmployees(AllEmployeesResponse response) {
-        if (response != null) {
-            infoSnackBar(response.getMessage());
-
-        }
-
-    }
-/**
-* @param position :- {@link com.android.timesheet.shared.presenters.Presenter}
- *                 position observes which item to delete in employee list
- *
- *                {@link EmployeeMasterServices }
- *                Service call for remove employee
- */
-    @Override
-    public void onItemClickToDelete(View view, int position) {
-
-//        TimeSheet sheet = mAdapter.getItem(position);
-        User user = presenter().getCurrentUser();
-        if (user != null) {
-            RemoveEmployeeParams removeEmployeeParams = new RemoveEmployeeParams(user.empCode, data.get(position).getEmpCode());
-            presenter().removeEmp(removeEmployeeParams);
-            onEmployeeDeleted(position);
-
-        }
-
+        employeeAdapter.removeEmployee(position);
     }
 
     /**
-     @param msg :infoSnackBar is diplay when service or network error
+     * @param position :- position observes which item to delete in employee list
+     * <p>
+     * {@link EmployeeMasterPresenter}
+     * Service call for removeEmployee employee
+     * </p>
      */
+    int deletePosition = -1;
 
+    @Override
+    public synchronized void onItemClickToDelete(View view, int position) {
+
+        deletePosition = -1;
+        User user = presenter().getCurrentUser();
+        if (user != null) {
+            RemoveEmployeeParams removeEmployeeParams = new RemoveEmployeeParams
+                    (user.empCode, employeesList.get(position).getEmpCode());
+            presenter().removeEmp(removeEmployeeParams);
+            deletePosition = position;
+        }
+    }
+
+    /**
+     * @param msg :infoSnackBar is diplay when service or network error
+     */
     public void infoSnackBar(String msg) {
         if (recyclerView != null) {
             Snackbar snack = Snackbar.make(recyclerView, msg, Snackbar.LENGTH_LONG);
@@ -278,20 +273,5 @@ public class EmployeeMaster extends BaseActivity<EmployeeMasterPresenter> implem
             tv.setTextSize(18);
             snack.show();
         }
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-    }
-
-    @Override
-    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
     }
 }

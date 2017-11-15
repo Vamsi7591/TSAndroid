@@ -33,7 +33,7 @@ public class Employee implements Serializable {
     @SerializedName("empEmailId")
     public String empEmailId;
 
-    @SerializedName("password")
+    @SerializedName("checkPassword")
     public String password;
 
     @SerializedName("projectname")

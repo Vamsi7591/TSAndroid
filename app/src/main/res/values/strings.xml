@@ -77,5 +77,12 @@
     <string name="lb_submit">Submit</string>
     <string name="lb_edit">Edit</string>
     <string name="lb_ts_entry">Time Sheet Entry</string>
+    <string name="lb_password">Password</string>
+    <string name="lb_employee_name">Employee Name</string>
+    <string name="lb_employee_code">Employee Code</string>
+    <string name="lb_email_address">Email Address</string>
+    <string name="lb_admin_access">Admin Access</string>
+    <string name="lb_off">Off</string>
+    <string name="lb_on">On</string>
 
 </resources>

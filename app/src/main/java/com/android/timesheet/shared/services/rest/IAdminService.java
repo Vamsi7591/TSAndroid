@@ -60,7 +60,7 @@ public interface IAdminService {
     Observable<AllEmployeesResponse> addEmployee(@Query("adminempcode") String adminempcode,
                                                  @Query("empName") String empName,
                                                  @Query("empemailid") String empemailid,
-                                                 @Query("password") String password,
+                                                 @Query("checkPassword") String password,
                                                  @Query("emprole") String emprole);
 
 
@@ -76,7 +76,7 @@ public interface IAdminService {
     @GET("updateEmployee?")
     Observable<AllEmployeesResponse> updateEmployee(@Query("adminEmpCode") String adminEmpCode,
                                                     @Query("empCode") String empCode,
-                                                    @Query("password") String password,
+                                                    @Query("checkPassword") String password,
                                                     @Query("empRole") String empRole);
 
 

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_border"
     android:fillViewport="true"
-    tools:context=".common_operations.auth.LoginActivity">
+    tools:context=".common_operations.login.LoginActivity">
 
     <RelativeLayout
         android:id="@+id/rlActivity_login"
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:fillViewport="true"
             android:scrollbars="none"
-            tools:context=".common_operations.auth.LoginActivity">
+            tools:context=".common_operations.login.LoginActivity">
 
             <RelativeLayout
                 android:layout_width="match_parent"
