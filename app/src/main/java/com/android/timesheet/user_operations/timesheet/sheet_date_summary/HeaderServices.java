@@ -1,0 +1,24 @@
+package com.android.timesheet.user_operations.timesheet.sheet_date_summary;
+
+import com.android.timesheet.shared.models.HeaderParams;
+import com.android.timesheet.shared.services.BaseService;
+import com.android.timesheet.shared.services.rest.IUserService;
+
+import rx.Observable;
+
+/**
+ * Created by Vijay on 20.07.2017
+ */
+
+public class HeaderServices extends BaseService<IUserService> {
+
+    @Override
+    protected IUserService prepare() {
+        return super.prepare(IUserService.class);
+    }
+
+
+    Observable getDayRep(HeaderParams headerParams) {
+        return observe(prepare().getDayReport(headerParams.empcode, headerParams.getDate()));
+    }
+}

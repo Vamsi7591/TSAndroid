@@ -55,7 +55,7 @@ public class TimeSheet implements Serializable {
 
     public int rowType;
 
-    public TimeSheet( @Nullable long timeSheetId,  @Nullable String date, String startTime, String projectName, String endTime, String taskDescription, String totalHours) {
+    public TimeSheet(@Nullable long timeSheetId, @Nullable String date, String startTime, String projectName, String endTime, String taskDescription, String totalHours) {
         this.timeSheetId = timeSheetId;
         this.date = date;
         this.startTime = startTime;
@@ -84,7 +84,6 @@ public class TimeSheet implements Serializable {
     }
 
 
-
     @Nullable
     public long getTimeSheetId() {
         return timeSheetId;
@@ -93,10 +92,12 @@ public class TimeSheet implements Serializable {
     public void setTimeSheetId(@Nullable long timeSheetId) {
         this.timeSheetId = timeSheetId;
     }
+
     @Nullable
     public String getDate() {
         return date;
     }
+
     @Nullable
     public void setDate(@Nullable String date) {
         this.date = date;
@@ -142,7 +143,7 @@ public class TimeSheet implements Serializable {
         this.totalHours = totalHours;
     }
 
-    public TimeSheet(  @Nullable long timeSheetId, String date, String startTime, String projectName, String endTime, String taskDescription, String totalHours, String header) {
+    public TimeSheet(@Nullable long timeSheetId, String date, String startTime, String projectName, String endTime, String taskDescription, String totalHours, String header) {
         this.timeSheetId = timeSheetId;
         this.date = date;
         this.startTime = startTime;
@@ -210,11 +211,45 @@ public class TimeSheet implements Serializable {
             errors.put(ValidationError.DESCRIPTION, R.string.error_desc_required);
         }
 
+        if (!TextUtils.isEmpty(startTime) && !TextUtils.isEmpty(endTime)) {
+            int error = validDate(startTime, endTime);
+            if (error == 1) {
+                errors.put(ValidationError.END_TIME, R.string.error_invalid_time_1);
+            } else if (error == 2) {
+                errors.put(ValidationError.START_TIME, R.string.error_invalid_time_2);
+            }
+        }
 
         return errors;
     }
 
+    private int validDate(String startTime, String endTime) {
 
+        int sH = Integer.parseInt(startTime.substring(0, 2));
+        int sM = Integer.parseInt(startTime.substring(3, 5));
+
+        int eH = Integer.parseInt(endTime.substring(0, 2));
+        int eM = Integer.parseInt(endTime.substring(3, 5));
+
+        if (startTime.equalsIgnoreCase(endTime)) {
+            return 1; // equal
+        } else if (startTime.contains("AM") && endTime.contains("AM")) {
+            if (sH == eH && sM > eM) {
+                return 2;
+            } else if (sH > eH) {
+                return 2;
+            }
+        } else if (startTime.contains("PM") && endTime.contains("PM")) {
+            if (sH == eH && sM > eM) {
+                return 2;
+            } else if (sH > eH) {
+                return 2;
+            }
+        } else if (startTime.contains("PM") && endTime.contains("AM")) {
+            return 2;
+        }
+        return 0;
+    }
 
 
 }

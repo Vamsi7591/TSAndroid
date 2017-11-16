@@ -10,7 +10,7 @@
     app:cardElevation="@dimen/margin_5">
 
     <com.daimajia.swipe.SwipeLayout
-        android:id="@+id/swipe"
+        android:id="@+id/swipeSL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_border_blue"
@@ -18,7 +18,7 @@
         app:rightEdgeSwipeOffset="0dp">
 
         <LinearLayout
-            android:id="@+id/trashed"
+            android:id="@+id/trashLL"
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:background="#FF3B30"

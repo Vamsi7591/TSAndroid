@@ -111,11 +111,11 @@ public class EmployeeMasterAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         @BindView(R.id.email)
         TextView emailTV;
 
-        @BindView(R.id.trashed)
-        LinearLayout trash;
+        @BindView(R.id.trashLL)
+        LinearLayout trashLL;
 
-        @BindView(R.id.swipe)
-        SwipeLayout swipe;
+        @BindView(R.id.swipeSL)
+        SwipeLayout swipeSL;
 
         @BindView(R.id.employeeRole)
         ImageView employeeRole;
@@ -137,10 +137,10 @@ public class EmployeeMasterAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             emailTV.setText(employee.getEmpEmailId());
 
             if (employee.getEmpRole().equalsIgnoreCase("A")) {
-                swipe.setBackground(context.getDrawable(R.drawable.bg_border_blue));
+                swipeSL.setBackground(context.getDrawable(R.drawable.bg_border_blue));
                 employeeRole.setBackground(context.getDrawable(R.drawable.ic_admin));
             } else {
-                swipe.setBackground(context.getDrawable(R.drawable.bg_border));
+                swipeSL.setBackground(context.getDrawable(R.drawable.bg_border));
                 employeeRole.setBackground(context.getDrawable(R.drawable.ic_user));
             }
 
@@ -150,7 +150,7 @@ public class EmployeeMasterAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 }
             });
 
-            trash.setOnClickListener(view -> {
+            trashLL.setOnClickListener(view -> {
                 if (listener != null) {
                     listener.onItemClickToDelete(view, position);
                 }

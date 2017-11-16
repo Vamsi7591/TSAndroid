@@ -5,101 +5,103 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/projName"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_40"
+        android:gravity="center"
+        android:text="@string/lb_project_name"
+        android:textColor="@color/colorLightDark"
+        android:textSize="@dimen/tv_font_size_20" />
+
+    <TextView
+        android:id="@+id/taskDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/padding_5"
-        android:paddingRight="@dimen/padding_5">
+        android:layout_gravity="center"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="10dp"
+        android:text="@string/lb_task_description"
+        android:textColor="@color/colorSheetTitle"
+        android:textSize="@dimen/tv_font_size_18" />
 
-        <TextView
-            android:id="@+id/projName"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_40"
-            android:gravity="center"
-            android:text="Project Name"
-            android:textColor="#2996f5"
-            android:textSize="@dimen/tv_font_size_20" />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_5"
+        android:layout_marginLeft="@dimen/margin_5"
+        android:layout_marginStart="@dimen/margin_5"
+        android:layout_marginTop="10dp">
 
-        <TextView
-            android:id="@+id/taskDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginEnd="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="10dp"
-            android:text="Tasc desc"
-            android:textColor="@color/black"
-            android:textSize="@dimen/tv_font_size_18" />
+        <TableRow
+            android:orientation="horizontal"
+            tools:ignore="UselessParent">
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp">
+            <TextView
+                android:id="@+id/startTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:drawableLeft="@drawable/ic_time_start"
+                android:drawableStart="@drawable/ic_time_start"
+                android:gravity="start|center"
+                android:text="Start time"
+                android:textColor="@color/colorSheetTitle" />
 
-            <TableRow
-                android:orientation="horizontal"
-                tools:ignore="UselessParent">
+            <TextView
+                android:id="@+id/endTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:drawableLeft="@drawable/ic_time_pause_b"
+                android:drawableStart="@drawable/ic_time_pause_b"
+                android:gravity="start|center"
+                android:text="00.00"
+                android:textColor="@color/colorSheetTitle" />
 
-                <TextView
-                    android:id="@+id/startTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="start"
-                    android:text="Start time"
-                    android:textAlignment="viewStart"
-                    android:textColor="#0d0d0d" />
-
-                <TextView
-                    android:id="@+id/endTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="End time"
-                    android:textColor="#0d0d0d" />
-
-                <TextView
-                    android:id="@+id/totalHrs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:text="Total hrs"
-                    android:textColor="#0d0d0d" />
-
-            </TableRow>
-        </TableLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
-
-            <ImageView
+            <TextView
+                android:id="@+id/totalHrs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginBottom="0dp"
-                android:background="@drawable/back_arrow_orange"
-                android:rotation="270" />
+                android:layout_weight="0.2"
+                android:drawableLeft="@drawable/ic_total_time_b"
+                android:drawableStart="@drawable/ic_total_time_b"
+                android:gravity="start|center"
+                android:text="00.00"
+                android:textColor="@color/colorSheetTitle" />
 
-        </RelativeLayout>
+        </TableRow>
+    </TableLayout>
 
-        <TextView
-            android:id="@+id/totalHours"
-            android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textColor="#0d0d0d"
-            android:textSize="@dimen/tv_font_size_20"
-            android:visibility="gone" />
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/ic_long_down_arrow_o" />
 
-    </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/totalHours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:layout_marginTop="@dimen/margin_10"
+        android:drawableLeft="@drawable/ic_time_add_b"
+        android:drawableStart="@drawable/ic_time_add_b"
+        android:gravity="start|center"
+        android:text="@string/lb_total_hours"
+        android:textAlignment="center"
+        android:textColor="@color/colorLightDark"
+        android:textSize="@dimen/tv_font_size_20"
+        android:visibility="visible" />
 
 </LinearLayout>

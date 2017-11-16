@@ -86,7 +86,6 @@ public class EditEmployee extends BaseActivity<EditEmployeePresenter>
 
         /*  ToolbarTitle */
         toolbarTitleTv.setText(title());
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) toolbarTitleTv.getLayoutParams();
         toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
         /*  ToolbarTitle End */
 

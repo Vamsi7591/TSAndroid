@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -59,112 +58,122 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/margin_10"
+        android:layout_marginRight="@dimen/margin_10"
+        android:layout_marginTop="?attr/actionBarSize">
 
         <LinearLayout
+            android:id="@+id/proj"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20sp"
-            android:orientation="vertical"
-            android:id="@+id/proj"
-            >
+            android:layout_marginTop="@dimen/margin_10"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:layout_marginTop="60dp"
-                android:text="Project Name"
-                android:id="@+id/proj_Name"
-                />
-
-            <EditText
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/projectNameTIL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="0sp"
+                android:hint="@string/lb_project_name"
+                android:textColor="#939393"
+                android:textSize="@dimen/tv_font_size_18">
 
-                android:id="@+id/projNemeEdit"
-                />
+                <EditText
+                    android:id="@+id/projNemeEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:textColor="#060404" />
+            </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:id="@+id/proj_Code"
-                android:text="Project Code"
-                android:layout_below="@+id/projNemeEdit"
-
-                />
-
-            <EditText
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/projectCodeTIL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/projCode_Edit"
-                android:layout_below="@+id/proj_Code"
+                android:layout_margin="0sp"
+                android:hint="@string/lb_project_code"
+                android:textColor="#939393"
+                android:textSize="@dimen/tv_font_size_18">
 
+                <EditText
+                    android:id="@+id/projCode_Edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:textColor="#060404" />
+            </android.support.design.widget.TextInputLayout>
 
-
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20sp"
-            android:layout_below="@+id/proj"
-            android:orientation="horizontal"
-            android:id="@+id/linearAdmin"
-            >
-
-
-            <TextView
-                android:id="@+id/commonFlag"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Common Project"
-                />
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginLeft="@dimen/margin_0"
+                android:layout_marginRight="@dimen/margin_0"
+                android:orientation="horizontal">
 
-            <ToggleButton
-                android:id="@+id/adminAccessTBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50sp"
-                android:textOff="Off"
-                android:textOn="On" />
+                <TextView
+                    android:id="@+id/left_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5sp"
+                    android:layout_weight="1"
+                    android:gravity="center|start"
+                    android:text="@string/ln_common_flag"
+                    android:textSize="@dimen/tv_font_size_18" />
+
+                <ToggleButton
+                    android:id="@+id/adminAccessTBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textOff="@string/lb_off"
+                    android:textOn="@string/lb_on" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/mLlayoutBottomButtons"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/linearAdmin"
-            android:layout_marginTop="50dp"
-            android:orientation="horizontal" >
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_border"
+            android:gravity="bottom"
+            android:orientation="horizontal">
 
-            <Button
+            <com.android.timesheet.shared.widget.CustomFontTextView
                 android:id="@+id/edit_Btn"
+                style="@style/AppTheme.Action.TextView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:background="#005eff"
-                android:layout_weight="1"
-                android:text="Edit" />
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_1"
+                android:background="@color/colorGray"
+                android:gravity="center"
+                android:text="@string/lb_edit"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.Button.Inverse"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:fonts="@string/roboto_regular" />
 
-            <Button
+            <com.android.timesheet.shared.widget.CustomFontTextView
                 android:id="@+id/submitBtn"
+                style="@style/AppTheme.Action.TextView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:background="#005eff"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_1"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:text="@string/lb_submit"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.Button.Inverse"
+                android:textColor="@color/white"
+                android:textStyle="bold"
                 android:visibility="gone"
-                android:layout_weight="1"
-                android:text="Submit" />
-        </LinearLayout>
+                app:fonts="@string/roboto_regular" />
 
-
+        </RelativeLayout>
 
     </RelativeLayout>
 

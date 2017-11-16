@@ -26,7 +26,7 @@ import com.android.timesheet.shared.util.FontUtils;
 import com.android.timesheet.shared.widget.CustomFontTextView;
 import com.android.timesheet.shared.widget.NonSwipeableViewPager;
 import com.android.timesheet.user_operations.reports.monthly.MonthlyFragment;
-import com.android.timesheet.user_operations.sheet_exp_list.TimeSheetFragment;
+import com.android.timesheet.user_operations.timesheet.sheet_fragment.TimeSheetFragment;
 import com.android.timesheet.user_operations.reports.weekly.WeeklyFragment;
 import com.google.firebase.analytics.FirebaseAnalytics;
 

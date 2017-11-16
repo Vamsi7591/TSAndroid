@@ -6,12 +6,11 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.android.timesheet.R;
+import com.android.timesheet.app.App;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.AddProjectParams;
 import com.android.timesheet.shared.models.Project;
@@ -45,7 +44,7 @@ public class EditProject extends BaseActivity<EditProjectPresenter>
     Button submit_Btn;
 
     @BindView(R.id.toolbarTitleTv)
-    CustomFontTextView textViewToolbarTitle;
+    CustomFontTextView toolbarTitleTv;
 
     boolean gone = false;
 
@@ -68,10 +67,8 @@ public class EditProject extends BaseActivity<EditProjectPresenter>
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        textViewToolbarTitle.setText(title());
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
-        textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+        toolbarTitleTv.setText(title());
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
 
         projName.setEnabled(false);
         getProjectCode.setEnabled(false);
@@ -132,18 +129,14 @@ public class EditProject extends BaseActivity<EditProjectPresenter>
     }
 
     @Override
-    public void onSuccess(String data) {
-
-        Toast.makeText(getBaseContext(), data, Toast.LENGTH_LONG).show();
+    public void onSuccess(String response) {
+        App.getInstance().customToast(response);
         finish();
-
     }
 
     @Override
     public void onFailed(Throwable e) {
-
-        Toast.makeText(getBaseContext(), e.getMessage().toString(), Toast.LENGTH_LONG).show();
+        App.getInstance().customToast(e.getMessage());
         finish();
-
     }
 }

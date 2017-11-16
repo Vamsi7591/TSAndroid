@@ -38,9 +38,8 @@
                         android:id="@+id/toolbarTitleTv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/margin_0"
+                        android:layout_marginEnd="@dimen/margin_20"
                         android:layout_marginRight="@dimen/margin_20"
-                        android:clickable="true"
                         android:gravity="center"
                         android:textAlignment="center"
                         android:textColor="@color/white"
@@ -66,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@null"
-            tools:listitem="@layout/activity_timesheet_header" />
+            tools:listitem="@layout/activity_timesheet_header_inflator" />
 
 
     </RelativeLayout>

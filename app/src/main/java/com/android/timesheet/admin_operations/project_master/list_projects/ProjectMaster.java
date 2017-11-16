@@ -39,7 +39,7 @@ import butterknife.BindView;
  */
 
 public class ProjectMaster extends BaseActivity<ProjectMasterPresenter>
-        implements BaseViewBehavior<List<Project>>, OnItemClickListener, RecyclerView.OnItemTouchListener, Serializable {
+        implements BaseViewBehavior<List<Project>>, OnItemClickListener, Serializable {
 
 
     @BindView(R.id.emptyStateLL)
@@ -49,7 +49,7 @@ public class ProjectMaster extends BaseActivity<ProjectMasterPresenter>
     RecyclerView recyclerView;
 
     @BindView(R.id.toolbarTitleTv)
-    CustomFontTextView textViewToolbarTitle;
+    CustomFontTextView toolbarTitleTv;
 
     List<Project> data;
 
@@ -96,9 +96,8 @@ public class ProjectMaster extends BaseActivity<ProjectMasterPresenter>
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mAdapter);
 
-
-        textViewToolbarTitle.setText(title());
-        textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+        toolbarTitleTv.setText(title());
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
 
         if (mMenu == null) {
             showMenu();
@@ -189,10 +188,7 @@ public class ProjectMaster extends BaseActivity<ProjectMasterPresenter>
         Gson gson = new Gson();
         String personString = gson.toJson(data.get(position));
         i.putExtra("jsonObject", personString);
-
         startActivity(i);
-
-
     }
 
     public void onProjectsDeleted(int position) {
@@ -203,18 +199,14 @@ public class ProjectMaster extends BaseActivity<ProjectMasterPresenter>
     public void removedEmployees(AllEmployeesResponse response) {
         if (response != null) {
             infoSnackBar(response.getMessage());
-//            Toast.makeText(getContext(), response.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onItemClickToDelete(View view, int position) {
-
-        User user = presenter().getCurrentUser();
         RemoveProjectParams removeProjectParams = new RemoveProjectParams (data.get(position).getProjectName());;
         presenter().removeEmp(removeProjectParams);
         onProjectsDeleted(position);
-
     }
 
     public void infoSnackBar(String msg) {
@@ -227,20 +219,5 @@ public class ProjectMaster extends BaseActivity<ProjectMasterPresenter>
             tv.setTextSize(18);
             snack.show();
         }
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-    }
-
-    @Override
-    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
     }
 }

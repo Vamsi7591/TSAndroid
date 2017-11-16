@@ -63,7 +63,7 @@
                 android:visibility="gone"
                 android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" />
 
-            <com.android.timesheet.user_operations.sheet_list.sheet_body.TimeSheetList
+            <com.android.timesheet.user_operations.timesheet.sheet_list.TimeSheetList
                 android:id="@+id/room_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

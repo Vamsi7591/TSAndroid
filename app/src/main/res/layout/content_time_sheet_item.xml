@@ -8,12 +8,12 @@
     android:orientation="vertical">
 
     <com.daimajia.swipe.SwipeLayout
-        android:id="@+id/swipe"
+        android:id="@+id/swipeSL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/trash"
+            android:id="@+id/trashLL"
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:background="#FF3B30"
@@ -27,9 +27,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/projectLL"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/projectLL"
             android:orientation="vertical"
             android:visibility="visible">
 
@@ -48,14 +48,15 @@
                     android:textColor="@color/cardview_dark_background"
                     app:font="@string/roboto_light"
                     tools:ignore="RtlSymmetry"
-                    tools:text="Project Name" />
+                    tools:text="@string/lb_project_name" />
 
                 <com.android.timesheet.shared.widget.CustomFontTextView
                     android:id="@+id/time"
                     style="@style/AppTheme.Text.TextView.Small"
                     android:layout_marginTop="4dp"
-                    android:gravity="right|center"
+                    android:gravity="right"
                     android:maxLines="1"
+                    android:paddingEnd="@dimen/margin_15"
                     android:paddingRight="@dimen/margin_15"
                     android:textColor="@color/cardview_dark_background"
                     app:font="@string/roboto_light"
@@ -73,13 +74,13 @@
                 android:layout_marginTop="@dimen/margin_5"
                 android:ellipsize="marquee"
                 android:gravity="start|center"
-                android:maxLines="2"
                 android:paddingLeft="@dimen/margin_15"
                 android:paddingStart="@dimen/margin_15"
+                android:singleLine="true"
+                android:text="@string/lb_description"
                 android:textColor="@color/cardview_dark_background"
                 app:font="@string/roboto_light"
-                tools:ignore="RtlSymmetry"
-                tools:text="Description" />
+                tools:ignore="RtlSymmetry" />
 
             <View
                 android:layout_width="match_parent"

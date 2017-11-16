@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.android.timesheet.shared.routers.BaseRouter;
-import com.android.timesheet.user_operations.sheet_list.sheet_entry.TimeSheetEntry;
+import com.android.timesheet.user_operations.timesheet.sheet_entry.TimeSheetEntry;
 
 /**
  * Created by vamsikonanki on 8/21/2017.

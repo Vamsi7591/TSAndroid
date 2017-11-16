@@ -55,12 +55,12 @@
 
         <!-- User screens -->
         <activity
-            android:name=".user_operations.sheet_list.sheet_entry.TimeSheetEntry"
+            android:name=".user_operations.timesheet.sheet_entry.TimeSheetEntry"
             android:screenOrientation="portrait"
             android:theme="@style/TimeSheet.AppTheme"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".user_operations.sheet_list.sheet_header.HeaderActivity"
+            android:name=".user_operations.timesheet.sheet_date_summary.HeaderActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".common_operations.profile.MyProfile"

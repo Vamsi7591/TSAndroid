@@ -102,8 +102,11 @@ public class ProjectMasterAdapter extends RecyclerView.Adapter<RecyclerView.View
         @BindView(R.id.code)
         TextView codeTV;
 
-        @BindView(R.id.trashing)
-        LinearLayout trashin;
+        @BindView(R.id.trashLL)
+        LinearLayout trashLL;
+
+        @BindView(R.id.swipeSL)
+        SwipeLayout swipeSL;
 
         View itemView;
 
@@ -125,7 +128,7 @@ public class ProjectMasterAdapter extends RecyclerView.Adapter<RecyclerView.View
                 }
             });
 
-            trashin.setOnClickListener(view -> {
+            trashLL.setOnClickListener(view -> {
                 if (listener != null) {
                     listener.onItemClickToDelete(view, position);
                 }
