@@ -39,11 +39,11 @@
                         android:id="@+id/toolbarTitleTv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/margin_0"
-                        android:layout_marginRight="@dimen/margin_0"
-                        android:clickable="true"
+                        android:layout_marginEnd="@dimen/margin_15"
+                        android:layout_marginRight="@dimen/margin_15"
                         android:gravity="center"
                         android:textAlignment="center"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/tv_font_size_20"
                         android:visibility="visible"
                         app:font="@string/roboto_thin" />
@@ -64,7 +64,7 @@
         android:layout_marginTop="?attr/actionBarSize">
 
         <LinearLayout
-            android:id="@+id/proj"
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_10"
@@ -80,10 +80,10 @@
                 android:textSize="@dimen/tv_font_size_18">
 
                 <EditText
-                    android:id="@+id/projNemeEdit"
+                    android:id="@+id/projectNameET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:textColor="#060404" />
             </android.support.design.widget.TextInputLayout>
 
@@ -91,24 +91,22 @@
                 android:id="@+id/projectCodeTIL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="0sp"
+                android:layout_margin="@dimen/margin_0"
                 android:hint="@string/lb_project_code"
                 android:textColor="#939393"
                 android:textSize="@dimen/tv_font_size_18">
 
                 <EditText
-                    android:id="@+id/projCode_Edit"
+                    android:id="@+id/projectCodeET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textPersonName"
                     android:textColor="#060404" />
             </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:layout_marginLeft="@dimen/margin_0"
-                android:layout_marginRight="@dimen/margin_0"
                 android:orientation="horizontal">
 
                 <TextView
@@ -118,15 +116,16 @@
                     android:layout_margin="5sp"
                     android:layout_weight="1"
                     android:gravity="center|start"
-                    android:text="@string/ln_common_flag"
+                    android:text="@string/lb_is_common_project"
                     android:textSize="@dimen/tv_font_size_18" />
 
                 <ToggleButton
-                    android:id="@+id/adminAccessTBtn"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/projectTBtn"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:textOff="@string/lb_off"
-                    android:textOn="@string/lb_on" />
+                    android:layout_weight="1"
+                    android:textOff="@string/lb_no"
+                    android:textOn="@string/lb_yes" />
 
             </LinearLayout>
 
@@ -145,7 +144,7 @@
             android:orientation="horizontal">
 
             <com.android.timesheet.shared.widget.CustomFontTextView
-                android:id="@+id/edit_Btn"
+                android:id="@+id/editBtn"
                 style="@style/AppTheme.Action.TextView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -174,6 +173,7 @@
                 app:fonts="@string/roboto_regular" />
 
         </RelativeLayout>
+
 
     </RelativeLayout>
 

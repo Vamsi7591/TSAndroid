@@ -17,7 +17,7 @@ public interface IAuthService {
 
     @GET("getValidateUser?")
     Observable<UserResponse> login(@Query("empCode") String empCode,
-                                   @Query("checkPassword") String password);
+                                   @Query("password") String password);
 
     @GET("changePassword?")
     Observable<UserResponse> changePassword(@Query("empCode") String empCode,

@@ -24,6 +24,7 @@ import com.android.timesheet.shared.util.FontUtils;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 import com.android.timesheet.shared.widget.CustomFontTextView;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -79,6 +80,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
     protected String title() {
         return "Summary Details";
     }
+
     @Override
     protected boolean showBackButton() {
         return true;
@@ -99,7 +101,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
         super.onCreate(savedInstanceState);
 
 
-        data=new ArrayList<>();
+        data = new ArrayList<>();
         dataEmp = new ArrayList<>();
         dataProj = new ArrayList<>();
         empNameList = new ArrayList<String>();
@@ -123,11 +125,10 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
 
 
                     ProjectSum_Params projectSum_params;
-                    projectSum_params = new ProjectSum_Params(dataEmp.get(selectedEmployeeNamePos-1).getEmpCode(), String.valueOf(projName.getSelectedItem()), String.valueOf(cYear));
+                    projectSum_params = new ProjectSum_Params(dataEmp.get(selectedEmployeeNamePos - 1).getEmpCode(), String.valueOf(projName.getSelectedItem()), String.valueOf(cYear));
                     presenter().fetchSummaryData(projectSum_params);
 //
-                }
-                else  {
+                } else {
                     barChart.setVisibility(View.GONE);
                     noDataFoundRL.setVisibility(View.VISIBLE);
 
@@ -201,8 +202,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
             ProjectSum_Params projectSum_params = new ProjectSum_Params(user.empCode, String.valueOf(projName.getSelectedItem()), String.valueOf(cYear));
             presenter().fetchSummaryData(projectSum_params);
 //
-        }
-        else  {
+        } else {
             barChart.setVisibility(View.GONE);
             noDataFoundRL.setVisibility(View.VISIBLE);
 
@@ -311,24 +311,37 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
 
         if (data.size() > 0) {
             for (int k = 0; k < data.size(); k++) {
-
                 barEntries.add(new BarEntry(Float.parseFloat(data.get(k).getDuration()), k));
-                labels.add(data.get(k).getMonth());
-
+                labels.add(data.get(k).getMonth().substring(0, 3));
             }
-
         }
 
+        barChart.setDrawGridBackground(false);
+        barChart.getXAxis().setDrawGridLines(false); // disable grid lines for the XAxis
+        barChart.getAxisLeft().setDrawGridLines(false); // disable grid lines for the left YAxis
+        barChart.getAxisRight().setDrawGridLines(false); // disable grid lines for the right YAxis
+        barChart.getXAxis().setDrawAxisLine(false);// removeEmployee left side line
+        barChart.getAxisRight().setDrawLabels(false);
+        barChart.getAxisLeft().setDrawLabels(false);
+//        barChart.getXAxis().setDrawLabels(false); // Top values hide
 
-        BarDataSet dataSet = new BarDataSet(barEntries, "Projects");
+        barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        barChart.getAxisLeft().setEnabled(false);
+        barChart.getAxisRight().setEnabled(false);
 
+        barChart.setDoubleTapToZoomEnabled(true);
+        barChart.setPinchZoom(true);
+
+        BarDataSet dataSet = new BarDataSet(barEntries, "");//Projects
+        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         BarData barData = new BarData(labels, dataSet);
 
-        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
         barChart.setData(barData);
-        barChart.setDescription("Summary Details");
-        barChart.animateXY(2000, 2000);
+        barChart.setDescription(""); //Summary Details
+        barChart.getLegend().setEnabled(false);
         barChart.invalidate();
+        barChart.notifyDataSetChanged();
+        barChart.animateXY(2000, 2000);
     }
 
 

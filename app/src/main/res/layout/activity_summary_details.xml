@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".admin_operations.summary.SummaryDetails">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -81,18 +82,17 @@
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:id="@+id/first1"
                         android:layout_width="match_parent"
                         android:layout_height="?actionBarSize"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center|start"
-                            android:text="Employee Name"
-                            android:textSize="18dp" />
+                            android:text="@string/lb_employee_name"
+                            android:textSize="@dimen/tv_font_size_18" />
 
                         <Spinner
                             android:id="@+id/empName_spinner"
@@ -114,16 +114,15 @@
                         android:id="@+id/second"
                         android:layout_width="match_parent"
                         android:layout_height="?actionBarSize"
-                        android:layout_below="@+id/first1"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center|start"
-                            android:text="Project Name"
-                            android:textSize="18dp" />
+                            android:text="@string/lb_project_name"
+                            android:textSize="@dimen/tv_font_size_18" />
 
                         <Spinner
                             android:id="@+id/ProjName_spinner"
@@ -143,16 +142,15 @@
                         android:id="@+id/third"
                         android:layout_width="match_parent"
                         android:layout_height="?actionBarSize"
-                        android:layout_below="@+id/second"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center|start"
-                            android:text="Select Year"
-                            android:textSize="18dp" />
+                            android:text="@string/lb_select_year"
+                            android:textSize="@dimen/tv_font_size_18" />
 
                         <Spinner
                             android:id="@+id/yearSpinSum"
@@ -180,6 +178,7 @@
                     android:layout_marginEnd="5dp"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/bg_circle"
+                    android:contentDescription="@string/lb_done"
                     app:srcCompat="@drawable/right_white_arrow" />
 
             </RelativeLayout>

@@ -92,5 +92,10 @@
     <string name="lb_total_hours">Total hours</string>
     <string name="lb_project_code">Project Code</string>
     <string name="ln_common_flag">Common Project</string>
+    <string name="lb_yes">Yes</string>
+    <string name="lb_no">No</string>
+    <string name="lb_is_common_project">Is Common Project</string>
+    <string name="lb_select_year">Select Year</string>
+    <string name="lb_done">Done</string>
 
 </resources>

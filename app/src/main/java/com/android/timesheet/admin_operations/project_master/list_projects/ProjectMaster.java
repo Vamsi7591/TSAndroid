@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.common.AppConfig;
 import com.android.timesheet.R;
 import com.android.timesheet.admin_operations.project_master.add_project.AddProject;
 import com.android.timesheet.admin_operations.project_master.edit_project.EditProject;
@@ -184,11 +185,12 @@ public class ProjectMaster extends BaseActivity<ProjectMasterPresenter>
     @Override
     public void onItemClick(View view, int position) {
 
-        Intent i = new Intent(this, EditProject.class);
         Gson gson = new Gson();
         String personString = gson.toJson(data.get(position));
-        i.putExtra("jsonObject", personString);
-        startActivity(i);
+
+        Intent intentEditProject = new Intent(this, EditProject.class);
+        intentEditProject.putExtra(AppConfig.PROJECT_OBJECT, personString);
+        startActivity(intentEditProject);
     }
 
     public void onProjectsDeleted(int position) {

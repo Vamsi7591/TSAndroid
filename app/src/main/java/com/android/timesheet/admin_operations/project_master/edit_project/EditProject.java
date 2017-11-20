@@ -4,11 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.android.common.AppConfig;
 import com.android.timesheet.R;
 import com.android.timesheet.app.App;
 import com.android.timesheet.shared.activities.BaseActivity;
@@ -25,23 +24,23 @@ import butterknife.BindView;
 public class EditProject extends BaseActivity<EditProjectPresenter>
         implements BaseViewBehavior<String> {
 
-    @BindView(R.id.commonFlag)
-    TextView commonFlag;
+   /* @BindView(R.id.commonFlag)
+    TextView commonFlag;*/
 
-    @BindView(R.id.projNemeEdit)
-    EditText projName;
+    @BindView(R.id.projectNameET)
+    EditText projectNameET;
 
-    @BindView(R.id.projCode_Edit)
-    EditText getProjectCode;
+    @BindView(R.id.projectCodeET)
+    EditText projectCodeET;
 
-    @BindView(R.id.adminAccessTBtn)
-    ToggleButton toggleButton;
+    @BindView(R.id.projectTBtn)
+    ToggleButton projectTBtn;
 
-    @BindView(R.id.edit_Btn)
-    Button edit_Button;
+    @BindView(R.id.editBtn)
+    CustomFontTextView editBtn;
 
     @BindView(R.id.submitBtn)
-    Button submit_Btn;
+    CustomFontTextView submit_Btn;
 
     @BindView(R.id.toolbarTitleTv)
     CustomFontTextView toolbarTitleTv;
@@ -70,20 +69,19 @@ public class EditProject extends BaseActivity<EditProjectPresenter>
         toolbarTitleTv.setText(title());
         toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
 
-        projName.setEnabled(false);
-        getProjectCode.setEnabled(false);
-        toggleButton.setEnabled(false);
+        projectNameET.setEnabled(false);
+        projectCodeET.setEnabled(false);
+        projectTBtn.setEnabled(false);
 
         Intent intent = getIntent();
-        String s = intent.getStringExtra("jsonObject");
+        String projectString = intent.getStringExtra(AppConfig.PROJECT_OBJECT);
         Gson gson = new Gson();
+        Project projectData = gson.fromJson(projectString, Project.class);
 
-        Project projData = gson.fromJson(s, Project.class);
+        projectNameET.setText(projectData.getProjectName());
+        projectCodeET.setText(projectData.getProjectCode());
 
-        projName.setText(projData.getProjectName());
-        getProjectCode.setText(projData.getProjectCode());
-
-        edit_Button.setOnClickListener(new View.OnClickListener() {
+        editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!gone) {
@@ -92,9 +90,9 @@ public class EditProject extends BaseActivity<EditProjectPresenter>
                 } else {
                     submit_Btn.setVisibility(View.VISIBLE);
                     gone = false;
-                    projName.setEnabled(true);
-                    toggleButton.setEnabled(true);
-                    edit_Button.setVisibility(View.INVISIBLE);
+                    projectNameET.setEnabled(true);
+                    projectTBtn.setEnabled(true);
+                    editBtn.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -105,9 +103,8 @@ public class EditProject extends BaseActivity<EditProjectPresenter>
                 User user = presenter().getCurrentUser();
 
                 if (user != null) {
-                    AddProjectParams addProjectParams = new AddProjectParams(getProjectCode.getText().toString(), projName.getText().toString(), toggleButton.isChecked());
+                    AddProjectParams addProjectParams = new AddProjectParams(projectCodeET.getText().toString(), projectNameET.getText().toString(), projectTBtn.isChecked());
                     presenter().updateEmp(addProjectParams);
-
                 }
             }
         });

@@ -1,17 +1,16 @@
 package com.android.timesheet.admin_operations.project_master.add_project;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.android.timesheet.R;
+import com.android.timesheet.app.App;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.AddProjParams;
 import com.android.timesheet.shared.models.User;
@@ -24,29 +23,29 @@ import butterknife.BindView;
 public class AddProject extends BaseActivity<AddProjectPresenter> implements
         BaseViewBehavior<String> {
 
-    @BindView(R.id.project_Name)
-    EditText projName;
+    @BindView(R.id.projectNameTIL)
+    TextInputLayout projectNameTIL;
 
-    @BindView(R.id.toggle)
-    ToggleButton toggleButton;
+    @BindView(R.id.projectNameET)
+    EditText projectNameET;
 
-    @BindView(R.id.submit_Button)
-    Button submitBtn;
+    @BindView(R.id.projectTBtn)
+    ToggleButton projectTBtn;
+
+    @BindView(R.id.submitBtn)
+    CustomFontTextView submitBtn;
 
     @BindView(R.id.toolbarTitleTv)
-    CustomFontTextView textViewToolbarTitle;
+    CustomFontTextView toolbarTitleTv;
 
-    public void checkField(){
-        String projectName = projName.getText().toString();
+    public void checkField() {
+        String projectName = projectNameET.getText().toString();
 
-        if (projectName.length()<2 ){
+        if (projectName.length() < 2) {
             submitBtn.setVisibility(View.GONE);
-        }
-
-        else
+        } else
             submitBtn.setVisibility(View.VISIBLE);
     }
-
 
     @Override
     protected String title() {
@@ -74,7 +73,7 @@ public class AddProject extends BaseActivity<AddProjectPresenter> implements
 
         checkField();
 
-        projName.addTextChangedListener(new TextWatcher() {
+        projectNameET.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 checkField();
@@ -91,27 +90,21 @@ public class AddProject extends BaseActivity<AddProjectPresenter> implements
             }
 
         });
+
         closeKeyBoard();
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 User user = presenter().getCurrentUser();
-                if (user !=null) {
-
-                    AddProjParams addProjParams = new AddProjParams(projName.getText().toString(), toggleButton.isChecked());
+                if (user != null) {
+                    AddProjParams addProjParams = new AddProjParams(projectNameET.getText().toString(), projectTBtn.isChecked());
                     presenter().addProjEmp(addProjParams);
                 }
-
-
             }
         });
 
-
-        textViewToolbarTitle.setText(title());
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
-        textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
-
+        toolbarTitleTv.setText(title());
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
     }
 
     @Override
@@ -123,23 +116,21 @@ public class AddProject extends BaseActivity<AddProjectPresenter> implements
     public void onComplete() {
 
     }
+
     public void closeKeyBoard() {
         this.getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-
     }
-    @Override
-    public void onSuccess(String data) {
-        Toast.makeText(getBaseContext(), data, Toast.LENGTH_LONG).show();
-        finish();
 
+    @Override
+    public void onSuccess(String response) {
+        App.getInstance().customToast(response);
+        finish();
     }
 
     @Override
     public void onFailed(Throwable e) {
-
-        Toast.makeText(getBaseContext(), e.getMessage().toString(), Toast.LENGTH_LONG).show();
+        App.getInstance().customToast(e.getMessage());
         finish();
-
     }
 }
