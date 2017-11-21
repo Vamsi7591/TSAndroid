@@ -3,6 +3,7 @@ package com.android.timesheet.admin_operations.employee_master.add_employee;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -174,8 +175,11 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
             }
         });
 
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
+        toolbarTitleTv.setTextSize(25);
+        toolbarTitleTv.setTextColor(ContextCompat.getColor(this, R.color.white));
         toolbarTitleTv.setText(title());
-        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+
 
 //        checkFieldsForEmptyValues();
         animationShake = AnimationUtils.loadAnimation(getBaseContext(), R.anim.shake_animation);

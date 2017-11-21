@@ -2,6 +2,7 @@ package com.android.timesheet.admin_operations.summary;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -113,8 +114,9 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
         User user = presenter().getCurrentUser();
 
         textViewToolbarTitle.setText(title());
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
-        textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+        textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
+        textViewToolbarTitle.setTextSize(25);
+        textViewToolbarTitle.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         loadBar.setOnClickListener(new View.OnClickListener() {
             @Override

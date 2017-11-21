@@ -29,6 +29,7 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
     private Thread.UncaughtExceptionHandler _androidUncaughtExceptionHandler;
     String TAG = "App";
 
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
@@ -47,9 +48,7 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
         /*This instantiates DBFlow Library*/
         initDatabase();
 
-
     }
-
 
     public static Context getAppContext() {
         return mContext;
@@ -124,6 +123,7 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
 
         /*Let Android show the default error dialog*/
         _androidUncaughtExceptionHandler.uncaughtException(thread, throwable);
-
     }
+
+
 }

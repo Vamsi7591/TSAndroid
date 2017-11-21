@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -97,7 +98,9 @@ public class EmployeeMaster extends BaseActivity<EmployeeMasterPresenter> implem
         recyclerView.setAdapter(employeeAdapter);
 
         toolbarTitleTv.setText(title());
-        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
+        toolbarTitleTv.setTextSize(25);
+        toolbarTitleTv.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         if (mMenu == null) {
             showMenu();

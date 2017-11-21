@@ -8,6 +8,7 @@ import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -64,14 +65,14 @@ import butterknife.OnClick;
 public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implements
         BaseViewBehavior<Object>, AdapterView.OnItemSelectedListener {
 
-    @BindView(R.id.toolbarTitleTv)
-    CustomFontTextView toolbarTitleTv;
+        @BindView(R.id.toolbarTitleTv)
+        CustomFontTextView toolbarTitleTv;
 
-    @BindView(R.id.spinnerProjects)
-    Spinner spinnerProjects;
+        @BindView(R.id.spinnerProjects)
+        Spinner spinnerProjects;
 
-    @BindView(R.id.pickerDate)
-    TextView pickerDate;
+        @BindView(R.id.pickerDate)
+        TextView pickerDate;
 
     @BindView(R.id.startTime)
     TextView startTime;
@@ -132,7 +133,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
     @Override
     protected String title() {
-        return "Time SheetEntry";
+        return "Time Sheet Entry";
     }
 
     @Override
@@ -201,6 +202,9 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
             if (loggedInUser != null)
                 presenter().getProjectNames(loggedInUser.empCode);
 
+            toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
+            toolbarTitleTv.setTextSize(25);
+            toolbarTitleTv.setTextColor(ContextCompat.getColor(this, R.color.white));
             RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) toolbarTitleTv.getLayoutParams();
             lp.setMargins(0, 0, 75, 0);
             toolbarTitleTv.setPadding(0, 0, 75, 0);

@@ -2,6 +2,7 @@ package com.android.timesheet.admin_operations.project_master.add_project;
 
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -49,7 +50,7 @@ public class AddProject extends BaseActivity<AddProjectPresenter> implements
 
     @Override
     protected String title() {
-        return "Add Projects Master";
+        return "Add Projects";
     }
 
     @Override
@@ -104,7 +105,9 @@ public class AddProject extends BaseActivity<AddProjectPresenter> implements
         });
 
         toolbarTitleTv.setText(title());
-        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
+        toolbarTitleTv.setTextSize(25);
+        toolbarTitleTv.setTextColor(ContextCompat.getColor(this, R.color.white));
     }
 
     @Override

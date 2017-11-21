@@ -37,6 +37,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @BindView(R.id.editTextECode)
     EditText editTextECode;
+
     @BindView(R.id.editTextPassword)
     EditText editTextPassword;
 

@@ -3,6 +3,7 @@ package com.android.timesheet.admin_operations.project_master.edit_project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ToggleButton;
@@ -54,7 +55,7 @@ public class EditProject extends BaseActivity<EditProjectPresenter>
 
     @Override
     protected String title() {
-        return "Modify Project Master";
+        return "Update Project";
     }
 
     @Override
@@ -67,7 +68,9 @@ public class EditProject extends BaseActivity<EditProjectPresenter>
         super.onCreate(savedInstanceState);
 
         toolbarTitleTv.setText(title());
-        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
+        toolbarTitleTv.setTextSize(25);
+        toolbarTitleTv.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         projectNameET.setEnabled(false);
         projectCodeET.setEnabled(false);

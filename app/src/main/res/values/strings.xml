@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TimeSheet</string>
+    <string name="app_name">Time Sheet</string>
     <string name="time_sheet">Time Sheet</string>
 
     <!--Admin-->
@@ -51,9 +51,9 @@
 
     <!--Common-->
     <string name="no_internet_connection">No Internet connection! Check your settings.</string>
-    <string name="tab_home">TimeSheet</string>
-    <string name="tab_week">Weekly</string>
-    <string name="tab_month">Monthly</string>
+    <string name="tab_home">Time Sheet</string>
+    <string name="tab_week">Weekly Report</string>
+    <string name="tab_month">Monthly Report</string>
     <string name="prompt_progress_title">Please Wait…</string>
 
 

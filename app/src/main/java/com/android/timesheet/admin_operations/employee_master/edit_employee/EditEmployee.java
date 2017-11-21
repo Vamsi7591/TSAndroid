@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.ToggleButton;
 
 import com.android.common.AppConfig;
@@ -60,7 +60,7 @@ public class EditEmployee extends BaseActivity<EditEmployeePresenter>
 
     @Override
     protected String title() {
-        return "Update Employee Master";
+        return "Update Employee";
     }
 
     @Override
@@ -85,8 +85,12 @@ public class EditEmployee extends BaseActivity<EditEmployeePresenter>
         super.onCreate(savedInstanceState);
 
         /*  ToolbarTitle */
+
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
+        toolbarTitleTv.setTextSize(25);
+        toolbarTitleTv.setTextColor(ContextCompat.getColor(this, R.color.white));
         toolbarTitleTv.setText(title());
-        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+
         /*  ToolbarTitle End */
 
         /*Disable fields selection initially*/

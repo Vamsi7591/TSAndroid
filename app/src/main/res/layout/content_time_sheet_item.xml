@@ -74,6 +74,7 @@
                 android:layout_marginTop="@dimen/margin_5"
                 android:ellipsize="marquee"
                 android:gravity="start|center"
+                android:layout_marginRight="50sp"
                 android:paddingLeft="@dimen/margin_15"
                 android:paddingStart="@dimen/margin_15"
                 android:singleLine="true"

@@ -3,6 +3,7 @@ package com.android.timesheet.admin_operations.employee_project;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -92,7 +93,10 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
 
         toolbarTitleTv.setText(title());
 //        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) toolbarTitleTv.getLayoutParams();
-        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
+        toolbarTitleTv.setTextSize(25);
+        toolbarTitleTv.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         employeesList = new ArrayList<>();
         projectsList = new ArrayList<>();

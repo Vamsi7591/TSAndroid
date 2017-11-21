@@ -86,7 +86,7 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
 
     @Override
     protected String title() {
-        return "TimeSheet";
+        return "Time Sheet";
     }
 
     @Override
@@ -153,7 +153,7 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
 
         if (mMenu == null) {
 //            menuItemSwitch = mMenu.findItem(R.id.action_menu_home);
-            changeTitle("TimeSheet");
+            changeTitle("Time Sheet");
             showHomeToolbar();
         }
 
@@ -220,17 +220,17 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
                 switch (position) {
                     case 0:
                         currentTab = KEY_HOME;
-                        changeTitle("TimeSheet");
+                        changeTitle("Time Sheet");
                         showHomeToolbar();
                         break;
                     case 1:
                         currentTab = KEY_WEEKLY;
-                        changeTitle("Weekly");
+                        changeTitle("Weekly Report");
                         clearToolbarMenu();
                         break;
                     case 2:
                         currentTab = KEY_MONTHLY;
-                        changeTitle("Monthly");
+                        changeTitle("Monthly Report");
                         clearToolbarMenu();
                         break;
                     /*case 3:
@@ -345,17 +345,17 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
     public void changeTitle(String title) {
         textViewToolbarTitle.setTextColor(ContextCompat.getColor(this, R.color.white));
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
-        if (title.equals("TimeSheet")) {
+        if (title.equals("Time Sheet")) {
             textViewToolbarTitle.setText(title);
-//            textViewToolbarTitle.setTextSize(20);
-            textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+            textViewToolbarTitle.setTextSize(25);
+            textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
             lp.setMargins(0, 0, 0, 0);
             textViewToolbarTitle.setPadding(0, 0, 0, 0);
             textViewToolbarTitle.setLayoutParams(lp);
         } else {
             textViewToolbarTitle.setText(title);
-//            textViewToolbarTitle.setTextSize(20);
-            textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+            textViewToolbarTitle.setTextSize(25);
+            textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
 
             lp.setMargins(0, 0, 75, 0);
             textViewToolbarTitle.setPadding(0, 0, 75, 0);
