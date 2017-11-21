@@ -29,7 +29,6 @@ public class LoginPresenter extends BasePresenter<LoginViewBehavior<User>, Login
 
     @Override
     protected LoginInteractor provideInteractor() {
-
         return new LoginInteractor(context);
     }
 
@@ -116,7 +115,6 @@ public class LoginPresenter extends BasePresenter<LoginViewBehavior<User>, Login
             System.out.println(e.getMessage());
         }
     }
-
 
     public void openSplash() {
         router().openMainActivity();

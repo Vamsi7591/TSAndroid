@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.timesheet.R;
+import com.android.timesheet.app.App;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.AllEmployeesResponse;
 import com.android.timesheet.shared.models.AssignEmpParams;
@@ -320,7 +321,7 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
         } else if (o instanceof String) {
             /*Assign or removeTabBtn response string*/
             String response = (String) o;
-            Toast.makeText(EmployeeProject.this, response, Toast.LENGTH_LONG).show();
+            App.getInstance().customToast(response);
         }
 
     }

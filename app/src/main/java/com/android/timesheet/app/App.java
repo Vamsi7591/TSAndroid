@@ -1,8 +1,13 @@
 package com.android.timesheet.app;
 
 import android.app.Application;
+import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
@@ -11,6 +16,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.common.AppConfig;
 import com.android.timesheet.R;
 import com.android.timesheet.shared.database.AppDatabase;
 import com.android.timesheet.shared.store_models.UserStore;
@@ -27,8 +33,9 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
 
     private static Context mContext;
     private Thread.UncaughtExceptionHandler _androidUncaughtExceptionHandler;
-    String TAG = "App";
+    String TAG = "TSApp";
 
+    ProgressDialog proDialog;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -48,6 +55,10 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
         /*This instantiates DBFlow Library*/
         initDatabase();
 
+        proDialog = new ProgressDialog(this);
+
+//        startService(new Intent(this, BackgroundService.class)); //start service which is MyService.java
+//        registerReceiver(receiver, new IntentFilter(AppConfig.INTERNET_CHECK));
     }
 
     public static Context getAppContext() {
@@ -123,7 +134,76 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
 
         /*Let Android show the default error dialog*/
         _androidUncaughtExceptionHandler.uncaughtException(thread, throwable);
+
     }
 
+    // Gloabl declaration of variable to use in whole app
+
+    public static boolean activityVisible; // Variable that will check the
+    // current activity state
+
+    public static boolean isActivityVisible() {
+        return activityVisible; // return true or false
+    }
+
+    public static void activityResumed() {
+        activityVisible = true;// this will set true when activity resumed
+
+    }
+
+    public static void activityPaused() {
+        activityVisible = false;// this will set false when activity paused
+    }
+
+
+    /*Broadcast receiver*/
+    boolean isShowing = false;
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            switch (intent.getAction()) {
+                case AppConfig.INTERNET_CHECK:
+                    // do something
+                    Bundle bundle = intent.getExtras();
+                    if (bundle != null) {
+                        boolean flag = bundle.getBoolean(AppConfig.INTERNET);
+                        if (flag) {
+                            if (isShowing) {
+                                if (proDialog != null) {
+                                    if (proDialog.isShowing()) {
+                                        new Handler().postDelayed(() -> {
+                                                    proDialog.setTitle("HURRAY!");
+                                                    proDialog.setMessage("Internet available :)");
+                                                    proDialog.setCancelable(false);
+                                                    proDialog.show();
+                                                }
+                                                , 1000);
+                                        proDialog.dismiss();
+                                    }
+                                }
+                                isShowing = false;
+                            }
+//                            Toast.makeText(ImageActivity.this, "Have network", Toast.LENGTH_SHORT).show();
+                        } else {
+                            if (!isShowing) {
+                                if (proDialog != null && !proDialog.isShowing()) {
+                                    new Handler().postDelayed(() -> {
+                                                proDialog.setTitle("OOPS!");
+                                                proDialog.setMessage("Internet disconnected :(");
+                                                proDialog.setCancelable(false);
+                                                proDialog.show();
+                                            }
+                                            , 0);
+                                }
+                                isShowing = true;
+                            }
+//                            Toast.makeText(ImageActivity.this, "No network", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    break;
+            }
+        }
+    };
 
 }

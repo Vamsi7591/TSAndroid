@@ -23,11 +23,12 @@ import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.adapters.TabbedFragmentPagerAdapter;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.util.FontUtils;
+import com.android.timesheet.shared.util.InternetUtils;
 import com.android.timesheet.shared.widget.CustomFontTextView;
 import com.android.timesheet.shared.widget.NonSwipeableViewPager;
 import com.android.timesheet.user_operations.reports.monthly.MonthlyFragment;
-import com.android.timesheet.user_operations.timesheet.sheet_fragment.TimeSheetFragment;
 import com.android.timesheet.user_operations.reports.weekly.WeeklyFragment;
+import com.android.timesheet.user_operations.timesheet.sheet_fragment.TimeSheetFragment;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.List;
@@ -104,15 +105,13 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         super.onCreate(savedInstanceState);
         user = presenter().getCurrentUser();
 
-        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        /*firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         Bundle bundle = new Bundle();
         bundle.putString("name",user.empName);
         bundle.putString("email",user.emailId);
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "user_Info");
-        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-
-
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);*/
 
         if (user != null) {
 //                isAdmin = true;
@@ -167,6 +166,12 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
             } else {
                 viewPager.setCurrentItem(0);
             }*/
+        }
+
+        if (InternetUtils.isInternetConnected(this)) {
+            InternetUtils.hideLoadingDialog();
+        } else {
+            InternetUtils.showLoadingDialog(this);
         }
     }
 

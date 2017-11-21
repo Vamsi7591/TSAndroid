@@ -5,7 +5,6 @@
     android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_border"
     android:fillViewport="true"
     tools:context=".common_operations.login.LoginActivity">
 
@@ -142,15 +141,15 @@
         <RelativeLayout
             android:id="@+id/llLoginAction"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/thumb_h"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/bg_border">
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
 
             <com.android.timesheet.shared.widget.CustomFontTextView
                 android:id="@+id/textViewLogin"
                 style="@style/AppTheme.Action.TextView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/thumb_h"
+                android:layout_marginTop="@dimen/margin_20"
                 android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:text="@string/lb_login"

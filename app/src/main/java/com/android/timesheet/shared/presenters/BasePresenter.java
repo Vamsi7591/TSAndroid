@@ -6,6 +6,7 @@ import android.provider.Settings;
 
 import com.android.timesheet.shared.interactors.BaseInteractor;
 import com.android.timesheet.shared.routers.BaseRouter;
+import com.android.timesheet.shared.util.InternetUtils;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 
 /**
@@ -33,9 +34,6 @@ public abstract class BasePresenter<V extends BaseViewBehavior, I extends BaseIn
 
     /**
      * @return mViewBehavior - View component
-     *
-     *
-     *
      */
     protected V viewBehaviour() {
         return mViewBehavior;
@@ -70,10 +68,15 @@ public abstract class BasePresenter<V extends BaseViewBehavior, I extends BaseIn
         }
     }
 
-    public void openMainActivity()
-        {
+    public void openMainActivity() {
         router().openMainActivity();
     }
+
+    /*public boolean checkNetwork() {
+        //            Log.v(TAG, "Available");
+        //            Log.v(TAG, "Not Available");
+        return InternetUtils.isInternetConnected(this.context);
+    }*/
 
 
     @SuppressLint("HardwareIds")

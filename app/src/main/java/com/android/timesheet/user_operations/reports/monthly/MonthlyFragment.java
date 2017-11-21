@@ -129,7 +129,7 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
         });
 
         if (cMonth > 0)
-            monthSpinner.setSelection(cMonth - 1);
+            monthSpinner.setSelection(cMonth );//- 1
         else
             monthSpinner.setSelection(0);
 
@@ -237,9 +237,9 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
                 projectName = month_data.get(k).getProjectname();
 
                 if (i == 0)
-                    if (k == 2) {
+                    /*if (k == 2) {
                         xValues.add("Week:" + month_data.get(k).getWeekno());
-                    } else
+                    } else*/
                         xValues.add("W:" +month_data.get(k).getWeekno());
             }
 

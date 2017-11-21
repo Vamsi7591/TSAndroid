@@ -14,9 +14,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.android.timesheet.R;
+import com.android.timesheet.app.App;
 import com.android.timesheet.shared.presenters.BasePresenter;
 import com.android.timesheet.shared.presenters.Presenter;
-import com.google.firebase.crash.FirebaseCrash;
+import com.android.timesheet.shared.util.InternetConnectorReceiver;
+import com.android.timesheet.shared.util.InternetUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +29,7 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements Presenter {
 
+    private static final String TAG = "BaseActivity";
     @Nullable
     @BindView(R.id.app_bar)
     protected AppBarLayout appBarLayout;
@@ -121,15 +124,16 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        new InternetConnectorReceiver(this);
 
 //        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler(){
+        /*Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler(){
             @Override
             public void uncaughtException(Thread thread, Throwable ex) {
                 FirebaseCrash.report(ex);
             }
-        });
+        });*/
 
         /*Bundle bundle = new Bundle();
         bundle.putString("name","");
@@ -244,6 +248,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         /*if (isSubscriber()) {
             App.getInstance().getBus().register(this);
         }*/
+        App.activityResumed();
     }
 
     @Override
@@ -256,6 +261,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
             presenter().onPause();
         }
 
+        App.activityPaused();
         super.onPause();
     }
 
@@ -282,6 +288,11 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         overridePendingTransitionExit();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (!InternetUtils.showingDialog())
+            super.onBackPressed();
+    }
 
     /**
      * Overrides the pending Activity transition by performing the "Enter" animation.
@@ -296,6 +307,5 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     protected void overridePendingTransitionExit() {
         overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
-
     //endregion
 }

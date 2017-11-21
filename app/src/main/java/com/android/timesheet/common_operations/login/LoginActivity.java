@@ -6,6 +6,8 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -58,7 +60,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     TextView textViewLogin;*/
 
     private static final String TAG = "LoginActivity";
-    User user = null;
+    Animation animationShake;
 
     @Override
     protected int layoutRestID() {
@@ -88,6 +90,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
               ButterKnife.bind(this);
            }
          */
+        animationShake = AnimationUtils.loadAnimation(getBaseContext(), R.anim.shake_animation);
+
     }
 
     @Override
@@ -101,12 +105,20 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             Log.d(TAG, "stored user : " + user.toString());
             onSuccess(user);
         }
+
+        if (InternetUtils.isInternetConnected(this)) {
+            InternetUtils.hideLoadingDialog();
+        } else {
+            InternetUtils.showLoadingDialog(this);
+        }
+
         super.onResume();
     }
 
     @Override
     public void onLoading() {
         Log.i(TAG, "onLoading");
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -134,16 +146,20 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     public void validationError(HashMap<ValidationError, Integer> errors) {
         Log.i(TAG, "validationError");
         handleError(errors);
+
+        textViewLogin.setVisibility(View.GONE);
+        textViewLogin.setVisibility(View.VISIBLE);
+        textViewLogin.setAnimation(animationShake);
     }
 
     @OnClick(R.id.textViewLogin)
     public void login() {
         clearErrors();
-        if (InternetUtils.isInternetConnected(LoginActivity.this)) {
-            progressBar.setVisibility(View.VISIBLE);
+        if (InternetUtils.isInternetConnected(this)) {
+
             presenter().submitLogin(editTextECode.getText(), editTextPassword.getText());
             /* To hard code inputs use below values
-              "E010", "prisam@1"
+              "E010", "1234567"
               */
         } else {
             infoSnackBar(getString(R.string.no_internet_connection));
@@ -175,7 +191,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     void handleError(HashMap<ValidationError, Integer> errors) {
         for (ValidationError error : errors.keySet()) {
-            String errorStr = getString(errors.get(error).intValue());
+            String errorStr = getString(errors.get(error));
 
             if (error.equals(ValidationError.PASSWORD)) {
                 showError(textInputLayoutPassword, errorStr);

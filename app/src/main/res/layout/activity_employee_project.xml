@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -63,9 +62,9 @@
         <LinearLayout
             android:id="@+id/mActionsLL"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginTop="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorAccent"
             android:orientation="horizontal"
             tools:ignore="UnknownIdInLayout">
 
@@ -98,18 +97,21 @@
         <LinearLayout
             android:id="@+id/mEmpLL"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?actionBarSize"
             android:layout_below="@+id/mActionsLL"
-            android:layout_marginTop="@dimen/margin_20"
-            android:orientation="horizontal"
-            android:padding="10dp">
+            android:layout_marginEnd="@dimen/margin_5"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginRight="@dimen/margin_5"
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Employee Names"
-                android:textColor="#000"
+                android:gravity="center|start"
+                android:text="@string/lb_employee_names"
                 android:textSize="@dimen/tv_font_size_18" />
 
             <Spinner
@@ -117,9 +119,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:gravity="end"
+                android:gravity="end|center"
                 android:popupElevation="@dimen/padding_5"
-                android:textAlignment="viewEnd"
+                android:spinnerMode="dropdown"
+                android:textAlignment="gravity"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:theme="@style/AppTheme.Spinner"
                 tools:ignore="RtlCompat"
@@ -129,17 +132,20 @@
         <LinearLayout
             android:id="@+id/mProjectLL"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?actionBarSize"
             android:layout_below="@+id/mEmpLL"
-            android:orientation="horizontal"
-            android:padding="10dp">
+            android:layout_marginEnd="@dimen/margin_5"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginRight="@dimen/margin_5"
+            android:layout_marginStart="@dimen/margin_10"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Project Name"
-                android:textColor="#000"
+                android:gravity="center|start"
+                android:text="@string/lb_project_name"
                 android:textSize="@dimen/tv_font_size_18" />
 
             <Spinner
@@ -147,9 +153,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
-                android:gravity="end"
+                android:gravity="end|center"
                 android:popupElevation="@dimen/padding_5"
-                android:textAlignment="viewEnd"
+                android:spinnerMode="dropdown"
+                android:textAlignment="gravity"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:theme="@style/AppTheme.Spinner"
                 tools:ignore="RtlCompat"

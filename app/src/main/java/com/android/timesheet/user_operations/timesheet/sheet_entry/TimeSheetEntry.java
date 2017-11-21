@@ -13,14 +13,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Display;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -65,14 +63,14 @@ import butterknife.OnClick;
 public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implements
         BaseViewBehavior<Object>, AdapterView.OnItemSelectedListener {
 
-        @BindView(R.id.toolbarTitleTv)
-        CustomFontTextView toolbarTitleTv;
+    @BindView(R.id.toolbarTitleTv)
+    CustomFontTextView toolbarTitleTv;
 
-        @BindView(R.id.spinnerProjects)
-        Spinner spinnerProjects;
+    @BindView(R.id.spinnerProjects)
+    Spinner spinnerProjects;
 
-        @BindView(R.id.pickerDate)
-        TextView pickerDate;
+    @BindView(R.id.pickerDate)
+    TextView pickerDate;
 
     @BindView(R.id.startTime)
     TextView startTime;
@@ -159,8 +157,13 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
         else
             fromTimeSheetList = false;
 
-        toolbarTitleTv.setText(title());
-        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
+        toolbarTitleTv.setTextSize(25);
+        toolbarTitleTv.setTextColor(ContextCompat.getColor(this, R.color.white));
+        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) toolbarTitleTv.getLayoutParams();
+        lp.setMargins(0, 0, 75, 0);
+        toolbarTitleTv.setPadding(0, 0, 75, 0);
+        toolbarTitleTv.setLayoutParams(lp);
 
         spinnerProjects.setOnItemSelectedListener(this);
         loggedInUser = presenter().getCurrentUser();
@@ -175,10 +178,11 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
         animationLR = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.text_anim_lr);
 
+        /*Add time sheet*/
         if (intentTimeSheet != null) {
             Log.d(TAG, "TS : " + intentTimeSheet.date);
             if (mMenu == null) {
-                showMenu();
+//                showMenu();
             }
 
             projectNamesForSpinner.add(intentTimeSheet.projectName);
@@ -196,26 +200,21 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
                 description_count.setText(String.format("%d/500", intentTimeSheet.taskDescription.length()));
             }
             disableViews(true, 0);
-        } else {
+            toolbarTitleTv.setText(R.string.lb_ts_modify);
+        } else { /*edit time sheet*/
             intentTimeSheet = new TimeSheet();
 
             if (loggedInUser != null)
                 presenter().getProjectNames(loggedInUser.empCode);
 
-            toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
-            toolbarTitleTv.setTextSize(25);
-            toolbarTitleTv.setTextColor(ContextCompat.getColor(this, R.color.white));
-            RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) toolbarTitleTv.getLayoutParams();
-            lp.setMargins(0, 0, 75, 0);
-            toolbarTitleTv.setPadding(0, 0, 75, 0);
-            toolbarTitleTv.setLayoutParams(lp);
+
             disableViews(false, 0);
         }
 
         if (loggedInUser != null)
             intentTimeSheet.setEmpCode(loggedInUser.empCode);
 
-        if (descriptionET != null)
+        /*if (descriptionET != null)
             descriptionET.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -228,7 +227,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
                     return false;
                 }
-            });
+            });*/
 
         descriptionET.addTextChangedListener(new TextWatcher() {
 
@@ -287,11 +286,59 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
             submitBtn.setAnimation(animationShake);
         } else {
             /*submit time intentTimeSheet entry*/
+
+            intentTimeSheet.setStartTime(intentTimeSheet.getDate() + " " + convertTo24Hours(intentTimeSheet.getStartTime()));
+            intentTimeSheet.setEndTime(intentTimeSheet.getDate() + " " + convertTo24Hours(intentTimeSheet.getEndTime()));
+
             if (fromTimeSheetList) {
+                int dayOfMonth = 0;
+                int monthOfYear = 0;
+                int year = 0;
+
+                if (!intentTimeSheet.getDate().isEmpty()) {//mUser.dateOfBirth
+
+                    String[] dobList = selectedDate.split("/");
+                    dayOfMonth = Integer.parseInt(dobList[2]);
+                    monthOfYear = (Integer.parseInt(dobList[1]));
+                    year = Integer.parseInt(dobList[0]);
+
+
+                    Calendar cal = new java.util.GregorianCalendar();
+                    cal.clear();
+                    cal.set(Calendar.YEAR, year);
+                    cal.set(Calendar.MONTH, monthOfYear - 1);
+                    cal.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                    intentTimeSheet.setWeekNo(String.valueOf(cal.get(Calendar.WEEK_OF_YEAR)));
+
+                    selectedDate = year + "/" + monthOfYear + "/" + dayOfMonth;
+                    Log.v(TAG, "Updated week num : " + String.valueOf(cal.get(Calendar.WEEK_OF_YEAR)) + ", Date : " + selectedDate);
+                }
                 presenter().updateSheet(intentTimeSheet);
             } else
                 presenter().submitTimeSheet(intentTimeSheet);
+
+            /*start time
+            2017-11-21 18:54:00.000
+            end time
+            2017-11-21 19:54:00.000
+            */
         }
+    }
+
+    private String convertTo24Hours(String time) {
+        SimpleDateFormat h_mm_a = new SimpleDateFormat("h:mm a");
+        SimpleDateFormat hh_mm_ss = new SimpleDateFormat("HH:mm:ss");
+
+        try {
+            Date d1 = h_mm_a.parse(time);
+            time = hh_mm_ss.format(d1);
+            Log.v(TAG, "Updated 24 hours Time : " + time);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return time;
+        }
+        return time;
     }
 
     void handleError(HashMap<ValidationError, Integer> errors) {
@@ -486,9 +533,9 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
         int menuResID = menuResID();
         boolean hasOptionMenu = (menuResID > 0);
 
-        if (hasOptionMenu) {
+       /* if (hasOptionMenu) {
             getMenuInflater().inflate(menuResID, menu);
-        }
+        }*/
 
         mMenu = menu;
 
@@ -505,8 +552,8 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem menuItemCollapse = menu.findItem(R.id.action_menu_delete);
-        menuItemCollapse.setVisible(intentTimeSheet.date != null);
+        /*MenuItem menuItemCollapse = menu.findItem(R.id.action_menu_delete);
+        menuItemCollapse.setVisible(intentTimeSheet.date != null);*/
         return true;
     }
 
@@ -680,6 +727,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
                 intentTimeSheet.setWeekNo(String.valueOf(cal.get(Calendar.WEEK_OF_YEAR)));
 
                 selectedDate = year + "/" + monthOfYear + "/" + dayOfMonth;
+                Log.v(TAG, "Selected week num : " + String.valueOf(cal.get(Calendar.WEEK_OF_YEAR)) + ", Date : " + selectedDate);
 
                 bottomSheetDialog.hide();
             }

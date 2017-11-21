@@ -29,7 +29,7 @@
     <string name="hint_password">Password</string>
 
     <!--Authentication Validation errors-->
-    <string name="emp_code_required">"Employee code required"</string>
+    <string name="emp_code_required">"Employee code is required"</string>
     <string name="error_required_password">Password is required</string>
     <string name="error_required_cpassword">Confirm Password is required</string>
     <string name="error_no_current_password">Current password cannot be blank</string>
@@ -97,5 +97,8 @@
     <string name="lb_is_common_project">Is Common Project</string>
     <string name="lb_select_year">Select Year</string>
     <string name="lb_done">Done</string>
+    <string name="error_no_network">Network disconnected</string>
+    <string name="lb_employee_names">Employee Names</string>
+    <string name="lb_ts_modify">Time Sheet Modify</string>
 
 </resources>

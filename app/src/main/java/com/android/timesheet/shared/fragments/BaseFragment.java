@@ -85,13 +85,15 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
 
     }
 
-    protected void initializer(){
+    protected void initializer() {
         //TODO Some init variables
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
+        App.activityResumed();
     }
 
     @Override
@@ -100,6 +102,8 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
         if (mPresenter != null) {
             presenter().onPause();
         }
+
+        App.activityPaused();
 
         super.onPause();
     }
@@ -166,8 +170,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     public Context getBaseContext() {
         if (getActivity() != null) {
             return getActivity();
-        }
-        else {
+        } else {
             return App.getAppContext();
         }
     }
@@ -193,9 +196,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
             getBaseActivity().setTitle(title);
         }
     }
-
-
-
 
 
     //endregion

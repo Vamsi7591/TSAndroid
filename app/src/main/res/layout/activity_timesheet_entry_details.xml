@@ -39,8 +39,10 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginEnd="@dimen/margin_30"
-                        android:layout_marginStart="@dimen/margin_30">
+                        android:layout_marginEnd="@dimen/margin_20"
+                        android:layout_marginStart="@dimen/margin_0"
+                        android:layout_marginRight="@dimen/margin_20"
+                        android:layout_marginLeft="@dimen/margin_0">
 
                         <com.android.timesheet.shared.widget.CustomFontTextView
                             android:id="@+id/toolbarTitleTv"
@@ -292,10 +294,12 @@
                             android:background="@null"
                             android:gravity="start"
                             android:hint="@string/enter_you_description_here"
+                            android:inputType="textMultiLine"
+                            android:ems="10"
+                            android:minHeight="100dp"
                             android:minLines="6"
                             android:textColor="@color/black"
                             android:textColorHint="@color/colorGrayDark">
-
                         </EditText>
 
                         <com.android.timesheet.shared.widget.CustomFontTextView
@@ -308,7 +312,7 @@
                             android:drawableRight="@drawable/ic_pencil_b"
                             android:gravity="end|center"
                             android:padding="@dimen/rl_margin_5"
-                            android:text="0/250"
+                            android:text="0/500"
                             android:textColor="@color/colorGreyish"
                             app:font="@string/roboto_regular_italic"
                             tools:ignore="HardcodedText,ObsoleteLayoutParam">
@@ -325,8 +329,6 @@
                     android:id="@+id/actionsLL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_15"
-                    android:layout_marginTop="@dimen/margin_15"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:visibility="visible">
@@ -335,6 +337,8 @@
                         android:id="@+id/modifyBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_15"
+                        android:layout_marginTop="@dimen/margin_15"
                         android:layout_weight="1"
                         android:background="@color/colorPrimaryDark"
                         android:gravity="center"
@@ -346,6 +350,8 @@
                         android:id="@+id/submitBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_15"
+                        android:layout_marginTop="@dimen/margin_15"
                         android:layout_weight="1"
                         android:background="@color/colorAccent"
                         android:gravity="center"

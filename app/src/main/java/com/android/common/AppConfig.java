@@ -12,4 +12,7 @@ public interface AppConfig {
     /*Constant keys*/
     String EMPLOYEE_OBJECT = "employeeObject";
     String PROJECT_OBJECT = "projectObject";
+
+    String INTERNET_CHECK = "com.android.timesheet.app";
+    String INTERNET = "network";
 }
