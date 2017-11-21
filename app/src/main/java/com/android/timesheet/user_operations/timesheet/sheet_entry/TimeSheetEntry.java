@@ -287,8 +287,8 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
         } else {
             /*submit time intentTimeSheet entry*/
 
-            intentTimeSheet.setStartTime(intentTimeSheet.getDate() + " " + convertTo24Hours(intentTimeSheet.getStartTime()));
-            intentTimeSheet.setEndTime(intentTimeSheet.getDate() + " " + convertTo24Hours(intentTimeSheet.getEndTime()));
+            intentTimeSheet.setStartTime(intentTimeSheet.getDate().replace("/","-") + " " + convertTo24Hours(intentTimeSheet.getStartTime()));
+            intentTimeSheet.setEndTime(intentTimeSheet.getDate().replace("/","-") + " " + convertTo24Hours(intentTimeSheet.getEndTime()));
 
             if (fromTimeSheetList) {
                 int dayOfMonth = 0;
@@ -296,7 +296,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
                 int year = 0;
 
                 if (!intentTimeSheet.getDate().isEmpty()) {//mUser.dateOfBirth
-
+                    selectedDate = intentTimeSheet.getDate();
                     String[] dobList = selectedDate.split("/");
                     dayOfMonth = Integer.parseInt(dobList[2]);
                     monthOfYear = (Integer.parseInt(dobList[1]));
@@ -332,7 +332,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
         try {
             Date d1 = h_mm_a.parse(time);
-            time = hh_mm_ss.format(d1);
+            time = hh_mm_ss.format(d1)+".000";
             Log.v(TAG, "Updated 24 hours Time : " + time);
         } catch (Exception e) {
             e.printStackTrace();

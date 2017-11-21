@@ -46,10 +46,9 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/margin_0"
                             android:layout_marginRight="@dimen/margin_0"
-                            android:clickable="true"
                             android:gravity="center"
                             android:textAlignment="center"
-                            android:textSize="@dimen/tv_font_size_20"
+                            android:textSize="@dimen/tv_font_size_25"
                             android:textColor="@color/white"
                             android:visibility="visible"
                             app:font="@string/roboto_thin" />
@@ -95,7 +94,7 @@
                         android:paddingBottom="@dimen/margin_3"
                         android:text="Personal info"
                         android:textColor="@android:color/black"
-                        android:textStyle="italic" />
+                        android:textStyle="normal" />
 
                 </LinearLayout>
 
@@ -193,7 +192,7 @@
                         android:paddingBottom="@dimen/margin_3"
                         android:text="Projects handling"
                         android:textColor="@android:color/black"
-                        android:textStyle="italic" />
+                        android:textStyle="normal" />
 
                 </LinearLayout>
 
@@ -232,6 +231,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?android:attr/actionBarSize"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:orientation="horizontal">
 
                     <TextView

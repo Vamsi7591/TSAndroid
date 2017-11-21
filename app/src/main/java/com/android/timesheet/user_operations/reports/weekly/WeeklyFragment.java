@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
@@ -52,7 +53,7 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements Bas
     ImageView loadChart;
 
     @BindView(R.id.noDataFoundRL)
-    RelativeLayout noDataFoundRL;
+    LinearLayout noDataFound;
 
 
     int cWeek = 0;
@@ -160,10 +161,10 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements Bas
 
                     loadPie(arraylist);
                     weekChart.setVisibility(View.VISIBLE);
-                    noDataFoundRL.setVisibility(View.GONE);
+                    noDataFound.setVisibility(View.GONE);
                 } else {
                     weekChart.setVisibility(View.GONE);
-                    noDataFoundRL.setVisibility(View.VISIBLE);
+                    noDataFound.setVisibility(View.VISIBLE);
                 }
 
 
@@ -260,10 +261,10 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements Bas
         if (arrayList.size() > 0) {
             loadPie(arrayList);
             weekChart.setVisibility(View.VISIBLE);
-            noDataFoundRL.setVisibility(View.GONE);
+            noDataFound.setVisibility(View.GONE);
         } else {
             weekChart.setVisibility(View.GONE);
-            noDataFoundRL.setVisibility(View.VISIBLE);
+            noDataFound.setVisibility(View.VISIBLE);
         }
 
     }
@@ -271,6 +272,6 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements Bas
     @Override
     public void onFailed(Throwable e) {
         weekChart.setVisibility(View.GONE);
-        noDataFoundRL.setVisibility(View.VISIBLE);
+        noDataFound.setVisibility(View.VISIBLE);
     }
 }

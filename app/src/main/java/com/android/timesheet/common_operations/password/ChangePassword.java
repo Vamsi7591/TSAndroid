@@ -79,7 +79,7 @@ public class ChangePassword extends BaseActivity<ChangePasswordPresenter> implem
 
     @Override
     protected String title() {
-        return "ChangePassword";
+        return "Change Password";
     }
     @Override
     protected boolean showBackButton() {
@@ -97,8 +97,7 @@ public class ChangePassword extends BaseActivity<ChangePasswordPresenter> implem
         checkFieldsForEmptyValues();
 
         textViewToolbarTitle.setText(title());
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
-        textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
+        textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
 
         confirmPwd.addTextChangedListener(new TextWatcher() {
             @Override

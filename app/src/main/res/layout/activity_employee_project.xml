@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="?attr/actionBarSize"
-            android:background="@color/colorAccent"
+            android:background="@color/colorSheetTitle"
             android:orientation="horizontal"
             tools:ignore="UnknownIdInLayout">
 
@@ -74,7 +74,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@null"
-                android:drawableTop="@drawable/ic_thumb_up_black"
+                android:drawableTop="@drawable/ic_assign_project"
                 android:text="Assign"
                 android:textColor="@color/white"
                 android:textSize="@dimen/tv_font_size_20"
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@null"
-                android:drawableTop="@drawable/ic_thumb_down_black"
+                android:drawableTop="@drawable/ic_remove_project"
                 android:text="Remove"
                 android:textColor="@color/colorWhite115"
                 android:textSize="@dimen/tv_font_size_16"
@@ -178,12 +178,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#0ab345"
-                android:drawableBottom="@drawable/ic_thumb_up_black"
+                android:background="@drawable/bg_green_border_black"
                 android:gravity="center"
                 android:text="Assign"
                 android:textAllCaps="false"
-                android:textColor="#fff"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.Button.Inverse"
+                android:textColor="@color/white"
                 android:visibility="gone" />
 
             <Button
@@ -192,11 +192,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="#d11336"
-                android:drawableBottom="@drawable/ic_thumb_down_black"
+                android:background="@drawable/bg_red_border_black"
                 android:text="Remove"
                 android:textAllCaps="false"
-                android:textColor="#fff"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.Button.Inverse"
+                android:textColor="@color/white"
                 android:visibility="gone" />
         </LinearLayout>
 

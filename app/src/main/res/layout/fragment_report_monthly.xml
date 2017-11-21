@@ -94,41 +94,60 @@
 
         </RelativeLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_2"
+            android:background="@color/black" />
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/seekBar1"
             android:layout_marginLeft="@dimen/margin_10"
             android:layout_marginRight="@dimen/margin_10"
             android:layout_marginTop="0dp"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
-        <RelativeLayout
+        <!--empty view-->
+        <LinearLayout
             android:id="@+id/noDataFoundRL"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <ImageView
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_above="@+id/noDataFound"
-                android:layout_centerInParent="true"
-                android:background="@drawable/ic_empty" />
+                android:id="@+id/no_invitation_state_ai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/rate_middle" />
 
             <TextView
-                android:id="@+id/noDataFound"
+                android:id="@+id/body_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
                 android:gravity="center"
-                android:text="No data found"
-                android:textAllCaps="true"
-                android:textSize="@dimen/tv_font_size_20" />
+                android:text="Monthly report is empty"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/cardview_dark_background" />
 
-        </RelativeLayout>
+            <TextView
+                android:id="@+id/body_2"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/margin_20"
+                android:layout_marginTop="@dimen/margin_20"
+                android:gravity="center"
+                android:lines="3"
+                android:text="Change the month and try again"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Menu"
+                android:textColor="@color/cardview_dark_background"
+                android:visibility="gone" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

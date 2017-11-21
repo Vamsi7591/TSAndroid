@@ -98,7 +98,7 @@
     <string name="lb_select_year">Select Year</string>
     <string name="lb_done">Done</string>
     <string name="error_no_network">Network disconnected</string>
-    <string name="lb_employee_names">Employee Names</string>
+    <string name="lb_employee_names">Employee Name</string>
     <string name="lb_ts_modify">Time Sheet Modify</string>
 
 </resources>

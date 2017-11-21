@@ -173,8 +173,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         textInputLayoutPassword.setErrorEnabled(false);
         textInputLayoutPassword.setError(null);
 
-        editTextECode.setCursorVisible(false);
-        editTextPassword.setCursorVisible(false);
+        /*editTextECode.setCursorVisible(false);
+        editTextPassword.setCursorVisible(false);*/
     }
 
     public void infoSnackBar(String msg) {

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.android.timesheet.R;
@@ -53,7 +53,7 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
     ImageView loadLine;
 
     @BindView(R.id.noDataFoundRL)
-    RelativeLayout noDataFound;
+    LinearLayout noDataFound;
 
     String TAG = "MonthlyFragment";
 

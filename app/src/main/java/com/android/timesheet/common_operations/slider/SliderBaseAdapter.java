@@ -85,8 +85,7 @@ public class SliderBaseAdapter extends BaseAdapter {
                     Intent intent = new Intent(activity, slide_classes.get(position));
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     activity.startActivity(intent);
-
-                    ((LandingActivity) activity).closeDrawer();
+//                    ((LandingActivity) activity).closeDrawer();
                 }
             }
         });

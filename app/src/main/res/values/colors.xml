@@ -97,4 +97,6 @@
     <color name="color_stepsview_holder">#f0757c80</color>
     <color name="orange">#fffaaa00</color>
     <color name="black">#000000</color>
+    <color name="green">#2ecc71</color>
+    <color name="red">#e74c3c</color>
 </resources>

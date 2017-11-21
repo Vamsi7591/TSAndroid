@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -61,7 +61,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
     ImageView loadBar;
 
     @BindView(R.id.noDataFoundRL)
-    RelativeLayout noDataFoundRL;
+    LinearLayout noDataFound;
 
     @BindView(R.id.toolbarTitleTv)
     CustomFontTextView textViewToolbarTitle;
@@ -127,12 +127,14 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
 
 
                     ProjectSum_Params projectSum_params;
-                    projectSum_params = new ProjectSum_Params(dataEmp.get(selectedEmployeeNamePos - 1).getEmpCode(), String.valueOf(projName.getSelectedItem()), String.valueOf(cYear));
-                    presenter().fetchSummaryData(projectSum_params);
+                    if (selectedEmployeeNamePos > 0) {
+                        projectSum_params = new ProjectSum_Params(dataEmp.get(selectedEmployeeNamePos - 1).getEmpCode(), String.valueOf(projName.getSelectedItem()), String.valueOf(cYear));
+                        presenter().fetchSummaryData(projectSum_params);
+                    }
 //
                 } else {
                     barChart.setVisibility(View.GONE);
-                    noDataFoundRL.setVisibility(View.VISIBLE);
+                    noDataFound.setVisibility(View.VISIBLE);
 
                 }
 
@@ -206,7 +208,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
 //
         } else {
             barChart.setVisibility(View.GONE);
-            noDataFoundRL.setVisibility(View.VISIBLE);
+            noDataFound.setVisibility(View.VISIBLE);
 
         }
 
@@ -263,7 +265,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
                 }
 
                 barChart.setVisibility(View.VISIBLE);
-                noDataFoundRL.setVisibility(View.GONE);
+                noDataFound.setVisibility(View.GONE);
 
                 adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, projNamesList);
                 projName.setAdapter(adapter);
@@ -290,11 +292,11 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
                 loadBarChart(sumResponse.getProjectSummaries());
 
                 barChart.setVisibility(View.VISIBLE);
-                noDataFoundRL.setVisibility(View.GONE);
+                noDataFound.setVisibility(View.GONE);
             }
         } else {
             barChart.setVisibility(View.GONE);
-            noDataFoundRL.setVisibility(View.VISIBLE);
+            noDataFound.setVisibility(View.VISIBLE);
         }
 
         if (o instanceof String) {
@@ -351,7 +353,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
     public void onFailed(Throwable e) {
 
         barChart.setVisibility(View.GONE);
-        noDataFoundRL.setVisibility(View.VISIBLE);
+        noDataFound.setVisibility(View.VISIBLE);
 
     }
 

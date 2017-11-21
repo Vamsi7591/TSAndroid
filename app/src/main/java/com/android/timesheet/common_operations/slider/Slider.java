@@ -45,7 +45,7 @@ public class Slider {
                 Intent intent = new Intent(context, MyProfile.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 context.startActivity(intent);
-                ((LandingActivity) context).closeDrawer();
+//                ((LandingActivity) context).closeDrawer();
             }
         });
     }
