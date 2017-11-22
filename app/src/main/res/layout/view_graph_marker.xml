@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg_circle">
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/margin_30"
+        android:src="@drawable/ic_arrow_down_b" />
 
     <TextView
         android:id="@+id/tvContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_blue_border_black"
         android:ellipsize="end"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:padding="@dimen/padding_5"
+        android:text="Value"
         android:textAppearance="@style/AppTheme.Text.TextView.Medium"
-        android:padding="@dimen/padding_10"
-        android:text="gklhl" />
+        android:textColor="@color/white" />
+
 
 </RelativeLayout>

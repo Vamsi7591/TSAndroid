@@ -100,14 +100,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-                            android:imeOptions="actionNext"
+                            android:imeOptions="actionUnspecified"
                             android:inputType="text"
+                            android:longClickable="false"
+                            android:contextClickable="false"
                             android:maxLines="1"
                             android:nextFocusDown="@+id/textInputLayoutPassword"
                             android:paddingTop="@dimen/layout_action_padding_5"
+                            android:singleLine="true"
                             android:text=""
                             android:textColor="@color/black"
-                            app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance" />
+                            android:textIsSelectable="false"
+                            app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance"
+                            tools:targetApi="m" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -129,13 +134,13 @@
                             android:layout_height="wrap_content"
                             android:contextClickable="false"
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@%+\/'!#$^?.:()[]{}~-_"
-                            android:imeOptions="actionNext"
+                            android:imeOptions="actionDone"
                             android:inputType="textPassword"
                             android:longClickable="false"
                             android:maxLines="1"
                             android:nextFocusDown="@+id/textViewLogin"
-                            android:paddingTop="@dimen/layout_action_padding_5"
                             android:pointerIcon="hand"
+                            android:singleLine="true"
                             android:textColor="@color/black"
                             android:textIsSelectable="false"
                             app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance"

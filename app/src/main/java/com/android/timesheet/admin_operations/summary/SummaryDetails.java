@@ -24,6 +24,7 @@ import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.util.FontUtils;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 import com.android.timesheet.shared.widget.CustomFontTextView;
+import com.android.timesheet.user_operations.reports.monthly.LineChartMarkerView;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -316,6 +317,11 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
                 labels.add(data.get(k).getMonth().substring(0, 3));
             }
         }
+
+        barChart.setTouchEnabled(true);
+        BarChartMarkerView barChartMarkerView = new BarChartMarkerView(this, R.layout.view_graph_marker);
+        barChart.setMarkerView(barChartMarkerView);
+        barChart.setDrawMarkerViews(true);
 
         barChart.setDrawGridBackground(false);
         barChart.getXAxis().setDrawGridLines(false); // disable grid lines for the XAxis

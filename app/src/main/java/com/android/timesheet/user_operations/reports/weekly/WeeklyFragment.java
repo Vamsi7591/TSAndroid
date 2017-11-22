@@ -126,8 +126,6 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements Bas
                 });
 
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 cYear = Integer.parseInt(yearSpinner.getSelectedItem().toString());
@@ -182,8 +180,6 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements Bas
             WeekParams weekParams = new WeekParams(user.empCode, cWeek, cYear);
             presenter().fetchWeekData(weekParams);
         }
-
-
     }
 
 

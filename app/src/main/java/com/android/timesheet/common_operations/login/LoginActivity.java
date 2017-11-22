@@ -95,13 +95,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
               ButterKnife.bind(this);
            }
          */
-        animationShake = AnimationUtils.loadAnimation(getBaseContext(), R.anim.shake_animation);
 
         try {
             editTextPassword.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     editTextPassword.setSelection(0);
+                    editTextPassword.setSelection(editTextPassword.getText().length());
                 }
             });
             editTextPassword.setOnLongClickListener(new View.OnLongClickListener() {
@@ -153,11 +153,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             InternetUtils.showLoadingDialog(this);
         }
 
-        //Inside onResume and onDestroy
-        ClipboardManager clipboardManager = (ClipboardManager) this.getSystemService(Context.CLIPBOARD_SERVICE);
-        if (clipboardManager != null) {
-            clipboardManager.setText("");
-        }
+        animationShake = AnimationUtils.loadAnimation(getBaseContext(), R.anim.shake_animation);
 
         super.onResume();
     }
@@ -189,6 +185,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         App.getInstance().customToast(e.getMessage());
         /*editTextECode.setText("");
         editTextPassword.setText("");*/
+
+        textViewLogin.setVisibility(View.GONE);
+        textViewLogin.setVisibility(View.VISIBLE);
+        textViewLogin.setAnimation(animationShake);
+
+        editTextPassword.setSelection(editTextPassword.getText().length());
     }
 
     @Override
@@ -244,8 +246,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
             if (error.equals(ValidationError.PASSWORD)) {
                 showError(textInputLayoutPassword, errorStr);
+                editTextPassword.setSelection(editTextPassword.getText().length());
             } else if (error.equals(ValidationError.EMP_CODE)) {
                 showError(textInputLayoutECode, errorStr);
+                editTextECode.setSelection(editTextECode.getText().length());
             }
         }
     }

@@ -29,7 +29,6 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -89,8 +88,8 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
         super.onActivityCreated(savedInstanceState);
 
         lineChart.setTouchEnabled(true);
-        CustomMarkerView customMarkerView = new CustomMarkerView(getContext(), R.layout.view_graph_marker);
-        lineChart.setMarkerView(customMarkerView);
+        LineChartMarkerView lineChartMarkerView = new LineChartMarkerView(getContext(), R.layout.view_graph_marker);
+        lineChart.setMarkerView(lineChartMarkerView);
         lineChart.setDrawMarkerViews(true);
 
         cYear = Calendar.getInstance().get(Calendar.YEAR);
