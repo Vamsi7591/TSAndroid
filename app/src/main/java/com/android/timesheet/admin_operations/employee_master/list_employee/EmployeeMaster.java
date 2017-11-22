@@ -98,6 +98,7 @@ public class EmployeeMaster extends BaseActivity<EmployeeMasterPresenter> implem
         recyclerView.setAdapter(employeeAdapter);
 
         toolbarTitleTv.setText(title());
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
 
         if (mMenu == null) {
             showMenu();

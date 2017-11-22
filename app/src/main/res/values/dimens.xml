@@ -127,4 +127,7 @@
     <dimen name="inputs_height">40dp</dimen>
     <dimen name="tv_font_size_25">25sp</dimen>
     <dimen name="margin_2">2dp</dimen>
+
+    <dimen name="action_bar_default_height_material">56dp</dimen>
+    <dimen name="tv_font_size_22">22sp</dimen>
 </resources>

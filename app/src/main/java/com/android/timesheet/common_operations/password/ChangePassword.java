@@ -7,9 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.timesheet.R;
@@ -40,11 +38,11 @@ public class ChangePassword extends BaseActivity<ChangePasswordPresenter> implem
     @BindView(R.id.confirmPassword)
     EditText confirmPwd;
 
-    @BindView(R.id.sbtbtn)
-    Button submit;
+    @BindView(R.id.submitBtn)
+    CustomFontTextView submitBtn;
 
     @BindView(R.id.toolbarTitleTv)
-    CustomFontTextView textViewToolbarTitle;
+    CustomFontTextView toolbarTitleTv;
 
     private String old_Password, new_Password, confirm_Password;
 
@@ -55,11 +53,11 @@ public class ChangePassword extends BaseActivity<ChangePasswordPresenter> implem
         confirm_Password = confirmPwd.getText().toString();
 
         if (old_Password.isEmpty() || new_Password.isEmpty() || confirm_Password.isEmpty()) {
-            submit.setVisibility(View.GONE);
-            submit.setEnabled(false);
+            submitBtn.setVisibility(View.GONE);
+            submitBtn.setEnabled(false);
         } else {
-            submit.setVisibility(View.VISIBLE);
-            submit.setEnabled(true);
+            submitBtn.setVisibility(View.VISIBLE);
+            submitBtn.setEnabled(true);
         }
     }
 
@@ -92,7 +90,8 @@ public class ChangePassword extends BaseActivity<ChangePasswordPresenter> implem
         super.onCreate(savedInstanceState);
         checkFieldsForEmptyValues();
 
-        textViewToolbarTitle.setText(title());
+        toolbarTitleTv.setText(title());
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
 
         confirmPwd.addTextChangedListener(new TextWatcher() {
             @Override
@@ -111,7 +110,7 @@ public class ChangePassword extends BaseActivity<ChangePasswordPresenter> implem
             }
         });
 
-        submit.setOnClickListener(new View.OnClickListener() {
+        submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 User user = presenter().getCurrentUser();

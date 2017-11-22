@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.common.AppConfig;
@@ -40,7 +39,7 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements
         BaseViewBehavior<ProjectNamesResponse> {
 
     @BindView(R.id.toolbarTitleTv)
-    CustomFontTextView textViewToolbarTitle;
+    CustomFontTextView toolbarTitleTv;
 
     @BindView(R.id.textViewProjects)
     TokenizeTextView tokenizeTextViewProjects;
@@ -95,7 +94,8 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        textViewToolbarTitle.setText(title());
+        toolbarTitleTv.setText(title());
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
 
         user = presenter().getCurrentUser();
         if (user != null) {

@@ -19,6 +19,7 @@ import com.android.timesheet.shared.presenters.BasePresenter;
 import com.android.timesheet.shared.presenters.Presenter;
 import com.android.timesheet.shared.util.InternetConnectorReceiver;
 import com.android.timesheet.shared.util.InternetUtils;
+import com.android.timesheet.shared.widget.CustomFontTextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,26 +43,13 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     @BindView(R.id.toolbar_layout)
     protected CollapsingToolbarLayout toolbarLayout;
 
-
-
-    /*@Nullable
-    @BindView(R.id.toolbar_image)
-    protected ImageView toolbarImageView;
-    @Nullable
-    @BindView(R.id.progressBarProfile)
-    protected CircularProgressBar progressBarProfile;
-
-    @Nullable
-    @BindView(R.id.toolbar_content)
-    protected ViewGroup toolbarContent;
-
-    @Nullable
-    @BindView(R.id.toolbar_scrim)
-    protected View toolbarScrim;*/
-
     @Nullable
     @BindView(R.id.toolbar)
     protected Toolbar toolbar;
+
+    /*@Nullable
+    @BindView(R.id.toolbarTitleTv)
+    CustomFontTextView textViewToolbarTitle;*/
 
     private T mPresenter;
 
@@ -69,8 +57,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 
     protected ActionBar actionBar;
 
-//    private FirebaseAnalytics firebaseAnalytics;
-
+    //    private FirebaseAnalytics firebaseAnalytics;
     protected boolean isBackButtonFromMain = false;
 
     protected int layoutRestID() {
@@ -98,7 +85,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     }
 
     protected int resourceForUpIndicator() {
-        return R.drawable.icon_white_back;
+        return R.drawable.back_arrow_white;
     }
 
     protected boolean isToolBarTransparent() {
@@ -111,7 +98,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
 //            throw new RuntimeException("Presenter must be initialized first");
             mPresenter = providePresenter();// returns null
         }
-
         return mPresenter;
     }
 

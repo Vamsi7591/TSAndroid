@@ -20,7 +20,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,6 +35,7 @@ import com.android.timesheet.shared.models.TimeSheet;
 import com.android.timesheet.shared.models.TimeSheetResponse;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.models.ValidationError;
+import com.android.timesheet.shared.util.FontUtils;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 import com.android.timesheet.shared.widget.CustomFontTextView;
 
@@ -83,10 +83,10 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     CustomFontTextView description_count;
 
     @BindView(R.id.modifyBtn)
-    Button modifyBtn;
+    CustomFontTextView modifyBtn;
 
     @BindView(R.id.submitBtn)
-    Button submitBtn;
+    CustomFontTextView submitBtn;
 
     /*Error text views*/
     @BindView(R.id.error_project_name)
@@ -201,9 +201,11 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
             disableViews(false, 0);
         }
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
 
-        if (loggedInUser != null)
+        if (loggedInUser != null) {
             intentTimeSheet.setEmpCode(loggedInUser.empCode);
+        }
 
         /*if (descriptionET != null)
             descriptionET.setOnEditorActionListener(new TextView.OnEditorActionListener() {

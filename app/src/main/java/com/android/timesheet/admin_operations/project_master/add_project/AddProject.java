@@ -105,6 +105,7 @@ public class AddProject extends BaseActivity<AddProjectPresenter> implements
         });
 
         toolbarTitleTv.setText(title());
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
     }
 
     @Override

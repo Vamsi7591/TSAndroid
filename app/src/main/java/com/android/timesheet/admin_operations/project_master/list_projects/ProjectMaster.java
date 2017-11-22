@@ -97,6 +97,8 @@ public class ProjectMaster extends BaseActivity<ProjectMasterPresenter>
         recyclerView.setAdapter(mAdapter);
 
         toolbarTitleTv.setText(title());
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
+
 
         if (mMenu == null) {
             showMenu();

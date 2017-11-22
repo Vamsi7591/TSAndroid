@@ -176,6 +176,7 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
         });
 
         toolbarTitleTv.setText(title());
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
 
 //        checkFieldsForEmptyValues();
         animationShake = AnimationUtils.loadAnimation(getBaseContext(), R.anim.shake_animation);

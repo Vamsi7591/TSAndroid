@@ -16,10 +16,12 @@ import android.widget.Spinner;
 
 import com.android.timesheet.R;
 import com.android.timesheet.shared.fragments.BaseFragment;
+import com.android.timesheet.shared.models.TimeSheet;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.models.Week;
 import com.android.timesheet.shared.models.WeekParams;
 import com.android.timesheet.shared.views.BaseViewBehavior;
+import com.android.timesheet.user_operations.timesheet.sheet_entry.TimeSheetEntry;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;

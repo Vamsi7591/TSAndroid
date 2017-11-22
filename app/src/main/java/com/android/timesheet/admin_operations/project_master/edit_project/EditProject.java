@@ -68,6 +68,7 @@ public class EditProject extends BaseActivity<EditProjectPresenter>
         super.onCreate(savedInstanceState);
 
         toolbarTitleTv.setText(title());
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
 
         projectNameET.setEnabled(false);
         projectCodeET.setEnabled(false);

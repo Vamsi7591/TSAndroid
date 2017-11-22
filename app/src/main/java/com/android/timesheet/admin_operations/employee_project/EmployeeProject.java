@@ -93,6 +93,7 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
         super.onCreate(savedInstanceState);
 
         toolbarTitleTv.setText(title());
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
 
         employeesList = new ArrayList<>();
         projectsList = new ArrayList<>();

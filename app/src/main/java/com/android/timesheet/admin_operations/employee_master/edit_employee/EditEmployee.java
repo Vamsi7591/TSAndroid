@@ -85,6 +85,7 @@ public class EditEmployee extends BaseActivity<EditEmployeePresenter>
         super.onCreate(savedInstanceState);
 
         toolbarTitleTv.setText(title());
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
 
         /*Disable fields selection initially*/
         empNameEt.setEnabled(false);

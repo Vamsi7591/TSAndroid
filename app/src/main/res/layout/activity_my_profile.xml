@@ -38,20 +38,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="@dimen/margin_30"
-                        android:layout_marginStart="@dimen/margin_30">
+                        android:layout_marginRight="@dimen/margin_30">
 
                         <com.android.timesheet.shared.widget.CustomFontTextView
                             android:id="@+id/toolbarTitleTv"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="@dimen/margin_0"
-                            android:layout_marginRight="@dimen/margin_0"
+                            android:layout_marginRight="@dimen/margin_30"
                             android:gravity="center"
                             android:textAlignment="center"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/tv_font_size_20"
+                            android:textSize="@dimen/tv_font_size_22"
                             android:visibility="visible"
-                            app:font="@string/roboto_regular" />
+                            app:font="@string/aleo_regular"
+                            android:layout_marginEnd="@dimen/margin_30" />
 
                     </RelativeLayout>
 
@@ -178,7 +178,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="@dimen/margin_10"
                     android:background="@drawable/bottom_line"
                     android:orientation="horizontal">
 

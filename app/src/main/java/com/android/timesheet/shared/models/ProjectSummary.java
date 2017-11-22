@@ -17,6 +17,9 @@ public class ProjectSummary {
     @SerializedName("month")
     private String month;
 
+    public ProjectSummary() {
+    }
+
     public ProjectSummary(String common_flag, String duration, String month) {
         this.common_flag = common_flag;
         this.duration = duration;

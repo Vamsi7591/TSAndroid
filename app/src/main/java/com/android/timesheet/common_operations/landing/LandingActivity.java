@@ -327,15 +327,15 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
         if (title.equals("Time Sheet")) {
             textViewToolbarTitle.setText(title);
-            textViewToolbarTitle.setTextSize(20);
-            textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
+            textViewToolbarTitle.setTextSize(22);
+            textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
             lp.setMargins(0, 0, 0, 0);
             textViewToolbarTitle.setPadding(0, 0, 0, 0);
             textViewToolbarTitle.setLayoutParams(lp);
         } else {
             textViewToolbarTitle.setText(title);
-            textViewToolbarTitle.setTextSize(20);
-            textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
+            textViewToolbarTitle.setTextSize(22);
+            textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
 
             lp.setMargins(0, 0, 55, 0);
             textViewToolbarTitle.setPadding(0, 0, 55, 0);

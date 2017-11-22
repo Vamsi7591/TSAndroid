@@ -2,16 +2,15 @@ package com.android.timesheet.admin_operations.summary;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.android.timesheet.R;
+import com.android.timesheet.app.App;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.AllEmployeesResponse;
 import com.android.timesheet.shared.models.Employee;
@@ -24,7 +23,6 @@ import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.util.FontUtils;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 import com.android.timesheet.shared.widget.CustomFontTextView;
-import com.android.timesheet.user_operations.reports.monthly.LineChartMarkerView;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -65,7 +63,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
     LinearLayout noDataFound;
 
     @BindView(R.id.toolbarTitleTv)
-    CustomFontTextView textViewToolbarTitle;
+    CustomFontTextView toolbarTitleTv;
 
     int cYear = 2011;
     ArrayList<Integer> yearList = new ArrayList<Integer>();
@@ -114,7 +112,8 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
 
         User user = presenter().getCurrentUser();
 
-        textViewToolbarTitle.setText(title());
+        toolbarTitleTv.setText(title());
+        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
 
         loadBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -300,7 +299,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
         if (o instanceof String) {
             /*Assign or removeEmployee response string*/
             String response = (String) o;
-            Toast.makeText(SummaryDetails.this, response, Toast.LENGTH_LONG).show();
+            App.getInstance().customToast(response);
         }
 
     }
@@ -313,7 +312,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
 
         if (data.size() > 0) {
             for (int k = 0; k < data.size(); k++) {
-                barEntries.add(new BarEntry(Float.parseFloat(data.get(k).getDuration()), k));
+                barEntries.add(new BarEntry(Float.parseFloat(data.get(k).getDuration()), k,data.get(k)));
                 labels.add(data.get(k).getMonth().substring(0, 3));
             }
         }

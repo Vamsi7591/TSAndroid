@@ -50,7 +50,6 @@ public abstract class ServiceSubscriber<T> extends Subscriber<T> {
     @Override
     public final void onError(Throwable e) {
         onFailure(e);
-
         if (e instanceof UnknownHostException) {
             onDisconnected();
             System.out.println("UnknownHostException:" + e.getMessage());
@@ -64,7 +63,6 @@ public abstract class ServiceSubscriber<T> extends Subscriber<T> {
             onDisconnected();
             System.out.println("ConnectException:" + e.getMessage());
         }
-
     }
 
     public void onDisconnected() {

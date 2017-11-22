@@ -45,13 +45,14 @@
                             android:id="@+id/toolbarTitleTv"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginEnd="@dimen/margin_20"
-                            android:layout_marginRight="@dimen/margin_20"
+                            android:layout_marginEnd="@dimen/margin_25"
+                            android:layout_marginRight="@dimen/margin_25"
                             android:gravity="center"
                             android:textAlignment="center"
-                            android:textSize="@dimen/tv_font_size_20"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/tv_font_size_22"
                             android:visibility="visible"
-                            app:font="@string/roboto_thin" />
+                            app:font="@string/aleo_regular" />
 
                     </RelativeLayout>
 
@@ -75,9 +76,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="?attr/actionBarSize"
+                    android:layout_marginEnd="@dimen/margin_40"
                     android:layout_marginLeft="@dimen/margin_10"
-                    android:layout_marginRight="?attr/actionBarSize"
+                    android:layout_marginRight="@dimen/margin_40"
                     android:layout_marginStart="@dimen/margin_10"
                     android:orientation="vertical">
 
@@ -218,7 +219,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Yearly report is empty"
+                    android:text="Summary report is empty"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                     android:textColor="@color/cardview_dark_background" />
 

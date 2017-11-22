@@ -42,21 +42,15 @@ public class SummaryDetailsInteractor extends BaseInteractor<SummaryDetailsServi
 
             public void onSuccess(ProjectSum_Response recommendation) {
 
-//                List<ProjectSummary> uniqueResult = new ArrayList<>();
-
-                if (recommendation.getCode() == 500 ) {
-
-                    callback.onFailure(recommendation );
-                }
-
+                if (recommendation.getCode() == 500)
+                    callback.onFailure(recommendation);
                 else
-                callback.onSuccess(recommendation);
+                    callback.onSuccess(recommendation);
             }
         });
     }
 
-
-    public void getEmployees( ServiceCallback<AllEmployeesResponse> callback) {
+    public void getEmployees(ServiceCallback<AllEmployeesResponse> callback) {
 
         service().getEmployees().subscribe(new ServiceSubscriber<AllEmployeesResponse>() {
 
@@ -72,28 +66,6 @@ public class SummaryDetailsInteractor extends BaseInteractor<SummaryDetailsServi
         });
     }
 
-//    public void unAssignedProj(String empCode, ServiceCallback<ProjectNamesResponse> callback) {
-//
-//        service().getUnAssigned(empCode).subscribe(new ServiceSubscriber<ProjectNamesResponse>() {
-//
-//            @Override
-//            public void onDisconnected() {
-//            }
-//
-//            @Override
-//            public void onFailure(Throwable e) {
-//                callback.onFailure(e);
-//            }
-//
-//            @Override
-//            public void onSuccess(ProjectNamesResponse response) {
-//                if (response.code == 200)
-//                    callback.onSuccess(response);
-//                else
-//                    callback.onFailure(new Throwable(response.getMessage()));
-//            }
-//        });
-//    }
     public void getProjectNames(String empCode, ServiceCallback<ProjectNamesResponse> callback) {
 
         service().getProjectNames(empCode).subscribe(new ServiceSubscriber<ProjectNamesResponse>() {
