@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -65,8 +66,8 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
     @BindView(R.id.progressBar)
     CircularProgressBar progressBar;
 
-    @BindView(R.id.idsearch)
-    SearchView searchView;
+    @BindView(R.id.projectSV)
+    SearchView projectSV;
 
     public TimeSheetList(Context context) {
         super(context);
@@ -102,9 +103,9 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
 
         hideKeyboard();
 
-        searchView.setQueryHint("Search by Project Name");
-        searchView.setIconifiedByDefault(false);
-        searchView.setOnQueryTextListener(this);
+        projectSV.setQueryHint("Search by Project Name");
+        projectSV.setIconifiedByDefault(false);
+        projectSV.setOnQueryTextListener(this);
 
     }
 
@@ -122,9 +123,10 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
     public void onSuccess(List<TimeSheet> data) {
         Log.i(TAG, "size : " + String.valueOf(data.size()));
 
-        if (data.size() != 0) {
+        if (data.size() == 0) {
+            App.getInstance().getBus().post(new TimeSheetValidEvent(true));
+        }else
             App.getInstance().getBus().post(new TimeSheetValidEvent(false));
-        }
 
         mAdapter.setItems(data);
         mAdapter.notifyDataSetChanged();

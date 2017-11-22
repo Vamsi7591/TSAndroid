@@ -47,12 +47,12 @@
                             android:layout_alignParentLeft="true"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentTop="true"
-                            android:clickable="true"
                             android:gravity="center"
                             android:textAlignment="center"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/tv_font_size_20"
                             android:visibility="visible"
-                            app:font="@string/roboto_thin" />
+                            app:font="@string/roboto_regular" />
 
                     </RelativeLayout>
 

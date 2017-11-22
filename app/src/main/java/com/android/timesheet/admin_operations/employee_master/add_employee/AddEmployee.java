@@ -175,11 +175,7 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
             }
         });
 
-        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
-        toolbarTitleTv.setTextSize(25);
-        toolbarTitleTv.setTextColor(ContextCompat.getColor(this, R.color.white));
         toolbarTitleTv.setText(title());
-
 
 //        checkFieldsForEmptyValues();
         animationShake = AnimationUtils.loadAnimation(getBaseContext(), R.anim.shake_animation);

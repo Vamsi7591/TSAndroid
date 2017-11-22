@@ -114,9 +114,6 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
         User user = presenter().getCurrentUser();
 
         textViewToolbarTitle.setText(title());
-        textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
-        textViewToolbarTitle.setTextSize(25);
-        textViewToolbarTitle.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         loadBar.setOnClickListener(new View.OnClickListener() {
             @Override

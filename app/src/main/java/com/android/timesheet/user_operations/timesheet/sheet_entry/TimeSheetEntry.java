@@ -8,7 +8,6 @@ import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -23,7 +22,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -38,7 +36,6 @@ import com.android.timesheet.shared.models.TimeSheet;
 import com.android.timesheet.shared.models.TimeSheetResponse;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.models.ValidationError;
-import com.android.timesheet.shared.util.FontUtils;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 import com.android.timesheet.shared.widget.CustomFontTextView;
 
@@ -157,14 +154,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
         else
             fromTimeSheetList = false;
 
-        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
-        toolbarTitleTv.setTextSize(25);
-        toolbarTitleTv.setTextColor(ContextCompat.getColor(this, R.color.white));
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) toolbarTitleTv.getLayoutParams();
-        lp.setMargins(0, 0, 75, 0);
-        toolbarTitleTv.setPadding(0, 0, 75, 0);
-        toolbarTitleTv.setLayoutParams(lp);
-
         spinnerProjects.setOnItemSelectedListener(this);
         loggedInUser = presenter().getCurrentUser();
 
@@ -202,6 +191,8 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
             disableViews(true, 0);
             toolbarTitleTv.setText(R.string.lb_ts_modify);
         } else { /*edit time sheet*/
+
+            toolbarTitleTv.setText(title());
             intentTimeSheet = new TimeSheet();
 
             if (loggedInUser != null)
@@ -287,8 +278,8 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
         } else {
             /*submit time intentTimeSheet entry*/
 
-            intentTimeSheet.setStartTime(intentTimeSheet.getDate().replace("/","-") + " " + convertTo24Hours(intentTimeSheet.getStartTime()));
-            intentTimeSheet.setEndTime(intentTimeSheet.getDate().replace("/","-") + " " + convertTo24Hours(intentTimeSheet.getEndTime()));
+            intentTimeSheet.setStartTime(intentTimeSheet.getDate().replace("/", "-") + " " + convertTo24Hours(intentTimeSheet.getStartTime()));
+            intentTimeSheet.setEndTime(intentTimeSheet.getDate().replace("/", "-") + " " + convertTo24Hours(intentTimeSheet.getEndTime()));
 
             if (fromTimeSheetList) {
                 int dayOfMonth = 0;
@@ -332,7 +323,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
         try {
             Date d1 = h_mm_a.parse(time);
-            time = hh_mm_ss.format(d1)+".000";
+            time = hh_mm_ss.format(d1) + ".000";
             Log.v(TAG, "Updated 24 hours Time : " + time);
         } catch (Exception e) {
             e.printStackTrace();

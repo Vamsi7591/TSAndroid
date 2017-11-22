@@ -46,7 +46,6 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="@dimen/margin_0"
                             android:layout_marginRight="@dimen/margin_0"
-                            android:clickable="true"
                             android:gravity="center"
                             android:textAlignment="center"
                             android:textColor="@color/white"

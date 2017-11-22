@@ -1,7 +1,6 @@
 package com.android.timesheet.common_operations.landing;
 
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
@@ -29,7 +28,6 @@ import com.android.timesheet.shared.widget.NonSwipeableViewPager;
 import com.android.timesheet.user_operations.reports.monthly.MonthlyFragment;
 import com.android.timesheet.user_operations.reports.weekly.WeeklyFragment;
 import com.android.timesheet.user_operations.timesheet.sheet_fragment.TimeSheetFragment;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.List;
 
@@ -62,7 +60,6 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
     String TAG = "LandingActivity";
 
     private ActionBarDrawerToggle mDrawerToggle;
-    private int mRequestCode = 0;
     int currentTab = 0;
     public static final int KEY_HOME = 0;
     public static final int KEY_WEEKLY = 1;
@@ -73,17 +70,14 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
     WeeklyFragment weeklyFragment;
     MonthlyFragment monthlyFragment;
 
-    private FirebaseAnalytics firebaseAnalytics;
+    //    private FirebaseAnalytics firebaseAnalytics;
     TabbedFragmentPagerAdapter mTabAdapter;
     User user = new User();
-    //    boolean isAdmin = false;
-    boolean isUser = false;
 
     @Override
     protected int layoutRestID() {
         return R.layout.activity_landing_screen;
     }
-
 
     @Override
     protected String title() {
@@ -105,16 +99,19 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         super.onCreate(savedInstanceState);
         user = presenter().getCurrentUser();
 
-        /*firebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+//        Just for development mode we are disabled analytics
+        /*
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         Bundle bundle = new Bundle();
         bundle.putString("name",user.empName);
         bundle.putString("email",user.emailId);
         bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "user_Info");
-        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);*/
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+        */
 
         if (user != null) {
-//                isAdmin = true;
             setUpDrawerLayout();
             new Slider(this, user);
 
@@ -126,7 +123,6 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
 
                 public void onDrawerOpened(View drawerView) {
                     super.onDrawerOpened(drawerView);
-
                 }
 
                 public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -135,11 +131,9 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
                     float scaleFactor = (max - ((max - min) * slideOffset));
                     float moveFactor = (linearmLeftDrawer.getWidth() * slideOffset);
 
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                        coordinatorLayout.setTranslationX(moveFactor);
-                        coordinatorLayout.setScaleY(scaleFactor);
-                        coordinatorLayout.setScaleX(scaleFactor);
-                    }
+                    coordinatorLayout.setTranslationX(moveFactor);
+                    coordinatorLayout.setScaleY(scaleFactor);
+                    coordinatorLayout.setScaleX(scaleFactor);
                 }
             };
             mDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -151,22 +145,12 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         monthlyFragment = new MonthlyFragment();
 
         if (mMenu == null) {
-//            menuItemSwitch = mMenu.findItem(R.id.action_menu_home);
             changeTitle("Time Sheet");
             showHomeToolbar();
         }
 
         //TODO VIEWPAGER
         setupTabViewPager();
-
-        if (viewPager != null) {
-            // tabLayout.getTabAt(0).getCustomView().setSelected(true);
-            /*if (mRequestCode != 0) {
-                viewPager.setCurrentItem(3);
-            } else {
-                viewPager.setCurrentItem(0);
-            }*/
-        }
 
         if (InternetUtils.isInternetConnected(this)) {
             InternetUtils.hideLoadingDialog();
@@ -177,18 +161,14 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if (item.getItemId() == R.id.action_menu_home) {
-
             switch (currentTab) {
                 case KEY_HOME:
                     presenter().openTimeSheet();
                     break;
                 default:
             }
-
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -204,12 +184,7 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         mTabAdapter.addFragment(monthlyFragment, R.string.tab_month,
                 R.drawable.ic_line_chart, R.drawable.ic_line_chart);
 
-        /*mTabAdapter.addFragment(inF, R.string.tab_invites,
-                R.drawable.icon_nb_invitation_default, R.drawable.icon_nb_invitation_active);*/
-
-
         viewPager.setAdapter(mTabAdapter);
-//        viewPager.setOffscreenPageLimit(4);
         viewPager.setCurrentItem(0);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -218,9 +193,9 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
 
             @Override
             public void onPageSelected(int position) {
-                appBarLayout.setExpanded(true);
-
-//                clearToolbarMenu();
+                if (appBarLayout != null) {
+                    appBarLayout.setExpanded(true);
+                }
 
                 switch (position) {
                     case 0:
@@ -256,7 +231,6 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
 
         List<TabbedFragmentPagerAdapter.TabInfo> tabInfo = mTabAdapter.getAllTabs();
         for (int i = 0; i < tabInfo.size(); i++) {
-            //tabLayout.getTabAt(i).setCustomView(R.layout.base_tabs_customtab).setTag(i).setText(tabInfo.get(i).title);
             tabLayout.getTabAt(i).setCustomView(R.layout.base_tabs_customtab);//.setTag(i);
 
             if (tabLayout.getTabAt(i).isSelected()) {
@@ -267,7 +241,6 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         }
 
         tabLayout.getTabAt(0).getCustomView().setSelected(true);
-
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -340,11 +313,13 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
 
 
     protected void clearToolbarMenu() {
-        Menu menu = toolbar.getMenu();
+        Menu menu = null;
+        if (toolbar != null) {
+            menu = toolbar.getMenu();
+        }
         if (menu != null && menu.size() > 0) {
             menu.clear();
         }
-
     }
 
     public void changeTitle(String title) {
@@ -352,18 +327,18 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
         if (title.equals("Time Sheet")) {
             textViewToolbarTitle.setText(title);
-            textViewToolbarTitle.setTextSize(25);
+            textViewToolbarTitle.setTextSize(20);
             textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
             lp.setMargins(0, 0, 0, 0);
             textViewToolbarTitle.setPadding(0, 0, 0, 0);
             textViewToolbarTitle.setLayoutParams(lp);
         } else {
             textViewToolbarTitle.setText(title);
-            textViewToolbarTitle.setTextSize(25);
+            textViewToolbarTitle.setTextSize(20);
             textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
 
-            lp.setMargins(0, 0, 75, 0);
-            textViewToolbarTitle.setPadding(0, 0, 75, 0);
+            lp.setMargins(0, 0, 55, 0);
+            textViewToolbarTitle.setPadding(0, 0, 55, 0);
             textViewToolbarTitle.setLayoutParams(lp);
         }
         //textViewToolbarTitle.setPadding(0, 0, 15, 0);

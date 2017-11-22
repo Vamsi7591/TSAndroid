@@ -48,12 +48,11 @@
                             android:layout_marginLeft="@dimen/margin_0"
                             android:layout_marginRight="@dimen/margin_0"
                             android:gravity="center"
-                            android:text=""
                             android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="@dimen/tv_font_size_20"
                             android:visibility="visible"
-                            app:font="@string/roboto_thin" />
+                            app:font="@string/roboto_regular" />
 
                     </RelativeLayout>
 

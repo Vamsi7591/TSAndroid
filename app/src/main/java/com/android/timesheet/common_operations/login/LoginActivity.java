@@ -1,10 +1,15 @@
 package com.android.timesheet.common_operations.login;
 
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.util.Log;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -92,6 +97,42 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
          */
         animationShake = AnimationUtils.loadAnimation(getBaseContext(), R.anim.shake_animation);
 
+        try {
+            editTextPassword.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    editTextPassword.setSelection(0);
+                }
+            });
+            editTextPassword.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    return true;
+                }
+            });
+            editTextPassword.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
+                @Override
+                public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+                    return false;
+                }
+
+                @Override
+                public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+                    return false;
+                }
+
+                @Override
+                public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+                    return false;
+                }
+
+                @Override
+                public void onDestroyActionMode(ActionMode actionMode) {
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -110,6 +151,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             InternetUtils.hideLoadingDialog();
         } else {
             InternetUtils.showLoadingDialog(this);
+        }
+
+        //Inside onResume and onDestroy
+        ClipboardManager clipboardManager = (ClipboardManager) this.getSystemService(Context.CLIPBOARD_SERVICE);
+        if (clipboardManager != null) {
+            clipboardManager.setText("");
         }
 
         super.onResume();
@@ -140,6 +187,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     public void onFailed(Throwable e) {
         onComplete();
         App.getInstance().customToast(e.getMessage());
+        /*editTextECode.setText("");
+        editTextPassword.setText("");*/
     }
 
     @Override
@@ -205,5 +254,15 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         inputLayout.setErrorEnabled(true);
         inputLayout.setError(errorStr);
         inputLayout.requestFocus();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //Inside onResume and onDestroy
+        ClipboardManager clipboardManager = (ClipboardManager) this.getSystemService(Context.CLIPBOARD_SERVICE);
+        if (clipboardManager != null) {
+            clipboardManager.setText("");
+        }
     }
 }

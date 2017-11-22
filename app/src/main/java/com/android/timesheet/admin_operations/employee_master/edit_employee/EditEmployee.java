@@ -84,14 +84,7 @@ public class EditEmployee extends BaseActivity<EditEmployeePresenter>
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*  ToolbarTitle */
-
-        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
-        toolbarTitleTv.setTextSize(25);
-        toolbarTitleTv.setTextColor(ContextCompat.getColor(this, R.color.white));
         toolbarTitleTv.setText(title());
-
-        /*  ToolbarTitle End */
 
         /*Disable fields selection initially*/
         empNameEt.setEnabled(false);

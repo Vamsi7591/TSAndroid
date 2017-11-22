@@ -74,7 +74,6 @@ public class WebViewActivity extends BaseActivity implements BaseViewBehavior {
         mTitle = bundle.getString(Constant.KEYS.WEB_VIEW_TITLE);
 
         textViewToolbarTitle.setText(mTitle);
-        textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
 
         RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
         lp.setMargins(0, 0, 75, 0);

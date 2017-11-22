@@ -32,7 +32,7 @@ public class TimeSheetFragment extends BaseFragment<TimeSheetPresenter> {
     }
 
     @BindView(R.id.emptyStateLL)
-    LinearLayout empty_state_view;
+    LinearLayout emptyStateLL;
 
     @BindView(R.id.room_list)
     TimeSheetList timeSheetList;
@@ -98,11 +98,10 @@ public class TimeSheetFragment extends BaseFragment<TimeSheetPresenter> {
     public void onAppOpenEventReceived(TimeSheetValidEvent event) {
 
         boolean status = (Boolean) event.getValue();
-        if (status)
-            empty_state_view.setVisibility(View.VISIBLE);
+        if (status) // time sheet list is empty
+            emptyStateLL.setVisibility(View.VISIBLE);
         else
-            empty_state_view.setVisibility(View.GONE);
-
+            emptyStateLL.setVisibility(View.GONE);
 
         mSwipeRefreshLayout.setRefreshing(false);
     }

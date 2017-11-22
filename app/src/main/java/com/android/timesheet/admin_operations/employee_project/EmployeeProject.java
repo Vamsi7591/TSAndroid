@@ -93,17 +93,11 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
         super.onCreate(savedInstanceState);
 
         toolbarTitleTv.setText(title());
-//        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) toolbarTitleTv.getLayoutParams();
-
-        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
-        toolbarTitleTv.setTextSize(25);
-        toolbarTitleTv.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         employeesList = new ArrayList<>();
         projectsList = new ArrayList<>();
         employeeSpinnerList = new ArrayList<>();
         projectSpinnerList = new ArrayList<>();
-
 
         empNameSp.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
         projectNameSp.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);

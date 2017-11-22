@@ -45,13 +45,13 @@
                             android:id="@+id/toolbarTitleTv"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/margin_20"
                             android:layout_marginRight="@dimen/margin_20"
                             android:gravity="center"
                             android:textAlignment="center"
                             android:textSize="@dimen/tv_font_size_20"
                             android:visibility="visible"
-                            app:font="@string/roboto_thin"
-                            android:layout_marginEnd="@dimen/margin_20" />
+                            app:font="@string/roboto_thin" />
 
                     </RelativeLayout>
 
@@ -185,7 +185,7 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_2"
+                android:layout_height="@dimen/margin_1"
                 android:background="@color/black" />
 
             <com.github.mikephil.charting.charts.BarChart

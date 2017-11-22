@@ -96,12 +96,6 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements
         super.onCreate(savedInstanceState);
 
         textViewToolbarTitle.setText(title());
-        textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_thin)));
-
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
-        lp.setMargins(0, 0, 75, 0);
-        textViewToolbarTitle.setPadding(0, 0, 75, 0);
-        textViewToolbarTitle.setLayoutParams(lp);
 
         user = presenter().getCurrentUser();
         if (user != null) {

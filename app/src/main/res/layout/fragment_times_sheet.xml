@@ -12,14 +12,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!--Your Invitation lis is empty-->
+            <!--Your time sheet list is empty-->
             <LinearLayout
                 android:id="@+id/emptyStateLL"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="?android:attr/actionBarSize"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <ImageView
                     android:id="@+id/no_invitation_state_ai"
@@ -33,7 +34,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="You have no records yet."
+                    android:text="Time sheet list is empty"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                     android:textColor="@color/cardview_dark_background" />
 
@@ -46,7 +47,7 @@
                     android:layout_marginTop="@dimen/margin_20"
                     android:gravity="center"
                     android:lines="3"
-                    android:text="Click “+” icon to enter your TimeSheet."
+                    android:text="Click “+” icon to add new time sheet entry"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Menu"
                     android:textColor="@color/cardview_dark_background"
                     android:visibility="visible" />

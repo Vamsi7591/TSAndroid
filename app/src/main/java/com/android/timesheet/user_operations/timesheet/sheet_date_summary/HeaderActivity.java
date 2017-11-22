@@ -78,10 +78,6 @@ public class HeaderActivity extends BaseActivity<HeaderPresenter> implements
         todayDate = String.valueOf(intent.getSerializableExtra(Constant.KEYS.TIME_SHEET_HEADER_KEY));
 
         toolbarTitleTv.setText(title());
-        toolbarTitleTv.setText(title());
-        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
-        toolbarTitleTv.setTextSize(25);
-
 
         Log.i(TAG, "Header date : " + todayDate);
 

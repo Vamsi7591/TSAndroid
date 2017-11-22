@@ -7,18 +7,19 @@
 
 
     <SearchView
-        android:id="@+id/idsearch"
-        android:layout_marginTop="5sp"
-        android:focusable="false"
+        android:id="@+id/projectSV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" />
+        android:layout_marginTop="5sp"
+        android:focusable="false" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/general_recycler_view"
-        android:layout_marginTop="60sp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="60sp"
+        android:background="@color/white"
+        tools:listitem="@layout/content_time_sheet_item" />
 
 
     <com.android.timesheet.shared.widget.CircularProgressBar

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
+    tools:context=".admin_operations.employee_project.EmployeeProject"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -47,9 +48,10 @@
                             android:layout_marginRight="@dimen/margin_20"
                             android:gravity="center"
                             android:textAlignment="center"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/tv_font_size_20"
                             android:visibility="visible"
-                            app:font="@string/roboto_thin" />
+                            app:font="@string/roboto_regular" />
 
                     </RelativeLayout>
 

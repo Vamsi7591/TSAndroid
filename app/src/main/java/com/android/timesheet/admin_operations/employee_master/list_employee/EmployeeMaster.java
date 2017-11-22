@@ -98,9 +98,6 @@ public class EmployeeMaster extends BaseActivity<EmployeeMasterPresenter> implem
         recyclerView.setAdapter(employeeAdapter);
 
         toolbarTitleTv.setText(title());
-        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
-        toolbarTitleTv.setTextSize(25);
-        toolbarTitleTv.setTextColor(ContextCompat.getColor(this, R.color.white));
 
         if (mMenu == null) {
             showMenu();

@@ -46,7 +46,7 @@
                         android:textColor="@color/white"
                         android:textSize="@dimen/tv_font_size_20"
                         android:visibility="visible"
-                        app:font="@string/roboto_thin" />
+                        app:font="@string/roboto_regular" />
 
                 </RelativeLayout>
 

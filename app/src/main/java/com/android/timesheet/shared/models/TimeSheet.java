@@ -228,8 +228,14 @@ public class TimeSheet implements Serializable {
         int sH = Integer.parseInt(startTime.substring(0, 2));
         int sM = Integer.parseInt(startTime.substring(3, 5));
 
+        if(sH == 12)
+            sH = 0;
+
         int eH = Integer.parseInt(endTime.substring(0, 2));
         int eM = Integer.parseInt(endTime.substring(3, 5));
+
+        if(eH == 12)
+            eH = 0;
 
         if (startTime.equalsIgnoreCase(endTime)) {
             return 1; // equal

@@ -99,10 +99,13 @@
                             style="@style/AppTheme.Input.EditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+                            android:imeOptions="actionNext"
                             android:inputType="text"
                             android:maxLines="1"
-                            android:nextFocusDown="@+id/editTextPassword"
+                            android:nextFocusDown="@+id/textInputLayoutPassword"
                             android:paddingTop="@dimen/layout_action_padding_5"
+                            android:text=""
                             android:textColor="@color/black"
                             app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance" />
                     </android.support.design.widget.TextInputLayout>
@@ -124,12 +127,19 @@
                             style="@style/AppTheme.Input.EditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:contextClickable="false"
+                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@%+\/'!#$^?.:()[]{}~-_"
+                            android:imeOptions="actionNext"
                             android:inputType="textPassword"
+                            android:longClickable="false"
                             android:maxLines="1"
                             android:nextFocusDown="@+id/textViewLogin"
                             android:paddingTop="@dimen/layout_action_padding_5"
+                            android:pointerIcon="hand"
                             android:textColor="@color/black"
-                            app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance" />
+                            android:textIsSelectable="false"
+                            app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance"
+                            tools:targetApi="n" />
                     </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>

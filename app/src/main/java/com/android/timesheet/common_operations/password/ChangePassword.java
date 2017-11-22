@@ -48,8 +48,6 @@ public class ChangePassword extends BaseActivity<ChangePasswordPresenter> implem
 
     private String old_Password, new_Password, confirm_Password;
 
-    User user;
-
     public void checkFieldsForEmptyValues() {
 
         old_Password = oldPwd.getText().toString();
@@ -57,13 +55,11 @@ public class ChangePassword extends BaseActivity<ChangePasswordPresenter> implem
         confirm_Password = confirmPwd.getText().toString();
 
         if (old_Password.isEmpty() || new_Password.isEmpty() || confirm_Password.isEmpty()) {
-
             submit.setVisibility(View.GONE);
             submit.setEnabled(false);
         } else {
             submit.setVisibility(View.VISIBLE);
             submit.setEnabled(true);
-
         }
     }
 
@@ -97,7 +93,6 @@ public class ChangePassword extends BaseActivity<ChangePasswordPresenter> implem
         checkFieldsForEmptyValues();
 
         textViewToolbarTitle.setText(title());
-        textViewToolbarTitle.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
 
         confirmPwd.addTextChangedListener(new TextWatcher() {
             @Override

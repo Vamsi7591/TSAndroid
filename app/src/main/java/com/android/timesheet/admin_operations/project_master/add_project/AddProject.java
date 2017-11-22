@@ -105,9 +105,6 @@ public class AddProject extends BaseActivity<AddProjectPresenter> implements
         });
 
         toolbarTitleTv.setText(title());
-        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.roboto_regular)));
-        toolbarTitleTv.setTextSize(25);
-        toolbarTitleTv.setTextColor(ContextCompat.getColor(this, R.color.white));
     }
 
     @Override

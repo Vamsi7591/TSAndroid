@@ -29,6 +29,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,8 +61,8 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
     int cYear = 2011;
     int cMonth = 0;
 
-    ArrayList<Integer> yearList = new ArrayList<Integer>();
-    ArrayList<Integer> monthList = new ArrayList<Integer>();
+    ArrayList<Integer> yearList;
+    ArrayList<Integer> monthList;
 
     HashMap<String, List<Month>> month_retroHashMap;
 
@@ -80,7 +81,6 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -93,15 +93,15 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
         lineChart.setMarkerView(customMarkerView);
         lineChart.setDrawMarkerViews(true);
 
-        Calendar calender = Calendar.getInstance();
-
         cYear = Calendar.getInstance().get(Calendar.YEAR);
         cMonth = (Calendar.getInstance().get(Calendar.MONTH));
 
+        yearList = new ArrayList<>();
         for (int count = 2017; count >= 2011; count--) {
             yearList.add(count);
         }
 
+        monthList = new ArrayList<>();
         for (int month = 1; month <= 12; month++) {
             monthList.add(month);
         }
@@ -129,7 +129,7 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
         });
 
         if (cMonth > 0)
-            monthSpinner.setSelection(cMonth );//- 1
+            monthSpinner.setSelection(cMonth);//- 1
         else
             monthSpinner.setSelection(0);
 
@@ -148,7 +148,7 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
         Log.v(TAG, "onRefresh called");
         User user = presenter().getCurrentUser();
         if (user != null) {
-            MonthParams monthParams = new MonthParams(user.empCode, cMonth, cYear);
+            MonthParams monthParams = new MonthParams(user.empCode, cMonth+1, cYear);
             presenter().fetchMonthData(monthParams);
         }
 
@@ -240,7 +240,7 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
                     /*if (k == 2) {
                         xValues.add("Week:" + month_data.get(k).getWeekno());
                     } else*/
-                        xValues.add("W:" +month_data.get(k).getWeekno());
+                    xValues.add("W:" + month_data.get(k).getWeekno());
             }
 
             LineDataSet set1;
@@ -288,11 +288,8 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
 
     @Override
     public void onFailed(Throwable e) {
-
         lineChart.setVisibility(View.GONE);
         noDataFound.setVisibility(View.VISIBLE);
-
     }
-
 
 }
