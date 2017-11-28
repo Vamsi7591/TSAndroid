@@ -6,7 +6,7 @@ package com.android.timesheet.shared.models;
 
 public class ChangePasswordParams {
 
-    String empcode, oldpwd, newpwd,adminempcode,password,emprole;
+    String empcode, oldpwd, newpwd;
 
     public ChangePasswordParams(String empcode, String oldpwd, String newpwd ) {
         this.empcode = empcode;

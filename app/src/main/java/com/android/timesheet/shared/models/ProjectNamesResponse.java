@@ -28,6 +28,11 @@ public class ProjectNamesResponse implements Serializable {
     public String message;
 
     @Nullable
+    @SerializedName("commonFlag")
+    public boolean commonFlag;
+
+
+    @Nullable
     @SerializedName("data")
     public List<Project> projectList = new ArrayList<>();
 
@@ -37,6 +42,15 @@ public class ProjectNamesResponse implements Serializable {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    @Nullable
+    public boolean isCommonFlag() {
+        return commonFlag;
+    }
+
+    public void setCommonFlag(@Nullable boolean commonFlag) {
+        this.commonFlag = commonFlag;
     }
 
     public int getCode() {

@@ -23,7 +23,7 @@ public class Project implements Serializable {
 
     @Nullable
     @SerializedName("commonFlag")
-    public String commonFlag;
+    public boolean commonFlag;
 
     public String getProjectCode() {
         return projectCode;
@@ -41,16 +41,17 @@ public class Project implements Serializable {
         this.projectName = projectName;
     }
 
+
     @Nullable
-    public String getCommonFlag() {
+    public boolean isCommonFlag() {
         return commonFlag;
     }
 
-    public void setCommonFlag(@Nullable String commonFlag) {
+    public void setCommonFlag(@Nullable boolean commonFlag) {
         this.commonFlag = commonFlag;
     }
 
-    public Project(String projectCode, String projectName, @Nullable String commonFlag) {
+    public Project(String projectCode, String projectName, boolean commonFlag) {
         this.projectCode = projectCode;
         this.projectName = projectName;
         this.commonFlag = commonFlag;

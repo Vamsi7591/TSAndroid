@@ -3,14 +3,15 @@ package com.android.timesheet.common_operations.password;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.timesheet.R;
+import com.android.timesheet.app.App;
 import com.android.timesheet.common_operations.login.LoginActivity;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.ChangePasswordParams;
@@ -44,37 +45,26 @@ public class ChangePassword extends BaseActivity<ChangePasswordPresenter> implem
     @BindView(R.id.toolbarTitleTv)
     CustomFontTextView toolbarTitleTv;
 
-    private String old_Password, new_Password, confirm_Password;
+    @BindView(R.id.inputLayout_oldpassword)
+    TextInputLayout inputOldPwd;
 
-    public void checkFieldsForEmptyValues() {
+    @BindView(R.id.textNewPwd)
+    TextInputLayout inputNewPwd;
 
-        old_Password = oldPwd.getText().toString();
-        new_Password = newPwd.getText().toString();
-        confirm_Password = confirmPwd.getText().toString();
+    @BindView(R.id.textConfirmPwd)
+    TextInputLayout inputConfirmPwd;
 
-        if (old_Password.isEmpty() || new_Password.isEmpty() || confirm_Password.isEmpty()) {
-            submitBtn.setVisibility(View.GONE);
-            submitBtn.setEnabled(false);
-        } else {
-            submitBtn.setVisibility(View.VISIBLE);
-            submitBtn.setEnabled(true);
-        }
-    }
 
     @Override
     protected ChangePasswordPresenter providePresenter() {
         return new ChangePasswordPresenter(this, this);
     }
 
-//    @Override
-//    protected int menuResID() {
-//        return R.menu.home_menu;
-//    }
-
     @Override
     protected String title() {
         return "Change Password";
     }
+
     @Override
     protected boolean showBackButton() {
         return true;
@@ -88,25 +78,74 @@ public class ChangePassword extends BaseActivity<ChangePasswordPresenter> implem
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        checkFieldsForEmptyValues();
 
         toolbarTitleTv.setText(title());
         toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
 
-        confirmPwd.addTextChangedListener(new TextWatcher() {
+
+        oldPwd.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                checkFieldsForEmptyValues();
+                checkOldPassword();
+
             }
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                checkFieldsForEmptyValues();
+                checkOldPassword();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                checkFieldsForEmptyValues();
+
+                if (s.toString().length() <= 5) {
+                    checkOldPassword();
+                }
+
+            }
+        });
+
+        newPwd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                checkNewPassword();
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (s.toString().length() <= 5) {
+                    checkNewPassword();
+                }
+
+
+            }
+        });
+
+        confirmPwd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                checkConfirmPassword();
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString().length() <= 5) {
+                    checkConfirmPassword();
+                }
+
             }
         });
 
@@ -114,30 +153,64 @@ public class ChangePassword extends BaseActivity<ChangePasswordPresenter> implem
             @Override
             public void onClick(View view) {
                 User user = presenter().getCurrentUser();
-                checkFieldsForEmptyValues();
 
-                if (!new_Password.matches(confirm_Password)
-                        || (old_Password.equalsIgnoreCase(confirm_Password)
-                        || old_Password.length() <= 6
-                        || new_Password.length() <= 6)) {
-
-                    Toast.makeText(getApplicationContext(), "Incorrect values entered.", Toast.LENGTH_LONG).show();
-
-                }
-                else if (user != null) {
-                    ChangePasswordParams changePasswordParams = new ChangePasswordParams(user.empCode, old_Password, new_Password);
+                if (checkOldPassword() && checkNewPassword() && checkConfirmPassword()) {
+                    ChangePasswordParams changePasswordParams = new ChangePasswordParams(user.empCode, oldPwd.getText().toString(), newPwd.getText().toString());
                     presenter().changePwd(changePasswordParams);
-
-                    presenter().clearUser();
-                    Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
-                    startActivity(intent);
-
-                    finish();
 
                 }
             }
         });
     }
+
+
+    private boolean checkOldPassword() {
+        if (oldPwd.getText().toString().length() <= 0) {
+            inputOldPwd.setError("Old Password is Required");
+
+            return false;
+        } else if (oldPwd.getText().toString().length() <= 5) {
+            inputOldPwd.setError("Minimum 6 Characters Required");
+
+            return false;
+        }
+        inputOldPwd.setError(null);
+        return true;
+    }
+
+    private boolean checkNewPassword() {
+
+        if (newPwd.getText().toString().length() <= 0) {
+            inputNewPwd.setError("New Password is Required");
+
+            return false;
+
+        } else if (newPwd.getText().toString().length() <= 5
+                ) {
+            inputNewPwd.setError("Minium 6 Characters Required");
+
+            return false;
+        } else {
+            inputNewPwd.setError(null);
+
+            return true;
+        }
+    }
+
+    private boolean checkConfirmPassword() {
+
+        if (!confirmPwd.getText().toString().matches(newPwd.getText().toString())) {
+            inputConfirmPwd.setError("New Password Should Match with Confirm Password");
+
+            return false;
+
+        } else {
+            inputConfirmPwd.setError(null);
+
+            return true;
+        }
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -160,22 +233,34 @@ public class ChangePassword extends BaseActivity<ChangePasswordPresenter> implem
 
     @Override
     public void onSuccess(ChangePasswordPojo data) {
-
-//        if (data.getCode().equalsIgnoreCase("200")) {
-//
-//            presenter().clearUser();
-//
-//            Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
-//            startActivity(intent);
-//
-//            finish();
-//
-//        }
+        if (data.getCode() == 200) {
+            presenter().clearUser();
+            Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        } else {
+            App.getInstance().customToast(data.getMessage());
+        }
 
     }
 
+//    @Override
+//    public void onSuccess(ChangePasswordPojo data) {
+//
+//        presenter().clearUser();
+//        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        startActivity(intent);
+//        finish();
+//
+//
+//    }
+
     @Override
     public void onFailed(Throwable e) {
+
+        App.getInstance().customToast(e.getMessage());
 
     }
 

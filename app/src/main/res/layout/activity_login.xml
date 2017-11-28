@@ -99,11 +99,11 @@
                             style="@style/AppTheme.Input.EditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:contextClickable="false"
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
                             android:imeOptions="actionUnspecified"
                             android:inputType="text"
                             android:longClickable="false"
-                            android:contextClickable="false"
                             android:maxLines="1"
                             android:nextFocusDown="@+id/textInputLayoutPassword"
                             android:paddingTop="@dimen/layout_action_padding_5"
@@ -125,9 +125,12 @@
                         android:hint="@string/hint_password"
                         android:textColorHint="@color/colorPrimary"
                         app:errorTextAppearance="@style/AppTheme.TextInputLayout.ErrorAppearance"
-                        app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance">
+                        app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance"
+                        app:passwordToggleDrawable="@drawable/icon_selector"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/colorPrimary">
 
-                        <EditText
+                        <android.support.design.widget.TextInputEditText
                             android:id="@+id/editTextPassword"
                             style="@style/AppTheme.Input.EditText"
                             android:layout_width="match_parent"
@@ -145,6 +148,7 @@
                             android:textIsSelectable="false"
                             app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance"
                             tools:targetApi="n" />
+
                     </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
@@ -163,6 +167,7 @@
                 android:id="@+id/textViewLogin"
                 style="@style/AppTheme.Action.TextView"
                 android:layout_width="match_parent"
+
                 android:layout_height="@dimen/thumb_h"
                 android:layout_marginTop="@dimen/margin_20"
                 android:background="@color/colorPrimary"

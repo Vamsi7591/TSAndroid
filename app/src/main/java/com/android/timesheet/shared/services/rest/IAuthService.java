@@ -16,10 +16,10 @@ public interface IAuthService {
     Observable<UserResponse> login(@Query("empCode") String empCode,
                                    @Query("password") String password);
 
-    @GET("changePassword?")
-    Observable<UserResponse> changePassword(@Query("empCode") String empCode,
-                                   @Query("oldPwd") String oldPwd,
-                                   @Query("newPwd") String newPwd);
+//    @GET("changePassword?")
+//    Observable<UserResponse> changePassword(@Query("empCode") String empCode,
+//                                   @Query("oldPwd") String oldPwd,
+//                                   @Query("newPwd") String newPwd);
 
 
 }

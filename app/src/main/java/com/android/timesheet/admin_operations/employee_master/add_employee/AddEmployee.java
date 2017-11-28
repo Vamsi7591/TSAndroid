@@ -3,7 +3,6 @@ package com.android.timesheet.admin_operations.employee_master.add_employee;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -58,14 +57,14 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
     CustomFontTextView toolbarTitleTv;
 
     public final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
-            "[a-zA-Z0-9+._%-+]{1,256}" +
-                    "@" +
-                    "[a-zA-Z0-9][a-zA-Z0-9-]{0,64}" +
-                    "(" +
-                    "." +
-                    "[a-zA-Z0-9][a-zA-Z0-9-]{0,25}" +
-                    ")+"
+            "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-" +
+                    "\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\" +
+                    "x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[" +
+                    "(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|" +
+                    "[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\" +
+                    "x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
     );
+
 
     Animation animationFOut, animationFIn, animationShake;
 
@@ -96,6 +95,8 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
         employeeNameEt.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                checkName();
             }
 
             @Override
@@ -105,7 +106,7 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
             @Override
             public void afterTextChanged(Editable s) {
 //                checkFieldsForEmptyValues();
-                if (s.toString().length() >= 2) {
+                if (s.toString().length() <= 2) {
                     checkName();
                 }
             }
@@ -114,6 +115,9 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
         emailIdEt.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                checkEmail(s.toString());
+
             }
 
             @Override
@@ -122,16 +126,14 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
 
             @Override
             public void afterTextChanged(Editable s) {
-//                checkFieldsForEmptyValues();
-                if (s.toString().length() > 6) {
-                    checkEmail(s.toString());
-                }
+
             }
         });
 
         passwordEt.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                checkPassword();
             }
 
             @Override
@@ -141,7 +143,7 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
             @Override
             public void afterTextChanged(Editable s) {
 //                checkFieldsForEmptyValues();
-                if (s.toString().length() > 6) {
+                if (s.toString().length() <=5) {
                     checkPassword();
                 }
             }
@@ -184,6 +186,7 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
         closeKeyBoard();
     }
 
+
     @Override
     public void onLoading() {
 
@@ -203,7 +206,9 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
         if (passwordEt.getText().toString().length() == 0) {
             passwordTIL.setError("Password is required");
             return false;
-        } else if (passwordEt.getText().toString().length() < 6) {
+        }
+
+        else if (passwordEt.getText().toString().length() <= 5) {
             passwordTIL.setError("Minimum six characters required");
             return false;
         } else {
@@ -229,8 +234,8 @@ public class AddEmployee extends BaseActivity<AddEmployeePresenter> implements
         if (employeeNameEt.getText().toString().length() == 0) {
             employeeTIL.setError("Name is required");
             return false;
-        } else if (employeeNameEt.getText().toString().length() < 2) {
-            employeeTIL.setError("Invalid Name");
+        } else if (employeeNameEt.getText().toString().length() <= 2) {
+            employeeTIL.setError("Minimum 3 characters required");
             return false;
         } else {
             employeeTIL.setError(null);

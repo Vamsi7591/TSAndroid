@@ -1,5 +1,6 @@
 package com.android.timesheet.shared.services.rest;
 
+import com.android.timesheet.shared.models.ChangePasswordPojo;
 import com.android.timesheet.shared.models.MonthResponse;
 import com.android.timesheet.shared.models.ProjectNamesResponse;
 import com.android.timesheet.shared.models.TimeSheetResponse;
@@ -64,12 +65,12 @@ public interface IUserService {
 
 
 
-    @GET("changePassword")
-    Observable<TimeSheetResponse> changePassword(@Query("empcode") String empcode,
-                                                 @Query("oldpwd") String oldpwd,
-                                                 @Query("newpwd") String newpwd);
+    @GET("changePassword?")
+    Observable<ChangePasswordPojo> changePassword(@Query("empcode") String empcode,
+                                                  @Query("oldpwd") String oldpwd,
+                                                  @Query("newpwd") String newpwd);
 
-    @GET("updateemployee")
+    @GET("updateemployee?")
     Observable<TimeSheetResponse> updateEmployee(@Query("adminempcode") String adminempcode,
                                                  @Query("empcode") String empcode,
                                                  @Query("checkPassword") String password,

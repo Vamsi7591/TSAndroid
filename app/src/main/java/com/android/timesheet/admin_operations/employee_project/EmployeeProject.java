@@ -3,14 +3,12 @@ package com.android.timesheet.admin_operations.employee_project;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.android.timesheet.R;
 import com.android.timesheet.app.App;
@@ -286,14 +284,18 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
         if (o instanceof ProjectNamesResponse) {
             /*Projects response List<Projects>*/
             ProjectNamesResponse projectNamesResponse = (ProjectNamesResponse) o;
-            projectsList = projectNamesResponse.getProjectList();
 
+            projectsList = projectNamesResponse.getProjectList();
             projectSpinnerList = new ArrayList<>();
             projectSpinnerList.add("Select");
 
-            if (projectsList != null) {
+            if (projectsList != null ) {
                 for (int i = 0; i < projectsList.size(); i++) {
-                    projectSpinnerList.add(projectsList.get(i).getProjectName());
+//
+                    if(!projectsList.get(i).commonFlag) {
+                        projectSpinnerList.add(projectsList.get(i).getProjectName());
+
+                    }
                 }
                 adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, projectSpinnerList);
                 projectNameSp.setAdapter(adapter);
@@ -308,12 +310,37 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
             employeeSpinnerList.add("Select");
 
             for (int i = 0; i < employeesList.size(); i++) {
+
+                User user = presenter().getCurrentUser();
+
+                    /* Object wise operation on for loop - preferred way*/
+                for (Employee employee : employeesList) {
+                    if (employee.getEmpCode().equals(user.empCode)) {
+                        employeesList.remove(employee);
+                        break;
+                    }
+                }
+
                 employeeSpinnerList.add(employeesList.get(i).getEmpName());
             }
+
+//            User user = presenter().getCurrentUser();
+//
+//                    /* Object wise operation on for loop - preferred way*/
+//            for (Employee employee : employeesList) {
+//                if (employee.getEmpCode().equals(user.empCode)) {
+//                    employeesList.remove(employee);
+//                    break;
+//                }
+//            }
             adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, employeeSpinnerList);
 //        employee_Name.setPrompt("Select Category");
             empNameSp.setAdapter(adapter);
-        } else if (o instanceof String) {
+        }
+
+
+
+        else if (o instanceof String) {
             /*Assign or removeTabBtn response string*/
             String response = (String) o;
             App.getInstance().customToast(response);

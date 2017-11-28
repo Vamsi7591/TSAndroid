@@ -15,7 +15,8 @@ import java.util.HashMap;
  * Created by vamsikonanki on 8/22/2017.
  */
 @Parcel
-public class TimeSheet implements Serializable {
+public class
+TimeSheet implements Serializable {
 
     public static final int TYPE_HEADER = 0x01;
     public static final int TYPE_BODY = 0x02;

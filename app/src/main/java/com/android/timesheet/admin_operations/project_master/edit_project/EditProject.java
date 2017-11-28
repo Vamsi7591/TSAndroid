@@ -3,7 +3,6 @@ package com.android.timesheet.admin_operations.project_master.edit_project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ToggleButton;
@@ -110,6 +109,7 @@ public class EditProject extends BaseActivity<EditProjectPresenter>
             }
         });
     }
+
 
     @Override
     protected boolean showBackButton() {

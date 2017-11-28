@@ -11,28 +11,30 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import com.android.timesheet.R;
 import com.android.timesheet.shared.fragments.BaseFragment;
-import com.android.timesheet.shared.models.TimeSheet;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.models.Week;
 import com.android.timesheet.shared.models.WeekParams;
 import com.android.timesheet.shared.views.BaseViewBehavior;
-import com.android.timesheet.user_operations.timesheet.sheet_entry.TimeSheetEntry;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.formatter.LargeValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 
@@ -40,7 +42,8 @@ import butterknife.BindView;
  * Created by vamsikonanki on 8/23/2017.
  */
 
-public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements BaseViewBehavior<List<Week>> {
+public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
+        implements BaseViewBehavior<List<Week>>,ValueFormatter{
 
     @BindView(R.id.spinner_week)
     Spinner weekSpinner;
@@ -68,7 +71,6 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements Bas
 
     String TAG = "WeeklyFragment";
 
-
     @Override
     protected WeeklyPresenter providePresenter() {
         return new WeeklyPresenter(getActivity(), this);
@@ -90,16 +92,23 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements Bas
         super.onActivityCreated(savedInstanceState);
 
         arraylist = new ArrayList<>();
-        Calendar calender = Calendar.getInstance();
-        cWeek = calender.get(Calendar.WEEK_OF_YEAR);
-        cYear = calender.get(Calendar.YEAR);
+
+//        Calendar calender = Calendar.getInstance();
+//        cWeek = calender.get(Calendar.WEEK_OF_YEAR);
+//        cYear = calender.get(Calendar.YEAR);
+
+        Calendar calDe = Calendar.getInstance(Locale.getDefault());
+        calDe.setTime(new Date());
+        cWeek = calDe.get(Calendar.WEEK_OF_YEAR);
+        cYear =calDe.get(Calendar.YEAR);
+
 
         for (int counter = 1; counter <= 52; counter++) {
-
             weekList.add(counter);
 
         }
         for (int count = 2017; count >= 2011; count--) {
+
             yearList.add(count);
         }
 
@@ -192,7 +201,7 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements Bas
         String[] projectNames = new String[arrayList.size()];
 
         for (int i = 0; i < arrayList.size(); i++) {
-            yEntries.add(new Entry(Float.parseFloat(arrayList.get(i).getDuration()), i));
+            yEntries.add(new Entry(Float.parseFloat(arrayList.get(i).getDuration()), i,arrayList.get(i)));
 
             /*if (Float.parseFloat(arrayList.get(i).getDuration()) <= 1)
                 xEntries.add("hour in \n"+ arrayList.get(i).getProjectname().trim());//Hour
@@ -206,7 +215,19 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements Bas
 
         PieDataSet dataSet = new PieDataSet(yEntries, "");//Week Report
         PieData data = new PieData(xEntries, dataSet);
-        data.setValueFormatter(new LargeValueFormatter());
+
+
+//        data.setValueFormatter(new ValueFormatter() {
+//            @Override
+//            public String getFormattedValue(float value, Entry entry, int dataSetIndex,
+//                                            ViewPortHandler viewPortHandler) {
+//
+//
+//                return arrayList.get(dataSetIndex).getDuration();
+//
+//            }
+//        });
+
 
         weekChart.setData(data);
         weekChart.setDescription("");//This is Week Chart
@@ -271,5 +292,15 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter> implements Bas
     public void onFailed(Throwable e) {
         weekChart.setVisibility(View.GONE);
         noDataFound.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+
+        DecimalFormat df = new DecimalFormat("##.##");
+        df.setRoundingMode(RoundingMode.CEILING);
+        return df.format((double)value);
+
+
     }
 }

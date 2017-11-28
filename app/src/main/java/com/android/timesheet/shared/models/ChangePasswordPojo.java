@@ -1,5 +1,7 @@
 package com.android.timesheet.shared.models;
 
+import android.support.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -14,8 +16,9 @@ public class ChangePasswordPojo implements Serializable {
     private String status;
 
     @SerializedName("code")
-    private String code;
+    private int code;
 
+    @Nullable
     @SerializedName("message")
     private String message;
 
@@ -28,19 +31,20 @@ public class ChangePasswordPojo implements Serializable {
         this.status = status;
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
+    @Nullable
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage( @Nullable String message) {
         this.message = message;
     }
 }

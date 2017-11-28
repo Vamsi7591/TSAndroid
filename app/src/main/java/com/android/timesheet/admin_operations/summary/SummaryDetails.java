@@ -107,7 +107,11 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
         empNameList = new ArrayList<String>();
         projNamesList = new ArrayList<String>();
 
-        employeeName.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+//        barChart.setDoubleTapToZoomEnabled(true);
+//        barChart.setPinchZoom(true);
+        barChart.setScaleEnabled(true);
+
+//        employeeName.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
         projName.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
         User user = presenter().getCurrentUser();
@@ -212,10 +216,6 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
     }
 
     public void clearUI() {
-
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, empNameList);
-
-        employeeName.setAdapter(adapter);
 
         projName.setAdapter(null);
 
@@ -340,6 +340,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
 
         BarDataSet dataSet = new BarDataSet(barEntries, "");//Projects
         dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        dataSet.setValueTextSize(10f);
         BarData barData = new BarData(labels, dataSet);
 
         barChart.setData(barData);

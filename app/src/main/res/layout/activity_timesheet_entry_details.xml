@@ -293,6 +293,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/margin_10"
                             android:background="@null"
+                            android:maxLength="500"
                             android:ems="10"
                             android:gravity="start"
                             android:hint="@string/enter_you_description_here"

@@ -20,10 +20,10 @@ import com.android.timesheet.shared.models.Project;
 import com.android.timesheet.shared.models.ProjectNamesResponse;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.util.FontUtils;
+import com.android.timesheet.shared.utils.WidgetUtils;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 import com.android.timesheet.shared.widget.CustomFontTextView;
 import com.android.timesheet.shared.widget.TokenizeTextView;
-import com.android.timesheet.shared.utils.WidgetUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -141,7 +141,10 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements
 
                 presenter().clearUser();
                 Intent in =new Intent(getApplicationContext(), LoginActivity.class);
+                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(in);
+
+
             }
         });
 
@@ -182,7 +185,7 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements
         if (data.status && data.getProjectList() != null)
             for (Project list :
                     data.getProjectList()) {
-                if (list.getCommonFlag().equalsIgnoreCase("False"))
+                if (!list.commonFlag)
                     projectsList.add(list.getProjectName());
             }
 

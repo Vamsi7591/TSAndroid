@@ -50,7 +50,8 @@ public class LoginPresenter extends BasePresenter<LoginViewBehavior<User>, Login
         HashMap<ValidationError, Integer> errors = authUser.validate();
 
         if (errors != null && errors.size() > 0) {
-            viewBehaviour().validationError(errors);
+            viewBehaviour().
+                    validationError(errors);
         } else {
             viewBehaviour().onLoading();
 
@@ -75,7 +76,6 @@ public class LoginPresenter extends BasePresenter<LoginViewBehavior<User>, Login
                         User data = userResponse.getUser().get(0);
                         data.save();
                         Log.d("submitLogin:User", data.toString());
-
                         viewBehaviour().onSuccess(data);
 
                     } else if (userResponse.getMessage() != null && !userResponse.getMessage().isEmpty()) {

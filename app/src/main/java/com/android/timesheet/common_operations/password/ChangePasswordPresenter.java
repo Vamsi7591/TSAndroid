@@ -3,6 +3,7 @@ package com.android.timesheet.common_operations.password;
 import android.content.Context;
 
 import com.android.timesheet.shared.models.ChangePasswordParams;
+import com.android.timesheet.shared.models.ChangePasswordPojo;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.presenters.BasePresenter;
 import com.android.timesheet.shared.services.ServiceCallback;
@@ -46,7 +47,7 @@ public class ChangePasswordPresenter extends BasePresenter<BaseViewBehavior,Chan
 
     public void changePwd(ChangePasswordParams changePasswordParams) {
 
-        interactor().getChangePwd(changePasswordParams, new ServiceCallback<String>() {
+        interactor().getChangePwd(changePasswordParams, new ServiceCallback<ChangePasswordPojo>() {
 
             @Override
             public void onFailure(Throwable e) {
@@ -54,7 +55,7 @@ public class ChangePasswordPresenter extends BasePresenter<BaseViewBehavior,Chan
             }
 
             @Override
-            public void onSuccess(String data) {
+            public void onSuccess(ChangePasswordPojo data) {
                 viewBehaviour().onSuccess(data);
             }
 

@@ -12,12 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import com.android.timesheet.app.App;
 import com.android.timesheet.R;
+import com.android.timesheet.app.App;
 import com.android.timesheet.shared.events.TimeSheetValidEvent;
 import com.android.timesheet.shared.interfaces.OnItemClickListener;
 import com.android.timesheet.shared.models.TimeSheet;
@@ -57,7 +56,7 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
     String TAG = "TimeSheetFragment";
     User user;
 
-    TimeSheetAdapter mAdapter;
+     TimeSheetAdapter mAdapter;
     LinearLayoutManager linearLayoutManager;
 
     @BindView(R.id.general_recycler_view)

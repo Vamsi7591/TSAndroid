@@ -94,7 +94,6 @@ public class TimeSheetPresenter extends BasePresenter<TimeSheetViewBehaviour, Ti
 
                 Collections.sort(arrayList, new StringDateComparator());
                 Collections.reverse(arrayList);
-
                 viewBehaviour().onSuccess(arrayList);
             }
 

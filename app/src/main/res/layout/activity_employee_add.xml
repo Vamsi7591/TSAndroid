@@ -112,9 +112,18 @@
                         android:id="@+id/passwordEt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLength="15"
+                        android:contextClickable="false"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@%+\/'!#$^?.:()[]{}~-_"
+                        android:imeOptions="actionDone"
                         android:inputType="textPassword"
-                        android:maxLength="30"
-                        android:textColor="#060404" />
+                        android:longClickable="false"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textIsSelectable="false"
+                        app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance"
+                        tools:targetApi="n"/>
 
                 </android.support.design.widget.TextInputLayout>
 

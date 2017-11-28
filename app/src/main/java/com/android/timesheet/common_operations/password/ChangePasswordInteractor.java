@@ -24,7 +24,7 @@ public class ChangePasswordInteractor extends BaseInteractor<ChangePasswordServi
     }
 
 
-    public void getChangePwd(ChangePasswordParams changePasswordParams, ServiceCallback<String> callback) {
+    public void getChangePwd(ChangePasswordParams changePasswordParams, ServiceCallback<ChangePasswordPojo> callback) {
 
         service().changePwd(changePasswordParams).subscribe(new ServiceSubscriber<ChangePasswordPojo>() {
 
@@ -40,15 +40,10 @@ public class ChangePasswordInteractor extends BaseInteractor<ChangePasswordServi
             @Override
 
             public void onSuccess(ChangePasswordPojo recommendation) {
-                if (recommendation.getCode().equalsIgnoreCase("200")) {
+                    callback.onSuccess(recommendation);
 
-                    String uniqueResult;
-                    uniqueResult = recommendation.getMessage();
 
-                callback.onSuccess(uniqueResult);
-
-                }
-           }
+            }
         });
     }
 

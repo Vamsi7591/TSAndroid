@@ -34,7 +34,7 @@ public interface IAdminService {
                                                   @Query("empName") String empName);
 
     /*Project master & Employee project*/
-    @GET("allProjectNames")
+    @GET("AllProjectNames")
     Observable<ProjectNamesResponse> allProjectNames();
 
     @GET("getProjectNames?")

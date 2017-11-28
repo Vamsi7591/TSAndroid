@@ -89,6 +89,11 @@ public class EmployeeProjectInteractor extends BaseInteractor<EmployeeProjectSer
 
             @Override
             public void onSuccess(ProjectNamesResponse response) {
+
+//                if (response.commonFlag) {
+//
+//                }
+
                 if (response.code == 200)
                     callback.onSuccess(response);
                 else
@@ -113,7 +118,7 @@ public class EmployeeProjectInteractor extends BaseInteractor<EmployeeProjectSer
         });
     }
 
-    public void getAllEmp( ServiceCallback<AllEmployeesResponse> callback) {
+    public void getAllEmp(ServiceCallback<AllEmployeesResponse> callback) {
 
         service().getAllEmployees().subscribe(new ServiceSubscriber<AllEmployeesResponse>() {
 
@@ -130,7 +135,7 @@ public class EmployeeProjectInteractor extends BaseInteractor<EmployeeProjectSer
     }
 
 
-    }
+}
 
 
 

@@ -96,6 +96,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
            }
          */
 
+
+
         try {
             editTextPassword.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -213,7 +215,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
               "E010", "1234567"
               */
         } else {
-            infoSnackBar(getString(R.string.no_internet_connection));
+            infoSnackBar(   getString(R.string.no_internet_connection));
         }
     }
 
@@ -245,6 +247,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             String errorStr = getString(errors.get(error));
 
             if (error.equals(ValidationError.PASSWORD)) {
+
                 showError(textInputLayoutPassword, errorStr);
                 editTextPassword.setSelection(editTextPassword.getText().length());
             } else if (error.equals(ValidationError.EMP_CODE)) {

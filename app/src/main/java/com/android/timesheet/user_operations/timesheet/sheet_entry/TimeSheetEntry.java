@@ -60,6 +60,7 @@ import butterknife.OnClick;
 public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implements
         BaseViewBehavior<Object>, AdapterView.OnItemSelectedListener {
 
+
     @BindView(R.id.toolbarTitleTv)
     CustomFontTextView toolbarTitleTv;
 
@@ -145,14 +146,11 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         Parcelable parcelable = getIntent().getParcelableExtra(Constant.KEYS.TIME_SHEET_DETAIL_KEY);
         intentTimeSheet = Parcels.unwrap(parcelable);
 
         if (intentTimeSheet != null)
             fromTimeSheetList = true;
-        else
-            fromTimeSheetList = false;
 
         spinnerProjects.setOnItemSelectedListener(this);
         loggedInUser = presenter().getCurrentUser();
@@ -161,6 +159,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
         * https://www.101apps.co.za/articles/using-view-animations-in-your-apps-a-tutorial.html
         * https://www.androidhive.info/2013/06/android-working-with-xml-animations/#move
         * */
+
         animationRL = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.text_anim_rl);
 
@@ -226,7 +225,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (500 != s.toString().length()) {
+                if (s.toString().length() <=500) {
                     description_count.setText(String.format("%d/500", s.toString().length()));
 
                     if (s.toString().length() > 0) {
@@ -295,8 +294,10 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
                     monthOfYear = (Integer.parseInt(dobList[1]));
                     year = Integer.parseInt(dobList[0]);
 
+                    Calendar cal = Calendar.getInstance(Locale.getDefault());
+                    cal.setTime(new Date());
 
-                    Calendar cal = new java.util.GregorianCalendar();
+//                    Calendar cal = new java.util.GregorianCalendar();
                     cal.clear();
                     cal.set(Calendar.YEAR, year);
                     cal.set(Calendar.MONTH, monthOfYear - 1);
@@ -386,6 +387,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     void showStartTimeClock() {
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.view_title, null);
+
         TextView texts = (TextView) dialogView.findViewById(R.id.title);
         texts.setText("Select Start Time");
 
@@ -710,8 +712,16 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
                     return;
                 }
 
-                Calendar cal = new java.util.GregorianCalendar();
-//                Calendar cal = Calendar.getInstance();
+
+//                Calendar calDe = Calendar.getInstance(Locale.getDefault());
+//                calDe.setTime(new Date());
+//                cWeek = calDe.get(Calendar.WEEK_OF_YEAR);
+//                cYear =calDe.get(Calendar.YEAR);
+                // Calendar cal = new java.util.GregorianCalendar();
+
+                Calendar cal = Calendar.getInstance(Locale.getDefault());
+                cal.setTime(new Date());
+
                 cal.clear();
                 cal.set(Calendar.YEAR, year);
                 cal.set(Calendar.MONTH, monthOfYear - 1);
