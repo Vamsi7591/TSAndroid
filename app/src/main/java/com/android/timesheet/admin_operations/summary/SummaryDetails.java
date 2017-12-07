@@ -318,9 +318,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
             String response = (String) o;
             App.getInstance().customToast(response);
         }
-
     }
-
 
     private void loadBarChart(List<ProjectSummary> data) {
 

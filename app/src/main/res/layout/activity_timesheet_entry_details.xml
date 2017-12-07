@@ -324,46 +324,50 @@
 
                     </LinearLayout>
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="68dp"
+                        android:layout_marginBottom="@dimen/margin_20"
+                        android:layout_marginEnd="-19dp"
+                        android:layout_marginStart="-19dp"
+                        android:layout_marginTop="@dimen/margin_20"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.android.timesheet.shared.widget.CustomFontTextView
+                            android:id="@+id/modifyBtn"
+                            style="@style/AppTheme.Action.TextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginEnd="@dimen/margin_20"
+                            android:layout_marginStart="@dimen/margin_20"
+                            android:background="@drawable/bg_gray_border_black"
+                            android:gravity="center"
+                            android:text="@string/lb_edit"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.Button.Inverse"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            app:fonts="@string/roboto_regular" />
+
+                        <com.android.timesheet.shared.widget.CustomFontTextView
+                            android:id="@+id/submitBtn"
+                            style="@style/AppTheme.Action.TextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:background="@drawable/bg_blue_border_black"
+                            android:gravity="center"
+                            android:layout_marginEnd="@dimen/margin_20"
+                            android:layout_marginStart="@dimen/margin_20"
+                            android:text="@string/lb_submit"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.Button.Inverse"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            app:fonts="@string/roboto_regular" />
+
+                    </RelativeLayout>
+
                 </LinearLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="?android:attr/actionBarSize"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="@dimen/margin_20"
-                    android:layout_marginTop="@dimen/margin_10"
-                    android:gravity="bottom"
-                    android:orientation="horizontal">
-
-                    <com.android.timesheet.shared.widget.CustomFontTextView
-                        android:id="@+id/modifyBtn"
-                        style="@style/AppTheme.Action.TextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:background="@drawable/bg_gray_border_black"
-                        android:gravity="center"
-                        android:text="@string/lb_edit"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.Button.Inverse"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"
-                        app:fonts="@string/roboto_regular" />
-
-                    <com.android.timesheet.shared.widget.CustomFontTextView
-                        android:id="@+id/submitBtn"
-                        style="@style/AppTheme.Action.TextView"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:background="@drawable/bg_blue_border_black"
-                        android:gravity="center"
-                        android:text="@string/lb_submit"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.Button.Inverse"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:visibility="gone"
-                        app:fonts="@string/roboto_regular" />
-
-                </RelativeLayout>
-
             </LinearLayout>
 
         </ScrollView>

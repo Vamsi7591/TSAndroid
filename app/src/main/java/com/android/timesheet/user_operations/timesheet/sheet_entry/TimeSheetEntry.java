@@ -146,11 +146,14 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         Parcelable parcelable = getIntent().getParcelableExtra(Constant.KEYS.TIME_SHEET_DETAIL_KEY);
         intentTimeSheet = Parcels.unwrap(parcelable);
 
         if (intentTimeSheet != null)
             fromTimeSheetList = true;
+        else
+            fromTimeSheetList = false;
 
         spinnerProjects.setOnItemSelectedListener(this);
         loggedInUser = presenter().getCurrentUser();

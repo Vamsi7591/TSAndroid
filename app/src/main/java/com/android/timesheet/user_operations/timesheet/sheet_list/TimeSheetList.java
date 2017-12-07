@@ -110,11 +110,13 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
 
     @Override
     public void onLoading() {
+        if(progressBar != null)
         progressBar.start();
     }
 
     @Override
     public void onComplete() {
+        if(progressBar != null)
         progressBar.stop();
     }
 
@@ -174,10 +176,10 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
     public void removedTimeSheet(TimeSheetResponse response) {
         if (response != null) {
             infoSnackBar(response.getMessage());
+            reloadTimeSheet();
         } else {
             reloadTimeSheet();
         }
-
     }
 
     @Override

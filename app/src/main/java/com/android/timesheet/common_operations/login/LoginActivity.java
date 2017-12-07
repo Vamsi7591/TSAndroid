@@ -3,9 +3,13 @@ package com.android.timesheet.common_operations.login;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -14,6 +18,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -53,6 +58,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @BindView(R.id.textViewLogin)
     CustomFontTextView textViewLogin;
+
+    /*@BindView(R.id.passwordIV)
+    ImageView passwordIV;*/
 
     /*@BindViews({R.id.textInputLayoutECode, R.id.textInputLayoutPassword})
     TextInputLayout textInputLayoutECode, textInputLayoutPassword;
@@ -204,6 +212,23 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         textViewLogin.setVisibility(View.VISIBLE);
         textViewLogin.setAnimation(animationShake);
     }
+
+    /*@OnClick(R.id.passwordIV)
+    public void passwordView() {
+        if ("visible".equals(passwordIV.getTag())) {
+            passwordIV.setTag("invisible");
+            passwordIV.setBackground(getResources().getDrawable(R.drawable.ic_password_invisible));
+            editTextPassword.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            editTextPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            editTextPassword.setSelection(editTextPassword.getText().length());
+        } else {
+            passwordIV.setTag("visible");
+            passwordIV.setBackground(getResources().getDrawable(R.drawable.ic_password_visible));
+            editTextPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            editTextPassword.setTransformationMethod(null);
+            editTextPassword.setSelection(editTextPassword.getText().length());
+        }
+    }*/
 
     @OnClick(R.id.textViewLogin)
     public void login() {
