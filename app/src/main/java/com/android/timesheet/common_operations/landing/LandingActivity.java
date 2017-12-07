@@ -144,6 +144,8 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         weeklyFragment = new WeeklyFragment();
         monthlyFragment = new MonthlyFragment();
 
+//        monthlyFragment.setRetainInstance(false);
+
         if (mMenu == null) {
             changeTitle("Time Sheet");
             showHomeToolbar();
@@ -183,6 +185,8 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
 
         mTabAdapter.addFragment(monthlyFragment, R.string.tab_month,
                 R.drawable.ic_line_chart, R.drawable.ic_line_chart);
+
+        viewPager.setOffscreenPageLimit(1);
 
         viewPager.setAdapter(mTabAdapter);
         viewPager.setCurrentItem(0);

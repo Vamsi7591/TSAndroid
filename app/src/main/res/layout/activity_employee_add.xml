@@ -84,6 +84,8 @@
                         android:id="@+id/employeeNameEt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLength="50"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                         android:inputType="textPersonName"
                         android:textColor="#060404" />
                 </android.support.design.widget.TextInputLayout>
@@ -98,6 +100,7 @@
                         android:id="@+id/emailIdEt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@._-/+*"
                         android:inputType="textEmailAddress"
                         android:textColor="#060404" />
                 </android.support.design.widget.TextInputLayout>

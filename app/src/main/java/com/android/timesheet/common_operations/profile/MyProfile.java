@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.android.common.AppConfig;
 import com.android.timesheet.R;
+import com.android.timesheet.app.App;
 import com.android.timesheet.common_operations.login.LoginActivity;
 import com.android.timesheet.common_operations.password.ChangePassword;
 import com.android.timesheet.shared.activities.BaseActivity;
@@ -65,6 +66,9 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements
     @BindView(R.id.textViewLogOut)
     TextView textViewLogOut;
 
+//    @BindView(R.id.sendMail)
+//    TextView textSendEmail;
+
     public static final String NUMBER = "8012841680";
 
     String TAG = "Profile";
@@ -93,6 +97,23 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        textSendEmail.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                User user = presenter().getCurrentUser();
+//                Gson gson = new Gson(); //Convert object to string using Gson()
+//                String employeeJson = gson.toJson(user);//employeesList.get(position)
+//                Intent intent = new Intent(MyProfile.this, Gmail.class);
+//                intent.putExtra(AppConfig.EMPLOYEE_OBJECT, employeeJson);
+//
+//
+//                startActivity(intent);
+//
+//
+//            }
+//
+//        });
 
         toolbarTitleTv.setText(title());
         toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
@@ -200,6 +221,8 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements
 
     @Override
     public void onFailed(Throwable e) {
+
+        App.getInstance().customToast(e.getMessage());
 
     }
 

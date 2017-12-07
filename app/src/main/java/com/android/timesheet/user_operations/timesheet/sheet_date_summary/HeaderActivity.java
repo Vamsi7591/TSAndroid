@@ -37,9 +37,10 @@ public class HeaderActivity extends BaseActivity<HeaderPresenter> implements
         BaseViewBehavior<TimeSheetResponse>, AdapterView.OnItemSelectedListener {
 
     private static final String TAG = "HeaderActivity";
+
     ListView lv;
 
-    List<TimeSheet> todayPojoList;
+   List<TimeSheet> todayPojoList;
     String todayDate;
 
     @BindView(R.id.toolbarTitleTv)
@@ -74,6 +75,8 @@ public class HeaderActivity extends BaseActivity<HeaderPresenter> implements
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         Parcelable parcelable = getIntent().getParcelableExtra(Constant.KEYS.TIME_SHEET_DETAIL_KEY);
+
+
         todayPojoList = Parcels.unwrap(parcelable);
         todayDate = String.valueOf(intent.getSerializableExtra(Constant.KEYS.TIME_SHEET_HEADER_KEY));
 
@@ -82,6 +85,7 @@ public class HeaderActivity extends BaseActivity<HeaderPresenter> implements
 
         Log.i(TAG, "Header date : " + todayDate);
 
+
         User user = presenter().getCurrentUser();
         if (todayDate != null) {
             HeaderParams headerParams = new HeaderParams(user.empCode, todayDate);
@@ -89,7 +93,12 @@ public class HeaderActivity extends BaseActivity<HeaderPresenter> implements
         }
 
         lv = (ListView) findViewById(R.id.date_listView);
+
+
+
         if (todayPojoList != null) {
+
+
             HeaderDateAdapter adapter = new HeaderDateAdapter(getApplicationContext(), R.layout.activity_timesheet_header_inflator, todayPojoList);
             lv.setAdapter(adapter);
         }

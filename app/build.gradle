@@ -2,14 +2,6 @@ apply plugin: 'com.android.application'
 
 
 android {
-    signingConfigs {
-        release {
-            keyAlias 'timesheet'
-            keyPassword 'timesheet'
-            storeFile file('E:/Vamsi/wilco/keystore files/timesheet.jks')
-            storePassword 'timesheet'
-        }
-    }
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {
@@ -17,27 +9,34 @@ android {
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "0.2"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
     }
     buildTypes {
         release {
+
+
             debuggable true
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            proguardFile 'E:/Vamsi/wilco/TSAndroid/app/proguard-rules.pro'
-            signingConfig signingConfigs.release
+
         }
         debug {
             debuggable true
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 def db_flow_version = "4.0.3"
@@ -48,6 +47,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     implementation 'com.android.support:appcompat-v7:26.1.0'
+    compile 'com.android.support:multidex:1.0.0'
     compile 'com.android.support:cardview-v7:26.1.0'
     compile 'com.android.support:design:26.1.0'
     compile 'com.android.support:support-core-utils:26.1.0'
@@ -82,10 +82,16 @@ dependencies {
     compile "com.github.Raizlabs.DBFlow:dbflow:${db_flow_version}"
     //swipe delete
     compile 'com.daimajia.swipelayout:library:1.2.0@aar'
-
     //material-dialogs
     compile 'com.afollestad.material-dialogs:core:0.9.0.1'
     compile 'com.afollestad.material-dialogs:commons:0.9.0.1'
-}
 
+
+
+}
 apply plugin: 'com.google.gms.google-services'
+
+
+
+
+

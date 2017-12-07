@@ -594,10 +594,14 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
             App.getInstance().customToast(sheetResponse.getMessage());
             finish();
         } else if (o instanceof ProjectNamesResponse) {
+
+
             projectsListResponse = (ProjectNamesResponse) o;
             if (projectsListResponse.status) {
 //                projectNamesForSpinner.add("Select Project");
                 for (Project project : projectsListResponse.getProjectList()) {
+
+
                     projectNamesForSpinner.add(project.getProjectName());
                 }
                 /*
@@ -760,5 +764,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
         }
         return null;
     }
+
 
 }

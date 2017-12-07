@@ -209,7 +209,12 @@ public class EmployeeMaster extends BaseActivity<EmployeeMasterPresenter> implem
                     }
                 }*/
             }
-        } else if (genericResponse instanceof String) {
+
+
+        }
+
+
+        else if (genericResponse instanceof String) {
             String response = (String) genericResponse;
             if (response.contains("Success") && deletePosition != -1)
                 onEmployeeDeleted(deletePosition);

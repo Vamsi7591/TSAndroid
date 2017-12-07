@@ -2,7 +2,6 @@ package com.android.timesheet.admin_operations.project_master.add_project;
 
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;

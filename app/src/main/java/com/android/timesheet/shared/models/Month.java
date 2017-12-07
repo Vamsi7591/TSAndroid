@@ -18,19 +18,12 @@ public class Month {
     private String projectname;
 
     @SerializedName("weekNo")
-    private String weekno;
-    public Month(String commonflag, String duration, String projectname,String weekNo ) {
+    private Integer weekno;
+
+    public Month(String commonflag, String duration, String projectname, Integer weekno) {
         this.commonflag = commonflag;
         this.duration = duration;
         this.projectname = projectname;
-        this.weekno = weekno;
-    }
-
-    public String getWeekno() {
-        return weekno;
-    }
-
-    public void setWeekno(String weekno) {
         this.weekno = weekno;
     }
 
@@ -56,5 +49,13 @@ public class Month {
 
     public void setProjectname(String projectname) {
         this.projectname = projectname;
+    }
+
+    public Integer getWeekno() {
+        return weekno;
+    }
+
+    public void setWeekno(Integer weekno) {
+        this.weekno = weekno;
     }
 }

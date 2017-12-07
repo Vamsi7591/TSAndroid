@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.android.timesheet.common_operations.gmail.Gmail">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:toolbarId="@+id/toolbar">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin_30"
+                        android:layout_marginRight="@dimen/margin_30">
+
+                        <com.android.timesheet.shared.widget.CustomFontTextView
+                            android:id="@+id/toolbarTitleTv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/margin_30"
+                            android:layout_marginRight="@dimen/margin_30"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/tv_font_size_22"
+                            android:visibility="visible"
+                            app:font="@string/aleo_regular" />
+
+                    </RelativeLayout>
+
+
+                </android.support.v7.widget.Toolbar>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?android:attr/actionBarSize"
+            android:scrollbarStyle="insideInset">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_15"
+                android:layout_marginLeft="@dimen/margin_15"
+                android:layout_marginRight="@dimen/margin_15"
+                android:layout_marginStart="@dimen/margin_15"
+                android:layout_marginTop="@dimen/m_20"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/first"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="55sp"
+                        android:layout_height="match_parent"
+                        android:gravity="center|start"
+                        android:text="From :"
+                        android:textSize="@dimen/tv_font_size_18" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/UserEmail"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/tv_font_size_18" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/second"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="50sp"
+                        android:layout_height="match_parent"
+                        android:gravity="center|start"
+                        android:text="To     :"
+                        android:textSize="@dimen/tv_font_size_18"/>
+
+                    <com.android.timesheet.shared.widget.TokenizeTextView
+                        android:id="@+id/toEditTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:imeOptions="actionNext"
+                        android:textColor="#000000"
+                        android:inputType="textEmailAddress|textMultiLine"
+                        android:layout_weight="1"
+                        android:gravity="center|start"
+                        android:hint="Enter TO address"
+                        android:textSize="@dimen/tv_font_size_18" />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/third"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="50sp"
+                        android:layout_height="match_parent"
+                        android:gravity="center|start"
+                        android:text="CC     :"
+                        android:textSize="@dimen/tv_font_size_18" />
+
+                    <MultiAutoCompleteTextView
+
+                        android:id="@+id/ccAddress"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:imeOptions="actionNext"
+                        android:textColor="#000000"
+                        android:inputType="textEmailAddress|textMultiLine"
+                        android:layout_weight="1"
+                        android:gravity="center|start"
+                        android:hint="Enter CC address"
+                        android:textSize="@dimen/tv_font_size_18" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fourth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="50sp"
+                        android:layout_height="match_parent"
+                        android:gravity="center|start"
+                        android:text="BCC  :"
+                        android:textSize="@dimen/tv_font_size_18" />
+
+                    <MultiAutoCompleteTextView
+                        android:id="@+id/bccAddress"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:imeOptions="actionNext"
+                        android:textColor="#000000"
+                        android:inputType="textEmailAddress|textMultiLine"
+                        android:layout_weight="1"
+                        android:gravity="center|start"
+                        android:hint="Enter BCC address"
+                        android:textSize="@dimen/tv_font_size_18" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20sp"
+                    android:background="@drawable/bg_border"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/subject_ET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_10"
+                        android:background="@null"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:hint="Enter_you_Subject_here"
+                        android:maxLines="2"
+                        android:minHeight="10dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/colorGrayDark" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20sp"
+                    android:background="@drawable/bg_edit_text_border"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/messageET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_10"
+                        android:background="@null"
+                        android:ems="10"
+                        android:gravity="start"
+                        android:hint="Enter_your_Message_here"
+                        android:inputType="textMultiLine"
+                        android:minHeight="100dp"
+                        android:minLines="6"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/colorGrayDark" />
+                </LinearLayout>
+
+                <com.android.timesheet.shared.widget.CustomFontTextView
+                    android:id="@+id/sendBtn"
+                    style="@style/AppTheme.Action.TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="@dimen/m_20"
+                    android:background="@drawable/bg_gray_border_black"
+                    android:gravity="center"
+                    android:text="send"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.Button.Inverse"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:fonts="@string/roboto_regular" />
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

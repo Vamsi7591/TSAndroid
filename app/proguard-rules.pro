@@ -19,11 +19,11 @@
 
 # Uncomment this to preserve the line number information for
 # debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+-keepattributes SourceFile,LineNumberTable
 
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
-#-renamesourcefileattribute SourceFile
+-renamesourcefileattribute SourceFile
 
 
 # Retrofit
@@ -32,9 +32,13 @@
 -keepattributes Signature
 -keepattributes Exceptions
 
+-keepattributes SourceFile,LineNumberTable
+
 # Crashlytics
 -keep class com.crashlytics.** { *; }
 -dontwarn com.crashlytics.**
+
+
 
 #removeEmployee debugging Log API Calls.
 -dontskipnonpubliclibraryclasses
@@ -95,6 +99,10 @@
 -keep class com.actionbarsherlock.** { *; }
 -keep interface com.actionbarsherlock.** { *; }
 
+-dontwarn javax.servlet.**
+-dontwarn org.joda.time.**
+-dontwarn org.w3c.dom.**
+
 # Proguard configuration for Jackson 2.x (fasterxml package instead of codehaus package)
 -keep class com.fasterxml.jackson.databind.ObjectMapper {
     public <methods>;
@@ -135,3 +143,7 @@
 # DBFlow
 -keep class * extends com.raizlabs.android.dbflow.config.DatabaseHolder { *; }
 -keep class com.android.timesheet.shared.** { *;}
+
+# TimeSheetList
+
+-keep class com.android.timesheet.user_operations.timesheet.** { *;}

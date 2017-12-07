@@ -71,6 +71,8 @@ public class TimeSheetFragment extends BaseFragment<TimeSheetPresenter> {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        setRetainInstance(false);
+
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

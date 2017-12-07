@@ -3,6 +3,7 @@ package com.android.timesheet.user_operations.timesheet.sheet_entry;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,9 @@ public class ProjectsSpinnerAdapter extends BaseAdapter implements SpinnerAdapte
 
     public View getView(int i, View view, ViewGroup viewgroup) {
         TextView txt = new TextView(activity);
+        txt.setMaxLines(1);
+        txt.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        txt.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         txt.setGravity(Gravity.RIGHT);
         txt.setPadding(16, 16, 0, 16);
         txt.setTextSize(18);

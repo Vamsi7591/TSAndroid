@@ -227,6 +227,28 @@
 
                 </LinearLayout>
 
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="?android:attr/actionBarSize"-->
+                    <!--android:gravity="center"-->
+                    <!--android:orientation="horizontal">-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/sendMail"-->
+                        <!--style="@style/AppTheme.Text.TextView.Menu"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:drawableEnd="@drawable/ic_mail_black_24dp"-->
+                        <!--android:drawablePadding="@dimen/icons_36"-->
+                        <!--android:drawableRight="@drawable/ic_mail_black_24dp"-->
+                        <!--android:gravity="center|start"-->
+                        <!--android:text="Send Mail"-->
+                        <!--android:textColor="@android:color/black" />-->
+
+                <!--</LinearLayout>-->
+
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="?android:attr/actionBarSize"

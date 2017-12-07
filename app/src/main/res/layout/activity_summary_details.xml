@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator_layout"
@@ -85,10 +86,11 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="?actionBarSize"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center|start"
@@ -97,15 +99,17 @@
 
                         <Spinner
                             android:id="@+id/empName_spinner"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_gravity="end"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="@drawable/custom_spinner_background"
                             android:gravity="end|center"
-                            android:popupElevation="@dimen/padding_5"
+                            android:popupBackground="@color/white"
                             android:spinnerMode="dropdown"
-                            android:textAlignment="gravity"
+                            android:textAlignment="viewEnd"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:theme="@style/AppTheme.Spinner"
+                            android:textColor="@color/black"
                             tools:ignore="RtlCompat"
                             />
 
@@ -114,11 +118,12 @@
                     <LinearLayout
                         android:id="@+id/second"
                         android:layout_width="match_parent"
+                        android:gravity="center"
                         android:layout_height="?actionBarSize"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center|start"
@@ -127,26 +132,29 @@
 
                         <Spinner
                             android:id="@+id/ProjName_spinner"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_gravity="end"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="@drawable/custom_spinner_background"
                             android:gravity="end|center"
-                            android:popupElevation="@dimen/padding_5"
+                            android:popupBackground="@color/white"
                             android:spinnerMode="dropdown"
-                            android:textAlignment="gravity"
+                            android:textAlignment="viewEnd"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:theme="@style/AppTheme.Spinner"
-                            tools:targetApi="lollipop" />
+                            android:textColor="@color/black"
+                            tools:ignore="RtlCompat" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/third"
                         android:layout_width="match_parent"
                         android:layout_height="?actionBarSize"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center|start"
@@ -155,16 +163,18 @@
 
                         <Spinner
                             android:id="@+id/yearSpinSum"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_gravity="end"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:background="@drawable/custom_spinner_background"
                             android:gravity="end|center"
-                            android:popupElevation="@dimen/padding_5"
+                            android:popupBackground="@color/white"
                             android:spinnerMode="dropdown"
-                            android:textAlignment="gravity"
+                            android:textAlignment="viewEnd"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:theme="@style/AppTheme.Spinner"
-                            tools:targetApi="lollipop" />
+                            android:textColor="@color/black"
+                            tools:ignore="RtlCompat"/>
 
                     </LinearLayout>
                 </LinearLayout>

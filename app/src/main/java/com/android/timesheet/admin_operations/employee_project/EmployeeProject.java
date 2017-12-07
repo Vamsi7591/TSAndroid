@@ -22,6 +22,7 @@ import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.util.FontUtils;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 import com.android.timesheet.shared.widget.CustomFontTextView;
+import com.android.timesheet.user_operations.timesheet.sheet_entry.ProjectsSpinnerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,8 +59,12 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
 
     boolean isAssignVisible = true;
     ArrayAdapter adapter;
-    List<String> employeeSpinnerList;
-    List<String> projectSpinnerList;
+
+    ArrayList<String> employeeSpinnerList = new ArrayList<>();
+    ArrayList<String> projectSpinnerList = new ArrayList<>();
+
+//    List<String> employeeSpinnerList;
+//    List<String> projectSpinnerList;
     List<Employee> employeesList;
     List<Project> projectsList;
     int selectedEmployeeNamePos = 0;
@@ -99,6 +104,7 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
         projectSpinnerList = new ArrayList<>();
 
         empNameSp.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+
         projectNameSp.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
         User user = presenter().getCurrentUser();
@@ -182,6 +188,8 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
         });
 
 
+
+
         empNameSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                String selectedItem = parent.getItemAtPosition(position).toString(); //this is your selected item
@@ -256,9 +264,15 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
 
     public void clearUI(boolean flag) {
 
+
+
         if (flag) {
-            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, employeeSpinnerList);
-            empNameSp.setAdapter(adapter);
+
+            ProjectsSpinnerAdapter forEmpNAme = new ProjectsSpinnerAdapter(EmployeeProject.this, employeeSpinnerList);
+            empNameSp.setAdapter(forEmpNAme);
+
+//            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, employeeSpinnerList);
+//            empNameSp.setAdapter(adapter);
         }
 
         projectNameSp.setAdapter(null);
@@ -286,7 +300,7 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
             ProjectNamesResponse projectNamesResponse = (ProjectNamesResponse) o;
 
             projectsList = projectNamesResponse.getProjectList();
-            projectSpinnerList = new ArrayList<>();
+
             projectSpinnerList.add("Select");
 
             if (projectsList != null ) {
@@ -297,8 +311,11 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
 
                     }
                 }
-                adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, projectSpinnerList);
-                projectNameSp.setAdapter(adapter);
+//                adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, projectSpinnerList);
+//                projectNameSp.setAdapter(adapter);
+
+                ProjectsSpinnerAdapter forProjevtNAme = new ProjectsSpinnerAdapter(EmployeeProject.this, projectSpinnerList);
+                projectNameSp.setAdapter(forProjevtNAme);
             }
 
         } else if (o instanceof AllEmployeesResponse) {
@@ -333,12 +350,14 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
 //                    break;
 //                }
 //            }
-            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, employeeSpinnerList);
-//        employee_Name.setPrompt("Select Category");
-            empNameSp.setAdapter(adapter);
+//            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, employeeSpinnerList);
+////        employee_Name.setPrompt("Select Category");
+//            empNameSp.setAdapter(adapter);
+
+
+            ProjectsSpinnerAdapter forEmpNAme = new ProjectsSpinnerAdapter(EmployeeProject.this, employeeSpinnerList);
+            empNameSp.setAdapter(forEmpNAme);
         }
-
-
 
         else if (o instanceof String) {
             /*Assign or removeTabBtn response string*/

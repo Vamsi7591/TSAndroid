@@ -84,12 +84,14 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+          return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        setRetainInstance(false);
 
         arraylist = new ArrayList<>();
 
@@ -121,6 +123,8 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
                 android.R.layout.simple_spinner_item, yearList);
         yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         yearSpinner.setAdapter(yearAdapter);
+
+
 
         weekSpinner.setOnItemSelectedListener
                 (new AdapterView.OnItemSelectedListener() {
@@ -171,7 +175,9 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
                     loadPie(arraylist);
                     weekChart.setVisibility(View.VISIBLE);
                     noDataFound.setVisibility(View.GONE);
-                } else {
+                }
+
+                else {
                     weekChart.setVisibility(View.GONE);
                     noDataFound.setVisibility(View.VISIBLE);
                 }
@@ -186,13 +192,16 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
             }
         });
 
-        User user = presenter().getCurrentUser();
-        if (user != null) {
-            WeekParams weekParams = new WeekParams(user.empCode, cWeek, cYear);
-            presenter().fetchWeekData(weekParams);
-        }
+//        User user = presenter().getCurrentUser();
+//        if (user != null) {
+//            WeekParams weekParams = new WeekParams(user.empCode, cWeek, cYear);
+//            presenter().fetchWeekData(weekParams);
+//        }
     }
 
+    /* @Param Seperate method for add values in x and y axis
+     * This method calls load chart , onResume , onSuccess
+      */
 
     public void loadPie(List<Week> arrayList) {
 
@@ -263,6 +272,18 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
 
     }
 
+    @Override
+    public void onResume() {
+
+        User user = presenter().getCurrentUser();
+        if (user != null) {
+            loadPie(arraylist);
+            WeekParams weekParams = new WeekParams(user.empCode, cWeek, cYear);
+            presenter().fetchWeekData(weekParams);
+        }
+
+        super.onResume();
+    }
 
     @Override
     public void onLoading() {
@@ -281,7 +302,8 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
             loadPie(arrayList);
             weekChart.setVisibility(View.VISIBLE);
             noDataFound.setVisibility(View.GONE);
-        } else {
+        }
+        else {
             weekChart.setVisibility(View.GONE);
             noDataFound.setVisibility(View.VISIBLE);
         }
@@ -294,6 +316,7 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
         noDataFound.setVisibility(View.VISIBLE);
     }
 
+    /* This default method for display values in decimal format */
     @Override
     public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
 

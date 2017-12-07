@@ -115,6 +115,7 @@
             </intent-filter>
         </receiver>
 
+        <activity android:name=".common_operations.gmail.Gmail"></activity>
     </application>
 
 </manifest>
