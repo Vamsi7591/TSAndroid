@@ -101,6 +101,14 @@
             android:layout_height="@dimen/margin_1"
             android:background="@color/black" />
 
+        <com.github.mikephil.charting.charts.LineChart
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginRight="@dimen/margin_10"
+            android:layout_marginTop="0dp"
+            android:visibility="gone" />
+
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/lineChart"
             android:layout_width="match_parent"

@@ -1,6 +1,7 @@
 package com.android.timesheet.user_operations.reports.monthly;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -25,10 +26,11 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.formatter.XAxisValueFormatter;
-import com.github.mikephil.charting.formatter.YAxisValueFormatter;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -237,6 +239,7 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
 
             barChart.setVisibility(View.VISIBLE);
             noDataFound.setVisibility(View.GONE);
+            //lineChartImplementation(month_retroHashMap);
         } else {
             barChart.setVisibility(View.GONE);
             noDataFound.setVisibility(View.VISIBLE);
@@ -287,11 +290,10 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
         List<Integer> projectColorLegend = new ArrayList<>();
         List<String> projectNamesLegend = new ArrayList<>();
 
-        for(int v=0; v<projNames.size();v++){
+        for (int v = 0; v < projNames.size(); v++) {
             projectColorLegend.add(colorList.get(v));
             projectNamesLegend.add(projNames.get(v));
         }
-
 
         for (int i = 0; i < sortedHashMap.size(); i++) {//6
 
@@ -308,8 +310,8 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
                         weekData.get(k).getDuration().replace(":", ".")
                 ), k, weekData.get(k))); // 44
 
-                if(i<weekData.size())
-                projectName = String.valueOf(weekData.get(i).getWeekno());
+                if (i < weekData.size())
+                    projectName = String.valueOf(weekData.get(i).getWeekno());
                 else
                     projectName = "";
             }
@@ -317,53 +319,53 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
             BarDataSet dataSet = new BarDataSet(yValues, projectName);//Projects
 
             dataSet.setColor(colorList.get(i));
-            dataSet.setValueTextSize(0f);
+            dataSet.setValueTextSize(8f);
+            dataSet.setDrawValues(true);
 
-            barData.addXValue(projectName);
+            if (!projectName.isEmpty())
+                barData.addXValue(projectName);
+
             barData.addDataSet(dataSet);
         }
 
+        barData.setValueFormatter(new MyValueFormatter());
         barChart.setData(barData);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            barChart.setTransitionGroup(false);
+            /*It may remove the top x values*/
+        }
         barChart.setDrawValueAboveBar(true);
         barChart.setDescription("");//Monthly report
         barChart.setPinchZoom(false);
+        barChart.setDoubleTapToZoomEnabled(false);
         barChart.setDrawBarShadow(false);
         barChart.setDrawGridBackground(false);
+        barChart.setDrawHighlightArrow(true);
+        barChart.offsetTopAndBottom(5);
 
         //X-axis
         XAxis xAxis = barChart.getXAxis();
-        xAxis.setDrawGridLines(false);
+        //xAxis.setEnabled(false);
+        //xAxis.setDrawGridLines(false);
+        xAxis.setAvoidFirstLastClipping(true);
         xAxis.setPosition(XAxis.XAxisPosition.TOP);
+//        xAxis.setAxisLineWidth(5);
         xAxis.setSpaceBetweenLabels(5);
-        xAxis.setValueFormatter(new XAxisValueFormatter() {
-            @Override
-            public String getXValue(String original, int index, ViewPortHandler viewPortHandler) {
-                return original.matches("0.00") ? "0" : original;
-            }
-        });
 
         //Y-axis
-        barChart.getAxisRight().setEnabled(false);
+        barChart.getAxisRight().setEnabled(true);
         YAxis leftAxis = barChart.getAxisLeft();
-        leftAxis.setDrawGridLines(false);
+        //leftAxis.setDrawGridLines(false);
+        leftAxis.setInverted(false);
         leftAxis.setSpaceTop(5f);
         leftAxis.setAxisMinValue(0f);
-        //leftAxis.setValueFormatter(new DefaultYAxisValueFormatter());
-        leftAxis.setValueFormatter(new YAxisValueFormatter() {
 
-            @Override
-            public String getFormattedValue(float value, YAxis yAxis) {
-
-                return String.valueOf((int) value).matches("0.00") ? "0" : String.valueOf((int) value);
-            }
-
-        });
         Legend l = barChart.getLegend();
         l.setEnabled(true);
         l.resetCustom();
         l.setCustom(projectColorLegend, projectNamesLegend);
-        l.setYOffset(0f);
-        l.setXOffset(5f);
+        l.setYOffset(5f);
+        l.setXOffset(3f);
         l.setYEntrySpace(0f);
         l.setWordWrapEnabled(true);
         l.setTextSize(10f);
@@ -373,15 +375,19 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
         barChart.getAxisLeft().setDrawGridLines(false); // disable grid lines for the left YAxis
         barChart.getAxisRight().setDrawGridLines(false); // disable grid lines for the right YAxis
         barChart.getXAxis().setDrawAxisLine(false);// removeEmployee left side line
-        barChart.getXAxis().setDrawAxisLine(false);// removeEmployee left side line
         barChart.getAxisRight().setDrawLabels(false);
         barChart.getAxisLeft().setDrawLabels(false);*/
+
+        barChart.getXAxis().setDrawGridLines(true); // disable grid lines for the XAxis
+        barChart.getAxisLeft().setDrawGridLines(false); // disable grid lines for the left YAxis
+        barChart.getAxisRight().setDrawGridLines(false); // disable grid lines for the right YAxis
 
         barChart.notifyDataSetChanged();
         barChart.invalidate();
         barChart.animateXY(1000, 3000);
 
 
+        // 5 X 6 --> each 1 in 5 contains 6 records
         /*for (int i = 0; i < sorted.size(); i++) {
 
             ArrayList<Month> month_data = new ArrayList<>();
@@ -419,10 +425,33 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
         }*/
 
     }
+
+    public class MyValueFormatter implements ValueFormatter {
+
+        private DecimalFormat mFormat;
+
+        /*public MyValueFormatter(int digits) {
+            super(digits);
+        }
+
+        @Override
+        public String getFormattedValue(float value, YAxis yAxis) {
+            // write your logic here
+            return mFormat.format(value);// + " $"; // e.g. append a dollar-sign
+        }*/
+
+        @Override
+        public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+            if (String.valueOf(value).matches("0:0") || String.valueOf(value).matches("0.0"))
+                return "0";
+            else
+                return String.valueOf(value);
+        }
+    }
 /* Line Chart Method  */
 
-//void lineImplementation(){
-//
+//void lineChartImplementation(){
+
 //    if (dataLine.size() > 0) {
 //
 //        barChart.setVisibility(View.VISIBLE);
