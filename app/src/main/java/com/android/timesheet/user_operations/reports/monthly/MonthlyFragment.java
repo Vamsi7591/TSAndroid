@@ -69,7 +69,7 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
     ArrayList<Integer> yearList;
     ArrayList<Integer> monthList;
 
-    HashMap<String, List<Month>> month_retroHashMap;
+    HashMap<String, List<Month>> month_retroHashMap, month_retroHashMap2;
 
     public MonthlyFragment() {
     }
@@ -97,11 +97,21 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
         if (isVisibleToUser) {
             // load data here
             User user = presenter().getCurrentUser();
+
+            if (monthSpinner != null) {
+                cMonth = Integer.parseInt(monthSpinner.getSelectedItem().toString());
+            }else{
+                cMonth = (Calendar.getInstance().get(Calendar.MONTH)) + 1;
+                cYear = Calendar.getInstance().get(Calendar.YEAR);
+            }
             MonthParams monthParams = new MonthParams(user.empCode, cMonth, cYear);
             presenter().fetchMonthData(monthParams);
+
         } else {
             // fragment is no longer visible
+
         }
+
     }
 
     @Override
@@ -133,11 +143,9 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
         monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         monthSpinner.setAdapter(monthAdapter);
 
-
         ArrayAdapter<Integer> yearAdapter = new ArrayAdapter<Integer>(this.getContext(), android.R.layout.simple_spinner_item, yearList);
         yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         yearSpinner.setAdapter(yearAdapter);
-
 
         monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -192,31 +200,25 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
                 }
 
                 if (user != null) {
+                    cMonth = Integer.parseInt(monthSpinner.getSelectedItem().toString());
                     MonthParams monthParams = new MonthParams(user.empCode, cMonth, cYear);
                     presenter().fetchMonthData(monthParams);
                 }
 
             }
         });
-//        User user = presenter().getCurrentUser();
-//        if (user != null) {
-//            MonthParams monthParams = new MonthParams(user.empCode, cMonth, cYear);
-//            presenter().fetchMonthData(monthParams);
-//        }
+
+        /*User user = presenter().getCurrentUser();
+        if (user != null) {
+            MonthParams monthParams = new MonthParams(user.empCode, (cMonth+1), cYear);
+            presenter().fetchMonthData(monthParams);
+        }*/
 
     }
 
     @Override
     public void onResume() {
-        User user = presenter().getCurrentUser();
-        if (user != null) {
-
-            MonthParams monthParams = new MonthParams(user.empCode, cMonth, cYear);
-            presenter().fetchMonthData(monthParams);
-        }
-
         super.onResume();
-
     }
 
     @Override
@@ -234,6 +236,7 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
 
 
         month_retroHashMap = new HashMap<>();
+        month_retroHashMap2 = new HashMap<>();
 
         if (data.size() > 0) {
 
@@ -251,7 +254,6 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
         colorList.add(Color.MAGENTA);
         colorList.add(Color.GREEN);
         colorList.add(Color.RED);
-        colorList.add(Color.BLACK);
         colorList.add(Color.CYAN);
         colorList.add(Color.YELLOW);
         colorList.add(Color.GRAY);
@@ -263,19 +265,30 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
 
             month_data.add(data.get(i));
 
-            if (month_retroHashMap.containsKey(String.valueOf(data.get(i).getProjectname()))) {
-
+            if (month_retroHashMap.containsKey(String.valueOf(data.get(i).getProjectname())))
                 month_retroHashMap.get(String.valueOf(data.get(i).getProjectname())).add(data.get(i));
-            } else {
+            else
                 month_retroHashMap.put(String.valueOf((data.get(i).getProjectname())), month_data);
-            }
+        }
+
+        for (int i = 0; i < data.size(); i++) {
+            ArrayList<Month> month_data = new ArrayList<>();
+
+            month_data.add(data.get(i));
+
+            if (month_retroHashMap2.containsKey(String.valueOf(data.get(i).getWeekno())))
+                month_retroHashMap2.get(String.valueOf(data.get(i).getWeekno())).add(data.get(i));
+            else
+                month_retroHashMap2.put(String.valueOf((data.get(i).getWeekno())), month_data);
         }
 
         // TreeMap to store values of HashMap
         TreeMap<String, List<Month>> sortedHashMap = new TreeMap<>();
+        TreeMap<String, List<Month>> sortedHashMap2 = new TreeMap<>();
 
         // Copy all data from hashMap into TreeMap
         sortedHashMap.putAll(month_retroHashMap);
+        sortedHashMap2.putAll(month_retroHashMap2);
 
         // Display the TreeMap which is naturally sorted
         /*for (Map.Entry<String, List<Month>> entry : sorted.entrySet())
@@ -283,9 +296,19 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
                     ", Value = " + entry.getValue());*/
 
         month_retroHashMap.clear();
+        month_retroHashMap2.clear();
 
         BarData barData = new BarData();//xValues, dataSet
         ArrayList<String> projNames = new ArrayList<String>(sortedHashMap.keySet());
+        ArrayList<String> weekNames = new ArrayList<String>(sortedHashMap2.keySet());
+
+
+        int indexX = projNames.size(); //X project names
+        int indexY = weekNames.size(); //Y week numbers
+        boolean continueWithProjectsByWeeks = false;
+        if (indexY < indexX) {
+            continueWithProjectsByWeeks = true;
+        }
 
         List<Integer> projectColorLegend = new ArrayList<>();
         List<String> projectNamesLegend = new ArrayList<>();
@@ -295,48 +318,142 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
             projectNamesLegend.add(projNames.get(v));
         }
 
-        for (int i = 0; i < sortedHashMap.size(); i++) {//6
+        /*if(continueWithProjectsByWeeks) {
+            for (int i = 0; i < sortedHashMap.size(); i++) {
+
+                ArrayList<Month> weekData = new ArrayList<>();
+                weekData.addAll(sortedHashMap.get(projNames.get(i)));
+
+                String[] xValues = new String[weekData.size()];
+                ArrayList<BarEntry> yValues = new ArrayList<>();
+
+                String projectName = "";
+                for (int k = 0; k < weekData.size(); k++) {
+
+                    yValues.add(new BarEntry(Float.parseFloat(
+                            weekData.get(k).getDuration().replace(":", ".")
+                    ), k, weekData.get(k))); // 4-6
+
+                    xValues[k] = (String.valueOf(weekData.get(k).getWeekno()));
+
+                    if (i < weekData.size())
+                        projectName = String.valueOf(weekData.get(i).getWeekno());
+                    else
+                        projectName = "";
+                }
+
+                BarDataSet dataSet = new BarDataSet(yValues, projectName);//Projects
+
+                dataSet.setColor(colorList.get(i));
+                dataSet.setValueTextSize(8f);
+                dataSet.setDrawValues(true);
+                dataSet.setStackLabels(xValues);
+
+                if (!projectName.isEmpty())
+                    barData.addXValue(projectName);
+
+                if (sortedHashMap.size() == 1) {
+                    barData = new BarData(xValues, dataSet);
+                } else
+                    barData.addDataSet(dataSet);
+            }
+        }else{
+            for (int i = 0; i < sortedHashMap2.size(); i++) {
+
+                ArrayList<Month> weekData = new ArrayList<>();
+                weekData.addAll(sortedHashMap2.get(weekNames.get(i)));
+
+                String[] xValues = new String[weekData.size()];
+                ArrayList<BarEntry> yValues = new ArrayList<>();
+
+                String projectName = "";
+                for (int k = 0; k < weekData.size(); k++) {
+
+                    yValues.add(new BarEntry(Float.parseFloat(
+                            weekData.get(k).getDuration().replace(":", ".")
+                    ), k, weekData.get(k))); // 4-6
+
+                    xValues[k] = (String.valueOf(weekData.get(k).getWeekno()));
+
+                    if (i < weekData.size())
+                        projectName = String.valueOf(weekData.get(i).getProjectname());
+                    else
+                        projectName = "";
+                }
+
+                BarDataSet dataSet = new BarDataSet(yValues, projectName);//Projects
+
+                dataSet.setColor(colorList.get(i));
+                dataSet.setValueTextSize(8f);
+                dataSet.setDrawValues(true);
+                dataSet.setStackLabels(xValues);
+
+                if (!projectName.isEmpty())
+                    barData.addXValue(projectName);
+
+                if (sortedHashMap2.size() == 1) {
+                    barData = new BarData(xValues, dataSet);
+                } else
+                    barData.addDataSet(dataSet);
+            }
+        }*/
+
+        /*Vertical grouped chart*/
+        for (int i = 0; i < sortedHashMap2.size(); i++) {
 
             ArrayList<Month> weekData = new ArrayList<>();
-            weekData.addAll(sortedHashMap.get(projNames.get(i)));//5
+            weekData.addAll(sortedHashMap2.get(weekNames.get(i)));
 
-            ArrayList<String> xValues = new ArrayList<>();
+            String[] xValues = new String[weekData.size()];
+            float[] yValuess = new float[weekData.size()];
             ArrayList<BarEntry> yValues = new ArrayList<>();
 
             String projectName = "";
             for (int k = 0; k < weekData.size(); k++) {
 
-                yValues.add(new BarEntry(Float.parseFloat(
+                /*yValues.add(new BarEntry(Float.parseFloat(
                         weekData.get(k).getDuration().replace(":", ".")
-                ), k, weekData.get(k))); // 44
+                ), k, weekData.get(k)));*/ // 4-6
 
-                if (i < weekData.size())
-                    projectName = String.valueOf(weekData.get(i).getWeekno());
-                else
-                    projectName = "";
+                xValues[k] = (String.valueOf(weekData.get(k).getWeekno()));
+                yValuess[k] = Float.parseFloat(weekData.get(k).getDuration().replace(":", "."));
+
+//                if (i < weekData.size())
+                projectName = String.valueOf(weekData.get(k).getWeekno());
+//                else
+//                    projectName = "";
             }
 
-            BarDataSet dataSet = new BarDataSet(yValues, projectName);//Projects
+            yValues.add(new BarEntry(yValuess, i, weekNames.get(i)));
 
-            dataSet.setColor(colorList.get(i));
-            dataSet.setValueTextSize(8f);
+            BarDataSet dataSet = new BarDataSet(yValues, "");//Projects//projectName
+
+            dataSet.setColors(colorList);
+            dataSet.setValueTextSize(12f);
             dataSet.setDrawValues(true);
+//            dataSet.setStackLabels(xValues);
+            dataSet.setBarSpacePercent(0.0f);
 
             if (!projectName.isEmpty())
                 barData.addXValue(projectName);
 
+            /*if (sortedHashMap2.size() == 1) {
+                barData = new BarData(xValues, dataSet);
+            } else*/
             barData.addDataSet(dataSet);
         }
 
+        barData.setGroupSpace(0.0f);
         barData.setValueFormatter(new MyValueFormatter());
         barChart.setData(barData);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             barChart.setTransitionGroup(false);
             /*It may remove the top x values*/
         }
         barChart.setDrawValueAboveBar(true);
         barChart.setDescription("");//Monthly report
-        barChart.setPinchZoom(false);
+        barChart.setPinchZoom(true);
         barChart.setDoubleTapToZoomEnabled(false);
         barChart.setDrawBarShadow(false);
         barChart.setDrawGridBackground(false);
@@ -351,6 +468,8 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
         xAxis.setPosition(XAxis.XAxisPosition.TOP);
 //        xAxis.setAxisLineWidth(5);
         xAxis.setSpaceBetweenLabels(5);
+        /*xAxis.setAxisMaxValue(10);
+        xAxis.setAxisMinValue(0);*/
 
         //Y-axis
         barChart.getAxisRight().setEnabled(true);
@@ -359,6 +478,13 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
         leftAxis.setInverted(false);
         leftAxis.setSpaceTop(5f);
         leftAxis.setAxisMinValue(0f);
+        leftAxis.setZeroLineWidth(1);
+        leftAxis.setDrawZeroLine(true);
+        leftAxis.setMinWidth(25f);
+        leftAxis.setMaxWidth(100f);
+        leftAxis.setGranularity(1f);
+        leftAxis.setLabelCount(indexY, true);
+
 
         Legend l = barChart.getLegend();
         l.setEnabled(true);
@@ -381,6 +507,10 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
         barChart.getXAxis().setDrawGridLines(true); // disable grid lines for the XAxis
         barChart.getAxisLeft().setDrawGridLines(false); // disable grid lines for the left YAxis
         barChart.getAxisRight().setDrawGridLines(false); // disable grid lines for the right YAxis
+
+        barChart.getAxisLeft().setAxisMinValue(0f);
+        barChart.getAxisRight().setAxisMinValue(0f);
+        barChart.setFitsSystemWindows(true);
 
         barChart.notifyDataSetChanged();
         barChart.invalidate();
@@ -430,20 +560,10 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
 
         private DecimalFormat mFormat;
 
-        /*public MyValueFormatter(int digits) {
-            super(digits);
-        }
-
-        @Override
-        public String getFormattedValue(float value, YAxis yAxis) {
-            // write your logic here
-            return mFormat.format(value);// + " $"; // e.g. append a dollar-sign
-        }*/
-
         @Override
         public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
             if (String.valueOf(value).matches("0:0") || String.valueOf(value).matches("0.0"))
-                return "0";
+                return "";//"0"
             else
                 return String.valueOf(value);
         }

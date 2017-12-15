@@ -121,7 +121,7 @@
                 <TextView
                     android:id="@+id/error_project_name"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="end|center"
                     android:text=""
                     android:textAppearance="@style/TextAppearance.Design.Error"
@@ -162,7 +162,7 @@
                 <TextView
                     android:id="@+id/error_date"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="end|center"
                     android:text=""
                     android:textAppearance="@style/TextAppearance.Design.Error"
@@ -204,7 +204,7 @@
                 <TextView
                     android:id="@+id/error_start_time"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="end|center"
                     android:text=""
                     android:textAppearance="@style/TextAppearance.Design.Error"
@@ -245,7 +245,7 @@
                 <TextView
                     android:id="@+id/error_end_time"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="end|center"
                     android:text=""
                     android:textAppearance="@style/TextAppearance.Design.Error"
