@@ -8,8 +8,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.timesheet.R;
-import com.android.timesheet.common_operations.landing.LandingActivity;
-import com.android.timesheet.common_operations.profile.MyProfile;
+import com.android.timesheet.common_operations.profile.admin_profile.MyProfile;
 import com.android.timesheet.shared.models.User;
 
 /**

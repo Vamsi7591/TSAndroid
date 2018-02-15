@@ -15,8 +15,12 @@ import com.android.timesheet.R;
 import com.android.timesheet.shared.interfaces.OnItemClickListener;
 import com.android.timesheet.shared.models.TimeSheet;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -26,11 +30,14 @@ import butterknife.ButterKnife;
  * Created by vamsikonanki on 8/22/2017.
  */
 
-public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
+public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements
+        Filterable {
 
     final Context context;
 
     private List<TimeSheet> timeSheetList, dup;
+
+    private boolean RowType = false;
 
     OnItemClickListener listener;
 
@@ -121,10 +128,54 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public Filter getFilter() {
         return new Filter() {
+
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
+
                 final FilterResults oReturn = new FilterResults();
-                final List<TimeSheet> results = new ArrayList<TimeSheet>();
+                List<TimeSheet> results = new ArrayList<TimeSheet>();
+                HashMap<String, List<TimeSheet>> today_retroHashMap = new HashMap<>();
+
+
+                for (int i = 0; i < results.size(); i++) {
+
+                    ArrayList<TimeSheet> today_retroList = new ArrayList<>();
+                    today_retroList.add(results.get(i));
+
+                    if (today_retroHashMap.containsKey(results.get(i).getDate())) {
+                        today_retroHashMap.get(results.get(i).getDate()).add(results.get(i));
+
+                    } else
+
+                    {
+                        today_retroHashMap.put((results.get(i).getDate()), today_retroList);
+                    }
+
+                }
+
+                results = new ArrayList<>();
+
+                for (HashMap.Entry today : today_retroHashMap.entrySet()) {
+
+                    List<TimeSheet> timeSheets = new ArrayList<>();
+                    timeSheets = today_retroHashMap.get(today.getKey().toString());
+
+                    for (int k = 0; k < timeSheets.size(); k++) {
+
+                        timeSheets.get(k).setRowType(TimeSheet.TYPE_BODY);
+                        results.add(timeSheets.get(k));
+                    }
+
+                    TimeSheet sheet = new TimeSheet(today.getKey().toString());
+                    sheet.setDate(today.getKey().toString());
+                    results.add(sheet);
+
+                }
+
+                Collections.sort(results, new StringDateComparator());
+                Collections.reverse(results);
+
+
                 try {
                     if (timeSheetList == null)
                         timeSheetList = items;
@@ -134,13 +185,45 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     }
 
                     if (constraint != null) {
+                        boolean isDate = true;
                         if (timeSheetList != null & timeSheetList.size() > 0) {
                             for (final TimeSheet g : timeSheetList) {
-                                if (g.getRowType() == 2)
-                                    if (g.getProjectName().toLowerCase().contains(constraint.toString().toLowerCase()))
+
+                                if (g.getRowType() == 2) {
+                                    isDate = false;
+                                    if (g.getDate().contains(constraint.toString().toLowerCase()) ||
+                                            g.getProjectName().toLowerCase().contains(constraint.toString().toLowerCase())) {
                                         results.add(g);
+                                    }
+                                } else if (g.getRowType() == 1) {
+                                    if (g.getDate().contains(constraint.toString().toLowerCase()))
+                                        results.add(g);
+                                }
+
                             }
                         }
+
+                        if (!isDate && results.size() > 0) {
+                            // /* genetate header */
+                            for (int i = 0; i < results.size(); i++) {
+                                ArrayList<TimeSheet> today_retroList = new ArrayList<>();
+                                today_retroList.add(results.get(i));
+
+                                if (today_retroHashMap.containsKey(results.get(i).getDate())) {
+
+                                    today_retroHashMap.put((results.get(i).getDate()),today_retroList);
+
+                                    results.add(today_retroList.get(i));
+                                }
+
+//                                else
+//                                {
+//                                    today_retroHashMap.put((results.get(i).getDate()), today_retroList);
+//                                }
+
+                            }
+                        }
+
                         oReturn.values = results;
                     }
                 } catch (Exception e) {
@@ -160,6 +243,19 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 notifyDataSetChanged();
             }
         };
+    }
+
+    static class StringDateComparator implements Comparator<TimeSheet> {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+        public int compare(TimeSheet lhs, TimeSheet rhs) {
+            try {
+                return dateFormat.parse(lhs.date).compareTo(dateFormat.parse(rhs.date));
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return 0;
+            }
+        }
     }
 
     static class TimeSheetViewHolder extends RecyclerView.ViewHolder {
@@ -212,6 +308,7 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         }
     }
+
     static class HeaderViewHolder extends RecyclerView.ViewHolder {
 
         Context context;

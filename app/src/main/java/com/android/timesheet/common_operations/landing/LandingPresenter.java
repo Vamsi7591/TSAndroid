@@ -31,7 +31,7 @@ public class LandingPresenter extends BasePresenter<BaseViewBehavior, LandingInt
     }
 
 
-    protected User getCurrentUser() {
+    public User getCurrentUser() {
         return interactor().currentUser();
     }
 

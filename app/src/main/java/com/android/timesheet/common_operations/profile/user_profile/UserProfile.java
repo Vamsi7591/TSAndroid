@@ -1,12 +1,10 @@
-package com.android.timesheet.common_operations.profile;
+package com.android.timesheet.common_operations.profile.user_profile;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,16 +13,16 @@ import com.android.timesheet.R;
 import com.android.timesheet.app.App;
 import com.android.timesheet.common_operations.login.LoginActivity;
 import com.android.timesheet.common_operations.password.ChangePassword;
-import com.android.timesheet.shared.activities.BaseActivity;
+import com.android.timesheet.common_operations.profile.admin_profile.MyProfile;
+import com.android.timesheet.common_operations.profile.user_profile.users.UserProfilePresenter;
 import com.android.timesheet.shared.activities.WebViewActivity;
+import com.android.timesheet.shared.fragments.BaseFragment;
 import com.android.timesheet.shared.models.Project;
 import com.android.timesheet.shared.models.ProjectNamesResponse;
 import com.android.timesheet.shared.models.User;
-import com.android.timesheet.shared.util.FontUtils;
-import com.android.timesheet.shared.views.BaseViewBehavior;
-import com.android.timesheet.shared.widget.CustomFontTextView;
-import com.android.timesheet.shared.widget.TokenizeTextView;
 import com.android.timesheet.shared.utils.WidgetUtils;
+import com.android.timesheet.shared.views.BaseViewBehavior;
+import com.android.timesheet.shared.widget.TokenizeTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,15 +30,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-/**
- * Created by vamsikonanki on 8/22/2017.
- */
-
-public class MyProfile extends BaseActivity<MyProfilePresenter> implements
+public class UserProfile extends BaseFragment<UserProfilePresenter> implements
         BaseViewBehavior<ProjectNamesResponse> {
 
-    @BindView(R.id.toolbarTitleTv)
-    CustomFontTextView toolbarTitleTv;
+//    @BindView(R.id.toolbarTitleTv)
+//    CustomFontTextView toolbarTitleTv;
 
     @BindView(R.id.textViewProjects)
     TokenizeTextView tokenizeTextViewProjects;
@@ -48,8 +42,8 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements
     @BindView(R.id.textViewAboutUs)
     TextView textViewAboutUs;
 
-    @BindView(R.id.editTextFirstName)
-    EditText editTextFirstName;
+    @BindView(R.id.editTextName)
+    EditText editTexttName;
 
     @BindView(R.id.editTextEmpCode)
     EditText editTextEmpCode;
@@ -74,9 +68,10 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements
     String TAG = "Profile";
     User user;
 
+
     @Override
-    protected int layoutRestID() {
-        return R.layout.activity_my_profile;
+    protected int layoutResID() {
+        return R.layout.activity_user_profile;
     }
 
     @Override
@@ -90,51 +85,21 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements
     }
 
     @Override
-    protected MyProfilePresenter providePresenter() {
-        return new MyProfilePresenter(this, this);
+    protected UserProfilePresenter providePresenter() {
+        return new UserProfilePresenter(getContext(), this);
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-//        textSendEmail.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                User user = presenter().getCurrentUser();
-//                Gson gson = new Gson(); //Convert object to string using Gson()
-//                String employeeJson = gson.toJson(user);//employeesList.get(position)
-//                Intent intent = new Intent(MyProfile.this, Gmail.class);
-//                intent.putExtra(AppConfig.EMPLOYEE_OBJECT, employeeJson);
-//
-//
-//                startActivity(intent);
-//
-//
-//            }
-//
-//        });
-
-        toolbarTitleTv.setText(title());
-        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         user = presenter().getCurrentUser();
         if (user != null) {
             presenter().getProjectNames(user.empCode);
-            editTextFirstName.setText(user.getEmpName());
+
+            editTexttName.setText(user.getEmpName());
             editTextEmpCode.setText(user.getEmpCode());
             editTextEmail.setText(user.getEmailId());
-        }
-
-
-    }
-
-    public void closeKeyBoard() {
-        // Check if no view has focus:
-        View view = MyProfile.this.getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager) MyProfile.this.getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
 
         textViewChangePassword.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +107,7 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements
 
             public void onClick(View view) {
 
-                Intent i = new Intent(getApplicationContext(), ChangePassword.class);
+                Intent i = new Intent(getActivity(), ChangePassword.class);
                 startActivity(i);
 
             }
@@ -161,7 +126,7 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements
             public void onClick(View view) {
 
                 presenter().clearUser();
-                Intent in =new Intent(getApplicationContext(), LoginActivity.class);
+                Intent in =new Intent(getActivity(), LoginActivity.class);
                 in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(in);
 
@@ -169,22 +134,24 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements
             }
         });
 
+
     }
 
-    @Override
-    protected void onResume() {
 
-        closeKeyBoard();
+
+    @Override
+    public void onResume() {
+
         super.onResume();
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
     }
 
@@ -211,10 +178,10 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements
             }
 
         if (projectsList.size() != 0)
-            tokenizeTextViewProjects.setText(WidgetUtils.createSpannableFromList(this, projectsList));
+            tokenizeTextViewProjects.setText(WidgetUtils.createSpannableFromList(getContext(), projectsList));
         else {
             projectsList.add("No projects assigned.");
-            tokenizeTextViewProjects.setText(WidgetUtils.createSpannableFromList(this, projectsList));
+            tokenizeTextViewProjects.setText(WidgetUtils.createSpannableFromList(getContext(), projectsList));
         }
 
     }
@@ -230,7 +197,7 @@ public class MyProfile extends BaseActivity<MyProfilePresenter> implements
     void openWebView() {
         String url = AppConfig.WEB_URL_HELP_CENTER;
 
-        Intent intent = WebViewActivity.newIntent(this, "Wilco Source", url);
+        Intent intent = WebViewActivity.newIntent(getContext(), "Wilco Source", url);
         startActivity(intent);
     }
 }

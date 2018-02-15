@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,12 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.timesheet.R;
 import com.android.timesheet.app.App;
 import com.android.timesheet.shared.Constant;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.presenters.BasePresenter;
 import com.android.timesheet.shared.presenters.Presenter;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -41,6 +44,10 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     }
 
     Unbinder unbinder;
+
+    @Nullable
+    @BindView(R.id.toolbar)
+    protected Toolbar toolbar;
 
     @Override
     public T presenter() {
@@ -196,7 +203,15 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
             getBaseActivity().setTitle(title);
         }
     }
+    protected String title() {
+        return null;
+    }
 
+
+
+    protected boolean showBackButton() {
+        return false;
+    }
 
     //endregion
 }

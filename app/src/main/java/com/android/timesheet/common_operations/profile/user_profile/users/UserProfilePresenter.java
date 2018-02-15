@@ -1,4 +1,4 @@
-package com.android.timesheet.common_operations.profile;
+package com.android.timesheet.common_operations.profile.user_profile.users;
 
 import android.content.Context;
 
@@ -9,23 +9,24 @@ import com.android.timesheet.shared.services.ServiceCallback;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 
 /**
- * Created by vamsikonanki on 8/28/2017.
+ * Created by Vijay on 20.07.2017
  */
 
-public class MyProfilePresenter extends BasePresenter<BaseViewBehavior, MyProfileInteractor, MyProfileRouter> {
+public class UserProfilePresenter extends BasePresenter<BaseViewBehavior, UserProfileInteractor,
+        UserProfileRouter> {
 
-    public MyProfilePresenter(Context context, BaseViewBehavior mViewBehavior) {
+    public UserProfilePresenter(Context context, BaseViewBehavior mViewBehavior) {
         super(context, mViewBehavior);
     }
 
     @Override
-    protected MyProfileInteractor provideInteractor() {
-        return new MyProfileInteractor(context);
+    protected UserProfileInteractor provideInteractor() {
+        return new UserProfileInteractor(context);
     }
 
     @Override
-    protected MyProfileRouter provideRouter() {
-        return new MyProfileRouter(context);
+    protected UserProfileRouter provideRouter() {
+        return new UserProfileRouter(context);
     }
 
 
@@ -45,7 +46,7 @@ public class MyProfilePresenter extends BasePresenter<BaseViewBehavior, MyProfil
         });
     }
 
-    public User getCurrentUser(){
+    public User getCurrentUser() {
         return interactor().currentUser();
     }
 

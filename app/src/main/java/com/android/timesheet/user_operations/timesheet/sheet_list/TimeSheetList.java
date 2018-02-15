@@ -103,6 +103,7 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
         hideKeyboard();
 
         projectSV.setQueryHint("Search by Project Name");
+
         projectSV.setIconifiedByDefault(false);
         projectSV.setOnQueryTextListener(this);
 
@@ -242,7 +243,7 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
 
     @Override
     public boolean onQueryTextSubmit(String s) {
-        return false;
+        return true;
     }
 
     @Override

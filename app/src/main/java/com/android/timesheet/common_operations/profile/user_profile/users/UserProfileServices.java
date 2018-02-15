@@ -1,4 +1,4 @@
-package com.android.timesheet.common_operations.profile;
+package com.android.timesheet.common_operations.profile.user_profile.users;
 
 import com.android.timesheet.shared.models.ProjectNamesResponse;
 import com.android.timesheet.shared.services.BaseService;
@@ -7,10 +7,10 @@ import com.android.timesheet.shared.services.rest.IUserService;
 import rx.Observable;
 
 /**
- * Created by vamsikonanki on 8/28/2017.
+ * Created by Vijay on 20.07.2017
  */
 
-public class MyProfileServices extends BaseService<IUserService>{
+public class UserProfileServices  extends BaseService<IUserService> {
 
     @Override
     protected IUserService prepare() {

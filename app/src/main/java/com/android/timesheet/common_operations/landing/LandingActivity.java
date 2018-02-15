@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.android.timesheet.R;
+import com.android.timesheet.common_operations.profile.user_profile.UserProfile;
 import com.android.timesheet.common_operations.slider.Slider;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.adapters.TabbedFragmentPagerAdapter;
@@ -25,8 +26,7 @@ import com.android.timesheet.shared.util.FontUtils;
 import com.android.timesheet.shared.util.InternetUtils;
 import com.android.timesheet.shared.widget.CustomFontTextView;
 import com.android.timesheet.shared.widget.NonSwipeableViewPager;
-import com.android.timesheet.user_operations.reports.monthly.MonthlyFragment;
-import com.android.timesheet.user_operations.reports.weekly.WeeklyFragment;
+import com.android.timesheet.user_operations.report_fragment.ReportFragmentActivity;
 import com.android.timesheet.user_operations.timesheet.sheet_fragment.TimeSheetFragment;
 
 import java.util.List;
@@ -62,13 +62,25 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
     private ActionBarDrawerToggle mDrawerToggle;
     int currentTab = 0;
     public static final int KEY_HOME = 0;
-    public static final int KEY_WEEKLY = 1;
-    public static final int KEY_MONTHLY = 2;
-    public static final int KEY_PROFILE = 3;
-
+    public static final int KEY_REPORT = 1 ;
+    public static final int KEY_PROFILE = 2 ;
     TimeSheetFragment timeSheetFragment;
-    WeeklyFragment weeklyFragment;
-    MonthlyFragment monthlyFragment;
+    ReportFragmentActivity reportFragmentActivity;
+    UserProfile userProfile;
+
+
+
+//    public static final int KEY_WEEKLY = 1;
+//    public static final int KEY_MONTHLY = 2;
+//    public static final int KEY_YEARLY = 3;
+//    public static final int KEY_PROFILE = 3;
+
+
+
+//    WeeklyFragment weeklyFragment;
+//    MonthlyFragment monthlyFragment;
+//    Yearly_Fragment yearly_fragment;
+
 
     //    private FirebaseAnalytics firebaseAnalytics;
     TabbedFragmentPagerAdapter mTabAdapter;
@@ -100,7 +112,7 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         user = presenter().getCurrentUser();
 
 
-//        Just for development mode we are disabled analytics
+// Just for development mode we are disabled analytics
         /*
         firebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
@@ -141,8 +153,12 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         }
 
         timeSheetFragment = new TimeSheetFragment();
-        weeklyFragment = new WeeklyFragment();
-        monthlyFragment = new MonthlyFragment();
+        reportFragmentActivity = new ReportFragmentActivity();
+        userProfile = new UserProfile();
+
+//        weeklyFragment = new WeeklyFragment();
+//        monthlyFragment = new MonthlyFragment();
+//        yearly_fragment = new Yearly_Fragment();
 
 //        monthlyFragment.setRetainInstance(false);
 
@@ -175,16 +191,26 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
     }
 
     private void setupTabViewPager() {
+
         mTabAdapter = new TabbedFragmentPagerAdapter(getSupportFragmentManager());
 
         mTabAdapter.addFragment(timeSheetFragment, R.string.tab_home,
                 R.drawable.ic_format_line, R.drawable.ic_format_line);
 
-        mTabAdapter.addFragment(weeklyFragment, R.string.tab_week,
-                R.drawable.ic_pie_chart_black, R.drawable.ic_pie_chart_black);
+        mTabAdapter.addFragment(reportFragmentActivity,R.string.reports,
+                R.drawable.reports, R.drawable.reports);
 
-        mTabAdapter.addFragment(monthlyFragment, R.string.tab_month,
-                R.drawable.ic_line_chart, R.drawable.ic_line_chart);
+        mTabAdapter.addFragment(userProfile,R.string.user_profile,
+               R.drawable.profile,R.drawable.profile );
+
+//        mTabAdapter.addFragment(weeklyFragment, R.string.tab_week,
+//                R.drawable.ic_pie_chart_black, R.drawable.ic_pie_chart_black);
+//
+//        mTabAdapter.addFragment(monthlyFragment, R.string.tab_month,
+//                R.drawable.ic_line_chart, R.drawable.ic_line_chart);
+//
+//        mTabAdapter.addFragment(yearly_fragment, R.string.tab_year,
+//                R.drawable.ic_year, R.drawable.ic_year);
 
         viewPager.setOffscreenPageLimit(1);
 
@@ -193,6 +219,7 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
             }
 
             @Override
@@ -207,26 +234,24 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
                         changeTitle("Time Sheet");
                         showHomeToolbar();
                         break;
+
                     case 1:
-                        currentTab = KEY_WEEKLY;
-                        changeTitle("Weekly Report");
+                        currentTab = KEY_REPORT;
+                        changeTitle("Weekly Reports");
                         clearToolbarMenu();
                         break;
+
                     case 2:
-                        currentTab = KEY_MONTHLY;
-                        changeTitle("Monthly Report");
-                        clearToolbarMenu();
+                        currentTab = KEY_PROFILE;
+                        changeTitle("User Profile");
                         break;
-                    /*case 3:
-                        currentTab = KEY_INVITE;
-                        changeTitle("Invitations");
-                        showAddInviteToolbar();
-                        break;*/
+
                 }
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
+
             }
         });
 
@@ -328,7 +353,8 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
 
     public void changeTitle(String title) {
         textViewToolbarTitle.setTextColor(ContextCompat.getColor(this, R.color.white));
-        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) textViewToolbarTitle.getLayoutParams();
+        RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams)
+                textViewToolbarTitle.getLayoutParams();
         if (title.equals("Time Sheet")) {
             textViewToolbarTitle.setText(title);
             textViewToolbarTitle.setTextSize(22);

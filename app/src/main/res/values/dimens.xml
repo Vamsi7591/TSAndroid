@@ -130,4 +130,7 @@
 
     <dimen name="action_bar_default_height_material">56dp</dimen>
     <dimen name="tv_font_size_22">22sp</dimen>
+
+    <dimen name="notification_action_text_size">22sp</dimen>
+
 </resources>

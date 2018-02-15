@@ -1,16 +1,18 @@
-package com.android.timesheet.admin_operations.summary;
+package com.android.timesheet.user_operations.reports.yearly;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.android.timesheet.R;
+import com.android.timesheet.admin_operations.summary.BarChartMarkerView;
 import com.android.timesheet.app.App;
-import com.android.timesheet.shared.activities.BaseActivity;
+import com.android.timesheet.shared.fragments.BaseFragment;
 import com.android.timesheet.shared.models.AllEmployeesResponse;
 import com.android.timesheet.shared.models.Employee;
 import com.android.timesheet.shared.models.Project;
@@ -19,10 +21,7 @@ import com.android.timesheet.shared.models.ProjectSum_Params;
 import com.android.timesheet.shared.models.ProjectSum_Response;
 import com.android.timesheet.shared.models.ProjectSummary;
 import com.android.timesheet.shared.models.User;
-import com.android.timesheet.shared.util.FontUtils;
 import com.android.timesheet.shared.views.BaseViewBehavior;
-import com.android.timesheet.shared.widget.CustomFontTextView;
-import com.android.timesheet.user_operations.timesheet.sheet_entry.ProjectsSpinnerAdapter;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -36,51 +35,36 @@ import java.util.List;
 
 import butterknife.BindView;
 
-/**
- * Created by vijay on 8/22/2017.
- */
+public class Yearly_Fragment extends BaseFragment<YearlyPresenter>
+               implements BaseViewBehavior<Object>, AdapterView.OnItemSelectedListener {
 
-public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
-        implements BaseViewBehavior<Object>, AdapterView.OnItemSelectedListener {
-
-
-    @BindView(R.id.empName_spinner)
-    Spinner employeeName;
-
-    @BindView(R.id.ProjName_spinner)
+    @BindView(R.id.project_names)
     Spinner projName;
 
-    @BindView(R.id.yearSpinSum)
+    @BindView(R.id.yearly_Spinner)
     Spinner yearSpinner;
 
-    @BindView(R.id.barChart)
+    @BindView(R.id.idPieChartYearly)
     BarChart barChart;
 
-    @BindView(R.id.loadBarChart)
+    @BindView(R.id.pieChart_Load)
     ImageView loadBar;
 
     @BindView(R.id.noDataFoundRL)
     LinearLayout noDataFound;
 
-    @BindView(R.id.toolbarTitleTv)
-    CustomFontTextView toolbarTitleTv;
-
     int cYear = 2011;
     List<ProjectSummary> data;
     List<Employee> dataEmp;
     List<Project> dataProj;
-    int selectedEmployeeNamePos = 0;
 
-//    List<String> empNameList;
-//    List<String> projNamesList;
-
-    ArrayList<String> yearList = new ArrayList<String>();
+    ArrayList<Integer> yearList = new ArrayList<Integer>();
     ArrayList<String> empNameList = new ArrayList<>();
-    ArrayList<String> projNamesList = new ArrayList<>();
+    ArrayList<String> projNamesList = new ArrayList<String>();
 
     @Override
     protected String title() {
-        return "Summary Details";
+        return "Yearly Report";
     }
 
     @Override
@@ -88,40 +72,37 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
         return true;
     }
 
+
     @Override
-    protected int layoutRestID() {
-        return R.layout.activity_summary_details;
+    protected int layoutResID() {
+
+        return R.layout.activity_yearly__fragment;
+    }
+
+    public Yearly_Fragment() {
     }
 
     @Override
-    protected SummaryDetailsPresenter providePresenter() {
-        return new SummaryDetailsPresenter(this, this);
+    protected YearlyPresenter providePresenter() {
+        return new YearlyPresenter(getActivity(), this);
     }
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        employeeName.setOnItemSelectedListener(this);
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
         projName.setOnItemSelectedListener(this);
-
         data = new ArrayList<>();
         dataEmp = new ArrayList<>();
         dataProj = new ArrayList<>();
-        empNameList = new ArrayList<String>();
         projNamesList = new ArrayList<String>();
 
-//        barChart.setDoubleTapToZoomEnabled(true);
-//        barChart.setPinchZoom(true);
         barChart.setScaleEnabled(true);
-
-//        employeeName.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
         projName.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
         User user = presenter().getCurrentUser();
-
-        toolbarTitleTv.setText(title());
-        toolbarTitleTv.setTypeface(FontUtils.getTypeFace(this, getString(R.string.aleo_regular)));
+        presenter().fetchEmployees();
 
         loadBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,19 +111,18 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
                         !String.valueOf(projName.getSelectedItem()).isEmpty()
                         && !String.valueOf(cYear).isEmpty()) {
 
-
                     ProjectSum_Params projectSum_params;
-                    if (selectedEmployeeNamePos > 0) {
-                        projectSum_params = new ProjectSum_Params(dataEmp.get(selectedEmployeeNamePos - 1).getEmpCode(), String.valueOf(projName.getSelectedItem()), String.valueOf(cYear));
+
+                       projectSum_params = new ProjectSum_Params(user.getEmpCode(),
+                                String.valueOf(projName.getSelectedItem()), String.valueOf(cYear));
                         presenter().fetchSummaryData(projectSum_params);
-                    }
-//
-                } else {
+
+
+                }else {
                     barChart.setVisibility(View.GONE);
                     noDataFound.setVisibility(View.VISIBLE);
 
                 }
-
             }
         });
 
@@ -151,22 +131,20 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
             presenter().fetchEmployees();
             presenter().getProjectNames(user.getEmpCode());
         }
+
         data = new ArrayList<>();
         Calendar calender = Calendar.getInstance();
 
         cYear = calender.get(Calendar.YEAR);
         for (int count = 2017;
              count >= 2011; count--) {
-
-            yearList.add(String.valueOf(count));
+            yearList.add(count);
         }
 
-        ProjectsSpinnerAdapter yearAdapter = new ProjectsSpinnerAdapter(SummaryDetails.this, yearList);
-        yearSpinner.setAdapter(yearAdapter);
-
-//        ArrayAdapter<Integer> yearAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, yearList);
-//        yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        yearSpinner.setAdapter(yearAdapter);
+        ArrayAdapter<Integer> dataAdapter = new ArrayAdapter<Integer>(this.getContext(),
+                android.R.layout.simple_spinner_item, yearList);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        yearSpinner.setAdapter(dataAdapter);
 
 
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -181,51 +159,30 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
             }
         });
 
-
-        employeeName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String selectedItem = parent.getItemAtPosition(position).toString(); //this is your selected item
-                 /*If user selected spinner call projects service*/
-
-                selectedEmployeeNamePos = employeeName.getSelectedItemPosition();
-                if (!employeeName.getSelectedItem().toString().isEmpty()) {
-                    if (!employeeName.getSelectedItem().toString().equalsIgnoreCase("Select")) {
-                        if (user != null)
-                            presenter().getProjectNames(user.getEmpCode());
-
-                    }
-                    else {
-                        projName.setAdapter(null);
-//                        clearUI();
-                    }
-                }
-            }
-
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
         if (!user.empCode.isEmpty() && !String.valueOf(projName.getSelectedItem()).isEmpty() && !
                 yearSpinner.getSelectedItem().toString().isEmpty()) {
-            ProjectSum_Params projectSum_params = new ProjectSum_Params(user.empCode, String.valueOf(projName.getSelectedItem()), String.valueOf(cYear));
+
+            presenter().getProjectNames(user.getEmpCode());
+
+            ProjectSum_Params projectSum_params = new ProjectSum_Params(user.empCode,
+                    String.valueOf(projName.getSelectedItem()), String.valueOf(cYear));
             presenter().fetchSummaryData(projectSum_params);
-//
+
         }
-        else {
-            barChart.setVisibility(View.GONE);
-            noDataFound.setVisibility(View.VISIBLE);
-        }
+
     }
 
-
     @Override
-    protected void onResume() {
+    public void onResume() {
         User user = presenter().getCurrentUser();
         if (user != null) {
             ProjectSum_Params projectSum_params = new ProjectSum_Params(user.getEmpCode(), String.valueOf(projName.getSelectedItem()), String.valueOf(cYear));
             presenter().fetchSummaryData(projectSum_params);
+        }
+
+        else {
+            barChart.setVisibility(View.GONE);
+            noDataFound.setVisibility(View.VISIBLE);
         }
 
         presenter().fetchEmployees();
@@ -257,15 +214,13 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
             }
 
 
-            ProjectsSpinnerAdapter forEmpNAme = new ProjectsSpinnerAdapter(SummaryDetails.this, empNameList);
-            employeeName.setAdapter(forEmpNAme);
-
 //            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, empNameList);
 ////        employee_Name.setPrompt("Select Category");
 //            employeeName.setAdapter(adapter);
         }
 
         else if (o instanceof ProjectNamesResponse) {
+
             /*Projects response List<Projects>*/
             ProjectNamesResponse projectNamesResponse = (ProjectNamesResponse) o;
             dataProj = projectNamesResponse.getProjectList();
@@ -275,18 +230,18 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
 
             if (dataProj != null) {
                 for (int i = 0; i < dataProj.size(); i++) {
-                    projNamesList.add(dataProj.get(i).getProjectName().trim());
+                    projNamesList.add((dataProj.get(i).getProjectName().trim()));
                 }
 
                 barChart.setVisibility(View.VISIBLE);
-                noDataFound.setVisibility(View.GONE);
+//                noDataFound.setVisibility(View.GONE);
+
+                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
+                        android.R.layout.simple_spinner_item, projNamesList);
+                dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                projName.setAdapter(dataAdapter);
 
 
-                ProjectsSpinnerAdapter forProjectName = new ProjectsSpinnerAdapter(SummaryDetails.this, projNamesList);
-                projName.setAdapter(forProjectName);
-
-//                adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, projNamesList);
-//                projName.setAdapter(adapter);
             }
         }
 
@@ -297,12 +252,15 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
                 loadBarChart(sumResponse.getProjectSummaries());
 
                 barChart.setVisibility(View.VISIBLE);
-                noDataFound.setVisibility(View.GONE);
+               noDataFound.setVisibility(View.GONE);
             }
-        } else {
-            barChart.setVisibility(View.GONE);
-            noDataFound.setVisibility(View.VISIBLE);
         }
+
+        else {
+            barChart.setVisibility(View.GONE);
+             noDataFound.setVisibility(View.VISIBLE);
+        }
+
 
         if (o instanceof String) {
             /*Assign or removeEmployee response string*/
@@ -324,7 +282,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
         }
 
         barChart.setTouchEnabled(true);
-        BarChartMarkerView barChartMarkerView = new BarChartMarkerView(this,
+        BarChartMarkerView barChartMarkerView = new BarChartMarkerView(getActivity(),
                 R.layout.view_graph_marker);
         barChart.setMarkerView(barChartMarkerView);
         barChart.setDrawMarkerViews(true);
@@ -336,7 +294,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
         barChart.getXAxis().setDrawAxisLine(false);// removeEmployee left side line
         barChart.getAxisRight().setDrawLabels(false);
         barChart.getAxisLeft().setDrawLabels(false);
-//        barChart.getXAxis().setDrawLabels(false);  // Top values hide
+//        barChart.getXAxis().setDrawLabels(false); // Top values hide
 
         barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         barChart.getAxisLeft().setEnabled(false);
@@ -357,6 +315,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
         barChart.notifyDataSetChanged();
         barChart.animateXY(2000, 2000);
     }
+
 
     @Override
     public void onFailed(Throwable e) {

@@ -123,7 +123,7 @@ public class TimeSheetPresenter extends BasePresenter<TimeSheetViewBehaviour, Ti
         return sortedHashMap;
     }
 
-    class StringDateComparator implements Comparator<TimeSheet> {
+    static class StringDateComparator implements Comparator<TimeSheet> {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
         public int compare(TimeSheet lhs, TimeSheet rhs) {
