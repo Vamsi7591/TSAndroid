@@ -324,6 +324,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     }
 
     private String convertTo24Hours(String time) {
+
         SimpleDateFormat h_mm_a = new SimpleDateFormat("h:mm a");
         SimpleDateFormat hh_mm_ss = new SimpleDateFormat("HH:mm:ss");
 

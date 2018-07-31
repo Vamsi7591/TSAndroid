@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.android.timesheet.R;
+import com.android.timesheet.app.App;
 import com.android.timesheet.common_operations.profile.user_profile.UserProfile;
 import com.android.timesheet.common_operations.slider.Slider;
 import com.android.timesheet.shared.activities.BaseActivity;
@@ -27,6 +28,9 @@ import com.android.timesheet.shared.util.InternetUtils;
 import com.android.timesheet.shared.widget.CustomFontTextView;
 import com.android.timesheet.shared.widget.NonSwipeableViewPager;
 import com.android.timesheet.user_operations.report_fragment.ReportFragmentActivity;
+import com.android.timesheet.user_operations.reports.monthly.MonthlyFragment;
+import com.android.timesheet.user_operations.reports.weekly.WeeklyFragment;
+import com.android.timesheet.user_operations.reports.yearly.Yearly_Fragment;
 import com.android.timesheet.user_operations.timesheet.sheet_fragment.TimeSheetFragment;
 
 import java.util.List;
@@ -62,27 +66,23 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
     private ActionBarDrawerToggle mDrawerToggle;
     int currentTab = 0;
     public static final int KEY_HOME = 0;
-    public static final int KEY_REPORT = 1 ;
-    public static final int KEY_PROFILE = 2 ;
+    public static final int KEY_REPORT = 1;
+    public static final int KEY_PROFILE = 2;
+
+    public static final int KEY_WEEKLY = 3;
+    public static final int KEY_MONTHLY = 4;
+    public static final int KEY_YEARLY = 5;
+
     TimeSheetFragment timeSheetFragment;
     ReportFragmentActivity reportFragmentActivity;
     UserProfile userProfile;
 
-
-
-//    public static final int KEY_WEEKLY = 1;
-//    public static final int KEY_MONTHLY = 2;
-//    public static final int KEY_YEARLY = 3;
-//    public static final int KEY_PROFILE = 3;
-
-
-
-//    WeeklyFragment weeklyFragment;
-//    MonthlyFragment monthlyFragment;
-//    Yearly_Fragment yearly_fragment;
-
+    WeeklyFragment weeklyFragment;
+    MonthlyFragment monthlyFragment;
+    Yearly_Fragment yearly_fragment;
 
     //    private FirebaseAnalytics firebaseAnalytics;
+
     TabbedFragmentPagerAdapter mTabAdapter;
     User user = new User();
 
@@ -111,6 +111,7 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         super.onCreate(savedInstanceState);
         user = presenter().getCurrentUser();
 
+        App.getInstance().getBus().register(this);
 
 // Just for development mode we are disabled analytics
         /*
@@ -123,7 +124,7 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
         */
 
-        if (user != null) {
+        if (user != null && user.getEmpRole().contains("Admin")) {
             setUpDrawerLayout();
             new Slider(this, user);
 
@@ -152,15 +153,19 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
             mDrawerLayout.setDrawerElevation(0f);
         }
 
+        else if (user.getEmpRole().contains("User")) {
+            mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
+        }
+
+
         timeSheetFragment = new TimeSheetFragment();
         reportFragmentActivity = new ReportFragmentActivity();
         userProfile = new UserProfile();
 
-//        weeklyFragment = new WeeklyFragment();
-//        monthlyFragment = new MonthlyFragment();
-//        yearly_fragment = new Yearly_Fragment();
-
-//        monthlyFragment.setRetainInstance(false);
+        weeklyFragment = new WeeklyFragment();
+        monthlyFragment = new MonthlyFragment();
+        yearly_fragment = new Yearly_Fragment();
 
         if (mMenu == null) {
             changeTitle("Time Sheet");
@@ -172,7 +177,9 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
 
         if (InternetUtils.isInternetConnected(this)) {
             InternetUtils.hideLoadingDialog();
-        } else {
+        }
+
+        else {
             InternetUtils.showLoadingDialog(this);
         }
     }
@@ -197,25 +204,65 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         mTabAdapter.addFragment(timeSheetFragment, R.string.tab_home,
                 R.drawable.ic_format_line, R.drawable.ic_format_line);
 
-        mTabAdapter.addFragment(reportFragmentActivity,R.string.reports,
+        mTabAdapter.addFragment(reportFragmentActivity, R.string.reports,
                 R.drawable.reports, R.drawable.reports);
 
-        mTabAdapter.addFragment(userProfile,R.string.user_profile,
-               R.drawable.profile,R.drawable.profile );
+        if (!user.getEmpRole().contains("Admin")) {
 
-//        mTabAdapter.addFragment(weeklyFragment, R.string.tab_week,
-//                R.drawable.ic_pie_chart_black, R.drawable.ic_pie_chart_black);
-//
-//        mTabAdapter.addFragment(monthlyFragment, R.string.tab_month,
-//                R.drawable.ic_line_chart, R.drawable.ic_line_chart);
-//
-//        mTabAdapter.addFragment(yearly_fragment, R.string.tab_year,
-//                R.drawable.ic_year, R.drawable.ic_year);
+            mTabAdapter.addFragment(userProfile, R.string.user_profile,
+                    R.drawable.profile, R.drawable.profile);
+
+        }
 
         viewPager.setOffscreenPageLimit(1);
 
         viewPager.setAdapter(mTabAdapter);
         viewPager.setCurrentItem(0);
+
+
+
+        if (App.activityVisible) {
+
+            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    if (appBarLayout != null) {
+                        appBarLayout.setExpanded(true);
+                    }
+
+                    switch (position) {
+                        case 3:
+                            currentTab = KEY_WEEKLY;
+                            changeTitle("Weekly Report");
+                            clearToolbarMenu();
+                            break;
+
+                        case 4:
+                            currentTab = KEY_MONTHLY;
+                            changeTitle("Monthly Reports");
+                            clearToolbarMenu();
+                            break;
+
+                        case 5:
+                            currentTab = KEY_YEARLY;
+                            changeTitle("Yearly Report");
+                            break;
+                    }
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            } ) ;
+        }
+
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -224,9 +271,11 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
 
             @Override
             public void onPageSelected(int position) {
+
                 if (appBarLayout != null) {
                     appBarLayout.setExpanded(true);
                 }
+
 
                 switch (position) {
                     case 0:
@@ -293,16 +342,20 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
             public void onTabReselected(TabLayout.Tab tab) {
 
             }
-        });
+        } );
     }
+
+
 
     @Override
     protected void onResume() {
+        App.getInstance().getBus().unregister(this);
         super.onResume();
     }
 
     @Override
     protected void onPause() {
+        App.getInstance().getBus().unregister(this);
         super.onPause();
     }
 
@@ -329,8 +382,14 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-//        if (isAdmin)
-        mDrawerToggle.syncState();
+        //       if (isAdmin)
+
+        if (user.getEmpRole().contains("Admin")) {
+            mDrawerToggle.syncState();
+        }
+//        else
+//            mDrawerToggle.setDrawerIndicatorEnabled(false);
+
     }
 
     void showHomeToolbar() {

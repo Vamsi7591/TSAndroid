@@ -129,7 +129,8 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
 
         if (data.size() == 0) {
             App.getInstance().getBus().post(new TimeSheetValidEvent(true));
-        }else
+        }
+        else
             App.getInstance().getBus().post(new TimeSheetValidEvent(false));
 
         mAdapter.setItems(data);
@@ -187,8 +188,8 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
     public void onItemClick(View view, int position) {
         TimeSheet sheet = mAdapter.getItem(position);
         switch (sheet.getRowType()) {
-            case TimeSheet.TYPE_HEADER: {
 
+            case TimeSheet.TYPE_HEADER: {
                 Log.i(TAG, "onItemClick : " + sheet.getHeader());
                 presenter().dayTimeSheet(sheet.getHeader());
                 break;
@@ -236,7 +237,8 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
 
     private void hideKeyboard() {
         View view = new View(context);
-        InputMethodManager imm = (InputMethodManager) this.context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) this.context.getSystemService
+                (Context.INPUT_METHOD_SERVICE);
         assert imm != null;
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }

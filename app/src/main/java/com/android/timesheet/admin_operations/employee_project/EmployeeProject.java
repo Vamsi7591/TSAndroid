@@ -208,7 +208,8 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
                             clearUI(false);
                         }
                     }
-                } else {
+                }
+                else {
                     // Remove
                     if (!empNameSp.getSelectedItem().toString().isEmpty()) {
 

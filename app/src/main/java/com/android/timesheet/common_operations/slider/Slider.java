@@ -23,6 +23,7 @@ public class Slider {
     private ListView slider_listView;
 
     public Slider(Activity context, User user) {
+
         this.context = context;
         slider_user_iv = (ImageView) context.findViewById(R.id.slider_user_iv);
         slider_header_tv = (TextView) context.findViewById(R.id.slider_header_tv);
@@ -33,8 +34,20 @@ public class Slider {
 
         if (user.getEmpRole().equalsIgnoreCase("Admin")) {
             slider_listView.setAdapter(new SliderBaseAdapter(context));
-        }else
-            slider_type_tv.setText("Logged In as User");
+        }
+
+        else if (user.getEmpRole().contains("User")){
+
+            this.context = null;
+
+            slider_user_iv.setVisibility(View.GONE);
+            slider_header_tv.setVisibility(View.GONE);
+            slider_type_tv.setVisibility(View.GONE);
+            slider_listView.setVisibility(View.GONE);
+
+            slider_listView.setAdapter(null);
+
+        }
 
         slider_user_iv.setOnClickListener(new View.OnClickListener() {
 

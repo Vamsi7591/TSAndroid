@@ -28,6 +28,8 @@ public class SliderBaseAdapter extends BaseAdapter {
     Activity activity;
     List<Class> slide_classes = new ArrayList();
 
+
+
     public SliderBaseAdapter(Activity activity) {
         this.activity = activity;
 
@@ -81,12 +83,16 @@ public class SliderBaseAdapter extends BaseAdapter {
             public void onClick(View v) {
                 if (position == 12) {
                     ((LandingActivity) activity).closeDrawer();
-                } else {
+                }
+
+                else  {
                     Intent intent = new Intent(activity, slide_classes.get(position));
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     activity.startActivity(intent);
 //                    ((LandingActivity) activity).closeDrawer();
                 }
+
+
             }
         });
 

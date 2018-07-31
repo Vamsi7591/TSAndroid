@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="logo_height">141dp</dimen>
-    <dimen name="logo_margin_top">150dp</dimen>
-    <dimen name="pipe_height">24dp</dimen>
-    <dimen name="social_icons">62dp</dimen>
-</resources>

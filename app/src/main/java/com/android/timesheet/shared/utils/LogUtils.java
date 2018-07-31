@@ -56,7 +56,9 @@ public class LogUtils {
 //            Appsee.addEvent(name, args);
 
             LogUtils.LOG(name + "\n" + message);
-        } else {
+        }
+
+        else {
 //            Appsee.addEvent(name);
         }
     }
