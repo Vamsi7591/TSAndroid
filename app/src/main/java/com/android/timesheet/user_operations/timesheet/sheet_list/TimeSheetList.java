@@ -56,7 +56,7 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
     String TAG = "TimeSheetFragment";
     User user;
 
-     TimeSheetAdapter mAdapter;
+    TimeSheetAdapter mAdapter;
     LinearLayoutManager linearLayoutManager;
 
     @BindView(R.id.general_recycler_view)

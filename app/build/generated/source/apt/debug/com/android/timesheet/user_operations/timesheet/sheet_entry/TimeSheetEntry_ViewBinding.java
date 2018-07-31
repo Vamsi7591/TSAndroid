@@ -17,15 +17,15 @@ import java.lang.Override;
 public class TimeSheetEntry_ViewBinding extends BaseActivity_ViewBinding {
   private TimeSheetEntry target;
 
-  private View view2131296508;
+  private View view2131296520;
 
-  private View view2131296588;
+  private View view2131296602;
 
-  private View view2131296378;
+  private View view2131296381;
 
-  private View view2131296485;
+  private View view2131296493;
 
-  private View view2131296593;
+  private View view2131296608;
 
   @UiThread
   public TimeSheetEntry_ViewBinding(TimeSheetEntry target) {
@@ -43,7 +43,7 @@ public class TimeSheetEntry_ViewBinding extends BaseActivity_ViewBinding {
     target.spinnerProjects = Utils.findRequiredViewAsType(source, R.id.spinnerProjects, "field 'spinnerProjects'", Spinner.class);
     view = Utils.findRequiredView(source, R.id.pickerDate, "field 'pickerDate' and method 'showCustomDatePicker'");
     target.pickerDate = Utils.castView(view, R.id.pickerDate, "field 'pickerDate'", TextView.class);
-    view2131296508 = view;
+    view2131296520 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -52,7 +52,7 @@ public class TimeSheetEntry_ViewBinding extends BaseActivity_ViewBinding {
     });
     view = Utils.findRequiredView(source, R.id.startTime, "field 'startTime' and method 'showStartTimeClock'");
     target.startTime = Utils.castView(view, R.id.startTime, "field 'startTime'", TextView.class);
-    view2131296588 = view;
+    view2131296602 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -61,7 +61,7 @@ public class TimeSheetEntry_ViewBinding extends BaseActivity_ViewBinding {
     });
     view = Utils.findRequiredView(source, R.id.endTime, "field 'endTime' and method 'showEndTimeClock'");
     target.endTime = Utils.castView(view, R.id.endTime, "field 'endTime'", TextView.class);
-    view2131296378 = view;
+    view2131296381 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -72,7 +72,7 @@ public class TimeSheetEntry_ViewBinding extends BaseActivity_ViewBinding {
     target.description_count = Utils.findOptionalViewAsType(source, R.id.description_count, "field 'description_count'", CustomFontTextView.class);
     view = Utils.findRequiredView(source, R.id.modifyBtn, "field 'modifyBtn' and method 'modify'");
     target.modifyBtn = Utils.castView(view, R.id.modifyBtn, "field 'modifyBtn'", CustomFontTextView.class);
-    view2131296485 = view;
+    view2131296493 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -81,7 +81,7 @@ public class TimeSheetEntry_ViewBinding extends BaseActivity_ViewBinding {
     });
     view = Utils.findRequiredView(source, R.id.submitBtn, "field 'submitBtn' and method 'save'");
     target.submitBtn = Utils.castView(view, R.id.submitBtn, "field 'submitBtn'", CustomFontTextView.class);
-    view2131296593 = view;
+    view2131296608 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -116,16 +116,16 @@ public class TimeSheetEntry_ViewBinding extends BaseActivity_ViewBinding {
     target.error_end_time = null;
     target.error_description = null;
 
-    view2131296508.setOnClickListener(null);
-    view2131296508 = null;
-    view2131296588.setOnClickListener(null);
-    view2131296588 = null;
-    view2131296378.setOnClickListener(null);
-    view2131296378 = null;
-    view2131296485.setOnClickListener(null);
-    view2131296485 = null;
-    view2131296593.setOnClickListener(null);
-    view2131296593 = null;
+    view2131296520.setOnClickListener(null);
+    view2131296520 = null;
+    view2131296602.setOnClickListener(null);
+    view2131296602 = null;
+    view2131296381.setOnClickListener(null);
+    view2131296381 = null;
+    view2131296493.setOnClickListener(null);
+    view2131296493 = null;
+    view2131296608.setOnClickListener(null);
+    view2131296608 = null;
 
     super.unbind();
   }

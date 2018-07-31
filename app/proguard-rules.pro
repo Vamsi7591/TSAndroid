@@ -147,5 +147,4 @@
 -keep class com.android.timesheet.shared.** { *;}
 
 # TimeSheetList
-
 -keep class com.android.timesheet.user_operations.timesheet.** { *;}

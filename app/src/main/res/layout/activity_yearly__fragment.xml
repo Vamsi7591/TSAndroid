@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -26,21 +25,26 @@
                 android:id="@+id/first"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                android:layout_marginEnd="?actionBarSize"
-                android:layout_marginRight="?actionBarSize"
+                android:layout_marginEnd="@dimen/padding_40"
+                android:layout_marginRight="@dimen/padding_40"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="122dp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:autoSizeMaxTextSize="@dimen/tv_font_small"
                     android:gravity="center|start"
+                    android:maxLines="2"
+                    android:minWidth="150dp"
                     android:text="Project Name"
-                    android:textSize="@dimen/tv_font_size_18" />
+                    android:textSize="@dimen/tv_font_size_18"
+                    tools:targetApi="o" />
 
                 <Spinner
                     android:id="@+id/project_names"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:layout_gravity="end"
                     android:gravity="end"
@@ -58,8 +62,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 android:layout_below="@+id/first"
-                android:layout_marginEnd="?actionBarSize"
-                android:layout_marginRight="?actionBarSize"
+                android:layout_marginEnd="@dimen/padding_40"
+                android:layout_marginRight="@dimen/padding_40"
                 android:orientation="horizontal">
 
                 <TextView
@@ -72,7 +76,8 @@
 
                 <Spinner
                     android:id="@+id/yearly_Spinner"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:layout_gravity="end"
                     android:gravity="end"
@@ -134,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="yearly report is empty"
+                android:text="Yearly report is empty"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 android:textColor="@color/cardview_dark_background" />
 

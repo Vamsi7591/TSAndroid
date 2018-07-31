@@ -17,7 +17,7 @@ import java.lang.Override;
 public class LoginActivity_ViewBinding extends BaseActivity_ViewBinding {
   private LoginActivity target;
 
-  private View view2131296616;
+  private View view2131296635;
 
   @UiThread
   public LoginActivity_ViewBinding(LoginActivity target) {
@@ -38,7 +38,7 @@ public class LoginActivity_ViewBinding extends BaseActivity_ViewBinding {
     target.progressBar = Utils.findRequiredViewAsType(source, R.id.progressBar, "field 'progressBar'", ProgressBar.class);
     view = Utils.findRequiredView(source, R.id.textViewLogin, "field 'textViewLogin' and method 'login'");
     target.textViewLogin = Utils.castView(view, R.id.textViewLogin, "field 'textViewLogin'", CustomFontTextView.class);
-    view2131296616 = view;
+    view2131296635 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -60,8 +60,8 @@ public class LoginActivity_ViewBinding extends BaseActivity_ViewBinding {
     target.progressBar = null;
     target.textViewLogin = null;
 
-    view2131296616.setOnClickListener(null);
-    view2131296616 = null;
+    view2131296635.setOnClickListener(null);
+    view2131296635 = null;
 
     super.unbind();
   }

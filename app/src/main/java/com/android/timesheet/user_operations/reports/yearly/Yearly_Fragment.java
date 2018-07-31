@@ -32,11 +32,12 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 
 public class Yearly_Fragment extends BaseFragment<YearlyPresenter>
-               implements BaseViewBehavior<Object>, AdapterView.OnItemSelectedListener {
+        implements BaseViewBehavior<Object>, AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.project_names)
     Spinner projName;
@@ -53,14 +54,14 @@ public class Yearly_Fragment extends BaseFragment<YearlyPresenter>
     @BindView(R.id.noDataFoundRL)
     LinearLayout noDataFound;
 
-    int cYear = 2011;
-    List<ProjectSummary> data;
+    int cYear = 2018;
+    List<ProjectSummary> listOfSummary;
     List<Employee> dataEmp;
     List<Project> dataProj;
 
-    ArrayList<Integer> yearList = new ArrayList<Integer>();
-    ArrayList<String> empNameList = new ArrayList<>();
-    ArrayList<String> projNamesList = new ArrayList<String>();
+    ArrayList<Integer> yearList;
+    ArrayList<String> empNameList;
+    ArrayList<String> projNamesList;
 
     @Override
     protected String title() {
@@ -93,36 +94,36 @@ public class Yearly_Fragment extends BaseFragment<YearlyPresenter>
         super.onActivityCreated(savedInstanceState);
 
         projName.setOnItemSelectedListener(this);
-        data = new ArrayList<>();
+        listOfSummary = new ArrayList<>();
         dataEmp = new ArrayList<>();
         dataProj = new ArrayList<>();
-        projNamesList = new ArrayList<String>();
+        projNamesList = new ArrayList<>();
+
+        yearList = new ArrayList<>();
+        empNameList = new ArrayList<>();
 
         barChart.setScaleEnabled(true);
-        projName.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
+        projName.setOnItemSelectedListener(this);
 
         User user = presenter().getCurrentUser();
         presenter().fetchEmployees();
 
-        loadBar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!user.empCode.isEmpty() &&
-                        !String.valueOf(projName.getSelectedItem()).isEmpty()
-                        && !String.valueOf(cYear).isEmpty()) {
+        loadBar.setOnClickListener(v -> {
+            if (!user.empCode.isEmpty() &&
+                    !String.valueOf(projName.getSelectedItem()).isEmpty()
+                    && !String.valueOf(cYear).isEmpty()) {
 
-                    ProjectSum_Params projectSum_params;
+                ProjectSum_Params projectSum_params;
 
-                       projectSum_params = new ProjectSum_Params(user.getEmpCode(),
-                                String.valueOf(projName.getSelectedItem()), String.valueOf(cYear));
-                        presenter().fetchSummaryData(projectSum_params);
+                projectSum_params = new ProjectSum_Params(user.getEmpCode(),
+                        String.valueOf(projName.getSelectedItem()), String.valueOf(cYear));
+                presenter().fetchSummaryData(projectSum_params);
 
 
-                }else {
-                    barChart.setVisibility(View.GONE);
-                    noDataFound.setVisibility(View.VISIBLE);
+            } else {
+                barChart.setVisibility(View.GONE);
+                noDataFound.setVisibility(View.VISIBLE);
 
-                }
             }
         });
 
@@ -132,16 +133,16 @@ public class Yearly_Fragment extends BaseFragment<YearlyPresenter>
             presenter().getProjectNames(user.getEmpCode());
         }
 
-        data = new ArrayList<>();
+        listOfSummary = new ArrayList<>();
         Calendar calender = Calendar.getInstance();
 
         cYear = calender.get(Calendar.YEAR);
-        for (int count = 2017;
-             count >= 2011; count--) {
+        for (int count = 2018;
+             count >= 2017; count--) {
             yearList.add(count);
         }
 
-        ArrayAdapter<Integer> dataAdapter = new ArrayAdapter<Integer>(this.getContext(),
+        ArrayAdapter<Integer> dataAdapter = new ArrayAdapter<>(Objects.requireNonNull(this.getContext()),
                 android.R.layout.simple_spinner_item, yearList);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         yearSpinner.setAdapter(dataAdapter);
@@ -159,7 +160,7 @@ public class Yearly_Fragment extends BaseFragment<YearlyPresenter>
             }
         });
 
-        if (!user.empCode.isEmpty() && !String.valueOf(projName.getSelectedItem()).isEmpty() && !
+        if (!Objects.requireNonNull(user).empCode.isEmpty() && !String.valueOf(projName.getSelectedItem()).isEmpty() && !
                 yearSpinner.getSelectedItem().toString().isEmpty()) {
 
             presenter().getProjectNames(user.getEmpCode());
@@ -178,9 +179,7 @@ public class Yearly_Fragment extends BaseFragment<YearlyPresenter>
         if (user != null) {
             ProjectSum_Params projectSum_params = new ProjectSum_Params(user.getEmpCode(), String.valueOf(projName.getSelectedItem()), String.valueOf(cYear));
             presenter().fetchSummaryData(projectSum_params);
-        }
-
-        else {
+        } else {
             barChart.setVisibility(View.GONE);
             noDataFound.setVisibility(View.VISIBLE);
         }
@@ -217,9 +216,7 @@ public class Yearly_Fragment extends BaseFragment<YearlyPresenter>
 //            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, empNameList);
 ////        employee_Name.setPrompt("Select Category");
 //            employeeName.setAdapter(adapter);
-        }
-
-        else if (o instanceof ProjectNamesResponse) {
+        } else if (o instanceof ProjectNamesResponse) {
 
             /*Projects response List<Projects>*/
             ProjectNamesResponse projectNamesResponse = (ProjectNamesResponse) o;
@@ -236,7 +233,7 @@ public class Yearly_Fragment extends BaseFragment<YearlyPresenter>
                 barChart.setVisibility(View.VISIBLE);
 //                noDataFound.setVisibility(View.GONE);
 
-                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
+                ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()),
                         android.R.layout.simple_spinner_item, projNamesList);
                 dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 projName.setAdapter(dataAdapter);
@@ -249,16 +246,16 @@ public class Yearly_Fragment extends BaseFragment<YearlyPresenter>
         if (o instanceof ProjectSum_Response) {
             ProjectSum_Response sumResponse = (ProjectSum_Response) o;
             if (sumResponse.isStatus()) {
-                loadBarChart(sumResponse.getProjectSummaries());
+                if (sumResponse.getProjectSummaries() != null) {
+                    loadBarChart(sumResponse.getProjectSummaries());
+                }
 
                 barChart.setVisibility(View.VISIBLE);
-               noDataFound.setVisibility(View.GONE);
+                noDataFound.setVisibility(View.GONE);
             }
-        }
-
-        else {
+        } else {
             barChart.setVisibility(View.GONE);
-             noDataFound.setVisibility(View.VISIBLE);
+            noDataFound.setVisibility(View.VISIBLE);
         }
 
 

@@ -7,7 +7,7 @@ package com.android.common;
 public interface AppConfig {
     /*API base Url*/
     String API_BASE_URL = "http://192.168.1.50/tsservice/api/Service/";
-    String WEB_URL_HELP_CENTER = "http://www.wilcosource.com/people-matter-wilco-source/";
+    String WEB_URL_HELP_CENTER = "http://wilcosource.com/about-us/";
 
     /*Constant keys*/
     String EMPLOYEE_OBJECT = "employeeObject";

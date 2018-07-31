@@ -1,10 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\TSAndroid\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
+            "outputFile": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\vijayarajan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\d21ec51f98c28bddcca3f993670ab2ef\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\commons-0.9.0.1.aar\\9a5d2d48077912380abbb281714dcfcb\\res\\values-large-v4\\values-large-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "58",
+                        "endOffsets": "109"
+                    },
+                    "to": {
+                        "startLines": "9",
+                        "startColumns": "4",
+                        "startOffsets": "532",
+                        "endColumns": "58",
+                        "endOffsets": "586"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
@@ -21,20 +38,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\vijayarajan\\.gradle\\caches\\transforms-1\\files-1.1\\commons-0.9.0.1.aar\\ae5b8606cdcf8788dd32840b6e3620e0\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0-beta01.aar\\fccef6fa39d32ba7117e5e7d9142c4a2\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "58",
-                        "endOffsets": "109"
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,177",
+                        "endColumns": "121,133",
+                        "endOffsets": "172,306"
                     },
                     "to": {
-                        "startLines": "9",
-                        "startColumns": "4",
-                        "startOffsets": "532",
-                        "endColumns": "58",
-                        "endOffsets": "586"
+                        "startLines": "12,13",
+                        "startColumns": "4,4",
+                        "startOffsets": "811,933",
+                        "endColumns": "121,133",
+                        "endOffsets": "928,1062"
                     }
                 }
             ]

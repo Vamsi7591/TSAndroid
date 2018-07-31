@@ -62,10 +62,10 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
 
     String TAG = "MonthlyFragment";
 
-    int cYear = 2011;
+    int cYear = 2017;
     int cMonth = 0;
 
-    List<Month> arraylist;
+    List<Month> listOfMonths;
     ArrayList<Integer> yearList;
     ArrayList<Integer> monthList;
 
@@ -120,7 +120,7 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
 
         setRetainInstance(false);
 
-        arraylist = new ArrayList<>();
+        listOfMonths = new ArrayList<>();
 //        barChart.setTouchEnabled(true);
 ////        LineChartMarkerView lineChartMarkerView = new LineChartMarkerView(getContext(), R.layout.view_graph_marker);
 ////        barChart.setMarkerView(lineChartMarkerView);
@@ -130,7 +130,7 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
         cMonth = (Calendar.getInstance().get(Calendar.MONTH));
 
         yearList = new ArrayList<>();
-        for (int count = 2017; count >= 2011; count--) {
+        for (int count = 2018; count >= 2017; count--) {
             yearList.add(count);
         }
 
@@ -182,7 +182,7 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
             public void onClick(View view) {
                 User user = presenter().getCurrentUser();
 
-                if (arraylist.size() > 0) {
+                if (listOfMonths.size() > 0) {
 
                     if (user != null) {
                         cMonth = Integer.parseInt(monthSpinner.getSelectedItem().toString());
@@ -191,7 +191,7 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
 
                     }
 
-//                    loadPie(arraylist);
+//                    loadPie(listOfMonths);
                     barChart.setVisibility(View.VISIBLE);
                     noDataFound.setVisibility(View.GONE);
                 } else {

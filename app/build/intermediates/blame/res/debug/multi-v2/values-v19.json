@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\TSAndroid\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v19\\values-v19.xml",
+            "outputFile": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v19\\values-v19.xml",
             "map": [
                 {
-                    "source": "D:\\TSAndroid\\app\\src\\main\\res\\values-v19\\styles.xml",
+                    "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\values-v19\\styles.xml",
                     "from": {
                         "startLines": "3",
                         "startColumns": "8",

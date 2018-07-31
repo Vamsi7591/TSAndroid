@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\TSAndroid\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
+            "outputFile": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
             "map": [
                 {
-                    "source": "D:\\TSAndroid\\app\\src\\main\\res\\values-hdpi\\dimens.xml",
+                    "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\values-hdpi\\dimens.xml",
                     "from": {
                         "startLines": "14,13,2,3,4,15,10,9,7,8,11",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\vijayarajan\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\d21ec51f98c28bddcca3f993670ab2ef\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
+                    "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\values-hdpi-v4\\values-hdpi-v4.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

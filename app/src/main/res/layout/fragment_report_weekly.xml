@@ -26,8 +26,8 @@
                 android:id="@+id/first"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
-                android:layout_marginEnd="?actionBarSize"
-                android:layout_marginRight="?actionBarSize"
+                android:layout_marginEnd="@dimen/padding_40"
+                android:layout_marginRight="@dimen/padding_40"
                 android:orientation="horizontal">
 
                 <TextView
@@ -58,8 +58,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 android:layout_below="@+id/first"
-                android:layout_marginEnd="?actionBarSize"
-                android:layout_marginRight="?actionBarSize"
+                android:layout_marginEnd="@dimen/padding_40"
+                android:layout_marginRight="@dimen/padding_40"
                 android:orientation="horizontal">
 
                 <TextView

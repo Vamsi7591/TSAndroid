@@ -46,7 +46,6 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Bas
 /*       setContentView(R.layout.activity_splash);*/
         Log.i(TAG, "onCreate");
 
-//        User user = new User();
         try {
             User user = presenter().getCurrentUser();
             onSuccess(user);

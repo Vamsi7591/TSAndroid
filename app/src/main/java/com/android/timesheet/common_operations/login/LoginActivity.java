@@ -105,7 +105,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
          */
 
 
-
         try {
             editTextPassword.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -149,21 +148,25 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     protected void onResume() {
         Log.i(TAG, "onResume");
 
-        User user = new User();
-        user = presenter().getCurrentUser();
+        try {
+            User user = new User();
+            user = presenter().getCurrentUser();
 
-        if (user != null) {
-            Log.d(TAG, "stored user : " + user.toString());
-            onSuccess(user);
+            if (user != null) {
+                Log.d(TAG, "stored user : " + user.toString());
+                onSuccess(user);
+            }
+
+            if (InternetUtils.isInternetConnected(this)) {
+                InternetUtils.hideLoadingDialog();
+            } else {
+                InternetUtils.showLoadingDialog(this);
+            }
+
+            animationShake = AnimationUtils.loadAnimation(getBaseContext(), R.anim.shake_animation);
+        } catch (Exception e) {
+            Log.i(TAG, "Error --> " + e.getMessage());
         }
-
-        if (InternetUtils.isInternetConnected(this)) {
-            InternetUtils.hideLoadingDialog();
-        } else {
-            InternetUtils.showLoadingDialog(this);
-        }
-
-        animationShake = AnimationUtils.loadAnimation(getBaseContext(), R.anim.shake_animation);
 
         super.onResume();
     }
@@ -240,7 +243,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
               "E010", "1234567"
               */
         } else {
-            infoSnackBar(   getString(R.string.no_internet_connection));
+            infoSnackBar(getString(R.string.no_internet_connection));
         }
     }
 

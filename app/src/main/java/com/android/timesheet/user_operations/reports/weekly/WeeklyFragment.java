@@ -35,6 +35,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import butterknife.BindView;
 
@@ -43,7 +44,7 @@ import butterknife.BindView;
  */
 
 public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
-        implements BaseViewBehavior<List<Week>>,ValueFormatter{
+        implements BaseViewBehavior<List<Week>>, ValueFormatter {
 
     @BindView(R.id.spinner_week)
     Spinner weekSpinner;
@@ -62,12 +63,12 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
 
 
     int cWeek = 0;
-    int cYear = 2011;
+    int cYear = 2017;
 
-    List<Week> arraylist;
+    List<Week> listOfWeeks;
 
-    ArrayList<Integer> weekList = new ArrayList<Integer>();
-    ArrayList<Integer> yearList = new ArrayList<Integer>();
+    ArrayList<Integer> weekList;
+    ArrayList<Integer> yearList;
 
     String TAG = "WeeklyFragment";
 
@@ -84,7 +85,7 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-          return super.onCreateView(inflater, container, savedInstanceState);
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
@@ -93,7 +94,9 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
 
         setRetainInstance(false);
 
-        arraylist = new ArrayList<>();
+        listOfWeeks = new ArrayList<>();
+        weekList = new ArrayList<>();
+        yearList = new ArrayList<>();
 
 //        Calendar calender = Calendar.getInstance();
 //        cWeek = calender.get(Calendar.WEEK_OF_YEAR);
@@ -102,28 +105,27 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
         Calendar calDe = Calendar.getInstance(Locale.getDefault());
         calDe.setTime(new Date());
         cWeek = calDe.get(Calendar.WEEK_OF_YEAR);
-        cYear =calDe.get(Calendar.YEAR);
+        cYear = calDe.get(Calendar.YEAR);
 
 
         for (int counter = 1; counter <= 52; counter++) {
             weekList.add(counter);
 
         }
-        for (int count = 2017; count >= 2011; count--) {
+        for (int count = 2018; count >= 2017; count--) {
 
             yearList.add(count);
         }
 
-        ArrayAdapter<Integer> dataAdapter = new ArrayAdapter<Integer>(this.getContext(),
+        ArrayAdapter<Integer> dataAdapter = new ArrayAdapter<>(Objects.requireNonNull(this.getContext()),
                 android.R.layout.simple_spinner_item, weekList);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         weekSpinner.setAdapter(dataAdapter);
 
-        ArrayAdapter<Integer> yearAdapter = new ArrayAdapter<Integer>(this.getContext(),
+        ArrayAdapter<Integer> yearAdapter = new ArrayAdapter<>(this.getContext(),
                 android.R.layout.simple_spinner_item, yearList);
         yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         yearSpinner.setAdapter(yearAdapter);
-
 
 
         weekSpinner.setOnItemSelectedListener
@@ -161,35 +163,30 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
         Log.v(TAG, "onRefresh called");
 
 
-        loadChart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        loadChart.setOnClickListener(view -> {
 
-                if (arraylist.size() > 0) {
-                    User user = presenter().getCurrentUser();
-                    if (user != null) {
-                        WeekParams weekParams = new WeekParams(user.empCode, cWeek, cYear);
-                        presenter().fetchWeekData(weekParams);
-                    }
-
-                    loadPie(arraylist);
-                    weekChart.setVisibility(View.VISIBLE);
-                    noDataFound.setVisibility(View.GONE);
-                }
-
-                else {
-                    weekChart.setVisibility(View.GONE);
-                    noDataFound.setVisibility(View.VISIBLE);
-                }
-
-
+            if (listOfWeeks.size() > 0) {
                 User user = presenter().getCurrentUser();
                 if (user != null) {
                     WeekParams weekParams = new WeekParams(user.empCode, cWeek, cYear);
                     presenter().fetchWeekData(weekParams);
                 }
 
+                loadPie(listOfWeeks);
+                weekChart.setVisibility(View.VISIBLE);
+                noDataFound.setVisibility(View.GONE);
+            } else {
+                weekChart.setVisibility(View.GONE);
+                noDataFound.setVisibility(View.VISIBLE);
             }
+
+
+            User user = presenter().getCurrentUser();
+            if (user != null) {
+                WeekParams weekParams = new WeekParams(user.empCode, cWeek, cYear);
+                presenter().fetchWeekData(weekParams);
+            }
+
         });
 
 //        User user = presenter().getCurrentUser();
@@ -201,24 +198,23 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
 
     /* @Param Seperate method for add values in x and y axis
      * This method calls load chart , onResume , onSuccess
-      */
+     */
 
     public void loadPie(List<Week> arrayList) {
 
-        ArrayList<Entry> yEntries = new ArrayList<Entry>();
-        ArrayList<String> xEntries = new ArrayList<String>();
-        String[] projectNames = new String[arrayList.size()];
+        ArrayList<Entry> yEntries = new ArrayList<>();
+        ArrayList<String> xEntries = new ArrayList<>();
 
         for (int i = 0; i < arrayList.size(); i++) {
-            yEntries.add(new Entry(Float.parseFloat(arrayList.get(i).getDuration()), i,arrayList.get(i)));
+            yEntries.add(new Entry(Float.parseFloat(arrayList.get(i).getDuration()), i, arrayList.get(i)));
 
-            /*if (Float.parseFloat(arrayList.get(i).getDuration()) <= 1)
-                xEntries.add("hour in \n"+ arrayList.get(i).getProjectname().trim());//Hour
+            /*if (Float.parseFloat(listOfWeeks.get(i).getDuration()) <= 1)
+                xEntries.add("hour in \n"+ listOfWeeks.get(i).getProjectname().trim());//Hour
             else
-                xEntries.add("hours in \n"+ arrayList.get(i).getProjectname().trim());//Hours*/
+                xEntries.add("hours in \n"+ listOfWeeks.get(i).getProjectname().trim());//Hours*/
 
             xEntries.add(arrayList.get(i).getProjectname().trim());
-//            projectNames[i] = arrayList.get(i).getProjectname();
+//            projectNames[i] = listOfWeeks.get(i).getProjectname();
         }
 
 
@@ -232,7 +228,7 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
 //                                            ViewPortHandler viewPortHandler) {
 //
 //
-//                return arrayList.get(dataSetIndex).getDuration();
+//                return listOfWeeks.get(dataSetIndex).getDuration();
 //
 //            }
 //        });
@@ -277,7 +273,7 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
 
         User user = presenter().getCurrentUser();
         if (user != null) {
-            loadPie(arraylist);
+            loadPie(listOfWeeks);
             WeekParams weekParams = new WeekParams(user.empCode, cWeek, cYear);
             presenter().fetchWeekData(weekParams);
         }
@@ -302,8 +298,7 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
             loadPie(arrayList);
             weekChart.setVisibility(View.VISIBLE);
             noDataFound.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             weekChart.setVisibility(View.GONE);
             noDataFound.setVisibility(View.VISIBLE);
         }
@@ -322,7 +317,7 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
 
         DecimalFormat df = new DecimalFormat("##.##");
         df.setRoundingMode(RoundingMode.CEILING);
-        return df.format((double)value);
+        return df.format((double) value);
 
 
     }

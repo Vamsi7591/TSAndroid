@@ -22,6 +22,7 @@ import com.android.timesheet.common_operations.profile.user_profile.UserProfile;
 import com.android.timesheet.common_operations.slider.Slider;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.adapters.TabbedFragmentPagerAdapter;
+import com.android.timesheet.shared.events.TabPositionEvent;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.util.FontUtils;
 import com.android.timesheet.shared.util.InternetUtils;
@@ -32,6 +33,7 @@ import com.android.timesheet.user_operations.reports.monthly.MonthlyFragment;
 import com.android.timesheet.user_operations.reports.weekly.WeeklyFragment;
 import com.android.timesheet.user_operations.reports.yearly.Yearly_Fragment;
 import com.android.timesheet.user_operations.timesheet.sheet_fragment.TimeSheetFragment;
+import com.squareup.otto.Subscribe;
 
 import java.util.List;
 
@@ -65,6 +67,7 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
 
     private ActionBarDrawerToggle mDrawerToggle;
     int currentTab = 0;
+    int currentTabInReports = 0;
     public static final int KEY_HOME = 0;
     public static final int KEY_REPORT = 1;
     public static final int KEY_PROFILE = 2;
@@ -111,7 +114,7 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         super.onCreate(savedInstanceState);
         user = presenter().getCurrentUser();
 
-        App.getInstance().getBus().register(this);
+//        App.getInstance().getBus().register(this);
 
 // Just for development mode we are disabled analytics
         /*
@@ -151,9 +154,7 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
             };
             mDrawerLayout.setDrawerListener(mDrawerToggle);
             mDrawerLayout.setDrawerElevation(0f);
-        }
-
-        else if (user.getEmpRole().contains("User")) {
+        } else if (user.getEmpRole().contains("User")) {
             mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         }
@@ -177,9 +178,7 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
 
         if (InternetUtils.isInternetConnected(this)) {
             InternetUtils.hideLoadingDialog();
-        }
-
-        else {
+        } else {
             InternetUtils.showLoadingDialog(this);
         }
     }
@@ -204,7 +203,7 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         mTabAdapter.addFragment(timeSheetFragment, R.string.tab_home,
                 R.drawable.ic_format_line, R.drawable.ic_format_line);
 
-        mTabAdapter.addFragment(reportFragmentActivity, R.string.reports,
+        mTabAdapter.addFragment(reportFragmentActivity, R.string.tab_week,
                 R.drawable.reports, R.drawable.reports);
 
         if (!user.getEmpRole().contains("Admin")) {
@@ -214,11 +213,10 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
 
         }
 
-        viewPager.setOffscreenPageLimit(1);
+        viewPager.setOffscreenPageLimit(2);
 
         viewPager.setAdapter(mTabAdapter);
         viewPager.setCurrentItem(0);
-
 
 
         if (App.activityVisible) {
@@ -226,7 +224,7 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
             viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                 @Override
                 public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                    Log.d(TAG, "addOn - addOn onPageScrolled -->" + position);
                 }
 
                 @Override
@@ -234,39 +232,21 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
                     if (appBarLayout != null) {
                         appBarLayout.setExpanded(true);
                     }
-
-                    switch (position) {
-                        case 3:
-                            currentTab = KEY_WEEKLY;
-                            changeTitle("Weekly Report");
-                            clearToolbarMenu();
-                            break;
-
-                        case 4:
-                            currentTab = KEY_MONTHLY;
-                            changeTitle("Monthly Reports");
-                            clearToolbarMenu();
-                            break;
-
-                        case 5:
-                            currentTab = KEY_YEARLY;
-                            changeTitle("Yearly Report");
-                            break;
-                    }
+//                    Log.d(TAG, "addOn - onPageSelected -->" + position);
                 }
 
                 @Override
                 public void onPageScrollStateChanged(int state) {
-
+//                    Log.d(TAG, "addOn - onPageScrollStateChanged -->" + state);
                 }
-            } ) ;
+            });
         }
 
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                Log.d(TAG, "onPageScrolled -->" + position);
             }
 
             @Override
@@ -280,27 +260,29 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
                 switch (position) {
                     case 0:
                         currentTab = KEY_HOME;
-                        changeTitle("Time Sheet");
+                        changeTitle(getResources().getString(R.string.tab_home));
                         showHomeToolbar();
                         break;
 
                     case 1:
                         currentTab = KEY_REPORT;
-                        changeTitle("Weekly Reports");
+                        changeTitle(getResources().getString(R.string.reports));
                         clearToolbarMenu();
                         break;
 
                     case 2:
                         currentTab = KEY_PROFILE;
-                        changeTitle("User Profile");
+                        changeTitle(getResources().getString(R.string.user_profile));
                         break;
 
                 }
+
+                Log.d(TAG, "onPageSelected -->" + position);
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
+                Log.d(TAG, "onPageScrollStateChanged -->" + state);
             }
         });
 
@@ -323,33 +305,49 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                //int position = (int) tab.getTag();
                 int position = (int) tab.getPosition();
                 tab.setIcon(tabInfo.get(position).activeIcon);
 
                 viewPager.setCurrentItem(position);
-                //setTitle(tab.getText());
+
+                if (position == 1)
+                    switch (currentTabInReports) {
+                        case 0:
+                            changeTitle(getResources().getString(R.string.tab_week));
+                            clearToolbarMenu();
+                            break;
+
+                        case 1:
+                            changeTitle(getResources().getString(R.string.tab_month));
+                            clearToolbarMenu();
+                            break;
+
+                        case 2:
+                            changeTitle(getResources().getString(R.string.tab_year));
+                            break;
+                    }
+
+//                Log.d(TAG, "onTabSelected -->" + tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                //int position = (int) tab.getTag();
                 int position = (int) tab.getPosition();
                 tab.setIcon(tabInfo.get(position).icon);
+//                Log.d(TAG, "onTabUnselected -->" + tab.getPosition());
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+//                Log.d(TAG, "onTabReselected -->" + tab.getPosition());
             }
-        } );
+        });
     }
-
 
 
     @Override
     protected void onResume() {
-        App.getInstance().getBus().unregister(this);
+        App.getInstance().getBus().register(this);
         super.onResume();
     }
 
@@ -390,6 +388,30 @@ public class LandingActivity extends BaseActivity<LandingPresenter> {
 //        else
 //            mDrawerToggle.setDrawerIndicatorEnabled(false);
 
+    }
+
+
+    @Subscribe
+    public void onTabPositionChangedInReportFragment(TabPositionEvent event) {
+        int position = (int) event.getValue();
+
+        currentTabInReports = position;
+        switch (position) {
+            case 0:
+                changeTitle(getResources().getString(R.string.tab_week));
+                clearToolbarMenu();
+                break;
+
+            case 1:
+                changeTitle(getResources().getString(R.string.tab_month));
+                clearToolbarMenu();
+                break;
+
+            case 2:
+                changeTitle(getResources().getString(R.string.tab_year));
+                break;
+        }
+//        Log.d(TAG, "TabPositionEvent -->" + position);
     }
 
     void showHomeToolbar() {

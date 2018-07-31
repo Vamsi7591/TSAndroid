@@ -71,8 +71,8 @@ public class YearlyPresenter extends BasePresenter<BaseViewBehavior,YearlyIntera
             }
 
 //            @Override
-//            public void onSuccess(List<ProjectSum_Response> data) {
-//                viewBehaviour().onSuccess(data);
+//            public void onSuccess(List<ProjectSum_Response> listOfSummary) {
+//                viewBehaviour().onSuccess(listOfSummary);
 //            }
         });
     }

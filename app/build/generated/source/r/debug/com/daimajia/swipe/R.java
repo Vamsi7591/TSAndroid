@@ -8,24 +8,24 @@ package com.daimajia.swipe;
 
 public final class R {
     public static final class attr {
-        public static final int bottomEdgeSwipeOffset = 0x7f04003e;
-        public static final int clickToClose = 0x7f040064;
-        public static final int drag_edge = 0x7f040099;
-        public static final int leftEdgeSwipeOffset = 0x7f040118;
-        public static final int rightEdgeSwipeOffset = 0x7f04016e;
-        public static final int show_mode = 0x7f040181;
-        public static final int topEdgeSwipeOffset = 0x7f0401d1;
+        public static final int bottomEdgeSwipeOffset = 0x7f040042;
+        public static final int clickToClose = 0x7f040089;
+        public static final int drag_edge = 0x7f0400c9;
+        public static final int leftEdgeSwipeOffset = 0x7f040176;
+        public static final int rightEdgeSwipeOffset = 0x7f0401d2;
+        public static final int show_mode = 0x7f0401e7;
+        public static final int topEdgeSwipeOffset = 0x7f040257;
     }
     public static final class id {
         public static final int bottom = 0x7f090033;
-        public static final int lay_down = 0x7f0900a3;
-        public static final int left = 0x7f0900a5;
-        public static final int pull_out = 0x7f09010f;
-        public static final int right = 0x7f090115;
-        public static final int top = 0x7f090178;
+        public static final int lay_down = 0x7f0900ab;
+        public static final int left = 0x7f0900ad;
+        public static final int pull_out = 0x7f09011b;
+        public static final int right = 0x7f090121;
+        public static final int top = 0x7f09018c;
     }
     public static final class styleable {
-        public static final int[] SwipeLayout = { 0x7f04003e, 0x7f040064, 0x7f040099, 0x7f040118, 0x7f04016e, 0x7f040181, 0x7f0401d1 };
+        public static final int[] SwipeLayout = { 0x7f040042, 0x7f040089, 0x7f0400c9, 0x7f040176, 0x7f0401d2, 0x7f0401e7, 0x7f040257 };
         public static final int SwipeLayout_bottomEdgeSwipeOffset = 0;
         public static final int SwipeLayout_clickToClose = 1;
         public static final int SwipeLayout_drag_edge = 2;

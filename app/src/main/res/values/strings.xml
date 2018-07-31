@@ -52,13 +52,13 @@
     <!--Common-->
     <string name="no_internet_connection">No Internet connection! Check your settings.</string>
     <string name="tab_home">Time Sheet</string>
-    <string name="reports">Weekly Reports</string>
+    <string name="reports">Weekly Report</string>
     <string name="user_profile">User Profile</string>
 
     <string name="tab_week">Weekly Report</string>
     <string name="tab_month">Monthly Report</string>
-
     <string name="tab_year">Yearly Report</string>
+
     <string name="prompt_progress_title">Please Wait…</string>
 
 

@@ -13,6 +13,8 @@ import com.android.timesheet.app.App;
 import com.android.timesheet.common_operations.landing.LandingActivity;
 import com.android.timesheet.common_operations.landing.LandingPresenter;
 import com.android.timesheet.shared.adapters.TabbedFragmentPagerAdapter;
+import com.android.timesheet.shared.events.TabPositionEvent;
+import com.android.timesheet.shared.events.TimeSheetValidEvent;
 import com.android.timesheet.shared.fragments.BaseFragment;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.widget.CustomFontTextView;
@@ -54,8 +56,6 @@ public class ReportFragmentActivity extends BaseFragment<LandingPresenter> {
     MonthlyFragment monthlyFragment;
     Yearly_Fragment yearly_fragment;
 
-    Bus bus = new Bus();
-
 //    private FirebaseAnalytics firebaseAnalytics;
 
     TabbedFragmentPagerAdapter mTabAdapter;
@@ -81,9 +81,6 @@ public class ReportFragmentActivity extends BaseFragment<LandingPresenter> {
         super.onActivityCreated(savedInstanceState);
 
         user = presenter().getCurrentUser();
-
-        App.getInstance().getBus().register(this);
-
 
         weeklyFragment = new WeeklyFragment();
         monthlyFragment = new MonthlyFragment();
@@ -141,39 +138,20 @@ public class ReportFragmentActivity extends BaseFragment<LandingPresenter> {
                 tab.setIcon(tabInfo.get(position).activeIcon);
                 viewPager.setCurrentItem(position);
 
-                if (position==1) {
-
-//                   bus.post(new LandingActivity(true));
-
-// App.getInstance().getBus().post(new LandingActivity());
-                }
-
-                //setTitle(tab.getText());
+                App.getInstance().getBus().post(new TabPositionEvent(position));
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
                 //int position = (int) tab.getTag();
                 int position = (int) tab.getPosition();
-                 tab.setIcon(tabInfo.get(position).icon);
-
-                if (position==1) {
-
-                    App.getInstance().getBus().post(new LandingActivity());
-
-                }
+                tab.setIcon(tabInfo.get(position).icon);
 
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
                 int position = (int) tab.getPosition();
-
-                if (position==1) {
-
-                    App.getInstance().getBus().post(new LandingActivity());
-
-                }
             }
         });
     }
@@ -181,7 +159,7 @@ public class ReportFragmentActivity extends BaseFragment<LandingPresenter> {
     @Override
     public void onResume() {
 
-        App.getInstance().getBus().unregister(this);
+        App.getInstance().getBus().register(this);
         super.onResume();
     }
 
