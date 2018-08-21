@@ -34,7 +34,6 @@ public class EmployeeProjectServices extends BaseService<IAdminService> {
     }
 
     public Observable getAllEmployees(){
-
         return observe(prepare().getEmployee());
     }
 

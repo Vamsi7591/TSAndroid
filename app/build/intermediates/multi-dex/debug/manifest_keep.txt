@@ -1,2 +1,2 @@
-# Referenced at E:\POC\TSAndroid\app\build\intermediates\manifests\full\debug\AndroidManifest.xml:28
+# Referenced at E:\POC\TSAndroid\app\build\intermediates\manifests\full\debug\AndroidManifest.xml:33
 -keep class com.android.timesheet.app.App { <init>(...); }

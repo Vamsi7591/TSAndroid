@@ -33,6 +33,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 
@@ -65,7 +66,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
     @BindView(R.id.toolbarTitleTv)
     CustomFontTextView toolbarTitleTv;
 
-    int cYear = 2011;
+    int cYear = 2017;
     List<ProjectSummary> data;
     List<Employee> dataEmp;
     List<Project> dataProj;
@@ -155,8 +156,8 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
         Calendar calender = Calendar.getInstance();
 
         cYear = calender.get(Calendar.YEAR);
-        for (int count = 2017;
-             count >= 2011; count--) {
+        for (int count = 2018;
+             count >= 2017; count--) {
 
             yearList.add(String.valueOf(count));
         }
@@ -294,7 +295,7 @@ public class SummaryDetails extends BaseActivity<SummaryDetailsPresenter>
         if (o instanceof ProjectSum_Response) {
             ProjectSum_Response sumResponse = (ProjectSum_Response) o;
             if (sumResponse.isStatus()) {
-                loadBarChart(sumResponse.getProjectSummaries());
+                loadBarChart(Objects.requireNonNull(sumResponse.getProjectSummaries()));
 
                 barChart.setVisibility(View.VISIBLE);
                 noDataFound.setVisibility(View.GONE);

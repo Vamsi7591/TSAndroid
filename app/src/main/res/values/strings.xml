@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Time Sheet</string>
-    <string name="time_sheet">Time Sheet</string>
+    <string name="time_sheet">@string/app_name</string>
 
     <!--Admin-->
     <string-array name="slider_list_items">
@@ -8,6 +8,7 @@
         <item>Project Master</item>
         <item>Employee Project</item>
         <item>Summary Details</item>
+        <item>Leave</item>
     </string-array>
 
     <integer-array name="slider_list_images">
@@ -15,7 +16,7 @@
         <item>@drawable/menu_help</item>
         <item>@drawable/menu_shoppilist</item>
         <item>@drawable/menu_orders</item>
-        <!--<item>@drawable/menu_settings</item>-->
+        <item>@drawable/menu_settings</item>
         <!--<item>@drawable/menu_faq</item>-->
         <!--<item>@drawable/menu_share</item>-->
         <!--<item>@drawable/menu_address</item>-->
@@ -27,6 +28,7 @@
     <!--Hint-->
     <string name="hint_em_code">Employee Code</string>
     <string name="hint_password">Password</string>
+    <string name="hint_remarks">Enter you remarks here…</string>
 
     <!--Authentication Validation errors-->
     <string name="emp_code_required">"Employee code is required"</string>
@@ -60,7 +62,7 @@
     <string name="tab_year">Yearly Report</string>
 
     <string name="prompt_progress_title">Please Wait…</string>
-
+    <string name="error_no_network">Network disconnected</string>
 
     <!--TimeSheet entry Validation errors-->
     <string name="error_project_required">Project name required</string>
@@ -80,8 +82,24 @@
     <string name="save">Save</string>
     <string name="total_hours">%s hours spent on %s</string>
 
+
+    <!--Leave Entry Validation errors-->
+    <string name="error_leave_type">Leave type required</string>
+    <string name="error_from_date">From date required</string>
+    <string name="error_to_date">To date required</string>
+    <string name="error_remarks">Remarks required</string>
+    <string name="error_invalid_date_2">From date should be less then To date</string>
+    <string name="error_invalid_date_1">From and To dates should be different</string>
+
+
     <!--Labels-->
+    <string name="lb_leave_type">Leave Type</string>
+    <string name="lb_from_date">From Date</string>
+    <string name="lb_to_date">To Date</string>
+    <string name="lb_remarks">Remarks</string>
     <string name="lb_submit">Submit</string>
+    <string name="lb_unapproved_leave">Unapproved Leave</string>
+    <string name="lb_leave_taken">Leave Taken</string>
     <string name="lb_edit">Edit</string>
     <string name="lb_ts_entry">Time Sheet Entry</string>
     <string name="lb_password">Password</string>
@@ -102,8 +120,10 @@
     <string name="lb_is_common_project">Is Common Project</string>
     <string name="lb_select_year">Select Year</string>
     <string name="lb_done">Done</string>
-    <string name="error_no_network">Network disconnected</string>
     <string name="lb_employee_names">Employee Name</string>
     <string name="lb_ts_modify">Time Sheet Modify</string>
+
+    <!--Tooltips-->
+    <string name="tt_apply_leave">Apply Leave</string>
 
 </resources>

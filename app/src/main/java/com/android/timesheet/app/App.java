@@ -49,7 +49,7 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
         mContext = getApplicationContext();
 
         /*Instantiating exception handling globally*/
-        _androidUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
+        //_androidUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
 //        Thread.setDefaultUncaughtExceptionHandler(this);
 
         /*This instantiates DBFlow Library*/
@@ -130,10 +130,10 @@ public class App extends Application implements Thread.UncaughtExceptionHandler 
     @Override
     public void uncaughtException(Thread thread, Throwable throwable) {
 
-        Log.v(TAG, throwable.getMessage());
+        //Log.v(TAG, throwable.getMessage());
 
         /*Let Android show the default error dialog*/
-        _androidUncaughtExceptionHandler.uncaughtException(thread, throwable);
+        //_androidUncaughtExceptionHandler.uncaughtException(thread, throwable);
 
     }
 

@@ -8,6 +8,7 @@ import com.android.timesheet.R;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.views.BaseViewBehavior;
+import com.google.firebase.crash.FirebaseCrash;
 
 public class SplashActivity extends BaseActivity<SplashPresenter> implements BaseViewBehavior<User> {
 
@@ -45,6 +46,9 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Bas
         super.onCreate(savedInstanceState);
 /*       setContentView(R.layout.activity_splash);*/
         Log.i(TAG, "onCreate");
+
+
+        FirebaseCrash.setCrashCollectionEnabled(false);
 
         try {
             User user = presenter().getCurrentUser();

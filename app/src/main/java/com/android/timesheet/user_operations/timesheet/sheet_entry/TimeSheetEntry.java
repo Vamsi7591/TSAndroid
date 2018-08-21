@@ -169,7 +169,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
         animationLR = AnimationUtils.loadAnimation(getApplicationContext(),
                 R.anim.text_anim_lr);
 
-        /*Add time sheet*/
+        /*modify time sheet*/
         if (intentTimeSheet != null) {
             Log.d(TAG, "TS : " + intentTimeSheet.date);
             if (mMenu == null) {
@@ -192,7 +192,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
             }
             disableViews(true, 0);
             toolbarTitleTv.setText(R.string.lb_ts_modify);
-        } else { /*edit time sheet*/
+        } else { /*time sheet entry*/
 
             toolbarTitleTv.setText(title());
             intentTimeSheet = new TimeSheet();
@@ -641,7 +641,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     }
 
     boolean userSelect = false;
-
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         intentTimeSheet.setProjectName(projectNamesForSpinner.get(i));
@@ -658,7 +657,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     String selectedDate = "";
     Date dateSelected = null;
     HashSet<Date> events;
-
     private void showBottomSheet(String titleText, Integer peekHeight) {
 
         View view = this.getLayoutInflater().inflate(R.layout.view_bottom_sheet, null);
@@ -759,7 +757,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
     private Date convertDateFormat(String data) {
         try {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constant.DataFormat, Locale.getDefault());
             Date date = simpleDateFormat.parse(data);
             Log.d(TAG, " test==>" + date);
             return date;

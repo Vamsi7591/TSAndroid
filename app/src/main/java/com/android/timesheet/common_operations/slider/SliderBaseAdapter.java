@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.android.timesheet.R;
 import com.android.timesheet.admin_operations.employee_master.list_employee.EmployeeMaster;
 import com.android.timesheet.admin_operations.employee_project.EmployeeProject;
+import com.android.timesheet.admin_operations.leave.LeaveActivity;
 import com.android.timesheet.admin_operations.project_master.list_projects.ProjectMaster;
 import com.android.timesheet.admin_operations.summary.SummaryDetails;
 import com.android.timesheet.common_operations.landing.LandingActivity;
@@ -34,9 +35,10 @@ public class SliderBaseAdapter extends BaseAdapter {
         this.activity = activity;
 
         slide_classes.add(EmployeeMaster.class);//1
-        slide_classes.add(ProjectMaster.class);//3
-        slide_classes.add(EmployeeProject.class);//2
+        slide_classes.add(ProjectMaster.class);//2
+        slide_classes.add(EmployeeProject.class);//3
         slide_classes.add(SummaryDetails.class);//4
+        slide_classes.add(LeaveActivity.class);//5
     }
 
     @Override
@@ -81,7 +83,7 @@ public class SliderBaseAdapter extends BaseAdapter {
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (position == 12) {
+                /*if (position == 12) {
                     ((LandingActivity) activity).closeDrawer();
                 }
 
@@ -89,9 +91,13 @@ public class SliderBaseAdapter extends BaseAdapter {
                     Intent intent = new Intent(activity, slide_classes.get(position));
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     activity.startActivity(intent);
-//                    ((LandingActivity) activity).closeDrawer();
-                }
+                    ((LandingActivity) activity).closeDrawer();
+                }*/
 
+                Intent intent = new Intent(activity, slide_classes.get(position));
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                activity.startActivity(intent);
+//                    ((LandingActivity) activity).closeDrawer();
 
             }
         });

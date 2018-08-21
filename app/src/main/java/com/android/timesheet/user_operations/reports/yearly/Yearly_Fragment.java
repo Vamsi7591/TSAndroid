@@ -73,7 +73,6 @@ public class Yearly_Fragment extends BaseFragment<YearlyPresenter>
         return true;
     }
 
-
     @Override
     protected int layoutResID() {
 
@@ -87,7 +86,6 @@ public class Yearly_Fragment extends BaseFragment<YearlyPresenter>
     protected YearlyPresenter providePresenter() {
         return new YearlyPresenter(getActivity(), this);
     }
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -312,7 +310,6 @@ public class Yearly_Fragment extends BaseFragment<YearlyPresenter>
         barChart.notifyDataSetChanged();
         barChart.animateXY(2000, 2000);
     }
-
 
     @Override
     public void onFailed(Throwable e) {

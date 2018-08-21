@@ -7,7 +7,6 @@ import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.services.BaseService;
 import com.android.timesheet.shared.store_models.BaseStore;
 import com.android.timesheet.shared.store_models.UserStore;
-import com.android.timesheet.shared.util.InternetUtils;
 
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
@@ -40,11 +39,11 @@ public abstract class BaseInteractor<T extends BaseService> {
         return mContext;
     }
 
-    protected abstract T provideService();
+    protected abstract BaseService provideService();
 
     protected T service() {
         if (mService == null) {
-            mService = provideService();
+            mService = (T) provideService();
         }
 
         return mService;

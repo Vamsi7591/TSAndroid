@@ -63,7 +63,7 @@ public class WeeklyFragment extends BaseFragment<WeeklyPresenter>
 
 
     int cWeek = 0;
-    int cYear = 2017;
+    int cYear = 2018;
 
     List<Week> listOfWeeks;
 

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/actionBarSize"
+                    android:layout_marginEnd="@dimen/layout_action_margin_50"
+                    android:layout_marginRight="@dimen/layout_action_margin_50"
+                    app:layout_anchor="@+id/toolbar">
+
+                    <com.android.timesheet.shared.widget.CustomFontTextView
+                        android:id="@+id/toolbarTitleTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="false"
+                        android:gravity="start|center"
+                        android:paddingLeft="@dimen/padding_0"
+                        android:paddingStart="@dimen/padding_0"
+                        android:text="Leave Entry"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tv_font_size_22"
+                        android:visibility="visible"
+                        app:font="@string/aleo_regular"
+                        tools:ignore="RtlSymmetry" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="?android:attr/actionBarSize"
+            android:fillViewport="true"
+            android:scrollbarStyle="insideInset"
+            android:scrollbars="none">
+
+            <!--Your Leave Entry-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_20"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_marginRight="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_10"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/leaveTypeLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/inputs_height"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="@string/lb_leave_type"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorGrayDark" />
+
+                    <Spinner
+                        android:id="@+id/leaveTypeSP"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_spinner_background"
+                        android:gravity="end|center"
+                        android:popupBackground="@color/white"
+                        android:spinnerMode="dropdown"
+                        android:textAlignment="viewEnd"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black"
+                        tools:ignore="RtlCompat" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/error_leave_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end|center"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.Design.Error"
+                    android:textColor="@color/colorError2"
+                    android:visibility="invisible" />
+
+                <LinearLayout
+                    android:id="@+id/fromDateLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/inputs_height"
+                    android:layout_marginTop="@dimen/margin_0"
+                    android:gravity="center"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="@string/lb_from_date"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorGrayDark" />
+
+                    <TextView
+                        android:id="@+id/fromDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableEnd="@drawable/ic_calendar_edit_b"
+                        android:drawableRight="@drawable/ic_calendar_edit_b"
+                        android:gravity="end|center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/error_from_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end|center"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.Design.Error"
+                    android:textColor="@color/colorError2"
+                    android:visibility="invisible" />
+
+                <LinearLayout
+                    android:id="@+id/toDateLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/inputs_height"
+                    android:layout_marginTop="@dimen/margin_0"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="@string/lb_to_date"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorGrayDark" />
+
+                    <TextView
+                        android:id="@+id/toDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:drawableEnd="@drawable/ic_calendar_edit_b"
+                        android:drawableRight="@drawable/ic_calendar_edit_b"
+                        android:gravity="end|center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/error_to_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end|center"
+                    android:text=""
+                    android:textAppearance="@style/TextAppearance.Design.Error"
+                    android:textColor="@color/colorError2"
+                    android:visibility="invisible" />
+
+                <LinearLayout
+                    android:id="@+id/remarksLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="start|center"
+                        android:text="@string/lb_remarks"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorGrayDark" />
+
+                    <TextView
+                        android:id="@+id/error_remarks"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end|center"
+                        android:text=""
+                        android:textAppearance="@style/TextAppearance.Design.Error"
+                        android:textColor="@color/colorError2"
+                        android:visibility="invisible" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/margin_0"
+                        android:layout_marginTop="@dimen/margin_5"
+                        android:background="@drawable/bg_edit_text_border"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/remarksET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_10"
+                            android:background="@null"
+                            android:ems="10"
+                            android:gravity="start"
+                            android:hint="@string/hint_remarks"
+                            android:inputType="textMultiLine"
+                            android:maxLength="500"
+                            android:minHeight="100dp"
+                            android:minLines="6"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/colorGrayDark" />
+
+                        <com.android.timesheet.shared.widget.CustomFontTextView
+                            android:id="@+id/remarks_count"
+                            style="@style/AppTheme.Text.TextView.Menu"
+                            android:layout_below="@+id/remarksET"
+                            android:layout_marginEnd="@dimen/margin_10"
+                            android:layout_marginRight="@dimen/margin_10"
+                            android:drawableEnd="@drawable/ic_pencil_b"
+                            android:drawableRight="@drawable/ic_pencil_b"
+                            android:gravity="end|center"
+                            android:padding="@dimen/rl_margin_5"
+                            android:text="0/500"
+                            android:textColor="@color/colorGreyish"
+                            app:font="@string/roboto_regular_italic"
+                            tools:ignore="HardcodedText,ObsoleteLayoutParam">
+
+                            <requestFocus />
+
+                        </com.android.timesheet.shared.widget.CustomFontTextView>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="68dp"
+                        android:layout_marginBottom="@dimen/margin_20"
+                        android:layout_marginEnd="-19dp"
+                        android:layout_marginStart="-19dp"
+                        android:layout_marginTop="@dimen/margin_20"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <com.android.timesheet.shared.widget.CustomFontTextView
+                            android:id="@+id/submitBtn"
+                            style="@style/AppTheme.Action.TextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginEnd="@dimen/margin_20"
+                            android:layout_marginStart="@dimen/margin_20"
+                            android:background="@drawable/bg_blue_border_black"
+                            android:gravity="center"
+                            android:text="@string/lb_submit"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.Button.Inverse"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:visibility="visible"
+                            app:fonts="@string/roboto_regular" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

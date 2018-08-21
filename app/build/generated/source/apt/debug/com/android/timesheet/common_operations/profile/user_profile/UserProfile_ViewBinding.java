@@ -16,7 +16,7 @@ import java.lang.Override;
 public class UserProfile_ViewBinding extends BaseFragment_ViewBinding {
   private UserProfile target;
 
-  private View view2131296630;
+  private View view2131296658;
 
   @UiThread
   public UserProfile_ViewBinding(final UserProfile target, View source) {
@@ -28,7 +28,7 @@ public class UserProfile_ViewBinding extends BaseFragment_ViewBinding {
     target.tokenizeTextViewProjects = Utils.findRequiredViewAsType(source, R.id.textViewProjects, "field 'tokenizeTextViewProjects'", TokenizeTextView.class);
     view = Utils.findRequiredView(source, R.id.textViewAboutUs, "field 'textViewAboutUs' and method 'openWebView'");
     target.textViewAboutUs = Utils.castView(view, R.id.textViewAboutUs, "field 'textViewAboutUs'", TextView.class);
-    view2131296630 = view;
+    view2131296658 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -58,8 +58,8 @@ public class UserProfile_ViewBinding extends BaseFragment_ViewBinding {
     target.textViewContactUs = null;
     target.textViewLogOut = null;
 
-    view2131296630.setOnClickListener(null);
-    view2131296630 = null;
+    view2131296658.setOnClickListener(null);
+    view2131296658 = null;
 
     super.unbind();
   }

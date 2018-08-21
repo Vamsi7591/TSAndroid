@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <SearchView
+            android:id="@+id/my_leaves_SV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:focusable="false" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_leaves_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60sp"
+            android:background="@color/white"
+            android:visibility="gone"
+            tools:listitem="@layout/content_time_sheet_item" />
+
+        <!--empty view-->
+        <LinearLayout
+            android:id="@+id/noDataFound"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/no_invitation_state_ai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/rate_full" />
+
+            <TextView
+                android:id="@+id/body_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="No leaves taken"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/cardview_dark_background" />
+
+            <TextView
+                android:id="@+id/body_2"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/margin_20"
+                android:layout_marginTop="@dimen/margin_20"
+                android:gravity="center"
+                android:lines="3"
+                android:text="Change the month and try again"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Menu"
+                android:textColor="@color/cardview_dark_background"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <com.android.timesheet.shared.widget.CircularProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:circleColor="?attr/colorPrimary"
+            app:cp_circleWidth="5"
+            tools:ignore="RtlHardcoded" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/applyLeave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/margin_16"
+            android:elevation="@dimen/margin_16"
+            android:scaleType="center"
+            android:tooltipText="@string/tt_apply_leave"
+            app:fabSize="normal"
+            app:srcCompat="@drawable/ic_add_black_24dp"
+            tools:ignore="PrivateResource"
+            tools:targetApi="o" />
+
+    </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>

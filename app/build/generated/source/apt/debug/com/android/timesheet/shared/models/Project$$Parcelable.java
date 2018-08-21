@@ -8,7 +8,7 @@ import org.parceler.IdentityCollection;
 import org.parceler.ParcelWrapper;
 import org.parceler.ParcelerRuntimeException;
 
-@Generated(value = "org.parceler.ParcelAnnotationProcessor", date = "2018-07-31T19:40+0530")
+@Generated(value = "org.parceler.ParcelAnnotationProcessor", date = "2018-08-21T19:50+0530")
 @SuppressWarnings({
     "unchecked",
     "deprecation"
@@ -19,7 +19,7 @@ public class Project$$Parcelable
 
     private com.android.timesheet.shared.models.Project project$$0;
     @SuppressWarnings("UnusedDeclaration")
-    public final static Project$$Parcelable.Creator$$2 CREATOR = new Project$$Parcelable.Creator$$2();
+    public final static Project$$Parcelable.Creator$$3 CREATOR = new Project$$Parcelable.Creator$$3();
 
     public Project$$Parcelable(com.android.timesheet.shared.models.Project project$$2) {
         project$$0 = project$$2;
@@ -71,7 +71,7 @@ public class Project$$Parcelable
         }
     }
 
-    public final static class Creator$$2
+    public final static class Creator$$3
         implements Creator<Project$$Parcelable>
     {
 

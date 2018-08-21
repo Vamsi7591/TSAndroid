@@ -62,7 +62,7 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
 
     String TAG = "MonthlyFragment";
 
-    int cYear = 2017;
+    int cYear = 2018;
     int cMonth = 0;
 
     List<Month> listOfMonths;
@@ -283,12 +283,14 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
         }
 
         // TreeMap to store values of HashMap
-        TreeMap<String, List<Month>> sortedHashMap = new TreeMap<>();
-        TreeMap<String, List<Month>> sortedHashMap2 = new TreeMap<>();
+        /*TreeMap<String, List<Month>> sortedHashMap = new TreeMap<>();
+        TreeMap<String, List<Month>> sortedHashMap2 = new TreeMap<>();*/
 
         // Copy all data from hashMap into TreeMap
-        sortedHashMap.putAll(month_retroHashMap);
-        sortedHashMap2.putAll(month_retroHashMap2);
+        TreeMap<String, List<Month>> sortedHashMap = new TreeMap<>(month_retroHashMap);
+        TreeMap<String, List<Month>> sortedHashMap2 = new TreeMap<>(month_retroHashMap2);
+        /*sortedHashMap.putAll(month_retroHashMap);
+        sortedHashMap2.putAll(month_retroHashMap2);*/
 
         // Display the TreeMap which is naturally sorted
         /*for (Map.Entry<String, List<Month>> entry : sorted.entrySet())
@@ -556,6 +558,12 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
 
     }
 
+    @Override
+    public void onFailed(Throwable e) {
+        barChart.setVisibility(View.GONE);
+        noDataFound.setVisibility(View.VISIBLE);
+    }
+
     public class MyValueFormatter implements ValueFormatter {
 
         private DecimalFormat mFormat;
@@ -683,10 +691,6 @@ public class MonthlyFragment extends BaseFragment<MonthlyPresenter> implements B
 //
 //    }
 
-    @Override
-    public void onFailed(Throwable e) {
-        barChart.setVisibility(View.GONE);
-        noDataFound.setVisibility(View.VISIBLE);
-    }
+
 
 }

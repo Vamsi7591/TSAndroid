@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.timesheet.R;
+import com.android.timesheet.shared.Constant;
 import com.android.timesheet.shared.util.FontUtils;
 import com.android.timesheet.shared.widget.CustomFontTextView;
 
@@ -109,7 +110,7 @@ public class CalendarView extends LinearLayout {
         displayedposition = String.valueOf(_maxYear);
         _width = getDeviceWidth(context);
 
-        df = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+        df = new SimpleDateFormat(Constant.DataFormat, Locale.getDefault());//"yyyy/MM/dd"
 
         assignUiElements();
         assignClickHandlers();
@@ -468,7 +469,7 @@ public class CalendarView extends LinearLayout {
                 if (selectedDate != null) {
 
                     if (df == null)
-                        df = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+                        df = new SimpleDateFormat(Constant.DataFormat, Locale.getDefault());//"yyyy/MM/dd"
 
                     //selectedDate.compareTo(date) == 0
                     if (df.format(date).equalsIgnoreCase(df.format(selectedDate))) {

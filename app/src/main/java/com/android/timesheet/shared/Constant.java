@@ -17,6 +17,8 @@ public class Constant {
     public static final String CameraResult = "CameraResult.png";
 
     public static final String GalleryOutput = "GalleryOutput.png";
+
+    public static final String DataFormat = "yyyy/MM/dd";
     //endregion
 
     //region Request Codes
@@ -76,6 +78,8 @@ public class Constant {
         String IS_NOTIFICATION = "IS_NOTIFICATION";
 
         String NOTIFICATION_KEY = "NOTIFICATION_KEY";
+
+        String LEAVE_ENTRY_KEY = "LEAVE_ENTRY_KEY";
 
         String TIME_SHEET_DETAIL_KEY = "TIME_SHEET_DETAIL_KEY";
 

@@ -63,8 +63,6 @@ public class UserProfile extends BaseFragment<UserProfilePresenter> implements
 //    @BindView(R.id.sendMail)
 //    TextView textSendEmail;
 
-    public static final String NUMBER = "8012841680";
-
     String TAG = "Profile";
     User user;
 

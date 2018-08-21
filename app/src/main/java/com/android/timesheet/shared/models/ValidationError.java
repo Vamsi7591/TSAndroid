@@ -18,5 +18,9 @@ public enum ValidationError {
     WEEK_NO,
     YEAR,
     MONTH,
-    EMP_NAME
+    EMP_NAME,
+    LEAVE_TYPE,
+    FROM_DATE,
+    TO_DATE,
+    REMARKS
 }

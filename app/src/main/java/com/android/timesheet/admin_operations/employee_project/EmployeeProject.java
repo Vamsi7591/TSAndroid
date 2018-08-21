@@ -25,6 +25,7 @@ import com.android.timesheet.shared.widget.CustomFontTextView;
 import com.android.timesheet.user_operations.timesheet.sheet_entry.ProjectsSpinnerAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -63,7 +64,7 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
     ArrayList<String> employeeSpinnerList = new ArrayList<>();
     ArrayList<String> projectSpinnerList = new ArrayList<>();
 
-//    List<String> employeeSpinnerList;
+    //    List<String> employeeSpinnerList;
 //    List<String> projectSpinnerList;
     List<Employee> employeesList;
     List<Project> projectsList;
@@ -119,11 +120,11 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
                 isAssignVisible = true;
                 assignTabBtn.setTextSize(20);
                 assignTabBtn.setTypeface(null, Typeface.BOLD);
-                assignTabBtn.setTextColor(getColor(R.color.white));
+                assignTabBtn.setTextColor(getResources().getColor(R.color.white));
 
                 removeTabBtn.setTextSize(18);
                 removeTabBtn.setTypeface(null, Typeface.NORMAL);
-                removeTabBtn.setTextColor(getColor(R.color.colorWhite115));
+                removeTabBtn.setTextColor(getResources().getColor(R.color.colorWhite115));
 
                 clearUI(true);
 
@@ -137,11 +138,11 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
                 isAssignVisible = false;
                 removeTabBtn.setTextSize(20);
                 removeTabBtn.setTypeface(null, Typeface.BOLD);
-                removeTabBtn.setTextColor(getColor(R.color.white));
+                removeTabBtn.setTextColor(getResources().getColor(R.color.white));
 
                 assignTabBtn.setTextSize(18);
                 assignTabBtn.setTypeface(null, Typeface.NORMAL);
-                assignTabBtn.setTextColor(getColor(R.color.colorWhite115));
+                assignTabBtn.setTextColor(getResources().getColor(R.color.colorWhite115));
 
                 clearUI(true);
             }
@@ -188,12 +189,10 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
         });
 
 
-
-
         empNameSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //                String selectedItem = parent.getItemAtPosition(position).toString(); //this is your selected item
-                 /*If user selected spinner call projects service*/
+                /*If user selected spinner call projects service*/
 
                 selectedEmployeeNamePos = empNameSp.getSelectedItemPosition();
 
@@ -208,8 +207,7 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
                             clearUI(false);
                         }
                     }
-                }
-                else {
+                } else {
                     // Remove
                     if (!empNameSp.getSelectedItem().toString().isEmpty()) {
 
@@ -266,7 +264,6 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
     public void clearUI(boolean flag) {
 
 
-
         if (flag) {
 
             ProjectsSpinnerAdapter forEmpNAme = new ProjectsSpinnerAdapter(EmployeeProject.this, employeeSpinnerList);
@@ -300,14 +297,15 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
             /*Projects response List<Projects>*/
             ProjectNamesResponse projectNamesResponse = (ProjectNamesResponse) o;
 
+            projectsList = new ArrayList<>();
             projectsList = projectNamesResponse.getProjectList();
 
+            projectSpinnerList = new ArrayList<>();
             projectSpinnerList.add("Select");
 
-            if (projectsList != null ) {
+            if (projectsList != null) {
                 for (int i = 0; i < projectsList.size(); i++) {
-//
-                    if(!projectsList.get(i).commonFlag) {
+                    if (!projectsList.get(i).commonFlag) {
                         projectSpinnerList.add(projectsList.get(i).getProjectName());
 
                     }
@@ -322,6 +320,8 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
         } else if (o instanceof AllEmployeesResponse) {
             /*Employees response List<Employees>*/
             AllEmployeesResponse response = (AllEmployeesResponse) o;
+
+            employeesList = new ArrayList<>();
             employeesList = response.getEmployeeList();
 
             employeeSpinnerList = new ArrayList<>();
@@ -331,7 +331,7 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
 
                 User user = presenter().getCurrentUser();
 
-                    /* Object wise operation on for loop - preferred way*/
+                /* Object wise operation on for loop - preferred way*/
                 for (Employee employee : employeesList) {
                     if (employee.getEmpCode().equals(user.empCode)) {
                         employeesList.remove(employee);
@@ -358,9 +358,7 @@ public class EmployeeProject extends BaseActivity<EmployeeProjectPresenter> impl
 
             ProjectsSpinnerAdapter forEmpNAme = new ProjectsSpinnerAdapter(EmployeeProject.this, employeeSpinnerList);
             empNameSp.setAdapter(forEmpNAme);
-        }
-
-        else if (o instanceof String) {
+        } else if (o instanceof String) {
             /*Assign or removeTabBtn response string*/
             String response = (String) o;
             App.getInstance().customToast(response);

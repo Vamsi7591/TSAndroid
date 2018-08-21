@@ -17,28 +17,20 @@ import com.android.timesheet.shared.models.User;
 
 public class Slider {
 
-    private Activity context;
-    private ImageView slider_user_iv;
-    private TextView slider_header_tv,slider_type_tv;
-    private ListView slider_listView;
-
     public Slider(Activity context, User user) {
 
-        this.context = context;
-        slider_user_iv = (ImageView) context.findViewById(R.id.slider_user_iv);
-        slider_header_tv = (TextView) context.findViewById(R.id.slider_header_tv);
-        slider_type_tv = (TextView) context.findViewById(R.id.slider_type_tv);
-        slider_listView = (ListView) context.findViewById(R.id.slider_listView);
+        ImageView slider_user_iv = context.findViewById(R.id.slider_user_iv);
+        TextView slider_header_tv = context.findViewById(R.id.slider_header_tv);
+        TextView slider_type_tv = context.findViewById(R.id.slider_type_tv);
+        ListView slider_listView = context.findViewById(R.id.slider_listView);
 
         slider_header_tv.setText(String.format("Welcome %s", user.getEmpName()));
 
         if (user.getEmpRole().equalsIgnoreCase("Admin")) {
             slider_listView.setAdapter(new SliderBaseAdapter(context));
-        }
+        } else if (user.getEmpRole().contains("User")) {
 
-        else if (user.getEmpRole().contains("User")){
-
-            this.context = null;
+            context = null;
 
             slider_user_iv.setVisibility(View.GONE);
             slider_header_tv.setVisibility(View.GONE);
@@ -49,15 +41,14 @@ public class Slider {
 
         }
 
-        slider_user_iv.setOnClickListener(new View.OnClickListener() {
+        Activity finalContext = context;
+        slider_user_iv.setOnClickListener(view -> {
 
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(context, MyProfile.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                context.startActivity(intent);
-//                ((LandingActivity) context).closeDrawer();
+            Intent intent = new Intent(finalContext, MyProfile.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            if (finalContext != null) {
+                finalContext.startActivity(intent);
+                //                ((LandingActivity) finalContext).closeDrawer();
             }
         });
     }
