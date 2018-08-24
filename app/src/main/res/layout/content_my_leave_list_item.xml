@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin_15"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    app:cardElevation="@dimen/margin_5">
+
+    <com.daimajia.swipe.SwipeLayout
+        android:id="@+id/swipeSL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_border_blue"
+        app:leftEdgeSwipeOffset="0dp"
+        app:rightEdgeSwipeOffset="0dp">
+
+        <LinearLayout
+            android:id="@+id/trashLL"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:background="#FF3B30"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="@dimen/icons_36"
+                android:layout_height="@dimen/icons_36"
+                android:background="@drawable/delete_white" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="?attr/actionBarSize"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:layout_marginRight="?attr/actionBarSize"
+                android:layout_marginStart="@dimen/margin_5"
+                android:orientation="vertical">
+
+                <com.android.timesheet.shared.widget.CustomFontTextView
+                    android:id="@+id/leaveTypeTV"
+                    style="@style/AppTheme.Text.TextView.Header"
+                    android:layout_width="wrap_content"
+                    android:gravity="start|center"
+                    android:maxLines="1"
+                    android:textColor="@color/cardview_dark_background"
+                    app:font="@string/roboto_light"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="Annual Leave" />
+
+                <com.android.timesheet.shared.widget.CustomFontTextView
+                    android:id="@+id/remarksTV"
+                    style="@style/AppTheme.Text.TextView.Small"
+                    android:layout_width="wrap_content"
+                    android:gravity="start|center"
+                    android:maxLines="1"
+                    android:textColor="@color/cardview_dark_background"
+                    app:font="@string/roboto_light"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="Brothers marriage function." />
+            </LinearLayout>
+
+            <com.android.timesheet.shared.widget.CustomFontTextView
+                android:id="@+id/noOfDaysTV"
+                style="@style/AppTheme.Text.TextView.Small"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/padding_10"
+                android:background="@drawable/blue_circle"
+                android:gravity="center"
+                android:textColor="@color/white"
+                app:font="@string/roboto_light"
+                tools:ignore="RtlSymmetry"
+                tools:text="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll1">
+
+                <com.android.timesheet.shared.widget.CustomFontTextView
+                    android:id="@+id/fromDateTV"
+                    style="@style/AppTheme.Text.TextView.Small"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_time_start"
+                    android:drawableStart="@drawable/ic_time_start"
+                    android:gravity="start|center"
+                    android:textColor="@color/black"
+                    app:font="@string/roboto_light"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="01-Jan-2018" />
+
+                <com.android.timesheet.shared.widget.CustomFontTextView
+                    android:id="@+id/toDateTV"
+                    style="@style/AppTheme.Text.TextView.Small"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_time_pause_b"
+                    android:drawableStart="@drawable/ic_time_pause_b"
+                    android:gravity="start|center"
+                    android:textColor="@color/black"
+                    app:font="@string/roboto_light"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="01-Jan-2018" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </com.daimajia.swipe.SwipeLayout>
+</LinearLayout>

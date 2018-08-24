@@ -183,6 +183,7 @@ com/android/timesheet/app/App.class
 com/android/timesheet/shared/database/AppDatabase.class
 com/android/timesheet/shared/models/AllEmployeesResponse.class
 com/android/timesheet/shared/models/Employee.class
+com/android/timesheet/shared/models/LeaveEntry.class
 com/android/timesheet/shared/models/Project.class
 com/android/timesheet/shared/models/ProjectNamesResponse.class
 com/android/timesheet/shared/models/TimeSheet.class

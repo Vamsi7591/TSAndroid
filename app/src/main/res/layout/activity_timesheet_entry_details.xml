@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator_layout"
@@ -293,11 +293,11 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="@dimen/margin_10"
                             android:background="@null"
-                            android:maxLength="500"
                             android:ems="10"
                             android:gravity="start"
                             android:hint="@string/enter_you_description_here"
                             android:inputType="textMultiLine"
+                            android:maxLength="500"
                             android:minHeight="100dp"
                             android:minLines="6"
                             android:textColor="@color/black"
@@ -354,10 +354,10 @@
                             style="@style/AppTheme.Action.TextView"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
-                            android:background="@drawable/bg_blue_border_black"
-                            android:gravity="center"
                             android:layout_marginEnd="@dimen/margin_20"
                             android:layout_marginStart="@dimen/margin_20"
+                            android:background="@drawable/bg_blue_border_black"
+                            android:gravity="center"
                             android:text="@string/lb_submit"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.Button.Inverse"
                             android:textColor="@color/white"
@@ -374,4 +374,4 @@
 
     </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>

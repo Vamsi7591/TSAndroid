@@ -96,18 +96,36 @@ public class CalendarView extends LinearLayout {
     //endregion
 
     //region LocalMethos
-    private void initControl(Context context, AttributeSet attrs) {
+    public void initControl(Context context, AttributeSet attrs) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.control_calendar, this);
+
+        /* Types
+         * 0 - future dates disabled (default)
+         * 1 - From Date / To Date
+         **/
 
         _maxDate = now.get(Calendar.DAY_OF_MONTH);
         _maxMonth = now.get(Calendar.MONTH);
         _maxYear = now.get(Calendar.YEAR);
 
+        if (Constant.calenderType == 1) {
+            _minYear = now.get(Calendar.YEAR);
+            _minMonth = now.get(Calendar.MONTH);
+            /*Adding +1 to year for future dates*/
+            _maxYear = now.get(Calendar.YEAR) + 1;
+        }
+
+
         if (now.get(Calendar.YEAR) == (currentDate.get(Calendar.YEAR)))
             currentDate.set((currentDate.get(Calendar.YEAR)), currentDate.get(Calendar.MONTH), (currentDate.get(Calendar.DAY_OF_MONTH)));
 
-        displayedposition = String.valueOf(_maxYear);
+        if (Constant.calenderType == 1) {
+            /*Adding -1 to display current year*/
+            displayedposition = String.valueOf(_maxYear - 1);
+        } else {
+            displayedposition = String.valueOf(_maxYear);
+        }
         _width = getDeviceWidth(context);
 
         df = new SimpleDateFormat(Constant.DataFormat, Locale.getDefault());//"yyyy/MM/dd"
@@ -177,7 +195,7 @@ public class CalendarView extends LinearLayout {
                         eventHandler.setEvents();
                     } else {
 //                        Toast.makeText(getContext(), "Max Date reached", Toast.LENGTH_LONG).show();
-                        customToast(grid.getRootView(),"Max Date reached");
+                        customToast(grid.getRootView(), "Max Date reached");
                     }
                 }
             }
@@ -209,7 +227,7 @@ public class CalendarView extends LinearLayout {
                         updateCalendar();
                         eventHandler.setEvents();
                     } else
-                        customToast(grid.getRootView(),"Min Date reached");
+                        customToast(grid.getRootView(), "Min Date reached");
 //                        Toast.makeText(getContext(), "Min Date reached", Toast.LENGTH_LONG).show();
                 }
             }
@@ -243,6 +261,9 @@ public class CalendarView extends LinearLayout {
                         selectedDate = null;
                     } else if ((selectedDate.getDate() > _maxDate) && (_maxMonth == selectedDate.getMonth()) && (y == _maxYear)) {
 //                        Toast.makeText(getContext(), "Age must be greater than 18 years.", Toast.LENGTH_LONG).show();
+                        selectedDate = null;
+                    } else if (Constant.calenderType == 1 && (selectedDate.getDate() < _maxDate) && (_maxMonth == selectedDate.getMonth()) && (y == now.get(Calendar.YEAR))) {
+//                        past dates disabled
                         selectedDate = null;
                     } else {
                         eventHandler.onDayPress((Date) parent.getItemAtPosition(position));
@@ -287,7 +308,7 @@ public class CalendarView extends LinearLayout {
 
             if (cv == 0) {
 //                Toast.makeText(getContext(), "Max Date reached", Toast.LENGTH_LONG).show();
-                customToast(grid.getRootView(),"Max Date reached");
+                customToast(grid.getRootView(), "Max Date reached");
             } else {
 
                 cv = cv * 12;
@@ -297,7 +318,7 @@ public class CalendarView extends LinearLayout {
                 updateCalendar();
                 eventHandler.setEvents();
 //                Toast.makeText(getContext(), "Max Date reached", Toast.LENGTH_LONG).show();
-                customToast(grid.getRootView(),"Max Date reached");
+                customToast(grid.getRootView(), "Max Date reached");
             }
         }
     }
@@ -328,7 +349,7 @@ public class CalendarView extends LinearLayout {
                     eventHandler.setEvents();
                 }
 //                Toast.makeText(getContext(), "Min Date reached", Toast.LENGTH_LONG).show();
-                customToast(grid.getRootView(),"Min Date reached");
+                customToast(grid.getRootView(), "Min Date reached");
             } else {
                 cv = cv * 12;
                 int kv = currentDate.get(Calendar.MONTH) - _minMonth;
@@ -337,7 +358,7 @@ public class CalendarView extends LinearLayout {
                 updateCalendar();
                 eventHandler.setEvents();
 //                Toast.makeText(getContext(), "Min Date reached", Toast.LENGTH_LONG).show();
-                customToast(grid.getRootView(),"Min Date reached");
+                customToast(grid.getRootView(), "Min Date reached");
             }
         }
     }
@@ -461,8 +482,16 @@ public class CalendarView extends LinearLayout {
                     ((TextView) view).setVisibility(INVISIBLE);
                 } else {
                     int y = currentDate.get(Calendar.YEAR);
+
                     if ((day > _maxDate) && (_maxMonth == getItem(15).getMonth()) && (y == _maxYear)) {
                         ((TextView) view).setTextColor(Color.GRAY);
+                    }
+
+                    if (Constant.calenderType == 1) {
+                        int d = now.get(Calendar.DAY_OF_MONTH);
+                        if ((day < d) && (_maxMonth == getItem(15).getMonth()) && (y == _minYear)) {
+                            ((TextView) view).setTextColor(Color.GRAY);
+                        }
                     }
                 }
 
@@ -621,19 +650,19 @@ public class CalendarView extends LinearLayout {
     }
 
     // My custom toast
-    public void customToast(View view,String message) {
-        Context context= this.getContext();
+    public void customToast(View view, String message) {
+        Context context = this.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View customToastRoot =inflater.inflate(R.layout.custom_toast, null);
+        View customToastRoot = inflater.inflate(R.layout.custom_toast, null);
 
-        TextView messageText = (TextView)customToastRoot .findViewById(R.id.messageTV);
+        TextView messageText = (TextView) customToastRoot.findViewById(R.id.messageTV);
         messageText.setText(message);
 
-        Toast customToast=new Toast(context);
+        Toast customToast = new Toast(context);
         customToast.setView(customToastRoot);
 //        customToast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL,0, 0);
-        customToast.setGravity(Gravity.BOTTOM,0, 50);
+        customToast.setGravity(Gravity.BOTTOM, 0, 50);
         customToast.setDuration(Toast.LENGTH_LONG);
         customToast.show();
     }

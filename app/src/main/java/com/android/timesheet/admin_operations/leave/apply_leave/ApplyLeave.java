@@ -12,10 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.android.timesheet.R;
-import com.android.timesheet.admin_operations.leave.apply_leave.tabs.HolidaysList;
-import com.android.timesheet.admin_operations.leave.apply_leave.tabs.LeaveBalance;
-import com.android.timesheet.admin_operations.leave.apply_leave.tabs.LeaveCalender;
-import com.android.timesheet.admin_operations.leave.apply_leave.tabs.MyLeave;
+import com.android.timesheet.admin_operations.leave.apply_leave.tabs.holiday_list.HolidaysList;
+import com.android.timesheet.admin_operations.leave.apply_leave.tabs.leave_balance.LeaveBalance;
+import com.android.timesheet.admin_operations.leave.apply_leave.tabs.leave_calender.LeaveCalender;
+import com.android.timesheet.admin_operations.leave.apply_leave.tabs.my_leave.MyLeave;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.util.InternetUtils;
@@ -62,7 +62,6 @@ public class ApplyLeave extends BaseActivity<ApplyLeavePresenter> implements Bas
     protected boolean showBackButton() {
         return true;
     }
-
 
     @Override
     protected ApplyLeavePresenter providePresenter() {

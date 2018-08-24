@@ -106,7 +106,7 @@
             android:name=".admin_operations.leave.apply_leave.ApplyLeave"
             android:theme="@style/TimeSheet.AppTheme" />
         <activity
-            android:name=".admin_operations.leave.apply_leave.tabs.popup.LeavePopUpActivity"
+            android:name=".admin_operations.leave.apply_leave.tabs.my_leave.popup.LeavePopUpActivity"
             android:theme="@style/TimeSheet.AppTheme" />
 
         <!--<activity android:name=".user_operations.reports.yearly.Yearly_Fragment" />

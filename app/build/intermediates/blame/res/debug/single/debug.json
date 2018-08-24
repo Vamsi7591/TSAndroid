@@ -96,20 +96,20 @@
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\094e4ce44a710fd99e4b8f0ff8f80919\\res\\drawable\\common_google_signin_btn_icon_light_focused.xml"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_menu_hardkey_panel_mtrl_mult.9.png.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-mdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
-    },
-    {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_star_orange.png.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable\\star_orange.png"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_view_list_group.xml.flat",
-        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\layout\\view_list_group.xml"
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_menu_hardkey_panel_mtrl_mult.9.png.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-mdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_user_profile.xml.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\layout\\activity_user_profile.xml"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_view_list_group.xml.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\layout\\view_list_group.xml"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
@@ -140,12 +140,12 @@
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0-beta01.aar\\fccef6fa39d32ba7117e5e7d9142c4a2\\res\\drawable-xxhdpi-v4\\design_ic_visibility.png"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_report_weekly.xml.flat",
-        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\layout\\fragment_report_weekly.xml"
-    },
-    {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-hdpi-v4\\abc_text_select_handle_right_mtrl_dark.png"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_report_weekly.xml.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\layout\\fragment_report_weekly.xml"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_happy_icon.png.flat",
@@ -160,12 +160,12 @@
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0-beta01.aar\\fccef6fa39d32ba7117e5e7d9142c4a2\\res\\drawable-xxxhdpi-v4\\design_ic_visibility.png"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_arrow.png.flat",
-        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable\\arrow.png"
-    },
-    {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_email_b.png.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-hdpi\\ic_email_b.png"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_arrow.png.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable\\arrow.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ok_icon_gray.png.flat",
@@ -228,20 +228,20 @@
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-xhdpi-v4\\abc_switch_track_mtrl_alpha.9.png"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
-        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
-    },
-    {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_screen_simple_overlay_action_mode.xml.flat",
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_text_select_handle_left_mtrl_light.png.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-xxxhdpi-v4\\abc_text_select_handle_left_mtrl_light.png"
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_filter_orange_icon.png.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-hdpi\\filter_orange_icon.png"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_text_select_handle_left_mtrl_light.png.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-xxxhdpi-v4\\abc_text_select_handle_left_mtrl_light.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_line_new.png.flat",
@@ -256,20 +256,20 @@
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\layout\\abc_activity_chooser_view_list_item.xml"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_selector_disabled_holo_dark.9.png.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-xhdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
-    },
-    {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_thumb_up_black.xml.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable\\ic_thumb_up_black.xml"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\anim_popup_enter.xml.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\core-0.9.0.1.aar\\6ceac49d1423f65fc0c655c4c8dc2b3a\\res\\anim\\popup_enter.xml"
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_selector_disabled_holo_dark.9.png.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-xhdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_projects_list_b.png.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-hdpi\\ic_projects_list_b.png"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\anim_popup_enter.xml.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\core-0.9.0.1.aar\\6ceac49d1423f65fc0c655c4c8dc2b3a\\res\\anim\\popup_enter.xml"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_employee_master.xml.flat",
@@ -292,16 +292,16 @@
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\color\\abc_primary_text_material_dark.xml"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_crose_icon.png.flat",
-        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable\\crose_icon.png"
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_googleg_standard_color_18.png.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\094e4ce44a710fd99e4b8f0ff8f80919\\res\\drawable-xxhdpi-v4\\googleg_standard_color_18.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_right_orange_icon.png.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-xxhdpi\\right_orange_icon.png"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_googleg_standard_color_18.png.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\094e4ce44a710fd99e4b8f0ff8f80919\\res\\drawable-xxhdpi-v4\\googleg_standard_color_18.png"
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_crose_icon.png.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable\\crose_icon.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ok_icon_gray.png.flat",
@@ -316,12 +316,12 @@
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable\\list_search_orange.png"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_btn_ripple_color.xml.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0-beta01.aar\\fccef6fa39d32ba7117e5e7d9142c4a2\\res\\color\\mtrl_btn_ripple_color.xml"
-    },
-    {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_approve_permission.xml.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\layout\\activity_approve_permission.xml"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\color_mtrl_btn_ripple_color.xml.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0-beta01.aar\\fccef6fa39d32ba7117e5e7d9142c4a2\\res\\color\\mtrl_btn_ripple_color.xml"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_menu_user.png.flat",
@@ -332,56 +332,56 @@
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0-beta01.aar\\fccef6fa39d32ba7117e5e7d9142c4a2\\res\\animator\\mtrl_fab_transformation_sheet_collapse_spec.xml"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_password_invisible.png.flat",
-        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-hdpi\\ic_password_invisible.png"
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_letter_bg.png.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-xhdpi\\letter_bg.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\animator_design_fab_hide_motion_spec.xml.flat",
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0-beta01.aar\\fccef6fa39d32ba7117e5e7d9142c4a2\\res\\animator\\design_fab_hide_motion_spec.xml"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_letter_bg.png.flat",
-        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-xhdpi\\letter_bg.png"
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_password_invisible.png.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-hdpi\\ic_password_invisible.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_text_select_handle_middle_mtrl_light.png.flat",
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-xxhdpi-v4\\abc_text_select_handle_middle_mtrl_light.png"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_add_black_24dp.xml.flat",
-        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable\\ic_add_black_24dp.xml"
-    },
-    {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_design_ic_visibility_off.xml.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0-beta01.aar\\fccef6fa39d32ba7117e5e7d9142c4a2\\res\\drawable-anydpi-v21\\design_ic_visibility_off.xml"
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ratingbar_material.xml.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable\\abc_ratingbar_material.xml"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_check_box_active.png.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable\\check_box_active.png"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ratingbar_material.xml.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable\\abc_ratingbar_material.xml"
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_design_ic_visibility_off.xml.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0-beta01.aar\\fccef6fa39d32ba7117e5e7d9142c4a2\\res\\drawable-anydpi-v21\\design_ic_visibility_off.xml"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_add_black_24dp.xml.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable\\ic_add_black_24dp.xml"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_btn_radio_material.xml.flat",
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable\\abc_btn_radio_material.xml"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_list_icon.png.flat",
-        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-xxhdpi\\list_icon.png"
-    },
-    {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_close_icon.png.flat",
-        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-xxhdpi\\close_icon.png"
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-xxhdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_done_green.png.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-xxhdpi\\done_green.png"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-xxhdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_close_icon.png.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-xxhdpi\\close_icon.png"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_list_icon.png.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-xxhdpi\\list_icon.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_thumb_down_black.xml.flat",
@@ -408,12 +408,12 @@
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-xxhdpi\\add_items.png"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\anim_decelerate_cubic.xml.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\core-0.9.0.1.aar\\6ceac49d1423f65fc0c655c4c8dc2b3a\\res\\anim\\decelerate_cubic.xml"
-    },
-    {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-xxxhdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\anim_decelerate_cubic.xml.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\core-0.9.0.1.aar\\6ceac49d1423f65fc0c655c4c8dc2b3a\\res\\anim\\decelerate_cubic.xml"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_launcher.png.flat",
@@ -432,24 +432,24 @@
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-hdpi\\right_white_arrow.png"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_base_toolbar_scrollable.xml.flat",
-        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\layout\\base_toolbar_scrollable.xml"
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_md_nav_back.xml.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\core-0.9.0.1.aar\\6ceac49d1423f65fc0c655c4c8dc2b3a\\res\\drawable-anydpi-v21\\md_nav_back.xml"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\color_common_google_signin_btn_text_dark.xml.flat",
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\094e4ce44a710fd99e4b8f0ff8f80919\\res\\color\\common_google_signin_btn_text_dark.xml"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_md_nav_back.xml.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\core-0.9.0.1.aar\\6ceac49d1423f65fc0c655c4c8dc2b3a\\res\\drawable-anydpi-v21\\md_nav_back.xml"
-    },
-    {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-xxxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_base_toolbar_scrollable.xml.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\layout\\base_toolbar_scrollable.xml"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_view_title.xml.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\layout\\view_title.xml"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-xxxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_text_select_handle_right_mtrl_light.png.flat",
@@ -476,12 +476,12 @@
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0-beta01.aar\\bde3593d77ca2c7373cfbd4c87861681\\res\\layout-v21\\notification_template_icon_group.xml"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_dialog_title_material.xml.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\layout\\abc_dialog_title_material.xml"
-    },
-    {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_price_icon_orange.png.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-xhdpi\\price_icon_orange.png"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_dialog_title_material.xml.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\layout\\abc_dialog_title_material.xml"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_yearly__fragment.xml.flat",
@@ -544,24 +544,24 @@
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-xhdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-mdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
-    },
-    {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_light_focused.xml.flat",
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\094e4ce44a710fd99e4b8f0ff8f80919\\res\\drawable\\common_google_signin_btn_text_light_focused.xml"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-mdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_drawer_layout_list_item.xml.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\layout\\activity_drawer_layout_list_item.xml"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_action_tombstone.xml.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0-beta01.aar\\bde3593d77ca2c7373cfbd4c87861681\\res\\layout\\notification_action_tombstone.xml"
-    },
-    {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_search_icon2.png.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable\\search_icon2.png"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_action_tombstone.xml.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0-beta01.aar\\bde3593d77ca2c7373cfbd4c87861681\\res\\layout\\notification_action_tombstone.xml"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
@@ -576,12 +576,12 @@
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\layout\\abc_list_menu_item_checkbox.xml"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_menu_rateus.png.flat",
-        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-xxhdpi\\menu_rateus.png"
-    },
-    {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\anim_slide_from_left.xml.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\anim\\slide_from_left.xml"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_menu_rateus.png.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-xxhdpi\\menu_rateus.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
@@ -644,12 +644,12 @@
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-xxhdpi-v4\\abc_ic_menu_selectall_mtrl_alpha.png"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_check_box.png.flat",
-        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-xhdpi\\check_box.png"
-    },
-    {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_text_cursor_material.xml.flat",
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable\\abc_text_cursor_material.xml"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_check_box.png.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-xhdpi\\check_box.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\color-v21_abc_btn_colored_borderless_text_material.xml.flat",
@@ -668,12 +668,12 @@
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-hdpi\\ic_toggle_on_b.png"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_pressed_holo_light.9.png.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-mdpi-v4\\abc_list_pressed_holo_light.9.png"
-    },
-    {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_location_icon.png.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-hdpi\\location_icon.png"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_pressed_holo_light.9.png.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-mdpi-v4\\abc_list_pressed_holo_light.9.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout-v26_abc_screen_toolbar.xml.flat",
@@ -688,16 +688,16 @@
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable-hdpi\\icon_previous.png"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_radio_button_active.png.flat",
-        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable\\radio_button_active.png"
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_md_dialog_custom.xml.flat",
+        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\core-0.9.0.1.aar\\6ceac49d1423f65fc0c655c4c8dc2b3a\\res\\layout\\md_dialog_custom.xml"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_design_layout_snackbar_include_material.xml.flat",
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0-beta01.aar\\fccef6fa39d32ba7117e5e7d9142c4a2\\res\\layout\\design_layout_snackbar_include_material.xml"
     },
     {
-        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_md_dialog_custom.xml.flat",
-        "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\core-0.9.0.1.aar\\6ceac49d1423f65fc0c655c4c8dc2b3a\\res\\layout\\md_dialog_custom.xml"
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_radio_button_active.png.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable\\radio_button_active.png"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_googleg_disabled_color_18.png.flat",
@@ -1350,6 +1350,10 @@
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_star_half_black_16dp.png.flat",
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\drawable-xxxhdpi-v4\\abc_ic_star_half_black_16dp.png"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_blue_circle.xml.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable\\blue_circle.xml"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_list_b.png.flat",
@@ -2716,6 +2720,10 @@
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\layout\\base_tabs.xml"
     },
     {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_content_my_leave_list_item.xml.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\layout\\content_my_leave_list_item.xml"
+    },
+    {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_slide_out_bottom.xml.flat",
         "source": "C:\\Users\\vamsi.PRISAM\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0-beta01.aar\\0f32609df26522170d817077570201df\\res\\anim\\abc_slide_out_bottom.xml"
     },
@@ -2974,6 +2982,10 @@
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_bubble_chart.xml.flat",
         "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\drawable\\ic_bubble_chart.xml"
+    },
+    {
+        "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\layout_inflator_balance_view.xml.flat",
+        "source": "E:\\POC\\TSAndroid\\app\\src\\main\\res\\layout\\inflator_balance_view.xml"
     },
     {
         "merged": "E:\\POC\\TSAndroid\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_star_half_black_16dp.png.flat",

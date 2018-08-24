@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="60sp"
             android:background="@color/white"
-            android:visibility="gone"
+            android:visibility="visible"
             tools:listitem="@layout/content_time_sheet_item" />
 
         <!--empty view-->
@@ -33,7 +33,7 @@
             android:background="@color/white"
             android:gravity="center"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/no_invitation_state_ai"

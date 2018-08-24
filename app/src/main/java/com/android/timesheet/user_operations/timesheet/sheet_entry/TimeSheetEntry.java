@@ -659,6 +659,8 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     HashSet<Date> events;
     private void showBottomSheet(String titleText, Integer peekHeight) {
 
+        Constant.calenderType = 0;
+
         View view = this.getLayoutInflater().inflate(R.layout.view_bottom_sheet, null);
         com.android.timesheet.shared.widget.calender.CalendarView
                 calendarView = (com.android.timesheet.shared.widget.calender.CalendarView) view.findViewById(R.id.calenderView);

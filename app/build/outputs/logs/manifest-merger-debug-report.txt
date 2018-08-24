@@ -327,12 +327,12 @@ ADDED from E:\POC\TSAndroid\app\src\main\AndroidManifest.xml:105:9-107:57
 		ADDED from E:\POC\TSAndroid\app\src\main\AndroidManifest.xml:107:13-54
 	android:name
 		ADDED from E:\POC\TSAndroid\app\src\main\AndroidManifest.xml:106:13-74
-activity#com.android.timesheet.admin_operations.leave.apply_leave.tabs.popup.LeavePopUpActivity
+activity#com.android.timesheet.admin_operations.leave.apply_leave.tabs.my_leave.popup.LeavePopUpActivity
 ADDED from E:\POC\TSAndroid\app\src\main\AndroidManifest.xml:108:9-110:57
 	android:theme
 		ADDED from E:\POC\TSAndroid\app\src\main\AndroidManifest.xml:110:13-54
 	android:name
-		ADDED from E:\POC\TSAndroid\app\src\main\AndroidManifest.xml:109:13-93
+		ADDED from E:\POC\TSAndroid\app\src\main\AndroidManifest.xml:109:13-102
 service#com.android.timesheet.shared.util.BackgroundService
 ADDED from E:\POC\TSAndroid\app\src\main\AndroidManifest.xml:116:9-120:46
 	android:enabled

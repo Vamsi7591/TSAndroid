@@ -86,11 +86,8 @@ public class LeaveEntry implements Serializable {
 
         if (!TextUtils.isEmpty(fromDate) && !TextUtils.isEmpty(toDate)) {
             int error = validDate(fromDate, toDate);
-            if (error == 1) {
-                errors.put(ValidationError.TO_DATE, R.string.error_invalid_date_1);
-            } else if (error == 2) {
+            if (error == 1)
                 errors.put(ValidationError.FROM_DATE, R.string.error_invalid_date_2);
-            }
         }
 
         return errors;
@@ -104,11 +101,11 @@ public class LeaveEntry implements Serializable {
             Date date2 = sdf.parse(toDate);
             int i = date1.compareTo(date2);
             switch (i) {
-                case -1: //date1<date2 = -1
+                case -1: //date1<date2 = -1     -   From date < To date     - No error message
                     return i;
-                case 1: //date1>date2 = 1
+                case 1: //date1>date2 = 1       -   From date > To date     - From date should be less then To date
                     return i;
-                case 0: //date1==date2= 0
+                case 0: //date1==date2= 0       -   From date == To date    - No error message
                 default:
                     return i;
             }

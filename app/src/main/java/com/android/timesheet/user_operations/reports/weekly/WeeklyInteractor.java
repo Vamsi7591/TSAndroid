@@ -27,7 +27,6 @@ public class WeeklyInteractor extends BaseInteractor<WeeklyService> {
         return new WeeklyService();
     }
 
-
     public void getWeekReport(WeekParams weekParams, ServiceCallback<List<Week>> callback) {
 
         service().getWeekReport(weekParams).subscribe(new ServiceSubscriber<WeekResponse>() {

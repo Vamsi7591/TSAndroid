@@ -17,15 +17,15 @@ import java.lang.Override;
 public class TimeSheetEntry_ViewBinding extends BaseActivity_ViewBinding {
   private TimeSheetEntry target;
 
-  private View view2131296541;
+  private View view2131296545;
 
-  private View view2131296627;
+  private View view2131296632;
 
   private View view2131296384;
 
-  private View view2131296511;
+  private View view2131296514;
 
-  private View view2131296634;
+  private View view2131296639;
 
   @UiThread
   public TimeSheetEntry_ViewBinding(TimeSheetEntry target) {
@@ -43,7 +43,7 @@ public class TimeSheetEntry_ViewBinding extends BaseActivity_ViewBinding {
     target.spinnerProjects = Utils.findRequiredViewAsType(source, R.id.spinnerProjects, "field 'spinnerProjects'", Spinner.class);
     view = Utils.findRequiredView(source, R.id.pickerDate, "field 'pickerDate' and method 'showCustomDatePicker'");
     target.pickerDate = Utils.castView(view, R.id.pickerDate, "field 'pickerDate'", TextView.class);
-    view2131296541 = view;
+    view2131296545 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -52,7 +52,7 @@ public class TimeSheetEntry_ViewBinding extends BaseActivity_ViewBinding {
     });
     view = Utils.findRequiredView(source, R.id.startTime, "field 'startTime' and method 'showStartTimeClock'");
     target.startTime = Utils.castView(view, R.id.startTime, "field 'startTime'", TextView.class);
-    view2131296627 = view;
+    view2131296632 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -72,7 +72,7 @@ public class TimeSheetEntry_ViewBinding extends BaseActivity_ViewBinding {
     target.description_count = Utils.findOptionalViewAsType(source, R.id.description_count, "field 'description_count'", CustomFontTextView.class);
     view = Utils.findRequiredView(source, R.id.modifyBtn, "field 'modifyBtn' and method 'modify'");
     target.modifyBtn = Utils.castView(view, R.id.modifyBtn, "field 'modifyBtn'", CustomFontTextView.class);
-    view2131296511 = view;
+    view2131296514 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -81,7 +81,7 @@ public class TimeSheetEntry_ViewBinding extends BaseActivity_ViewBinding {
     });
     view = Utils.findRequiredView(source, R.id.submitBtn, "field 'submitBtn' and method 'save'");
     target.submitBtn = Utils.castView(view, R.id.submitBtn, "field 'submitBtn'", CustomFontTextView.class);
-    view2131296634 = view;
+    view2131296639 = view;
     view.setOnClickListener(new DebouncingOnClickListener() {
       @Override
       public void doClick(View p0) {
@@ -116,16 +116,16 @@ public class TimeSheetEntry_ViewBinding extends BaseActivity_ViewBinding {
     target.error_end_time = null;
     target.error_description = null;
 
-    view2131296541.setOnClickListener(null);
-    view2131296541 = null;
-    view2131296627.setOnClickListener(null);
-    view2131296627 = null;
+    view2131296545.setOnClickListener(null);
+    view2131296545 = null;
+    view2131296632.setOnClickListener(null);
+    view2131296632 = null;
     view2131296384.setOnClickListener(null);
     view2131296384 = null;
-    view2131296511.setOnClickListener(null);
-    view2131296511 = null;
-    view2131296634.setOnClickListener(null);
-    view2131296634 = null;
+    view2131296514.setOnClickListener(null);
+    view2131296514 = null;
+    view2131296639.setOnClickListener(null);
+    view2131296639 = null;
 
     super.unbind();
   }

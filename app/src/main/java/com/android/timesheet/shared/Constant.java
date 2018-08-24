@@ -19,6 +19,8 @@ public class Constant {
     public static final String GalleryOutput = "GalleryOutput.png";
 
     public static final String DataFormat = "yyyy/MM/dd";
+
+    public static int calenderType = 0;
     //endregion
 
     //region Request Codes
