@@ -1,5 +1,6 @@
 package com.android.timesheet.admin_operations.leave.apply_leave.tabs.my_leave.popup;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -19,16 +20,19 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.android.common.AppConfig;
 import com.android.timesheet.R;
 import com.android.timesheet.shared.Constant;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.LeaveEntry;
+import com.android.timesheet.shared.models.Project;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.models.ValidationError;
 import com.android.timesheet.shared.util.InternetUtils;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 import com.android.timesheet.shared.widget.CustomFontTextView;
 import com.android.timesheet.user_operations.timesheet.sheet_entry.ProjectsSpinnerAdapter;
+import com.google.gson.Gson;
 
 import org.parceler.Parcels;
 
@@ -39,6 +43,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -114,9 +119,12 @@ public class LeavePopUpActivity extends BaseActivity<LeavePopUpPresenter> implem
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Intent intent = getIntent();
+        String entryString = intent.getStringExtra(AppConfig.MY_LEAVE_OBJECT);
+        Gson gson = new Gson();
+        LeaveEntry entry = gson.fromJson(entryString, LeaveEntry.class);
 
-        Parcelable parcelable = getIntent().getParcelableExtra(Constant.KEYS.LEAVE_ENTRY_KEY);
-        intentLeaveEntry = Parcels.unwrap(parcelable);
+        intentLeaveEntry = entry;
 
         boolean fromLeaveEntryList = intentLeaveEntry != null;
 
@@ -144,18 +152,30 @@ public class LeavePopUpActivity extends BaseActivity<LeavePopUpPresenter> implem
                 R.anim.text_anim_lr);
 
 
+        leaveTypesForSpinner.add("Annual Leave");
+        leaveTypesForSpinner.add("Medical Leave");
+
+        ProjectsSpinnerAdapter projectsSpinnerAdapter = new ProjectsSpinnerAdapter(LeavePopUpActivity.this, leaveTypesForSpinner);
+        leaveTypeSP.setAdapter(projectsSpinnerAdapter);
+
+
         /*Apply Leave - Entry*/
         if (intentLeaveEntry != null) {
             Log.d(TAG, "TS : " + intentLeaveEntry.fromDate);
+
+            for (int i = 0; i < leaveTypesForSpinner.size(); i++) {
+                if (leaveTypesForSpinner.get(i).equalsIgnoreCase(intentLeaveEntry.getLeaveType())) {
+                    leaveTypeSP.setSelection(i);
+                }
+            }
+
+            remarksET.setText(intentLeaveEntry.getRemarks());
+            remarks_count.setText(String.format("%d/500", intentLeaveEntry.getRemarks().length()));
+            fromDate.setText(intentLeaveEntry.getFromDate());
+            toDate.setText(intentLeaveEntry.getToDate());
+
         } else {
             intentLeaveEntry = new LeaveEntry();
-
-            leaveTypesForSpinner.add("Annual Leave");
-            leaveTypesForSpinner.add("Medical Leave");
-
-            ProjectsSpinnerAdapter projectsSpinnerAdapter = new ProjectsSpinnerAdapter(LeavePopUpActivity.this, leaveTypesForSpinner);
-            leaveTypeSP.setAdapter(projectsSpinnerAdapter);
-
         }
 
 
@@ -353,7 +373,7 @@ public class LeavePopUpActivity extends BaseActivity<LeavePopUpPresenter> implem
             public void onDayLongPress(Date date) {
                 // show returned day
                 SimpleDateFormat df = new SimpleDateFormat(Constant.DataFormat, Locale.getDefault());
-                Log.v(TAG,"onDayLongPress : " + df.format(date));
+                Log.v(TAG, "onDayLongPress : " + df.format(date));
             }
 
             @Override
@@ -366,7 +386,7 @@ public class LeavePopUpActivity extends BaseActivity<LeavePopUpPresenter> implem
                 clearValue.setTag(dateSelected);
 
 //                dateSelected = convertCalFormat(selectedDate);
-                Log.v(TAG,"onDayPress : " + df.format(date));
+                Log.v(TAG, "onDayPress : " + df.format(date));
                 setValue.setText(df.format(date));
 
                 if (flag) {

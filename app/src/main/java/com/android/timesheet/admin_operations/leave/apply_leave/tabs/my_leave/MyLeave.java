@@ -15,9 +15,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 
+import com.android.common.AppConfig;
 import com.android.timesheet.R;
 import com.android.timesheet.admin_operations.leave.apply_leave.MyLeaveAdapter;
 import com.android.timesheet.admin_operations.leave.apply_leave.tabs.my_leave.popup.LeavePopUpActivity;
+import com.android.timesheet.admin_operations.project_master.edit_project.EditProject;
 import com.android.timesheet.shared.fragments.BaseFragment;
 import com.android.timesheet.shared.interfaces.OnItemClickListener;
 import com.android.timesheet.shared.models.LeaveEntry;
@@ -25,6 +27,7 @@ import com.android.timesheet.shared.models.Week;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 import com.android.timesheet.shared.widget.CircularProgressBar;
 import com.android.timesheet.user_operations.reports.weekly.WeeklyPresenter;
+import com.google.gson.Gson;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -42,7 +45,7 @@ public class MyLeave extends BaseFragment<MyLeavePresenter> implements BaseViewB
     CircularProgressBar progressBar;
 
     @BindView(R.id.my_leaves_SV)
-    SearchView my_leaves_SV;
+    SearchView myLeavesSV;
 
     @BindView(R.id.noDataFound)
     LinearLayout noDataFound;
@@ -81,20 +84,20 @@ public class MyLeave extends BaseFragment<MyLeavePresenter> implements BaseViewB
 
         leaveEntryList = new ArrayList<>();
 //        String fromDate, String toDate, String leaveType, String remarks, String empCode, String noOfDays
-        leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", "Annual Leave", "My Brothers Marriage" , "", "5" ));
-        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", "Annual Leave", "Village Festival" , "", "3" ));
-        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", "Medical Leave", "Fever" , "", "4" ));
-        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", "Annual Leave", "My Marriage" , "", "10" ));
+        leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", "Annual Leave", "My Brothers Marriage", "", "5"));
+        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", "Annual Leave", "Village Festival", "", "3"));
+        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", "Medical Leave", "Fever", "", "4"));
+        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", "Annual Leave", "My Marriage", "", "10"));
 
-        leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", "Annual Leave", "My Brothers Marriage" , "", "5" ));
-        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", "Annual Leave", "Village Festival" , "", "3" ));
-        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", "Medical Leave", "Fever" , "", "4" ));
-        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", "Annual Leave", "My Marriage" , "", "10" ));
+        leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", "Annual Leave", "My Brothers Marriage", "", "5"));
+        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", "Annual Leave", "Village Festival", "", "3"));
+        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", "Medical Leave", "Fever", "", "4"));
+        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", "Annual Leave", "My Marriage", "", "10"));
 
-        leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", "Annual Leave", "My Brothers Marriage" , "", "5" ));
-        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", "Annual Leave", "Village Festival" , "", "3" ));
-        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", "Medical Leave", "Fever" , "", "4" ));
-        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", "Annual Leave", "My Marriage" , "", "10" ));
+        leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", "Annual Leave", "My Brothers Marriage", "", "5"));
+        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", "Annual Leave", "Village Festival", "", "3"));
+        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", "Medical Leave", "Fever", "", "4"));
+        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", "Annual Leave", "My Marriage", "", "10"));
 
         myLeaveAdapter = new MyLeaveAdapter(getActivity(), this);
 
@@ -133,6 +136,14 @@ public class MyLeave extends BaseFragment<MyLeavePresenter> implements BaseViewB
     @Override
     public void onSuccess(List<LeaveEntry> data) {
 
+        if (data.size() != 0) {
+            this.leaveEntryList = data;
+
+            myLeaveAdapter.setItems(data);
+            noDataFound.setVisibility(View.GONE);
+        } else
+            noDataFound.setVisibility(View.VISIBLE);
+
     }
 
     @Override
@@ -143,6 +154,12 @@ public class MyLeave extends BaseFragment<MyLeavePresenter> implements BaseViewB
     @Override
     public void onItemClick(View view, int position) {
 
+        Gson gson = new Gson();
+        String leaveEntry = gson.toJson(leaveEntryList.get(position));
+
+        Intent leaveIntent = new Intent(getActivity(), LeavePopUpActivity.class);
+        leaveIntent.putExtra(AppConfig.MY_LEAVE_OBJECT, leaveEntry);
+        startActivity(leaveIntent);
     }
 
     @Override
