@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -25,7 +26,6 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
-                app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
                 <RelativeLayout
@@ -39,12 +39,13 @@
                         android:id="@+id/toolbarTitleTv"
                         android:layout_width="match_parent"
                         android:layout_height="?android:attr/actionBarSize"
-                        android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="true"
                         android:gravity="start|center"
+                        android:paddingStart="@dimen/padding_0"
                         android:paddingLeft="@dimen/padding_0"
-                        android:text="Leave"
+                        android:text="@string/lb_leave"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/tv_font_size_22"
@@ -101,11 +102,12 @@
         android:fitsSystemWindows="true"
         android:gravity="center"
         android:horizontalSpacing="0dp"
-        android:listSelector="@color/light_grey"
+        android:listSelector="@color/black"
         android:numColumns="2"
         android:stretchMode="spacingWidthUniform"
-        android:verticalSpacing="15dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:verticalSpacing="13dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/leave_grid_inflator" />
 
 </android.support.design.widget.CoordinatorLayout>
 

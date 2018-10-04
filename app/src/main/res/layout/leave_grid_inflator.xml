@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="@dimen/margin_10"
-    app:cardBackgroundColor="@color/light_grey"
+    app:cardBackgroundColor="@color/colorGlowAccent"
     app:cardCornerRadius="@dimen/margin_20"
+    android:layout_margin="@dimen/margin_2"
     tools:targetApi="lollipop">
 
     <com.android.timesheet.shared.widget.CustomFontTextView

@@ -23,6 +23,7 @@ import com.android.timesheet.admin_operations.leave.apply_permission.ApplyPermis
 import com.android.timesheet.admin_operations.leave.approve_leave.ApproveLeave;
 import com.android.timesheet.admin_operations.leave.approve_on_duty.ApproveOnDuty;
 import com.android.timesheet.admin_operations.leave.approve_permission.ApprovePermission;
+import com.android.timesheet.admin_operations.leave.leave_request.LeaveRequestActivity;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.util.InternetUtils;
@@ -117,7 +118,7 @@ public class LeaveActivity extends BaseActivity<LeavePresenter> {
                 if (user.getEmpRole().equalsIgnoreCase("Admin"))
                     switch (position) {
                         case 0:
-                            presenter().openActivity(ApplyLeave.class);
+                            presenter().openActivity(LeaveRequestActivity.class);
                             break;
 
                         case 1:
@@ -143,7 +144,7 @@ public class LeaveActivity extends BaseActivity<LeavePresenter> {
                 else
                     switch (position) {
                         case 0:
-                            presenter().openActivity(ApplyLeave.class);
+                            presenter().openActivity(LeaveRequestActivity.class);
                             break;
 
                         case 1:
@@ -164,12 +165,18 @@ public class LeaveActivity extends BaseActivity<LeavePresenter> {
     private void loadGrid() {
 
         strings = new ArrayList<>();
-        strings.add("Apply Leave");
-        strings.add("Approve Leave");
-        strings.add("Apply On Duty");
-        strings.add("Approve On Duty");
-        strings.add("Apply Permission");
-        strings.add("Approve Permission");
+        if (user.getEmpRole().equalsIgnoreCase("Admin")) {
+            strings.add("Leave Requests");//Apply Leave
+            strings.add("Approve Leave");
+            strings.add("Apply On Duty");
+            strings.add("Approve On Duty");
+            strings.add("Apply Permission");
+            strings.add("Approve Permission");
+        } else {
+            strings.add("Leave Requests");//Apply Leave
+            strings.add("Apply On Duty");
+            strings.add("Apply Permission");
+        }
 
         LeaveAdapter booksAdapter = new LeaveAdapter(this, strings);
         gridView.setAdapter(booksAdapter);

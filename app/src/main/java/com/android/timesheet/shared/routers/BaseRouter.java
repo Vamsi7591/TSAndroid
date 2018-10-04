@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 
 import com.android.timesheet.app.App;
 import com.android.timesheet.common_operations.landing.LandingActivity;
+import com.android.timesheet.shared.Constant;
 import com.android.timesheet.shared.RestClient;
 import com.android.timesheet.common_operations.splash.SplashActivity;
 
@@ -67,6 +68,12 @@ public abstract class BaseRouter {
 
     public void openActivityDetails(Class<?> activityClass) {
         Intent intent = new Intent(context, activityClass);
+        context.startActivity(intent);
+    }
+
+    public void openActivityDetails(Class<?> activityClass,String intentValue) {
+        Intent intent = new Intent(context, activityClass);
+        intent.putExtra(Constant.KEYS.FRAGMENT_TITLE, intentValue);
         context.startActivity(intent);
     }
 

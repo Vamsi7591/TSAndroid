@@ -13,7 +13,9 @@
         android:name="android.permission.SET_DEBUG_APP"
         tools:ignore="ProtectedPermissions" />
 
-    <meta-data android:name="firebase_crash_collection_enabled" android:value="false" />
+    <meta-data
+        android:name="firebase_crash_collection_enabled"
+        android:value="false" />
 
     <application
         android:name=".app.App"
@@ -24,6 +26,7 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:targetApi="n">
         <activity
             android:name=".common_operations.splash.SplashActivity"
@@ -107,6 +110,12 @@
             android:theme="@style/TimeSheet.AppTheme" />
         <activity
             android:name=".admin_operations.leave.apply_leave.tabs.my_leave.popup.LeavePopUpActivity"
+            android:theme="@style/TimeSheet.AppTheme" />
+        <activity
+            android:name=".admin_operations.leave.leave_request.LeaveRequestActivity"
+            android:theme="@style/TimeSheet.AppTheme" />
+        <activity
+            android:name=".admin_operations.leave.apply_leave.tabs.leave_calender.LeaveCalender"
             android:theme="@style/TimeSheet.AppTheme" />
 
         <!--<activity android:name=".user_operations.reports.yearly.Yearly_Fragment" />

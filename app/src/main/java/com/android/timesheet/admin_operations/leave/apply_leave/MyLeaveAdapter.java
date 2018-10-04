@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.timesheet.R;
@@ -73,7 +74,7 @@ public class MyLeaveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.content_my_leave_list_item, parent,
+        View view = LayoutInflater.from(context).inflate(R.layout.content_leave_item, parent,
                 false);
         return new MyLeaveViewHolder(context, view, listener);
     }
@@ -99,17 +100,17 @@ public class MyLeaveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         @BindView(R.id.leaveTypeTV)
         CustomFontTextView leaveTypeTV;
 
-        @BindView(R.id.remarksTV)
-        CustomFontTextView remarksTV;
+        @BindView(R.id.fromAndToDateTV)
+        CustomFontTextView fromAndToDateTV;
 
         @BindView(R.id.noOfDaysTV)
         CustomFontTextView noOfDaysTV;
 
-        @BindView(R.id.fromDateTV)
-        CustomFontTextView fromDateTV;
+        @BindView(R.id.daysTV)
+        CustomFontTextView daysTV;
 
-        @BindView(R.id.toDateTV)
-        CustomFontTextView toDateTV;
+        @BindView(R.id.leaveTypeIV)
+        ImageView leaveTypeIV;
 
         @BindView(R.id.trashLL)
         LinearLayout trashLL;
@@ -131,9 +132,16 @@ public class MyLeaveAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             leaveTypeTV.setText(entry.getLeaveType());
             noOfDaysTV.setText(entry.getNoOfDays());
-            remarksTV.setText(entry.getRemarks());
-            fromDateTV.setText(entry.getFromDate());
-            toDateTV.setText(entry.getToDate());
+            fromAndToDateTV.setText(entry.getFromDate()+" - "+entry.getRemarks());
+            daysTV.setText("Days");
+
+            if(entry.getLeaveType().contains("Sick")){
+                leaveTypeIV.setBackground(context.getResources().getDrawable(R.drawable.ic_sick));
+            }else if(entry.getLeaveType().contains("Casual")){
+                leaveTypeIV.setBackground(context.getResources().getDrawable(R.drawable.ic_casual));
+            }else{
+                leaveTypeIV.setBackground(context.getResources().getDrawable(R.drawable.ic_earned));
+            }
 
             leaveTypeTV.setOnClickListener(view -> {
                 if (listener != null) {

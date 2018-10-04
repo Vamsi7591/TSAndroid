@@ -109,7 +109,7 @@
                             android:nextFocusDown="@+id/textInputLayoutPassword"
                             android:paddingTop="@dimen/layout_action_padding_5"
                             android:singleLine="true"
-                            android:text="e010"
+                            android:text="e109"
                             android:textColor="@color/black"
                             android:textIsSelectable="false"
                             app:hintTextAppearance="@style/AppTheme.TextInputLayout.TextAppearance"

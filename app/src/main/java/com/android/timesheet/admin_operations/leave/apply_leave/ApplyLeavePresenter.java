@@ -34,4 +34,8 @@ public class ApplyLeavePresenter extends BasePresenter<BaseViewBehavior, ApplyLe
     public void openActivity(Class<?> activityClass) {
         router().openActivityDetails(activityClass);
     }
+    public void openActivity(Class<?> activityClass, String s) {
+        router().openActivityDetails(activityClass,s);
+    }
+
 }

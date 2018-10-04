@@ -63,6 +63,7 @@
             app:tabIndicatorGravity="bottom"
             app:tabIndicatorHeight="@dimen/margin_2"
             app:tabMode="scrollable"
+            android:visibility="gone"
             app:tabPaddingEnd="@dimen/margin_20"
             app:tabPaddingStart="@dimen/margin_20"
             app:tabSelectedTextColor="@color/colorAccent"

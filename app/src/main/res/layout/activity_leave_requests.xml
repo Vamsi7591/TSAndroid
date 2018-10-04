@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGreyish"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/white"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="?android:attr/actionBarSize"
+                    android:layout_marginEnd="@dimen/layout_action_margin_50"
+                    android:layout_marginRight="@dimen/layout_action_margin_50"
+                    app:layout_anchor="@+id/toolbar">
+
+                    <com.android.timesheet.shared.widget.CustomFontTextView
+                        android:id="@+id/toolbarTitleTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="false"
+                        android:gravity="start|center"
+                        android:paddingStart="@dimen/padding_0"
+                        android:paddingLeft="@dimen/padding_0"
+                        android:text="@string/lb_request_leave"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tv_font_size_22"
+                        android:visibility="visible"
+                        app:font="@string/aleo_regular"
+                        tools:ignore="RtlSymmetry" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <com.android.timesheet.shared.widget.CustomFontTextView
+            android:id="@+id/overViewTV"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorShine30"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:drawableRight="@drawable/ic_arrow_right"
+            android:gravity="start|center"
+            android:paddingStart="@dimen/padding_10"
+            android:paddingEnd="@dimen/padding_10"
+            android:paddingRight="@dimen/padding_10"
+            android:text="@string/lb_leave_overview"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/tv_font_size_20"
+            android:visibility="visible"
+            app:font="@string/aleo_regular" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorShine40"
+                android:orientation="vertical">
+
+                <com.android.timesheet.shared.widget.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center"
+                    android:padding="@dimen/padding_10"
+                    android:text="9"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="45sp"
+                    android:visibility="visible"
+                    app:font="@string/aleo_regular" />
+
+                <com.android.timesheet.shared.widget.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|center"
+                    android:paddingTop="@dimen/padding_0"
+                    android:paddingBottom="@dimen/padding_10"
+                    android:text="@string/lb_requested"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tv_font_size_16"
+                    android:visibility="visible"
+                    app:font="@string/aleo_regular" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_border_green"
+                android:orientation="vertical">
+
+                <com.android.timesheet.shared.widget.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center"
+                    android:padding="@dimen/padding_10"
+                    android:text="2"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="45sp"
+                    android:visibility="visible"
+                    app:font="@string/aleo_regular" />
+
+                <com.android.timesheet.shared.widget.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|center"
+                    android:paddingTop="@dimen/padding_0"
+                    android:paddingBottom="@dimen/padding_10"
+                    android:text="@string/lb_approved"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tv_font_size_16"
+                    android:visibility="visible"
+                    app:font="@string/aleo_regular" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorShine40"
+                android:orientation="vertical">
+
+                <com.android.timesheet.shared.widget.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|center"
+                    android:padding="@dimen/padding_10"
+                    android:text="3"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="45sp"
+                    android:visibility="visible"
+                    app:font="@string/aleo_regular" />
+
+                <com.android.timesheet.shared.widget.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|center"
+                    android:paddingTop="@dimen/padding_0"
+                    android:paddingBottom="@dimen/padding_10"
+                    android:text="@string/lb_rejected"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tv_font_size_16"
+                    android:visibility="visible"
+                    app:font="@string/aleo_regular" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/leaveRequestLL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0.5dp"
+                android:layout_marginRight="0.5dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDarkBlur"
+                android:orientation="vertical">
+
+                <com.android.timesheet.shared.widget.CustomFontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableBottom="@drawable/add_icon2"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:visibility="visible"
+                    app:font="@string/aleo_regular" />
+
+                <com.android.timesheet.shared.widget.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|center"
+                    android:paddingTop="@dimen/padding_0"
+                    android:paddingBottom="@dimen/padding_20"
+                    android:text="@string/lb_request_leave"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tv_font_size_16"
+                    android:visibility="visible"
+                    app:font="@string/aleo_regular" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="@color/colorPrimaryDarkBlur" />
+
+            <LinearLayout
+                android:id="@+id/entitlementLL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDarkBlur"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/progressBar2"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_20"
+                    android:layout_marginTop="@dimen/padding_40"
+                    android:layout_marginEnd="@dimen/padding_20"
+                    android:background="@color/black"
+                    android:visibility="gone" />
+
+                <SeekBar
+                    android:id="@+id/seekBar"
+                    style="@style/Widget.AppCompat.SeekBar.Discrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_20"
+                    android:layout_marginTop="@dimen/padding_40"
+                    android:layout_marginEnd="@dimen/padding_20"
+                    android:max="100"
+                    android:progress="40"
+                    android:visibility="gone" />
+
+                <com.android.timesheet.shared.widget.CustomFontTextView
+                    android:id="@+id/tvEntitlement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_20"
+                    android:layout_marginEnd="@dimen/padding_20"
+                    android:gravity="bottom|start"
+                    android:paddingTop="@dimen/padding_10"
+                    android:paddingBottom="@dimen/padding_0"
+                    android:text="40%"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tv_font_size_14"
+                    android:visibility="visible"
+                    app:font="@string/aleo_regular" />
+
+                <ProgressBar
+                    android:id="@+id/progressBarEntitlement"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="13dp"
+                    android:layout_marginStart="@dimen/padding_20"
+                    android:layout_marginTop="@dimen/margin_0"
+                    android:layout_marginEnd="@dimen/padding_20"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="40"
+                    android:progressDrawable="@drawable/progress_drawable"
+                    android:visibility="visible"
+                    tools:visibility="visible" />
+
+                <com.android.timesheet.shared.widget.CustomFontTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|center"
+                    android:paddingTop="@dimen/padding_5"
+                    android:paddingBottom="@dimen/padding_20"
+                    android:text="@string/lb_entitlement"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/tv_font_size_16"
+                    android:visibility="visible"
+                    app:font="@string/aleo_regular" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:background="@color/white" />
+
+        <LinearLayout
+            android:id="@+id/leaveCalenderLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDarkBlur"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_20"
+                android:gravity="center"
+                android:src="@drawable/ic_calender_view"
+                android:textAlignment="center"
+                android:visibility="visible" />
+
+            <com.android.timesheet.shared.widget.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|center"
+                android:paddingTop="@dimen/padding_0"
+                android:paddingBottom="@dimen/padding_20"
+                android:text="@string/lb_leave_calender_view"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/tv_font_size_16"
+                android:visibility="visible"
+                app:font="@string/aleo_regular" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

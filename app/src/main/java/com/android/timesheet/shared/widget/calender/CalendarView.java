@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.android.timesheet.R;
 import com.android.timesheet.shared.Constant;
+import com.android.timesheet.shared.models.LeaveCalendarModel;
 import com.android.timesheet.shared.util.FontUtils;
 import com.android.timesheet.shared.widget.CustomFontTextView;
 
@@ -50,6 +51,8 @@ public class CalendarView extends LinearLayout {
     private EventHandler eventHandler = null;
     Context context;
 
+    //    HashSet<Date> eventDays;
+    HashSet<LeaveCalendarModel> eventDays;
     int _maxDate = 0;
     int _maxMonth = 0;
     int _maxYear = 0;
@@ -103,6 +106,7 @@ public class CalendarView extends LinearLayout {
         /* Types
          * 0 - future dates disabled (default)
          * 1 - From Date / To Date
+         * 2 - For Events only, No click actions
          **/
 
         _maxDate = now.get(Calendar.DAY_OF_MONTH);
@@ -114,13 +118,20 @@ public class CalendarView extends LinearLayout {
             _minMonth = now.get(Calendar.MONTH);
             /*Adding +1 to year for future dates*/
             _maxYear = now.get(Calendar.YEAR) + 1;
+        } else if (Constant.calenderType == 2) {
+            _minYear = now.get(Calendar.YEAR) - 1;
+            _minMonth = 0;
+            _maxMonth = 11;
+            _maxDate = 31;
+            /*Adding +1 to year for future dates*/
+            _maxYear = now.get(Calendar.YEAR) + 1;
         }
 
 
         if (now.get(Calendar.YEAR) == (currentDate.get(Calendar.YEAR)))
             currentDate.set((currentDate.get(Calendar.YEAR)), currentDate.get(Calendar.MONTH), (currentDate.get(Calendar.DAY_OF_MONTH)));
 
-        if (Constant.calenderType == 1) {
+        if (Constant.calenderType != 0) {
             /*Adding -1 to display current year*/
             displayedposition = String.valueOf(_maxYear - 1);
         } else {
@@ -242,7 +253,9 @@ public class CalendarView extends LinearLayout {
                 if (eventHandler == null)
                     return false;
 
-                eventHandler.onDayLongPress((Date) view.getItemAtPosition(position));
+                if (Constant.calenderType != 2)
+                    eventHandler.onDayLongPress((Date) view.getItemAtPosition(position));
+
                 return true;
             }
         });
@@ -266,8 +279,10 @@ public class CalendarView extends LinearLayout {
 //                        past dates disabled
                         selectedDate = null;
                     } else {
-                        eventHandler.onDayPress((Date) parent.getItemAtPosition(position));
-                        updateCalendar();
+                        if (Constant.calenderType != 2) {
+                            eventHandler.onDayPress((Date) parent.getItemAtPosition(position));
+                            updateCalendar();
+                        }
                     }
                 }
             }
@@ -392,7 +407,7 @@ public class CalendarView extends LinearLayout {
     }
 
     public void updateCalendar() {
-        updateCalendar(null, null);
+        updateCalendar(eventDays, null);
     }
 
     public void setEventHandler(EventHandler eventHandler) {
@@ -405,8 +420,43 @@ public class CalendarView extends LinearLayout {
     }
 
     //region UPDATE CALENDAR
-    public void updateCalendar(HashSet<Date> events, Calendar _currentDate) {
+    public void updateCalendar(HashSet<LeaveCalendarModel> events, Calendar _currentDate) {
         try {
+            eventDays = events;
+            ArrayList<Date> cells = new ArrayList<>();
+
+            Calendar calendar = (Calendar) currentDate.clone();
+
+            // determine the cell for current month's beginning
+            calendar.set(Calendar.DAY_OF_MONTH, 1);
+
+            int monthBeginningCell = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+
+            // move calendar backwards to the beginning of the week
+            calendar.add(Calendar.DAY_OF_MONTH, -monthBeginningCell);
+
+            // fill cells
+            while (cells.size() < DAYS_COUNT) {
+                cells.add(calendar.getTime());
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+            }
+
+            // update grid
+            grid.setAdapter(new CalendarAdapter(getContext(), cells, events));
+
+            // update title
+            SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
+
+            txtDate.setText(sdf.format(currentDate.getTime()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateCalendar(HashSet<LeaveCalendarModel> events) {
+        try {
+
+            eventDays = events;
             ArrayList<Date> cells = new ArrayList<>();
 
             Calendar calendar = (Calendar) currentDate.clone();
@@ -440,13 +490,12 @@ public class CalendarView extends LinearLayout {
 
     //region calendar adapter
     private class CalendarAdapter extends ArrayAdapter<Date> {
-        private HashSet<Date> eventDays;
         private LayoutInflater inflater;
 
-        public CalendarAdapter(Context context, ArrayList<Date> days, HashSet<Date> eventDays) {
+        public CalendarAdapter(Context context, ArrayList<Date> days, HashSet<LeaveCalendarModel> _eventDays) {
             super(context, R.layout.control_calendar_day, days);
             try {
-                this.eventDays = eventDays;
+                eventDays = _eventDays;
                 inflater = LayoutInflater.from(context);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -495,7 +544,7 @@ public class CalendarView extends LinearLayout {
                     }
                 }
 
-                if (selectedDate != null) {
+                if (selectedDate != null && Constant.calenderType != 2) {
 
                     if (df == null)
                         df = new SimpleDateFormat(Constant.DataFormat, Locale.getDefault());//"yyyy/MM/dd"
@@ -511,6 +560,38 @@ public class CalendarView extends LinearLayout {
                             if (_selectedYear != 0) {
                                 moveToYear((getYearPos(String.valueOf(_selectedYear))));
                             }
+                        }
+                    }
+                }
+
+                if (!eventDays.isEmpty() && Constant.calenderType == 2) {
+                    if (df == null)
+                        df = new SimpleDateFormat(Constant.DataFormat, Locale.getDefault());//"yyyy/MM/dd"
+
+                    Date eventDay = new Date();
+//                    for (int i = 0; i < eventDays.size(); i++) {
+                    for (LeaveCalendarModel eventDay1 : eventDays) {
+                        eventDay = eventDay1.getLeaveDate();
+
+                        if (df.format(date).equalsIgnoreCase(df.format(eventDay))) {
+//                        if (day == eventDay.getDay() && month == eventDay.getMonth() && year == eventDay.getYear()) {
+
+                            ((TextView) view).setTypeface(null, Typeface.BOLD);
+                            ((TextView) view).setTextColor(Color.WHITE); //BLACK
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+
+                                if (eventDay1.getLeaveType().matches(Constant.SickLeave)) // Red
+                                    ((TextView) view).setBackground(getResources().getDrawable(R.drawable.circle_red));
+                                else if (eventDay1.getLeaveType().matches(Constant.CasualLeave)) // Green
+                                    ((TextView) view).setBackground(getResources().getDrawable(R.drawable.circle_green));
+                                else //EarnedLeave // Earned blue
+                                    ((TextView) view).setBackground(getResources().getDrawable(R.drawable.circle_blue));
+
+                                if (_selectedYear != 0) {
+                                    moveToYear((getYearPos(String.valueOf(_selectedYear))));
+                                }
+                            }
+                            break;
                         }
                     }
                 }

@@ -2,8 +2,16 @@ apply plugin: 'com.android.application'
 
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'ts-android-key'
+            keyPassword 'wilcosource'
+            storeFile file('E:/POC/TSAndroid/keystores/ts-android-keystore.jks')
+            storePassword 'wilcosource'
+        }
+    }
     compileSdkVersion 28
-    buildToolsVersion '28.0.1'
+    buildToolsVersion '28.0.2'
     defaultConfig {
         applicationId "com.android.timesheet"
         minSdkVersion 16
@@ -12,18 +20,15 @@ android {
         versionName "1.0.2"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
         multiDexEnabled true
     }
     buildTypes {
         release {
-
-
             debuggable true
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
+            signingConfig signingConfigs.config
         }
         debug {
             debuggable true
@@ -36,7 +41,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
+    productFlavors {
+    }
 }
 
 def db_flow_version = "4.0.3"
@@ -86,6 +92,8 @@ dependencies {
     //material-dialogs
     implementation 'com.afollestad.material-dialogs:core:0.9.0.1'
     implementation 'com.afollestad.material-dialogs:commons:0.9.0.1'
+    //Events Calendar
+//    implementation 'com.applandeo:material-calendar-view:1.4.0'
 }
 apply plugin: 'com.google.gms.google-services'
 

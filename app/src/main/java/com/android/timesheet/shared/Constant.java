@@ -20,6 +20,10 @@ public class Constant {
 
     public static final String DataFormat = "yyyy/MM/dd";
 
+    public static final String SickLeave = "SickLeave";
+    public static final String CasualLeave = "CasualLeave";
+    public static final String EarnedLeave = "EarnedLeave";
+
     public static int calenderType = 0;
     //endregion
 

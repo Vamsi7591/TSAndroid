@@ -84,20 +84,20 @@ public class MyLeave extends BaseFragment<MyLeavePresenter> implements BaseViewB
 
         leaveEntryList = new ArrayList<>();
 //        String fromDate, String toDate, String leaveType, String remarks, String empCode, String noOfDays
-        leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", "Annual Leave", "My Brothers Marriage", "", "5"));
-        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", "Annual Leave", "Village Festival", "", "3"));
-        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", "Medical Leave", "Fever", "", "4"));
-        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", "Annual Leave", "My Marriage", "", "10"));
+        leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", "Casual Leave", "My Brothers Marriage", "", "5"));
+        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", "Casual Leave", "Village Festival", "", "3"));
+        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", "Sick Leave", "Fever", "", "4"));
+        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", "Earned Leave", "My Marriage", "", "10"));
 
-        leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", "Annual Leave", "My Brothers Marriage", "", "5"));
-        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", "Annual Leave", "Village Festival", "", "3"));
-        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", "Medical Leave", "Fever", "", "4"));
-        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", "Annual Leave", "My Marriage", "", "10"));
+        leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", "Casual Leave", "My Brothers Marriage", "", "5"));
+        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", "Earned Leave", "Village Festival", "", "3"));
+        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", "Sick Leave", "Fever", "", "4"));
+        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", "Casual Leave", "My Marriage", "", "10"));
 
-        leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", "Annual Leave", "My Brothers Marriage", "", "5"));
-        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", "Annual Leave", "Village Festival", "", "3"));
-        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", "Medical Leave", "Fever", "", "4"));
-        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", "Annual Leave", "My Marriage", "", "10"));
+        leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", "Earned Leave", "My Brothers Marriage", "", "5"));
+        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", "Casual Leave", "Village Festival", "", "3"));
+        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", "Sick Leave", "Fever", "", "4"));
+        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", "Earned Leave", "My Marriage", "", "10"));
 
         myLeaveAdapter = new MyLeaveAdapter(getActivity(), this);
 

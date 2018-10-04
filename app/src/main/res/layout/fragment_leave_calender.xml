@@ -1,6 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/margin_30"
+                    android:layout_marginEnd="@dimen/margin_30">
+
+                    <com.android.timesheet.shared.widget.CustomFontTextView
+                        android:id="@+id/toolbarTitleTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin_25"
+                        android:layout_marginRight="@dimen/margin_25"
+                        android:gravity="center"
+                        android:text="@string/lb_leave_calender_view"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tv_font_size_22"
+                        android:visibility="visible"
+                        app:font="@string/aleo_regular" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <com.android.timesheet.shared.widget.calender.CalendarView
+        android:id="@+id/eventsCalender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/margin_30"
+                android:layout_height="@dimen/margin_30"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_red"
+                android:padding="@dimen/padding_10" />
+
+            <com.android.timesheet.shared.widget.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|center"
+                android:paddingTop="@dimen/padding_0"
+                android:paddingBottom="@dimen/padding_10"
+                android:text="@string/lb_sick"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/tv_font_size_16"
+                android:visibility="visible"
+                app:font="@string/aleo_regular" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/margin_30"
+                android:layout_height="@dimen/margin_30"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_green"
+                android:padding="@dimen/padding_10" />
+
+            <com.android.timesheet.shared.widget.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|center"
+                android:paddingTop="@dimen/padding_0"
+                android:paddingBottom="@dimen/padding_10"
+                android:text="@string/lb_casual"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/tv_font_size_16"
+                android:visibility="visible"
+                app:font="@string/aleo_regular" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/margin_30"
+                android:layout_height="@dimen/margin_30"
+                android:layout_gravity="center"
+                android:background="@drawable/circle_blue"
+                android:padding="@dimen/padding_10" />
+
+            <com.android.timesheet.shared.widget.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|center"
+                android:paddingTop="@dimen/padding_0"
+                android:paddingBottom="@dimen/padding_10"
+                android:text="@string/lb_earned"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/tv_font_size_16"
+                android:visibility="visible"
+                app:font="@string/aleo_regular" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

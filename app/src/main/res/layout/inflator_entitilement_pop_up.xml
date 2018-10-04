@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:padding="@dimen/padding_20"
+    android:background="@drawable/cornors"
+    android:orientation="vertical"
+    android:visibility="visible">
+
+    <com.android.timesheet.shared.widget.CustomFontTextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_border_green"
+        android:drawableEnd="@drawable/popup_close_white"
+        android:drawableRight="@drawable/popup_close_white"
+        android:gravity="center"
+        android:paddingStart="@dimen/padding_10"
+        android:paddingEnd="@dimen/padding_10"
+        android:paddingRight="@dimen/padding_10"
+        android:text="@string/lb_entitlement"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/tv_font_size_18"
+        android:visibility="visible"
+        app:font="@string/aleo_regular" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_line"
+        android:orientation="horizontal">
+
+        <com.android.timesheet.shared.widget.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_sick"
+            android:drawableLeft="@drawable/ic_sick"
+            android:gravity="start|center"
+            android:text="@string/lb_sick"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:visibility="visible"
+            app:font="@string/aleo_regular" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <com.android.timesheet.shared.widget.CustomFontTextView
+                android:id="@+id/usedLeaves"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginLeft="@dimen/padding_10"
+                android:gravity="start|center"
+                android:text="6"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/padding_10"
+                android:visibility="visible"
+                app:font="@string/aleo_regular" />
+
+            <com.android.timesheet.shared.widget.CustomFontTextView
+                android:id="@+id/totalLeaves"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:layout_marginRight="@dimen/padding_10"
+                android:gravity="end|center"
+                android:text="Total: 18"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/black"
+                android:textSize="@dimen/padding_10"
+                android:visibility="visible"
+                app:font="@string/aleo_regular" />
+
+            <ProgressBar
+                android:id="@+id/sickPBar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_below="@+id/usedLeaves"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginTop="@dimen/margin_0"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="33"
+                android:progressDrawable="@drawable/progress_drawable"
+                android:visibility="visible"
+                tools:visibility="visible" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_line"
+        android:orientation="horizontal">
+
+        <com.android.timesheet.shared.widget.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_casual"
+            android:drawableLeft="@drawable/ic_casual"
+            android:gravity="center"
+            android:text="@string/lb_casual"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:visibility="visible"
+            app:font="@string/aleo_regular"
+            tools:ignore="RtlCompat" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <com.android.timesheet.shared.widget.CustomFontTextView
+                android:id="@+id/usedCasualLeaves"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginLeft="@dimen/padding_10"
+                android:gravity="start|center"
+                android:text="9"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/padding_10"
+                android:visibility="visible"
+                app:font="@string/aleo_regular" />
+
+            <com.android.timesheet.shared.widget.CustomFontTextView
+                android:id="@+id/totalCasualLeaves"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:layout_marginRight="@dimen/padding_10"
+                android:gravity="end|center"
+                android:text="Total: 12"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/black"
+                android:textSize="@dimen/padding_10"
+                android:visibility="visible"
+                app:font="@string/aleo_regular" />
+
+            <ProgressBar
+                android:id="@+id/casualPBar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_below="@+id/usedCasualLeaves"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginTop="@dimen/margin_0"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="73"
+                android:progressDrawable="@drawable/progress_drawable"
+                android:visibility="visible"
+                tools:visibility="visible" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_line"
+        android:orientation="horizontal">
+
+        <com.android.timesheet.shared.widget.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableStart="@drawable/ic_earned"
+            android:drawableLeft="@drawable/ic_earned"
+            android:gravity="center"
+            android:text="@string/lb_earned"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:visibility="visible"
+            app:font="@string/aleo_regular"
+            tools:ignore="RtlCompat" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1">
+
+            <com.android.timesheet.shared.widget.CustomFontTextView
+                android:id="@+id/usedEarnedLeaves"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginLeft="@dimen/padding_10"
+                android:gravity="start|center"
+                android:text="8"
+                android:textAlignment="viewStart"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/padding_10"
+                android:visibility="visible"
+                app:font="@string/aleo_regular" />
+
+            <com.android.timesheet.shared.widget.CustomFontTextView
+                android:id="@+id/totalEarnedLeaves"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:layout_marginRight="@dimen/padding_10"
+                android:gravity="end|center"
+                android:text="Total: 14"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/black"
+                android:textSize="@dimen/padding_10"
+                android:visibility="visible"
+                app:font="@string/aleo_regular" />
+
+            <ProgressBar
+                android:id="@+id/earnedPBar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_below="@+id/usedEarnedLeaves"
+                android:layout_marginStart="@dimen/padding_10"
+                android:layout_marginTop="@dimen/margin_0"
+                android:layout_marginEnd="@dimen/padding_10"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="53"
+                android:progressDrawable="@drawable/progress_drawable"
+                android:visibility="visible"
+                tools:visibility="visible" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+

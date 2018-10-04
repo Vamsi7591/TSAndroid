@@ -1,5 +1,6 @@
 package com.android.timesheet.admin_operations.leave.apply_leave;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
@@ -11,11 +12,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
+import com.android.common.AppConfig;
 import com.android.timesheet.R;
 import com.android.timesheet.admin_operations.leave.apply_leave.tabs.holiday_list.HolidaysList;
 import com.android.timesheet.admin_operations.leave.apply_leave.tabs.leave_balance.LeaveBalance;
 import com.android.timesheet.admin_operations.leave.apply_leave.tabs.leave_calender.LeaveCalender;
 import com.android.timesheet.admin_operations.leave.apply_leave.tabs.my_leave.MyLeave;
+import com.android.timesheet.shared.Constant;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.util.InternetUtils;
@@ -47,6 +50,7 @@ public class ApplyLeave extends BaseActivity<ApplyLeavePresenter> implements Bas
     CustomFontTextView toolbarTitleTv;
 
     User user = new User();
+    String leaveView = "Leave Overview";
 
     @Override
     protected int layoutRestID() {
@@ -55,7 +59,7 @@ public class ApplyLeave extends BaseActivity<ApplyLeavePresenter> implements Bas
 
     @Override
     protected String title() {
-        return "Apply Leave";
+        return "Leave Overview";
     }
 
     @Override
@@ -85,6 +89,12 @@ public class ApplyLeave extends BaseActivity<ApplyLeavePresenter> implements Bas
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         setupViewPager(viewPager);
+
+        Intent intent = getIntent();
+        leaveView = intent.getStringExtra(Constant.KEYS.FRAGMENT_TITLE);
+
+
+        toolbarTitleTv.setText(leaveView);
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -95,10 +105,14 @@ public class ApplyLeave extends BaseActivity<ApplyLeavePresenter> implements Bas
             adapter.addFrag(new Categoryfragment(i), subCategories[i].getSubCategoryName());
         }*/
 
-        adapter.addFrag(new MyLeave(), "My Leave");
-        adapter.addFrag(new LeaveCalender(), "Leave Calender View");
-        adapter.addFrag(new LeaveBalance(), "Leave Balance View");
-        adapter.addFrag(new HolidaysList(), "Holiday List");
+        if (leaveView.matches("Leave Overview"))
+            adapter.addFrag(new MyLeave(), "Leave Overview");//My Leave
+        /*else
+            adapter.addFrag(new LeaveCalender(), "Leave Calender View");*/
+
+
+//        adapter.addFrag(new LeaveBalance(), "Leave Balance View");//Leave Balance View
+//        adapter.addFrag(new HolidaysList(), "Holiday List");
 
         viewPager.setAdapter(adapter);
 

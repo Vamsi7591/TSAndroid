@@ -240,7 +240,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
             presenter().submitLogin(editTextECode.getText(), editTextPassword.getText());
             /* To hard code inputs use below values
-              "E010", "1234567"
+              "E109", "1234567"*
               */
         } else {
             infoSnackBar(getString(R.string.no_internet_connection));

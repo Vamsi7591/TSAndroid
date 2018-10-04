@@ -125,5 +125,20 @@
 
     <!--Tooltips-->
     <string name="tt_apply_leave">Apply Leave</string>
+    <string name="lb_leave">Leave</string>
+    <string name="lb_leave_requests">Leave Requests</string>
+    <string name="lb_leave_overview">Leave Overview</string>
+    <string name="lb_requested">Requested</string>
+    <string name="lb_rejected">Rejected</string>
+    <string name="lb_approved">Approved</string>
+    <string name="lb_request_leave">Request Leave</string>
+    <string name="lb_entitlement">Entitlement</string>
+    <string name="lb_sick">Sick</string>
+    <string name="lb_sick_leave">Sick Leave</string>
+    <string name="lb_casual">Casual</string>
+    <string name="lb_casual_leave">Casual Leave</string>
+    <string name="lb_earned">Earned</string>
+    <string name="lb_earned_leave">Earned Leave</string>
+    <string name="lb_leave_calender_view">Leave Calender View</string>
 
 </resources>
