@@ -10,17 +10,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 
 import com.android.timesheet.R;
-import com.android.timesheet.admin_operations.leave.LeaveActivity;
-import com.android.timesheet.admin_operations.leave.LeavePresenter;
 import com.android.timesheet.admin_operations.leave.apply_leave.ApplyLeave;
-import com.android.timesheet.admin_operations.leave.apply_leave.tabs.leave_calender.LeaveCalender;
-import com.android.timesheet.admin_operations.leave.apply_leave.tabs.my_leave.popup.LeavePopUpActivity;
+import com.android.timesheet.admin_operations.leave.apply_leave.leave_calender.LeaveCalender;
+import com.android.timesheet.admin_operations.leave.apply_leave.leave_entry.LeaveEntryActivity;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.util.InternetUtils;
@@ -166,7 +163,7 @@ public class LeaveRequestActivity extends BaseActivity<LeaveRequestPresenter> im
 
     @OnClick(R.id.leaveRequestLL)
     void navToLeavePopUpActivity() {
-        presenter().openActivity(LeavePopUpActivity.class);
+        presenter().openActivity(LeaveEntryActivity.class);
     }
 
     @OnClick(R.id.leaveCalenderLL)

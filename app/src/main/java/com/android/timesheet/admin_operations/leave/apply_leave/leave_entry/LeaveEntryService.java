@@ -1,4 +1,4 @@
-package com.android.timesheet.admin_operations.leave.apply_leave.tabs.my_leave.popup;
+package com.android.timesheet.admin_operations.leave.apply_leave.leave_entry;
 
 import com.android.timesheet.shared.models.ProjectNamesResponse;
 import com.android.timesheet.shared.services.BaseService;
@@ -6,7 +6,7 @@ import com.android.timesheet.shared.services.rest.ILeaveService;
 
 import rx.Observable;
 
-public class LeavePopUpService extends BaseService<ILeaveService> {
+public class LeaveEntryService extends BaseService<ILeaveService> {
 
     @Override
     protected ILeaveService prepare() {

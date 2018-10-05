@@ -1,43 +1,30 @@
-package com.android.timesheet.admin_operations.leave.apply_leave.tabs.leave_calender;
+package com.android.timesheet.admin_operations.leave.apply_leave.leave_calender;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.android.timesheet.R;
 import com.android.timesheet.shared.Constant;
 import com.android.timesheet.shared.models.LeaveCalendarModel;
+import com.android.timesheet.shared.util.InternetUtils;
 import com.android.timesheet.shared.widget.calender.CalendarView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.TimeZone;
 
 public class LeaveCalender extends AppCompatActivity {
 
-//    CalendarView eventsCalendarView;
-
-    /*//Overridden method onCreateView
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_leave_calender, container, false);
-
-        //Returning the layout file after inflating
-        //Change R.layout.tab1 in you classes
-
-        calendarView = (CalendarView) view.findViewById(R.id.calendarView);
-
-        return view;
-    }*/
-
     String TAG = "LeaveCalendar";
+
+    Toolbar toolbar;
 
 
     public LeaveCalender() {
@@ -48,6 +35,17 @@ public class LeaveCalender extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_leave_calender);
+
+        toolbar = findViewById(R.id.toolbar);
+
+        if (InternetUtils.isInternetConnected(this)) {
+            InternetUtils.hideLoadingDialog();
+        } else {
+            InternetUtils.showLoadingDialog(this);
+        }
+
+        setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         Constant.calenderType = 2;
         Calendar localCalendar = Calendar.getInstance(TimeZone.getDefault());
@@ -92,22 +90,4 @@ public class LeaveCalender extends AppCompatActivity {
         cv.updateCalendar(events, null);
     }
 
-  /*  @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        List<EventDay> events = new ArrayList<>();
-
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DAY_OF_MONTH, Calendar.MONTH);
-        events.add(new EventDay(cal, R.drawable.circle_blue));
-
-        cal.add(Calendar.DAY_OF_MONTH + 1, Calendar.MONTH);
-        events.add(new EventDay(cal, R.drawable.circle_green));
-
-        cal.add(Calendar.DAY_OF_MONTH + 2, Calendar.MONTH);
-        events.add(new EventDay(cal, R.drawable.circle_red));
-
-        calendarView.setEvents(events);
-    }*/
 }

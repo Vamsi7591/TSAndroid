@@ -103,14 +103,6 @@ public class TimeSheetPresenter extends BasePresenter<TimeSheetViewBehaviour, Ti
     private HashMap sortByValues(HashMap map) {
         ArrayList<String> list = new ArrayList<>();
         list.addAll(map.keySet());
-//        List list = new LinkedList(map.entrySet());
-        // Defined Custom Comparator here
-        /*Collections.sort(list, new Comparator() {
-            public int compare(Object o1, Object o2) {
-                return ((Comparable) ((Map.Entry) (o1)).getValue())
-                        .compareTo(((Map.Entry) (o2)).getValue());
-            }
-        });*/
         Collections.sort(list, new StringDateComparator2());
 
         // Here I am copying the sorted list in HashMap

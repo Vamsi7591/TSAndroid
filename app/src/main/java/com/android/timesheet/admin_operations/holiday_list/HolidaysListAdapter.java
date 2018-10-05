@@ -1,4 +1,4 @@
-package com.android.timesheet.user_operations.timesheet.sheet_list;
+package com.android.timesheet.admin_operations.holiday_list;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.android.timesheet.R;
 import com.android.timesheet.shared.interfaces.OnItemClickListener;
+import com.android.timesheet.shared.models.HolidayModel;
 import com.android.timesheet.shared.models.TimeSheet;
 
 import java.text.ParseException;
@@ -30,21 +31,19 @@ import butterknife.ButterKnife;
  * Created by vamsikonanki on 8/22/2017.
  */
 
-public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements
+public class HolidaysListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements
         Filterable {
 
     final Context context;
 
-    private List<TimeSheet> timeSheetList, dup;
-
-    private boolean RowType = false;
+    private List<HolidayModel> timeSheetList, dup;
 
     OnItemClickListener listener;
 
     /*to store filter result*/
-    private List<TimeSheet> items;
+    private List<HolidayModel> items;
 
-    TimeSheetAdapter(Context context, OnItemClickListener listener) {
+    HolidaysListAdapter(Context context, OnItemClickListener listener) {
         this.context = context;
         this.listener = listener;
         this.timeSheetList = Collections.emptyList();
@@ -58,7 +57,7 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         notifyDataSetChanged();
     }
 
-    void setItems(List<TimeSheet> timeSheets) {
+    void setItems(List<HolidayModel> timeSheets) {
         if (timeSheetList == null) {
             timeSheetList = Collections.emptyList();
             dup = Collections.emptyList();
@@ -69,11 +68,11 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         notifyDataSetChanged();
     }
 
-    TimeSheet getItem(int position) {
+    HolidayModel getItem(int position) {
         return timeSheetList.get(position);
     }
 
-    private List<TimeSheet> getTimeSheets() {
+    private List<HolidayModel> getTimeSheets() {
         return timeSheetList;
     }
 
@@ -81,7 +80,7 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         timeSheetList.remove(i);
     }
 
-    public TimeSheet getChatMessageAt(int i) {
+    public HolidayModel getChatMessageAt(int i) {
         return getTimeSheets().get(i);
     }
 
@@ -102,7 +101,7 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        TimeSheet sheet = timeSheetList.get(position);
+        HolidayModel sheet = timeSheetList.get(position);
 
         switch (getItemViewType(position)) {
             case TimeSheet.TYPE_HEADER: {
@@ -133,22 +132,22 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             protected FilterResults performFiltering(CharSequence constraint) {
 
                 final FilterResults oReturn = new FilterResults();
-                List<TimeSheet> results = new ArrayList<TimeSheet>();
-                HashMap<String, List<TimeSheet>> today_retroHashMap = new HashMap<>();
+                List<HolidayModel> results = new ArrayList<HolidayModel>();
+                HashMap<String, List<HolidayModel>> today_retroHashMap = new HashMap<>();
 
 
                 for (int i = 0; i < results.size(); i++) {
 
-                    ArrayList<TimeSheet> today_retroList = new ArrayList<>();
+                    ArrayList<HolidayModel> today_retroList = new ArrayList<>();
                     today_retroList.add(results.get(i));
 
-                    if (today_retroHashMap.containsKey(results.get(i).getDate())) {
-                        today_retroHashMap.get(results.get(i).getDate()).add(results.get(i));
+                    if (today_retroHashMap.containsKey(results.get(i).getDateOfHoliday())) {
+                        today_retroHashMap.get(results.get(i).getDateOfHoliday()).add(results.get(i));
 
                     } else
 
                     {
-                        today_retroHashMap.put((results.get(i).getDate()), today_retroList);
+                        today_retroHashMap.put((results.get(i).getDateOfHoliday()), today_retroList);
                     }
 
                 }
@@ -157,7 +156,7 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                 for (HashMap.Entry today : today_retroHashMap.entrySet()) {
 
-                    List<TimeSheet> timeSheets = new ArrayList<>();
+                    List<HolidayModel> timeSheets = new ArrayList<>();
                     timeSheets = today_retroHashMap.get(today.getKey().toString());
 
                     for (int k = 0; k < timeSheets.size(); k++) {
@@ -166,8 +165,8 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         results.add(timeSheets.get(k));
                     }
 
-                    TimeSheet sheet = new TimeSheet(today.getKey().toString());
-                    sheet.setDate(today.getKey().toString());
+                    HolidayModel sheet = new HolidayModel(today.getKey().toString());
+                    sheet.setDateOfHoliday(today.getKey().toString());
                     results.add(sheet);
 
                 }
@@ -187,16 +186,16 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     if (constraint != null) {
                         boolean isDate = true;
                         if (timeSheetList != null & timeSheetList.size() > 0) {
-                            for (final TimeSheet g : timeSheetList) {
+                            for (final HolidayModel g : timeSheetList) {
 
                                 if (g.getRowType() == 2) {
                                     isDate = false;
-                                    if (g.getDate().contains(constraint.toString().toLowerCase()) ||
-                                            g.getProjectName().toLowerCase().contains(constraint.toString().toLowerCase())) {
+                                    if (g.getDateOfHoliday().contains(constraint.toString().toLowerCase()) ||
+                                            g.getDateOfHoliday().toLowerCase().contains(constraint.toString().toLowerCase())) {
                                         results.add(g);
                                     }
                                 } else if (g.getRowType() == 1) {
-                                    if (g.getDate().contains(constraint.toString().toLowerCase()))
+                                    if (g.getDateOfHoliday().contains(constraint.toString().toLowerCase()))
                                         results.add(g);
                                 }
 
@@ -206,12 +205,12 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         if (!isDate && results.size() > 0) {
                             // /* genetate header */
                             for (int i = 0; i < results.size(); i++) {
-                                ArrayList<TimeSheet> today_retroList = new ArrayList<>();
+                                ArrayList<HolidayModel> today_retroList = new ArrayList<>();
                                 today_retroList.add(results.get(i));
 
-                                if (today_retroHashMap.containsKey(results.get(i).getDate())) {
+                                if (today_retroHashMap.containsKey(results.get(i).getDateOfHoliday())) {
 
-                                    today_retroHashMap.put((results.get(i).getDate()), today_retroList);
+                                    today_retroHashMap.put((results.get(i).getDateOfHoliday()), today_retroList);
 
                                     results.add(today_retroList.get(i));
                                 }
@@ -237,7 +236,7 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 if (constraint.toString().isEmpty()) {
                     timeSheetList = dup;
                 } else {
-                    items = (ArrayList<TimeSheet>) results.values;
+                    items = (ArrayList<HolidayModel>) results.values;
                     timeSheetList = items;
                 }
                 notifyDataSetChanged();
@@ -245,12 +244,12 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         };
     }
 
-    static class StringDateComparator implements Comparator<TimeSheet> {
+    static class StringDateComparator implements Comparator<HolidayModel> {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
-        public int compare(TimeSheet lhs, TimeSheet rhs) {
+        public int compare(HolidayModel lhs, HolidayModel rhs) {
             try {
-                return dateFormat.parse(lhs.date).compareTo(dateFormat.parse(rhs.date));
+                return dateFormat.parse(lhs.getDateOfHoliday()).compareTo(dateFormat.parse(rhs.getDateOfHoliday()));
             } catch (ParseException e) {
                 e.printStackTrace();
                 return 0;
@@ -288,11 +287,11 @@ public class TimeSheetAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             this.listener = listener;
         }
 
-        void bind(TimeSheet sheet, int position) {
+        void bind(HolidayModel sheet, int position) {
 
-            projectTV.setText(sheet.getProjectName());
-            timeTV.setText(sheet.getTotalHours());
-            descriptionTV.setText(sheet.getTaskDescription());
+            projectTV.setText(sheet.getHoliday());
+            timeTV.setText(sheet.getDateOfHoliday());
+            descriptionTV.setText(sheet.getDescription());
 
             projectLL.setOnClickListener(view -> {
                 if (listener != null) {

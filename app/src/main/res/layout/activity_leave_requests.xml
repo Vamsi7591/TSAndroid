@@ -236,9 +236,9 @@
             </LinearLayout>
 
             <View
-                android:layout_width="1dp"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@color/colorPrimaryDarkBlur" />
+                android:background="@color/colorGreyish" />
 
             <LinearLayout
                 android:id="@+id/entitlementLL"
@@ -322,7 +322,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1.5dp"
-            android:background="@color/white" />
+            android:background="@color/colorGreyish" />
 
         <LinearLayout
             android:id="@+id/leaveCalenderLL"

@@ -140,5 +140,6 @@
     <string name="lb_earned">Earned</string>
     <string name="lb_earned_leave">Earned Leave</string>
     <string name="lb_leave_calender_view">Leave Calender View</string>
+    <string name="lb_holiday_calender">Holiday Calender</string>
 
 </resources>

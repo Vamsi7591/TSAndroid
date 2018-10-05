@@ -1,9 +1,8 @@
-package com.android.timesheet.admin_operations.leave.apply_leave.tabs.my_leave.popup;
+package com.android.timesheet.admin_operations.leave.apply_leave.leave_entry;
 
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
@@ -25,7 +24,6 @@ import com.android.timesheet.R;
 import com.android.timesheet.shared.Constant;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.LeaveEntry;
-import com.android.timesheet.shared.models.Project;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.models.ValidationError;
 import com.android.timesheet.shared.util.InternetUtils;
@@ -34,8 +32,6 @@ import com.android.timesheet.shared.widget.CustomFontTextView;
 import com.android.timesheet.user_operations.timesheet.sheet_entry.ProjectsSpinnerAdapter;
 import com.google.gson.Gson;
 
-import org.parceler.Parcels;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,14 +39,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LeavePopUpActivity extends BaseActivity<LeavePopUpPresenter> implements BaseViewBehavior<Object>, AdapterView.OnItemSelectedListener {
+public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implements BaseViewBehavior<Object>, AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -103,11 +98,11 @@ public class LeavePopUpActivity extends BaseActivity<LeavePopUpPresenter> implem
     }
 
     @Override
-    protected LeavePopUpPresenter providePresenter() {
-        return new LeavePopUpPresenter(this, this);
+    protected LeaveEntryPresenter providePresenter() {
+        return new LeaveEntryPresenter(this, this);
     }
 
-    String TAG = "LeavePopUpActivity";
+    String TAG = "LeaveEntryActivity";
     LeaveEntry intentLeaveEntry;
     User loggedInUser;
     ArrayList<String> leaveTypesForSpinner = new ArrayList<>();
@@ -155,7 +150,7 @@ public class LeavePopUpActivity extends BaseActivity<LeavePopUpPresenter> implem
         leaveTypesForSpinner.add("Annual Leave");
         leaveTypesForSpinner.add("Medical Leave");
 
-        ProjectsSpinnerAdapter projectsSpinnerAdapter = new ProjectsSpinnerAdapter(LeavePopUpActivity.this, leaveTypesForSpinner);
+        ProjectsSpinnerAdapter projectsSpinnerAdapter = new ProjectsSpinnerAdapter(LeaveEntryActivity.this, leaveTypesForSpinner);
         leaveTypeSP.setAdapter(projectsSpinnerAdapter);
 
 

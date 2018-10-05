@@ -12,12 +12,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
-import com.android.common.AppConfig;
 import com.android.timesheet.R;
-import com.android.timesheet.admin_operations.leave.apply_leave.tabs.holiday_list.HolidaysList;
-import com.android.timesheet.admin_operations.leave.apply_leave.tabs.leave_balance.LeaveBalance;
-import com.android.timesheet.admin_operations.leave.apply_leave.tabs.leave_calender.LeaveCalender;
-import com.android.timesheet.admin_operations.leave.apply_leave.tabs.my_leave.MyLeave;
+import com.android.timesheet.admin_operations.leave.apply_leave.leave_overview.LeaveOverview;
 import com.android.timesheet.shared.Constant;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.User;
@@ -106,7 +102,7 @@ public class ApplyLeave extends BaseActivity<ApplyLeavePresenter> implements Bas
         }*/
 
         if (leaveView.matches("Leave Overview"))
-            adapter.addFrag(new MyLeave(), "Leave Overview");//My Leave
+            adapter.addFrag(new LeaveOverview(), "Leave Overview");//My Leave
         /*else
             adapter.addFrag(new LeaveCalender(), "Leave Calender View");*/
 

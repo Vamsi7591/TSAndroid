@@ -109,18 +109,18 @@
             android:name=".admin_operations.leave.apply_leave.ApplyLeave"
             android:theme="@style/TimeSheet.AppTheme" />
         <activity
-            android:name=".admin_operations.leave.apply_leave.tabs.my_leave.popup.LeavePopUpActivity"
+            android:name=".admin_operations.leave.apply_leave.leave_entry.LeaveEntryActivity"
             android:theme="@style/TimeSheet.AppTheme" />
         <activity
             android:name=".admin_operations.leave.leave_request.LeaveRequestActivity"
             android:theme="@style/TimeSheet.AppTheme" />
         <activity
-            android:name=".admin_operations.leave.apply_leave.tabs.leave_calender.LeaveCalender"
+            android:name=".admin_operations.leave.apply_leave.leave_calender.LeaveCalender"
+            android:parentActivityName=".admin_operations.leave.leave_request.LeaveRequestActivity"
             android:theme="@style/TimeSheet.AppTheme" />
-
-        <!--<activity android:name=".user_operations.reports.yearly.Yearly_Fragment" />
-
-        <activity android:name=".user_operations.report_fragment.ReportFragmentActivity" />-->
+        <activity
+            android:name=".admin_operations.holiday_list.HolidaysList"
+            android:theme="@style/TimeSheet.AppTheme" />
 
         <service
             android:name=".shared.util.BackgroundService"

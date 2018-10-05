@@ -1,14 +1,12 @@
-package com.android.timesheet.admin_operations.leave.apply_leave.tabs.my_leave;
+package com.android.timesheet.admin_operations.leave.apply_leave.leave_overview;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,15 +16,12 @@ import android.widget.SearchView;
 import com.android.common.AppConfig;
 import com.android.timesheet.R;
 import com.android.timesheet.admin_operations.leave.apply_leave.MyLeaveAdapter;
-import com.android.timesheet.admin_operations.leave.apply_leave.tabs.my_leave.popup.LeavePopUpActivity;
-import com.android.timesheet.admin_operations.project_master.edit_project.EditProject;
+import com.android.timesheet.admin_operations.leave.apply_leave.leave_entry.LeaveEntryActivity;
 import com.android.timesheet.shared.fragments.BaseFragment;
 import com.android.timesheet.shared.interfaces.OnItemClickListener;
 import com.android.timesheet.shared.models.LeaveEntry;
-import com.android.timesheet.shared.models.Week;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 import com.android.timesheet.shared.widget.CircularProgressBar;
-import com.android.timesheet.user_operations.reports.weekly.WeeklyPresenter;
 import com.google.gson.Gson;
 
 import java.io.Serializable;
@@ -36,7 +31,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MyLeave extends BaseFragment<MyLeavePresenter> implements BaseViewBehavior<List<LeaveEntry>>, OnItemClickListener, Serializable {
+public class LeaveOverview extends BaseFragment<LeaveOverviewPresenter> implements BaseViewBehavior<List<LeaveEntry>>, OnItemClickListener, Serializable {
 
     @BindView(R.id.my_leaves_recycler_view)
     RecyclerView recyclerView;
@@ -64,8 +59,8 @@ public class MyLeave extends BaseFragment<MyLeavePresenter> implements BaseViewB
     }
 
     @Override
-    protected MyLeavePresenter providePresenter() {
-        return new MyLeavePresenter(getActivity(), this);
+    protected LeaveOverviewPresenter providePresenter() {
+        return new LeaveOverviewPresenter(getActivity(), this);
     }
 
     //Overridden method onCreateView
@@ -119,7 +114,7 @@ public class MyLeave extends BaseFragment<MyLeavePresenter> implements BaseViewB
 
     @OnClick(R.id.applyLeave)
     public void onClick() {
-        Intent intent = new Intent(getActivity(), LeavePopUpActivity.class);
+        Intent intent = new Intent(getActivity(), LeaveEntryActivity.class);
         startActivity(intent);
     }
 
@@ -157,7 +152,7 @@ public class MyLeave extends BaseFragment<MyLeavePresenter> implements BaseViewB
         Gson gson = new Gson();
         String leaveEntry = gson.toJson(leaveEntryList.get(position));
 
-        Intent leaveIntent = new Intent(getActivity(), LeavePopUpActivity.class);
+        Intent leaveIntent = new Intent(getActivity(), LeaveEntryActivity.class);
         leaveIntent.putExtra(AppConfig.MY_LEAVE_OBJECT, leaveEntry);
         startActivity(leaveIntent);
     }
