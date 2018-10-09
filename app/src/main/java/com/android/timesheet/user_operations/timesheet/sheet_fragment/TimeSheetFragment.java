@@ -1,6 +1,6 @@
 package com.android.timesheet.user_operations.timesheet.sheet_fragment;
 
-/**
+/*
  * Created by vamsikonanki on 8/22/2017.
  */
 
@@ -73,12 +73,9 @@ public class TimeSheetFragment extends BaseFragment<TimeSheetPresenter> {
 
         setRetainInstance(false);
 
-        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Log.v(TAG, "onRefresh called");
-                timeSheetList.fetchDayToDayTimeSheet();
-            }
+        mSwipeRefreshLayout.setOnRefreshListener(() -> {
+            Log.v(TAG, "onRefresh called");
+            timeSheetList.fetchDayToDayTimeSheet();
         });
 
         mSwipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);

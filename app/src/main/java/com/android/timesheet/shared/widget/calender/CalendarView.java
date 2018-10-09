@@ -36,6 +36,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * Created by VamsyK on 28/01/2017.
@@ -101,7 +102,7 @@ public class CalendarView extends LinearLayout {
     //region LocalMethos
     public void initControl(Context context, AttributeSet attrs) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.control_calendar, this);
+        Objects.requireNonNull(inflater).inflate(R.layout.control_calendar, this);
 
         /* Types
          * 0 - future dates disabled (default)

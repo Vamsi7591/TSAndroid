@@ -17,7 +17,7 @@ public class LeaveAdapter extends BaseAdapter {
     private final Context mContext;
     private final ArrayList<String> strings;
 
-    public LeaveAdapter(Context context, ArrayList<String> strings) {
+    LeaveAdapter(Context context, ArrayList<String> strings) {
         this.mContext = context;
         this.strings = strings;
     }
@@ -46,15 +46,12 @@ public class LeaveAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.leave_grid_inflator, null);
         }
 
-        final CustomFontTextView textView = (CustomFontTextView) convertView.findViewById(R.id.textView);
+        final CustomFontTextView textView = convertView.findViewById(R.id.textView);
 
 
         textView.setText(strings.get(i));
 
 
         return convertView;
-//        TextView dummyTextView = new TextView(mContext);
-//        dummyTextView.setText(strings.get(i));
-//        return dummyTextView;
     }
 }

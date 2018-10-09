@@ -114,7 +114,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     ProjectNamesResponse projectsListResponse;
     ArrayList<String> projectNamesForSpinner = new ArrayList<>();
     private int height;
-    private int width;
     Animation animationRL, animationLR, animationFOut, animationFIn;
 
     @Override
@@ -256,6 +255,65 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
     }
 
+
+    private String convertTo24Hours(String time) {
+
+        SimpleDateFormat h_mm_a = new SimpleDateFormat("h:mm a");
+        SimpleDateFormat hh_mm_ss = new SimpleDateFormat("HH:mm:ss");
+
+        try {
+            Date d1 = h_mm_a.parse(time);
+            time = hh_mm_ss.format(d1) + ".000";
+            Log.v(TAG, "Updated 24 hours Time : " + time);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return time;
+        }
+        return time;
+    }
+
+    void handleError(HashMap<ValidationError, Integer> errors) {
+        for (ValidationError error : errors.keySet()) {
+            String errorStr = getString(errors.get(error));
+
+            if (error.equals(ValidationError.PROJECT_NAME)) {
+                showError(error_project_name, errorStr);
+            } else if (error.equals(ValidationError.DATE)) {
+                showError(error_date, errorStr);
+            } else if (error.equals(ValidationError.START_TIME)) {
+                showError(error_start_time, errorStr);
+            } else if (error.equals(ValidationError.END_TIME)) {
+                showError(error_end_time, errorStr);
+            } else if (error.equals(ValidationError.DESCRIPTION)) {
+                showError(error_description, errorStr);
+            }
+        }
+    }
+
+    void showError(TextView textView, String errorStr) {
+        textView.setVisibility(View.VISIBLE);
+//        textView.setError(errorStr);
+        textView.setText(errorStr);
+//        textView.setTextColor(Color.BLACK);
+        textView.startAnimation(animationLR);
+    }
+
+    void clearSpecificError(TextView textView) {
+        if (textView.getVisibility() == View.VISIBLE) {
+            textView.startAnimation(animationRL);
+            textView.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    void clearErrors() {
+        error_project_name.setVisibility(View.INVISIBLE);
+        error_date.setVisibility(View.INVISIBLE);
+        error_start_time.setVisibility(View.INVISIBLE);
+        error_end_time.setVisibility(View.INVISIBLE);
+        error_description.setVisibility(View.INVISIBLE);
+    }
+
+
     @OnClick(R.id.modifyBtn)
     void modify() {
         disableViews(true, 1);
@@ -323,76 +381,17 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
         }
     }
 
-    private String convertTo24Hours(String time) {
-
-        SimpleDateFormat h_mm_a = new SimpleDateFormat("h:mm a");
-        SimpleDateFormat hh_mm_ss = new SimpleDateFormat("HH:mm:ss");
-
-        try {
-            Date d1 = h_mm_a.parse(time);
-            time = hh_mm_ss.format(d1) + ".000";
-            Log.v(TAG, "Updated 24 hours Time : " + time);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return time;
-        }
-        return time;
-    }
-
-    void handleError(HashMap<ValidationError, Integer> errors) {
-        for (ValidationError error : errors.keySet()) {
-            String errorStr = getString(errors.get(error));
-
-            if (error.equals(ValidationError.PROJECT_NAME)) {
-                showError(error_project_name, errorStr);
-            } else if (error.equals(ValidationError.DATE)) {
-                showError(error_date, errorStr);
-            } else if (error.equals(ValidationError.START_TIME)) {
-                showError(error_start_time, errorStr);
-            } else if (error.equals(ValidationError.END_TIME)) {
-                showError(error_end_time, errorStr);
-            } else if (error.equals(ValidationError.DESCRIPTION)) {
-                showError(error_description, errorStr);
-            }
-        }
-    }
-
-    void showError(TextView textView, String errorStr) {
-        textView.setVisibility(View.VISIBLE);
-//        textView.setError(errorStr);
-        textView.setText(errorStr);
-//        textView.setTextColor(Color.BLACK);
-        textView.startAnimation(animationLR);
-    }
-
-    void clearSpecificError(TextView textView) {
-        if (textView.getVisibility() == View.VISIBLE) {
-            textView.startAnimation(animationRL);
-            textView.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    void clearErrors() {
-        error_project_name.setVisibility(View.INVISIBLE);
-        error_date.setVisibility(View.INVISIBLE);
-        error_start_time.setVisibility(View.INVISIBLE);
-        error_end_time.setVisibility(View.INVISIBLE);
-        error_description.setVisibility(View.INVISIBLE);
-    }
-
-
     @OnClick(R.id.pickerDate)
     void showCustomDatePicker() {
         showBottomSheet("Date", height / 2 + 150);
     }
-
 
     @OnClick(R.id.startTime)
     void showStartTimeClock() {
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.view_title, null);
 
-        TextView texts = (TextView) dialogView.findViewById(R.id.title);
+        TextView texts = dialogView.findViewById(R.id.title);
         texts.setText("Select Start Time");
 
         Calendar mcurrentTime = Calendar.getInstance();
@@ -406,6 +405,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
             }
         }, hour, minute, false);//Yes 12 hour time
 
+        mTimePicker.setTitle("Select Start Time");
         mTimePicker.setCustomTitle(dialogView);
         mTimePicker.show();
     }
@@ -415,7 +415,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
         LayoutInflater inflater = this.getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.view_title, null);
-        TextView texts = (TextView) dialogView.findViewById(R.id.title);
+        TextView texts = dialogView.findViewById(R.id.title);
         texts.setText("Select End Time");
 
         Calendar mcurrentTime = Calendar.getInstance();
@@ -429,6 +429,7 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
             }
         }, hour, minute, false);//Yes 12 hour time
 
+        mTimePicker.setTitle("Select End Time");
         mTimePicker.setCustomTitle(dialogView);
 
         mTimePicker.show();
@@ -563,7 +564,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
         Display display = this.getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        width = size.x;
         height = size.y;
     }
 
@@ -603,9 +603,8 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
             projectsListResponse = (ProjectNamesResponse) o;
             if (projectsListResponse.status) {
 //                projectNamesForSpinner.add("Select Project");
+                assert projectsListResponse.getProjectList() != null;
                 for (Project project : projectsListResponse.getProjectList()) {
-
-
                     projectNamesForSpinner.add(project.getProjectName());
                 }
                 /*
@@ -656,7 +655,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
     BottomSheetDialog bottomSheetDialog;
     String selectedDate = "";
     Date dateSelected = null;
-    HashSet<Date> events;
     private void showBottomSheet(String titleText, Integer peekHeight) {
 
         Constant.calenderType = 0;
@@ -745,7 +743,6 @@ public class TimeSheetEntry extends BaseActivity<TimeSheetEntryPresenter> implem
 
             @Override
             public void setEvents() {
-//                calendar_view.updateCalendar(null, null);
             }
         });
 

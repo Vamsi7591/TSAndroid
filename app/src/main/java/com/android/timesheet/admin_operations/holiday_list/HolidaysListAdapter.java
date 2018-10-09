@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -93,7 +94,7 @@ public class HolidaysListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 return new HeaderViewHolder(context, view, listener);
             }
             default: {
-                View view = LayoutInflater.from(context).inflate(R.layout.content_time_sheet_item, parent, false);
+                View view = LayoutInflater.from(context).inflate(R.layout.content_holiday_item, parent, false);
                 return new TimeSheetViewHolder(context, view, listener);
             }
         }
@@ -262,20 +263,20 @@ public class HolidaysListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         Context context;
         OnItemClickListener listener;
 
-        @BindView(R.id.projectLL)
-        LinearLayout projectLL;
+        @BindView(R.id.holidayLL)
+        LinearLayout holidayLL;
 
-        @BindView(R.id.project)
-        TextView projectTV;
+        @BindView(R.id.holiday)
+        TextView holidayTV;
 
-        @BindView(R.id.time)
-        TextView timeTV;
+        @BindView(R.id.date)
+        TextView dateTV;
 
         @BindView(R.id.description)
         TextView descriptionTV;
 
-        @BindView(R.id.trashLL)
-        LinearLayout trashLL;
+        @BindView(R.id.holidayImage)
+        ImageView holidayImage;
 
         View itemView;
 
@@ -289,22 +290,21 @@ public class HolidaysListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         void bind(HolidayModel sheet, int position) {
 
-            projectTV.setText(sheet.getHoliday());
-            timeTV.setText(sheet.getDateOfHoliday());
+            holidayTV.setText(sheet.getHoliday());
+            dateTV.setText(sheet.getDateOfHoliday());
             descriptionTV.setText(sheet.getDescription());
 
-            projectLL.setOnClickListener(view -> {
+            if (sheet.isFestival()) {
+                holidayLL.setBackgroundColor(context.getResources().getColor(R.color.colorShine));
+            } else {
+                holidayLL.setBackgroundColor(context.getResources().getColor(R.color.colorAccent));
+            }
+
+            holidayLL.setOnClickListener(view -> {
                 if (listener != null) {
                     listener.onItemClick(view, position);
                 }
             });
-
-            trashLL.setOnClickListener(view -> {
-                if (listener != null) {
-                    listener.onItemClickToDelete(view, position);
-                }
-            });
-
         }
     }
 
@@ -327,7 +327,8 @@ public class HolidaysListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
         public void bind(String headerName, int position) {
-            headerTextView.setText(String.format("Date : %s", headerName));
+//            headerTextView.setText(headerName);
+            headerTextView.setText(String.format("%s  2018", headerName));
 
             headerTextView.setOnClickListener(view -> {
                 if (listener != null) {

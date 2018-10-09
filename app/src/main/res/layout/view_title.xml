@@ -7,6 +7,14 @@
         android:id="@+id/title"
         style="@style/AppTheme.Text.TextView.Header"
         android:layout_width="match_parent"
-        android:textColor="@color/black"
-        android:layout_height="?android:attr/actionBarSize" />
+        android:layout_height="?android:attr/actionBarSize"
+        android:text="Title"
+        android:textColor="@color/black" />
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/title" />
 </RelativeLayout>

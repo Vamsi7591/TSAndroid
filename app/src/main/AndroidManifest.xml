@@ -106,20 +106,29 @@
             <!--android:value=".common_operations.landing.LandingActivity" />-->
         </activity>
         <activity
-            android:name=".admin_operations.leave.apply_leave.ApplyLeave"
-            android:theme="@style/TimeSheet.AppTheme" />
-        <activity
             android:name=".admin_operations.leave.apply_leave.leave_entry.LeaveEntryActivity"
             android:theme="@style/TimeSheet.AppTheme" />
         <activity
-            android:name=".admin_operations.leave.leave_request.LeaveRequestActivity"
+            android:name=".admin_operations.leave.apply_leave.leave_request.LeaveRequestActivity"
             android:theme="@style/TimeSheet.AppTheme" />
         <activity
             android:name=".admin_operations.leave.apply_leave.leave_calender.LeaveCalender"
-            android:parentActivityName=".admin_operations.leave.leave_request.LeaveRequestActivity"
+            android:parentActivityName=".admin_operations.leave.apply_leave.leave_request.LeaveRequestActivity"
             android:theme="@style/TimeSheet.AppTheme" />
         <activity
             android:name=".admin_operations.holiday_list.HolidaysList"
+            android:theme="@style/TimeSheet.AppTheme" />
+        <activity
+            android:name=".admin_operations.leave.apply_leave.leave_overview.LeaveOverview"
+            android:theme="@style/TimeSheet.AppTheme" />
+        <activity
+            android:name=".admin_operations.leave.apply_on_duty.ApplyOnDuty"
+            android:theme="@style/TimeSheet.AppTheme" />
+        <activity
+            android:name=".admin_operations.leave.apply_permission.ApplyPermission"
+            android:theme="@style/TimeSheet.AppTheme" />
+        <activity
+            android:name=".admin_operations.leave.approve_leave.ApproveLeave"
             android:theme="@style/TimeSheet.AppTheme" />
 
         <service

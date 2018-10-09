@@ -1,5 +1,6 @@
 package com.android.timesheet.admin_operations.leave.apply_leave.leave_entry;
 
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -18,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.android.common.AppConfig;
 import com.android.timesheet.R;
@@ -30,6 +33,7 @@ import com.android.timesheet.shared.util.InternetUtils;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 import com.android.timesheet.shared.widget.CustomFontTextView;
 import com.android.timesheet.user_operations.timesheet.sheet_entry.ProjectsSpinnerAdapter;
+import com.android.timesheet.user_operations.timesheet.sheet_entry.TimeSheetEntry;
 import com.google.gson.Gson;
 
 import java.text.ParseException;
@@ -53,11 +57,23 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
     @BindView(R.id.leaveTypeSP)
     Spinner leaveTypeSP;
 
+    @BindView(R.id.availableLeavesTV)
+    TextView availableLeavesTV;
+
+    @BindView(R.id.usedLeaveTV)
+    TextView usedLeaveTV;
+
     @BindView(R.id.fromDate)
     TextView fromDate;
 
     @BindView(R.id.toDate)
     TextView toDate;
+
+    @BindView(R.id.startTime)
+    TextView startTime;
+
+    @BindView(R.id.endTime)
+    TextView endTime;
 
     @BindView(R.id.remarksET)
     EditText remarksET;
@@ -84,7 +100,7 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
 
     @Override
     protected int layoutRestID() {
-        return R.layout.activity_apply_leave_pop_up;
+        return R.layout.activity_apply_leave_request;
     }
 
     @Override
@@ -147,8 +163,10 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
                 R.anim.text_anim_lr);
 
 
-        leaveTypesForSpinner.add("Annual Leave");
-        leaveTypesForSpinner.add("Medical Leave");
+        leaveTypesForSpinner.add("Casual Leave");
+        leaveTypesForSpinner.add("Earned Leave");
+        leaveTypesForSpinner.add("Sick Leave");
+
 
         ProjectsSpinnerAdapter projectsSpinnerAdapter = new ProjectsSpinnerAdapter(LeaveEntryActivity.this, leaveTypesForSpinner);
         leaveTypeSP.setAdapter(projectsSpinnerAdapter);
@@ -236,6 +254,55 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
         showBottomSheet("To Date", height / 2 + 150, toDate, error_to_date, false);
     }
 
+    @OnClick(R.id.startTime)
+    void showStartTimeClock() {
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.view_title, null);
+
+        TextView texts = dialogView.findViewById(R.id.title);
+        texts.setText("Select Start Time");
+
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(LeaveEntryActivity.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                showTime(selectedHour, selectedMinute, true);
+            }
+        }, hour, minute, false);//Yes 12 hour time
+
+        mTimePicker.setTitle("Select Start Time");
+        mTimePicker.setCustomTitle(dialogView);
+        mTimePicker.show();
+    }
+
+    @OnClick(R.id.endTime)
+    void showEndTimeClock() {
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.view_title, null);
+        TextView texts = dialogView.findViewById(R.id.title);
+        texts.setText("Select End Time");
+
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(LeaveEntryActivity.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                showTime(selectedHour, selectedMinute, false);
+            }
+        }, hour, minute, false);//Yes 12 hour time
+
+        mTimePicker.setTitle("Select End Time");
+        mTimePicker.setCustomTitle(dialogView);
+
+        mTimePicker.show();
+    }
+
     @OnClick(R.id.submitBtn)
     void save() {
         clearErrors();
@@ -262,6 +329,50 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
             e.printStackTrace();
         }
 
+    }
+
+    private void showTime(int hour, int min, boolean isStartTime) {
+        String format = "";
+        String minS = "";
+        String hourS = "";
+
+        if (hour == 0) {
+            hour += 12;
+            hourS = "" + hour;
+            format = "AM";
+        } else if (hour == 12) {
+            hourS = "" + hour;
+            format = "PM";
+        } else if (hour > 12) {
+            hour -= 12;
+            if (hour < 10)
+                hourS = "0" + hour;
+            else
+                hourS = "" + hour;
+
+            format = "PM";
+        } else {
+            format = "AM";
+            if (hour < 10)
+                hourS = "0" + hour;
+            else
+                hourS = "" + hour;
+        }
+
+        if (min < 10)
+            minS = "0" + min;
+        else
+            minS = "" + min;
+
+        if (isStartTime) {
+            startTime.setText(new StringBuilder().append(hourS).append(":").append(minS)
+                    .append(" ").append(format));
+            clearSpecificError(error_from_date);
+        } else {
+            endTime.setText(new StringBuilder().append(hourS).append(":").append(minS)
+                    .append(" ").append(format));
+            clearSpecificError(error_to_date);
+        }
     }
 
     @Override

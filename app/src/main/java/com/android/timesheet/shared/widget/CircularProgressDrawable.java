@@ -120,7 +120,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
     }
 
     //////////////////////////////////////////////////////////////////////////////
-    ////////////////            Animation
+    ////////////////            Animation          //////////////////////////////
 
     private void toggleAppearingMode() {
         mModeAppearing = !mModeAppearing;

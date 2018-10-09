@@ -19,6 +19,7 @@ public class HolidayModel {
         this.dateOfHoliday = dateOfHoliday;
         this.isFestival = isFestival;
         this.description = description;
+        setRowType(TYPE_BODY);
     }
 
     public HolidayModel(String header) {

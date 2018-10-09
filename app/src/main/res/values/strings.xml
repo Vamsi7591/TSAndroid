@@ -9,6 +9,7 @@
         <item>Employee Project</item>
         <item>Summary Details</item>
         <item>Leave</item>
+        <item>Holiday Calender</item>
     </string-array>
 
     <integer-array name="slider_list_images">
@@ -17,6 +18,7 @@
         <item>@drawable/menu_shoppilist</item>
         <item>@drawable/menu_orders</item>
         <item>@drawable/menu_settings</item>
+        <item>@drawable/ic_calender_view</item>
         <!--<item>@drawable/menu_faq</item>-->
         <!--<item>@drawable/menu_share</item>-->
         <!--<item>@drawable/menu_address</item>-->
@@ -141,5 +143,10 @@
     <string name="lb_earned_leave">Earned Leave</string>
     <string name="lb_leave_calender_view">Leave Calender View</string>
     <string name="lb_holiday_calender">Holiday Calender</string>
+    <string name="lb_search_hint">Search by Project Name</string>
+    <string name="lb_used_leaves">Used Leaves</string>
+    <string name="lb_available_leaves">Available Leaves</string>
+    <string name="lb_approve_leave">Approve Leave</string>
+    <string name="lb_requests">Requests</string>
 
 </resources>

@@ -1,13 +1,12 @@
-package com.android.timesheet.admin_operations.leave.apply_leave;
+package com.android.timesheet.admin_operations.leave.apply_leave.leave_request;
 
-import com.android.timesheet.shared.fragments.BaseFragment;
 import com.android.timesheet.shared.models.ProjectNamesResponse;
 import com.android.timesheet.shared.services.BaseService;
 import com.android.timesheet.shared.services.rest.ILeaveService;
 
 import rx.Observable;
 
-public class ApplyLeaveService extends BaseService<ILeaveService> {
+public class LeaveRequestService extends BaseService<ILeaveService> {
 
     @Override
     protected ILeaveService prepare() {

@@ -1,4 +1,4 @@
-package com.android.timesheet.admin_operations.leave.apply_leave;
+package com.android.timesheet.admin_operations.leave.apply_leave.leave_request;
 
 import android.content.Context;
 
@@ -6,25 +6,25 @@ import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.presenters.BasePresenter;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 
-public class ApplyLeavePresenter extends BasePresenter<BaseViewBehavior, ApplyLeaveInteractor, ApplyLeaveRouter> {
+public class LeaveRequestPresenter extends BasePresenter<BaseViewBehavior, LeaveRequestInteractor, LeaveRequestRouter> {
 
 
-    public ApplyLeavePresenter(Context context) {
+    public LeaveRequestPresenter(Context context) {
         super(context);
     }
 
-    public ApplyLeavePresenter(Context context, BaseViewBehavior mViewBehavior) {
+    public LeaveRequestPresenter(Context context, BaseViewBehavior mViewBehavior) {
         super(context, mViewBehavior);
     }
 
     @Override
-    protected ApplyLeaveInteractor provideInteractor() {
-        return new ApplyLeaveInteractor(context);
+    protected LeaveRequestInteractor provideInteractor() {
+        return new LeaveRequestInteractor(context);
     }
 
     @Override
-    protected ApplyLeaveRouter provideRouter() {
-        return new ApplyLeaveRouter(context);
+    protected LeaveRequestRouter provideRouter() {
+        return new LeaveRequestRouter(context);
     }
 
     public User getCurrentUser() {
@@ -34,8 +34,8 @@ public class ApplyLeavePresenter extends BasePresenter<BaseViewBehavior, ApplyLe
     public void openActivity(Class<?> activityClass) {
         router().openActivityDetails(activityClass);
     }
+
     public void openActivity(Class<?> activityClass, String s) {
         router().openActivityDetails(activityClass,s);
     }
-
 }

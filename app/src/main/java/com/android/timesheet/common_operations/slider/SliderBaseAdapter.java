@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.android.timesheet.R;
 import com.android.timesheet.admin_operations.employee_master.list_employee.EmployeeMaster;
 import com.android.timesheet.admin_operations.employee_project.EmployeeProject;
+import com.android.timesheet.admin_operations.holiday_list.HolidaysList;
 import com.android.timesheet.admin_operations.leave.LeaveActivity;
 import com.android.timesheet.admin_operations.project_master.list_projects.ProjectMaster;
 import com.android.timesheet.admin_operations.summary.SummaryDetails;
@@ -26,8 +27,8 @@ import java.util.List;
 
 public class SliderBaseAdapter extends BaseAdapter {
 
-    Activity activity;
-    List<Class> slide_classes = new ArrayList();
+    private Activity activity;
+    private List<Class> slide_classes = new ArrayList();
 
 
 
@@ -39,6 +40,7 @@ public class SliderBaseAdapter extends BaseAdapter {
         slide_classes.add(EmployeeProject.class);//3
         slide_classes.add(SummaryDetails.class);//4
         slide_classes.add(LeaveActivity.class);//5
+        slide_classes.add(HolidaysList.class);//6
     }
 
     @Override

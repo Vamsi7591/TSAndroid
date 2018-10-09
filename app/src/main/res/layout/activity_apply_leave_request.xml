@@ -33,13 +33,13 @@
                         android:id="@+id/toolbarTitleTv"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
                         android:layout_alignParentTop="false"
                         android:gravity="start|center"
-                        android:paddingLeft="@dimen/padding_0"
                         android:paddingStart="@dimen/padding_0"
-                        android:text="Leave Entry"
+                        android:paddingLeft="@dimen/padding_0"
+                        android:text="@string/lb_request_leave"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/tv_font_size_22"
@@ -53,10 +53,82 @@
 
         </android.support.design.widget.AppBarLayout>
 
+        <LinearLayout
+            android:id="@+id/utilizedLL"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_action_margin_50"
+            android:layout_marginTop="?android:attr/actionBarSize"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_action_margin_50"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/margin_5"
+                    android:layout_marginLeft="@dimen/margin_5"
+                    android:layout_weight="1"
+                    android:gravity="start|center"
+                    android:text="@string/lb_used_leaves"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="?attr/actionBarSize"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_border_green_right"
+                    android:gravity="center"
+                    android:text="10"
+                    android:id="@+id/usedLeaveTV"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_action_margin_50"
+                android:layout_weight="1"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/margin_5"
+                    android:layout_marginLeft="@dimen/margin_5"
+                    android:layout_weight="1"
+                    android:gravity="start|center"
+                    android:text="@string/lb_available_leaves"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:layout_width="?attr/actionBarSize"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_border_green_left"
+                    android:gravity="center"
+                    android:text="26"
+                    android:id="@+id/availableLeavesTV"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+        </LinearLayout>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="?android:attr/actionBarSize"
+            android:layout_below="@+id/utilizedLL"
             android:fillViewport="true"
             android:scrollbarStyle="insideInset"
             android:scrollbars="none">
@@ -65,10 +137,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_20"
                 android:layout_marginLeft="@dimen/margin_10"
-                android:layout_marginRight="@dimen/margin_10"
                 android:layout_marginTop="@dimen/margin_10"
+                android:layout_marginRight="@dimen/margin_10"
+                android:layout_marginBottom="@dimen/margin_20"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -80,17 +152,17 @@
                     android:visibility="visible">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:gravity="start|center"
+                        android:minWidth="100dp"
                         android:text="@string/lb_leave_type"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/colorGrayDark" />
 
                     <Spinner
                         android:id="@+id/leaveTypeSP"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_weight="1"
@@ -124,11 +196,11 @@
                     android:visibility="visible">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:gravity="start|center"
-                        android:text="@string/lb_from_date"
+                        android:minWidth="100dp"
+                        android:text="From"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/colorGrayDark" />
 
@@ -139,6 +211,17 @@
                         android:layout_weight="1"
                         android:drawableEnd="@drawable/ic_calendar_edit_b"
                         android:drawableRight="@drawable/ic_calendar_edit_b"
+                        android:gravity="end|center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/startTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableEnd="@drawable/ic_time_start"
+                        android:drawableRight="@drawable/ic_time_start"
                         android:gravity="end|center"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/black" />
@@ -166,11 +249,11 @@
                     android:visibility="visible">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
                         android:gravity="start|center"
-                        android:text="@string/lb_to_date"
+                        android:minWidth="100dp"
+                        android:text="To"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/colorGrayDark" />
 
@@ -181,6 +264,17 @@
                         android:layout_weight="1"
                         android:drawableEnd="@drawable/ic_calendar_edit_b"
                         android:drawableRight="@drawable/ic_calendar_edit_b"
+                        android:gravity="end|center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/endTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableEnd="@drawable/ic_time_pause_b"
+                        android:drawableRight="@drawable/ic_time_pause_b"
                         android:gravity="end|center"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/black" />
@@ -228,8 +322,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="@dimen/margin_0"
                         android:layout_marginTop="@dimen/margin_5"
+                        android:layout_marginBottom="@dimen/margin_0"
                         android:background="@drawable/bg_edit_text_border"
                         android:orientation="vertical">
 
@@ -273,10 +367,10 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="68dp"
-                        android:layout_marginBottom="@dimen/margin_20"
-                        android:layout_marginEnd="-19dp"
                         android:layout_marginStart="-19dp"
                         android:layout_marginTop="@dimen/margin_20"
+                        android:layout_marginEnd="-19dp"
+                        android:layout_marginBottom="@dimen/margin_20"
                         android:gravity="center"
                         android:orientation="horizontal">
 
@@ -285,8 +379,8 @@
                             style="@style/AppTheme.Action.TextView"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
-                            android:layout_marginEnd="@dimen/margin_20"
                             android:layout_marginStart="@dimen/margin_20"
+                            android:layout_marginEnd="@dimen/margin_20"
                             android:background="@drawable/bg_blue_border_black"
                             android:gravity="center"
                             android:text="@string/lb_submit"
@@ -300,6 +394,7 @@
 
                 </LinearLayout>
             </LinearLayout>
+
 
         </ScrollView>
 

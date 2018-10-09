@@ -102,7 +102,7 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
 
         hideKeyboard();
 
-        projectSV.setQueryHint("Search by Project Name");
+        projectSV.setQueryHint(getContext().getString(R.string.lb_search_hint));
 
         projectSV.setIconifiedByDefault(false);
         projectSV.setOnQueryTextListener(this);
@@ -227,7 +227,7 @@ public class TimeSheetList extends BaseViewImpl<TimeSheetPresenter>
         if (recyclerView != null) {
             Snackbar snack = Snackbar.make(recyclerView, msg, Snackbar.LENGTH_LONG);
             View view = snack.getView();
-            TextView tv = (TextView) view.findViewById(android.support.design.R.id.snackbar_text);
+            TextView tv = view.findViewById(android.support.design.R.id.snackbar_text);
             tv.setTextColor(Color.WHITE);
             tv.setMaxLines(4);
             tv.setTextSize(18);

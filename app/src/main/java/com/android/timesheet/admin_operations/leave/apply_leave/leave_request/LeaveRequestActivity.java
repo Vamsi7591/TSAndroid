@@ -1,4 +1,4 @@
-package com.android.timesheet.admin_operations.leave.leave_request;
+package com.android.timesheet.admin_operations.leave.apply_leave.leave_request;
 
 import android.content.Context;
 import android.os.Build;
@@ -15,9 +15,9 @@ import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 
 import com.android.timesheet.R;
-import com.android.timesheet.admin_operations.leave.apply_leave.ApplyLeave;
 import com.android.timesheet.admin_operations.leave.apply_leave.leave_calender.LeaveCalender;
 import com.android.timesheet.admin_operations.leave.apply_leave.leave_entry.LeaveEntryActivity;
+import com.android.timesheet.admin_operations.leave.apply_leave.leave_overview.LeaveOverview;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.util.InternetUtils;
@@ -158,7 +158,7 @@ public class LeaveRequestActivity extends BaseActivity<LeaveRequestPresenter> im
 
     @OnClick(R.id.overViewTV)
     void navToLeaveOverview() {
-        presenter().openActivity(ApplyLeave.class, "Leave Overview");
+        presenter().openActivity(LeaveOverview.class, "Leave Overview");
     }
 
     @OnClick(R.id.leaveRequestLL)

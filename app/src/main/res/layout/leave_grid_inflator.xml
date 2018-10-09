@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:elevation="@dimen/margin_10"
-    app:cardBackgroundColor="@color/colorGlowAccent"
+    app:cardBackgroundColor="@color/colorAccent"
     app:cardCornerRadius="@dimen/margin_20"
     android:layout_margin="@dimen/margin_2"
     tools:targetApi="lollipop">
@@ -16,7 +16,7 @@
         android:layout_height="@dimen/logo_height"
         android:layout_gravity="center"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="@dimen/tv_font_size_22"
         android:visibility="visible"
         app:font="@string/aleo_regular" />

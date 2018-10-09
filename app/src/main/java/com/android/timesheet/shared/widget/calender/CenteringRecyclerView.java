@@ -19,9 +19,9 @@ import java.util.Arrays;
  */
 
 public class CenteringRecyclerView extends RecyclerView {
-    public static final int ALIGN_HEAD = 0;
+    /*public static final int ALIGN_HEAD = 0;
     public static final int ALIGN_TAIL = 1;
-    public static final int ALIGN_CENTER = 2;
+    public static final int ALIGN_CENTER = 2;*/
 
     public static final int SNAPPING_STRATEGY_HEAD = 0;
     public static final int SNAPPING_STRATEGY_TAIL = 1;
@@ -55,7 +55,7 @@ public class CenteringRecyclerView extends RecyclerView {
         }
     }
 
-    /**
+    /*
      * Sets the currently selected position with the given alignment.
      *
      * @param position  The adapter position.
@@ -63,7 +63,7 @@ public class CenteringRecyclerView extends RecyclerView {
      * @see #center(int)
      * @see #head(int)
      * @see #tail(int)
-     */
+
     public void setSelection(int position, int alignment) {
         switch (alignment) {
             case ALIGN_CENTER:
@@ -79,6 +79,7 @@ public class CenteringRecyclerView extends RecyclerView {
                 throw new IllegalArgumentException("unknown alignment");
         }
     }
+     */
 
     /**
      * Scrolls a view at the given position to top (vertical layout) or left (horizontal layout).
@@ -130,20 +131,17 @@ public class CenteringRecyclerView extends RecyclerView {
             int offset = getBottomOffset(sglm.getOrientation(), 0);
             sglm.scrollToPositionWithOffset(position, offset);
 
-            post(new Runnable() {
-                @Override
-                public void run() {
-                    int first = getFirstVisiblePosition();
-                    int last = getLastVisiblePosition();
-                    int childPosition = 0;
-                    for (int i = first; i < last; i++) {
-                        if (i == position) {
-                            int offset = getBottomOffset(sglm.getOrientation(), childPosition);
-                            sglm.scrollToPositionWithOffset(position, offset);
-                            break;
-                        }
-                        childPosition++;
+            post(() -> {
+                int first = getFirstVisiblePosition();
+                int last = getLastVisiblePosition();
+                int childPosition = 0;
+                for (int i = first; i < last; i++) {
+                    if (i == position) {
+                        int offset1 = getBottomOffset(sglm.getOrientation(), childPosition);
+                        sglm.scrollToPositionWithOffset(position, offset1);
+                        break;
                     }
+                    childPosition++;
                 }
             });
         } else {
@@ -175,20 +173,17 @@ public class CenteringRecyclerView extends RecyclerView {
             int offset = getCenterOffset(sglm.getOrientation(), 0);
             sglm.scrollToPositionWithOffset(position, offset);
 
-            post(new Runnable() {
-                @Override
-                public void run() {
-                    int first = getFirstVisiblePosition();
-                    int last = getLastVisiblePosition();
-                    int childPosition = 0;
-                    for (int i = first; i < last; i++) {
-                        if (i == position) {
-                            int offset = getCenterOffset(sglm.getOrientation(), childPosition);
-                            sglm.scrollToPositionWithOffset(position, offset);
-                            break;
-                        }
-                        childPosition++;
+            post(() -> {
+                int first = getFirstVisiblePosition();
+                int last = getLastVisiblePosition();
+                int childPosition = 0;
+                for (int i = first; i < last; i++) {
+                    if (i == position) {
+                        int offset1 = getCenterOffset(sglm.getOrientation(), childPosition);
+                        sglm.scrollToPositionWithOffset(position, offset1);
+                        break;
                     }
+                    childPosition++;
                 }
             });
         } else {
@@ -300,6 +295,7 @@ public class CenteringRecyclerView extends RecyclerView {
             return llm.findFirstVisibleItemPosition();
         } else {
             StaggeredGridLayoutManager sglm = (StaggeredGridLayoutManager) lm;
+            assert sglm != null; //
             int[] firstVisibleItemPositions = sglm.findFirstVisibleItemPositions(null);
             Arrays.sort(firstVisibleItemPositions);
 
@@ -321,6 +317,7 @@ public class CenteringRecyclerView extends RecyclerView {
             return llm.findLastVisibleItemPosition();
         } else {
             StaggeredGridLayoutManager sglm = (StaggeredGridLayoutManager) lm;
+            assert sglm != null; //
             int[] lastVisibleItemPositions = sglm.findLastVisibleItemPositions(null);
             Arrays.sort(lastVisibleItemPositions);
 
@@ -341,6 +338,7 @@ public class CenteringRecyclerView extends RecyclerView {
             return llm.findFirstCompletelyVisibleItemPosition();
         } else {
             StaggeredGridLayoutManager sglm = (StaggeredGridLayoutManager) lm;
+            assert sglm != null; //
             int[] firstVisibleItemPositions = sglm.findFirstCompletelyVisibleItemPositions(null);
             Arrays.sort(firstVisibleItemPositions);
 
@@ -361,6 +359,7 @@ public class CenteringRecyclerView extends RecyclerView {
             return llm.findLastCompletelyVisibleItemPosition();
         } else {
             StaggeredGridLayoutManager sglm = (StaggeredGridLayoutManager) lm;
+            assert sglm != null; //
             int[] lastVisibleItemPositions = sglm.findLastCompletelyVisibleItemPositions(null);
             Arrays.sort(lastVisibleItemPositions);
 
