@@ -9,7 +9,7 @@
 
     <!-- rectangle (background color) -->
     <item
-        android:left="@dimen/margin_0"
+        android:left="0.5dp"
         android:right="@dimen/margin_1">
         <shape android:shape="rectangle">
             <solid android:color="@color/colorShine40" />

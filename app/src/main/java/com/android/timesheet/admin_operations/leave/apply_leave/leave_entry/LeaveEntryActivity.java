@@ -18,6 +18,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -98,6 +100,44 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
     @BindView(R.id.error_remarks)
     TextView error_remarks;
 
+    /*Leave Approve widgets*/
+    @BindView(R.id.employeeLL)
+    LinearLayout employeeLL;
+
+    @BindView(R.id.employeeIV)
+    ImageView employeeIV;
+
+    @BindView(R.id.employeeNameTV)
+    CustomFontTextView employeeNameTV;
+
+    @BindView(R.id.leaveTypeTV)
+    CustomFontTextView leaveTypeTV;
+
+    @BindView(R.id.leaveTypeIV)
+    ImageView leaveTypeIV;
+
+    @BindView(R.id.noOfDaysTV)
+    CustomFontTextView noOfDaysTV;
+
+    @BindView(R.id.daysTV)
+    CustomFontTextView daysTV;
+
+    @BindView(R.id.appliedOnLL)
+    LinearLayout appliedOnLL;
+
+    @BindView(R.id.appliedDate)
+    TextView appliedDate;
+
+    @BindView(R.id.actionsLL)
+    LinearLayout actionsLL;
+
+    @BindView(R.id.approveBtn)
+    CustomFontTextView approveBtn;
+
+    @BindView(R.id.rejectBtn)
+    CustomFontTextView rejectBtn;
+    /*Leave Approve widgets*/
+
     @Override
     protected int layoutRestID() {
         return R.layout.activity_apply_leave_request;
@@ -123,7 +163,6 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
     User loggedInUser;
     ArrayList<String> leaveTypesForSpinner = new ArrayList<>();
     private int height;
-    private int width;
     Animation animationRL, animationLR, animationFOut, animationFIn;
 
     @Override
@@ -136,8 +175,6 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
         LeaveEntry entry = gson.fromJson(entryString, LeaveEntry.class);
 
         intentLeaveEntry = entry;
-
-        boolean fromLeaveEntryList = intentLeaveEntry != null;
 
         if (InternetUtils.isInternetConnected(this)) {
             InternetUtils.hideLoadingDialog();
@@ -173,8 +210,14 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
 
 
         /*Apply Leave - Entry*/
-        if (intentLeaveEntry != null) {
-            Log.d(TAG, "TS : " + intentLeaveEntry.fromDate);
+        if (intentLeaveEntry != null && intentLeaveEntry.getEmployeeName() != null) {
+            Log.d(TAG, "TS getEmployeeName: " + intentLeaveEntry.getEmployeeName());
+
+            leaveAction(intentLeaveEntry);
+
+
+        } else if (intentLeaveEntry != null && intentLeaveEntry.getEmployeeName() != null) {
+            Log.d(TAG, "TS fromDate: " + intentLeaveEntry.fromDate);
 
             for (int i = 0; i < leaveTypesForSpinner.size(); i++) {
                 if (leaveTypesForSpinner.get(i).equalsIgnoreCase(intentLeaveEntry.getLeaveType())) {
@@ -190,7 +233,6 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
         } else {
             intentLeaveEntry = new LeaveEntry();
         }
-
 
         remarksET.addTextChangedListener(new TextWatcher() {
 
@@ -219,7 +261,29 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
 
             }
         });
+    }
 
+    private void leaveAction(LeaveEntry intentLeaveEntry) {
+
+        employeeNameTV.setText("" + intentLeaveEntry.getEmployeeName());
+        leaveTypeTV.setText("" + intentLeaveEntry.getLeaveType());
+        leaveTypeIV.setBackground(getResources().getDrawable(R.drawable.ic_sick));
+        noOfDaysTV.setText("" + intentLeaveEntry.getNoOfDays());
+        appliedDate.setText("" + intentLeaveEntry.getAppliedDate());
+
+        leaveActionWidgets();
+        leaveEntryWidgets();
+    }
+
+    private void leaveEntryWidgets() {
+        remarks_count.setVisibility(View.GONE);
+        submitBtn.setVisibility(View.GONE);
+    }
+
+    private void leaveActionWidgets() {
+        employeeLL.setVisibility(View.VISIBLE);
+        appliedOnLL.setVisibility(View.VISIBLE);
+        actionsLL.setVisibility(View.VISIBLE);
     }
 
     void showError(TextView textView, String errorStr) {
@@ -382,7 +446,6 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
         Display display = this.getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        width = size.x;
         height = size.y;
     }
 

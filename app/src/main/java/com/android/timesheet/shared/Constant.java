@@ -20,6 +20,11 @@ public class Constant {
 
     public static final String DataFormat = "yyyy/MM/dd";
 
+    public static final String LeaveApproved = "Approved";
+    public static final String LeaveRejected = "Rejected";
+    public static final String LeaveOnHold = "On Hold";
+
+
     public static final String SickLeave = "SickLeave";
     public static final String CasualLeave = "CasualLeave";
     public static final String EarnedLeave = "EarnedLeave";

@@ -81,12 +81,12 @@
                     android:textColor="@color/white" />
 
                 <TextView
+                    android:id="@+id/usedLeaveTV"
                     android:layout_width="?attr/actionBarSize"
                     android:layout_height="match_parent"
                     android:background="@drawable/bg_border_green_right"
                     android:gravity="center"
                     android:text="10"
-                    android:id="@+id/usedLeaveTV"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
                     android:textColor="@color/white" />
 
@@ -113,12 +113,12 @@
                     android:textColor="@color/white" />
 
                 <TextView
+                    android:id="@+id/availableLeavesTV"
                     android:layout_width="?attr/actionBarSize"
                     android:layout_height="match_parent"
                     android:background="@drawable/bg_border_green_left"
                     android:gravity="center"
                     android:text="26"
-                    android:id="@+id/availableLeavesTV"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large.Inverse"
                     android:textColor="@color/white" />
 
@@ -142,6 +142,121 @@
                 android:layout_marginRight="@dimen/margin_10"
                 android:layout_marginBottom="@dimen/margin_20"
                 android:orientation="vertical">
+
+                <!--Approve Leave-->
+                <LinearLayout
+                    android:id="@+id/employeeLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bottom_line_grey"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/margin_5"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/employeeIV"
+                            android:layout_width="@dimen/margin_40"
+                            android:layout_height="@dimen/margin_40"
+                            android:layout_gravity="center"
+                            android:background="@drawable/blue_circle"
+                            android:visibility="visible"
+                            tools:ignore="RtlSymmetry" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.android.timesheet.shared.widget.CustomFontTextView
+                            android:id="@+id/employeeNameTV"
+                            style="@style/AppTheme.Text.TextView.Medium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_5"
+                            android:gravity="start|center"
+                            android:maxLines="1"
+                            android:paddingStart="@dimen/margin_10"
+                            android:paddingLeft="@dimen/margin_10"
+                            android:textColor="@color/black"
+                            app:font="@string/roboto_light"
+                            tools:ignore="RtlSymmetry"
+                            tools:text="Geetha Govindam" />
+
+                        <com.android.timesheet.shared.widget.CustomFontTextView
+                            android:id="@+id/leaveTypeTV"
+                            style="@style/AppTheme.Text.TextView.Small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:gravity="start|center"
+                            android:maxLines="1"
+                            android:paddingStart="@dimen/margin_10"
+                            android:paddingLeft="@dimen/margin_10"
+                            android:textColor="@color/cardview_dark_background"
+                            app:font="@string/roboto_light"
+                            tools:ignore="RtlSymmetry"
+                            tools:text="@string/lb_sick_leave" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/leaveTypeIV"
+                        android:layout_width="@dimen/padding_30"
+                        android:layout_height="@dimen/padding_30"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/margin_5"
+                        android:background="@drawable/blue_circle"
+                        android:visibility="visible"
+                        tools:ignore="RtlSymmetry" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/margin_5"
+                        android:layout_marginRight="@dimen/margin_5"
+                        android:orientation="vertical">
+
+                        <com.android.timesheet.shared.widget.CustomFontTextView
+                            android:id="@+id/noOfDaysTV"
+                            style="@style/AppTheme.Text.TextView.Small"
+                            android:layout_width="@dimen/margin_30"
+                            android:layout_height="@dimen/margin_30"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/margin_0"
+                            android:background="@drawable/circle_grey"
+                            android:maxLines="1"
+                            android:textColor="@color/cardview_dark_background"
+                            android:visibility="visible"
+                            app:font="@string/roboto_light"
+                            tools:ignore="RtlSymmetry"
+                            tools:text="1" />
+
+                        <com.android.timesheet.shared.widget.CustomFontTextView
+                            android:id="@+id/daysTV"
+                            style="@style/AppTheme.Text.TextView.Small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_0"
+                            android:ellipsize="marquee"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:text="Days"
+                            android:textColor="@color/cardview_dark_background"
+                            app:font="@string/roboto_light"
+                            tools:ignore="RtlSymmetry" />
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/leaveTypeLL"
@@ -292,6 +407,54 @@
                     android:textColor="@color/colorError2"
                     android:visibility="invisible" />
 
+                <!--Approve Leave-->
+                <LinearLayout
+                    android:id="@+id/appliedOnLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/inputs_height"
+                    android:layout_marginTop="@dimen/margin_0"
+                    android:gravity="center"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="start|center"
+                        android:minWidth="100dp"
+                        android:text="@string/lb_applied_on"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/colorGrayDark" />
+
+                    <TextView
+                        android:id="@+id/appliedDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end|center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableEnd="@drawable/ic_time_start"
+                        android:drawableRight="@drawable/ic_time_start"
+                        android:gravity="end|center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/black"
+                        android:visibility="invisible" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.Design.Error"
+                    android:textColor="@android:color/transparent"
+                    android:visibility="invisible" />
+
                 <LinearLayout
                     android:id="@+id/remarksLL"
                     android:layout_width="match_parent"
@@ -372,7 +535,8 @@
                         android:layout_marginEnd="-19dp"
                         android:layout_marginBottom="@dimen/margin_20"
                         android:gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="visible">
 
                         <com.android.timesheet.shared.widget.CustomFontTextView
                             android:id="@+id/submitBtn"
@@ -392,7 +556,57 @@
 
                     </RelativeLayout>
 
+                    <!--Approve Leave-->
+                    <LinearLayout
+                        android:id="@+id/actionsLL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="@dimen/margin_0"
+                        android:layout_marginEnd="0dp"
+                        android:layout_marginBottom="@dimen/margin_20"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+                        <com.android.timesheet.shared.widget.CustomFontTextView
+                            android:id="@+id/approveBtn"
+                            style="@style/AppTheme.Action.TextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="@dimen/margin_5"
+                            android:layout_marginEnd="@dimen/margin_5"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_green_border_black"
+                            android:gravity="center"
+                            android:text="@string/lb_approve"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.Button.Inverse"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:visibility="visible"
+                            app:fonts="@string/roboto_regular" />
+
+                        <com.android.timesheet.shared.widget.CustomFontTextView
+                            android:id="@+id/rejectBtn"
+                            style="@style/AppTheme.Action.TextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="@dimen/margin_5"
+                            android:layout_marginEnd="@dimen/margin_5"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_red_border_black"
+                            android:gravity="center"
+                            android:text="@string/lb_reject"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.Button.Inverse"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:visibility="visible"
+                            app:fonts="@string/roboto_regular" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
+
             </LinearLayout>
 
 

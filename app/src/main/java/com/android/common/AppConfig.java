@@ -13,6 +13,7 @@ public interface AppConfig {
     String EMPLOYEE_OBJECT = "employeeObject";
     String PROJECT_OBJECT = "projectObject";
     String MY_LEAVE_OBJECT = "myLeaveObject";
+    String APPROVE_LEAVE_OBJECT = "approveLeaveObject";
     String MY_LEAVE_VIEW = "myLeaveView";
 
     String INTERNET_CHECK = "com.android.timesheet.app";

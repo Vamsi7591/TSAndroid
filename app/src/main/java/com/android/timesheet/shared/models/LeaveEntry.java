@@ -53,6 +53,22 @@ public class LeaveEntry implements Serializable {
     @SerializedName("noOfDays")
     public String noOfDays;
 
+    @Nullable
+    @SerializedName("employeeURL")
+    public String employeeURL;
+
+    @Nullable
+    @SerializedName("employeeName")
+    public String employeeName;
+
+    @Nullable
+    @SerializedName("appliedDate")
+    public String appliedDate;
+
+    @Nullable
+    @SerializedName("leaveStatus")
+    public String leaveStatus;
+
     public LeaveEntry(String fromDate, String toDate, String leaveType, String remarks, String empCode, String noOfDays) {
         this.fromDate = fromDate;
         this.toDate = toDate;
@@ -60,6 +76,21 @@ public class LeaveEntry implements Serializable {
         this.remarks = remarks;
         this.empCode = empCode;
         this.noOfDays = noOfDays;
+    }
+
+    public LeaveEntry(@Nullable long leaveEntryId, @Nullable String fromDate, String toDate, String leaveType, String remarks, String approvedDate, String approvedRemarks, @Nullable String noOfDays, @Nullable String employeeURL, @Nullable String employeeName, @Nullable String appliedDate, @Nullable String leaveStatus) {
+        this.leaveEntryId = leaveEntryId;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.leaveType = leaveType;
+        this.remarks = remarks;
+        this.approvedDate = approvedDate;
+        this.approvedRemarks = approvedRemarks;
+        this.noOfDays = noOfDays;
+        this.employeeURL = employeeURL;
+        this.employeeName = employeeName;
+        this.appliedDate = appliedDate;
+        this.leaveStatus = leaveStatus;
     }
 
     public LeaveEntry() {
@@ -197,5 +228,41 @@ public class LeaveEntry implements Serializable {
 
     public void setNoOfDays(@Nullable String noOfDays) {
         this.noOfDays = noOfDays;
+    }
+
+    @Nullable
+    public String getEmployeeURL() {
+        return employeeURL;
+    }
+
+    public void setEmployeeURL(@Nullable String employeeURL) {
+        this.employeeURL = employeeURL;
+    }
+
+    @Nullable
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(@Nullable String employeeName) {
+        this.employeeName = employeeName;
+    }
+
+    @Nullable
+    public String getAppliedDate() {
+        return appliedDate;
+    }
+
+    public void setAppliedDate(@Nullable String appliedDate) {
+        this.appliedDate = appliedDate;
+    }
+
+    @Nullable
+    public String getLeaveStatus() {
+        return leaveStatus;
+    }
+
+    public void setLeaveStatus(@Nullable String leaveStatus) {
+        this.leaveStatus = leaveStatus;
     }
 }

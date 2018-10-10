@@ -148,5 +148,8 @@
     <string name="lb_available_leaves">Available Leaves</string>
     <string name="lb_approve_leave">Approve Leave</string>
     <string name="lb_requests">Requests</string>
+    <string name="lb_applied_on">Applied On</string>
+    <string name="lb_approve">Approve</string>
+    <string name="lb_reject">Reject</string>
 
 </resources>
