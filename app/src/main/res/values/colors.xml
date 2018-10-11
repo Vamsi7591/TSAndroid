@@ -71,7 +71,8 @@
 
     <color name="colorGrayHint">#7a7875</color>
     <color name="colorGray">#49696a6b</color>
-    <color name="colorGrayDark">#98404045</color>
+    <color name="colorGrayDark">#a5302c3c</color>
+    <!--<color name="colorGrayDark">#98404045</color>-->
     <color name="colorLightDark">#e1302c3c</color>
     <!-- STEPPER Color Resource START-->
     <color name="material_stepper_error">@color/colorError</color>

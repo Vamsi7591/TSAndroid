@@ -20,7 +20,7 @@
             android:gravity="center">
 
             <LinearLayout
-                android:id="@+id/trashLL"
+                android:id="@+id/acceptLL"
                 android:layout_width="80dp"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_border_green_white"
@@ -51,7 +51,7 @@
 
 
         <LinearLayout
-            android:id="@+id/projectLL"
+            android:id="@+id/LeaveLL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -91,7 +91,6 @@
                     android:maxLines="1"
                     android:paddingStart="@dimen/margin_10"
                     android:paddingLeft="@dimen/margin_10"
-                    android:text="Geetha"
                     android:textColor="@color/black"
                     app:font="@string/roboto_light"
                     tools:ignore="RtlSymmetry"

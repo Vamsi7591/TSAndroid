@@ -141,6 +141,7 @@
             android:elevation="@dimen/margin_16"
             android:scaleType="center"
             android:tooltipText="@string/tt_apply_leave"
+            android:visibility="gone"
             app:fabSize="normal"
             app:srcCompat="@drawable/ic_add_black_24dp"
             tools:ignore="PrivateResource"

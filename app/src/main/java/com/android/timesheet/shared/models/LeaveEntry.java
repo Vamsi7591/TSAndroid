@@ -69,6 +69,14 @@ public class LeaveEntry implements Serializable {
     @SerializedName("leaveStatus")
     public String leaveStatus;
 
+    @Nullable
+    @SerializedName("startTime")
+    public String startTime;
+
+    @Nullable
+    @SerializedName("endTime")
+    public String endTime;
+
     public LeaveEntry(String fromDate, String toDate, String leaveType, String remarks, String empCode, String noOfDays) {
         this.fromDate = fromDate;
         this.toDate = toDate;
@@ -78,7 +86,17 @@ public class LeaveEntry implements Serializable {
         this.noOfDays = noOfDays;
     }
 
-    public LeaveEntry(@Nullable long leaveEntryId, @Nullable String fromDate, String toDate, String leaveType, String remarks, String approvedDate, String approvedRemarks, @Nullable String noOfDays, @Nullable String employeeURL, @Nullable String employeeName, @Nullable String appliedDate, @Nullable String leaveStatus) {
+    public LeaveEntry(String fromDate, String toDate, String leaveType, String remarks, String empCode, String noOfDays, String leaveStatus) {
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.leaveType = leaveType;
+        this.remarks = remarks;
+        this.empCode = empCode;
+        this.noOfDays = noOfDays;
+        this.leaveStatus = leaveStatus;
+    }
+
+    public LeaveEntry(@Nullable long leaveEntryId, @Nullable String fromDate, String toDate, String leaveType, String remarks, String approvedDate, String approvedRemarks, @Nullable String noOfDays, @Nullable String employeeURL, @Nullable String employeeName, @Nullable String appliedDate, @Nullable String leaveStatus, @Nullable String startTime, @Nullable String endTime) {
         this.leaveEntryId = leaveEntryId;
         this.fromDate = fromDate;
         this.toDate = toDate;
@@ -91,6 +109,8 @@ public class LeaveEntry implements Serializable {
         this.employeeName = employeeName;
         this.appliedDate = appliedDate;
         this.leaveStatus = leaveStatus;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     public LeaveEntry() {
@@ -264,5 +284,23 @@ public class LeaveEntry implements Serializable {
 
     public void setLeaveStatus(@Nullable String leaveStatus) {
         this.leaveStatus = leaveStatus;
+    }
+
+    @Nullable
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(@Nullable String startTime) {
+        this.startTime = startTime;
+    }
+
+    @Nullable
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(@Nullable String endTime) {
+        this.endTime = endTime;
     }
 }

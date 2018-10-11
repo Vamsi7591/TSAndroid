@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -56,6 +57,9 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    @BindView(R.id.toolbarTitleTv)
+    CustomFontTextView toolbarTitleTv;
+
     @BindView(R.id.leaveTypeSP)
     Spinner leaveTypeSP;
 
@@ -86,6 +90,12 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
 
     @BindView(R.id.submitBtn)
     CustomFontTextView submitBtn;
+
+    @BindView(R.id.submitRL)
+    RelativeLayout submitRL;
+
+    @BindView(R.id.leaveTypeLL)
+    LinearLayout leaveTypeLL;
 
     /*Error text views*/
     @BindView(R.id.error_leave_type)
@@ -200,9 +210,9 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
                 R.anim.text_anim_lr);
 
 
-        leaveTypesForSpinner.add("Casual Leave");
-        leaveTypesForSpinner.add("Earned Leave");
-        leaveTypesForSpinner.add("Sick Leave");
+        leaveTypesForSpinner.add(Constant.CasualLeave);
+        leaveTypesForSpinner.add(Constant.EarnedLeave);
+        leaveTypesForSpinner.add(Constant.SickLeave);
 
 
         ProjectsSpinnerAdapter projectsSpinnerAdapter = new ProjectsSpinnerAdapter(LeaveEntryActivity.this, leaveTypesForSpinner);
@@ -213,10 +223,10 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
         if (intentLeaveEntry != null && intentLeaveEntry.getEmployeeName() != null) {
             Log.d(TAG, "TS getEmployeeName: " + intentLeaveEntry.getEmployeeName());
 
+            toolbarTitleTv.setText("Leave Details");
             leaveAction(intentLeaveEntry);
 
-
-        } else if (intentLeaveEntry != null && intentLeaveEntry.getEmployeeName() != null) {
+        } else if (intentLeaveEntry != null) {
             Log.d(TAG, "TS fromDate: " + intentLeaveEntry.fromDate);
 
             for (int i = 0; i < leaveTypesForSpinner.size(); i++) {
@@ -230,6 +240,7 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
             fromDate.setText(intentLeaveEntry.getFromDate());
             toDate.setText(intentLeaveEntry.getToDate());
 
+            leaveEntryWidgets(false);
         } else {
             intentLeaveEntry = new LeaveEntry();
         }
@@ -265,25 +276,87 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
 
     private void leaveAction(LeaveEntry intentLeaveEntry) {
 
-        employeeNameTV.setText("" + intentLeaveEntry.getEmployeeName());
-        leaveTypeTV.setText("" + intentLeaveEntry.getLeaveType());
-        leaveTypeIV.setBackground(getResources().getDrawable(R.drawable.ic_sick));
-        noOfDaysTV.setText("" + intentLeaveEntry.getNoOfDays());
-        appliedDate.setText("" + intentLeaveEntry.getAppliedDate());
+        remarksET.setText(intentLeaveEntry.getRemarks());
+        fromDate.setText(intentLeaveEntry.getFromDate());
+        toDate.setText(intentLeaveEntry.getToDate());
+        startTime.setText(intentLeaveEntry.getStartTime());
+        endTime.setText(intentLeaveEntry.getEndTime());
+
+        employeeNameTV.setText(intentLeaveEntry.getEmployeeName());
+        leaveTypeTV.setText(intentLeaveEntry.getLeaveType());
+
+        if (intentLeaveEntry.getLeaveType().matches(Constant.CasualLeave))
+            leaveTypeIV.setBackground(getResources().getDrawable(R.drawable.ic_casual));
+        else if (intentLeaveEntry.getLeaveType().matches(Constant.EarnedLeave))
+            leaveTypeIV.setBackground(getResources().getDrawable(R.drawable.ic_earned));
+        else
+            leaveTypeIV.setBackground(getResources().getDrawable(R.drawable.ic_sick));
+
+        noOfDaysTV.setText(intentLeaveEntry.getNoOfDays());
+        appliedDate.setText(intentLeaveEntry.getAppliedDate());
 
         leaveActionWidgets();
-        leaveEntryWidgets();
+        leaveEntryWidgets(false);
     }
 
-    private void leaveEntryWidgets() {
-        remarks_count.setVisibility(View.GONE);
-        submitBtn.setVisibility(View.GONE);
+    private void leaveEntryWidgets(boolean flag) {
+
+        // flag true for visible
+        if (flag) {
+            submitRL.setVisibility(View.VISIBLE);
+            remarks_count.setVisibility(View.VISIBLE);
+            submitBtn.setVisibility(View.VISIBLE);
+
+            remarksET.setFocusableInTouchMode(true);
+            fromDate.setClickable(true);
+            toDate.setClickable(true);
+            startTime.setClickable(true);
+            endTime.setClickable(true);
+        } else {
+            submitRL.setVisibility(View.GONE);
+            remarks_count.setVisibility(View.GONE);
+            submitBtn.setVisibility(View.GONE);
+            leaveTypeLL.setVisibility(View.GONE);
+
+            remarksET.setFocusable(false);
+            fromDate.setClickable(false);
+            toDate.setClickable(false);
+            startTime.setClickable(false);
+            endTime.setClickable(false);
+        }
+
+        if (!flag && intentLeaveEntry.getLeaveStatus() != null) {
+            if (intentLeaveEntry.getLeaveStatus().matches(Constant.LeaveOnHold)) {
+                actionsLL.setVisibility(View.VISIBLE);
+
+                approveBtn.setText("Modify");
+                rejectBtn.setText("Delete");
+            } else {
+                leaveActionWidgets();
+            }
+        }
+
     }
 
     private void leaveActionWidgets() {
         employeeLL.setVisibility(View.VISIBLE);
         appliedOnLL.setVisibility(View.VISIBLE);
         actionsLL.setVisibility(View.VISIBLE);
+
+        if (intentLeaveEntry.getLeaveStatus().matches(Constant.LeaveApproved)) {
+            rejectBtn.setVisibility(View.GONE);
+            approveBtn.setText(getResources().getString(R.string.lb_approved));
+            noOfDaysTV.setBackground(getResources().getDrawable(R.drawable.circle_green));
+            noOfDaysTV.setTextColor(getResources().getColor(R.color.white));
+        } else if (intentLeaveEntry.getLeaveStatus().matches(Constant.LeaveRejected)) {
+            approveBtn.setVisibility(View.GONE);
+            rejectBtn.setText(getResources().getString(R.string.lb_rejected));
+            noOfDaysTV.setBackground(getResources().getDrawable(R.drawable.circle_red));
+            noOfDaysTV.setTextColor(getResources().getColor(R.color.white));
+        } else {
+            noOfDaysTV.setBackground(getResources().getDrawable(R.drawable.circle_grey));
+            noOfDaysTV.setTextColor(getResources().getColor(R.color.black));
+        }
     }
 
     void showError(TextView textView, String errorStr) {
@@ -306,6 +379,24 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
         error_to_date.setVisibility(View.INVISIBLE);
         error_leave_type.setVisibility(View.INVISIBLE);
         error_remarks.setVisibility(View.INVISIBLE);
+    }
+
+    @OnClick(R.id.approveBtn)
+    void approveBtn() {
+        if (approveBtn.getText().toString().matches("modify")) {
+            leaveEntryWidgets(true);
+        } else {
+
+        }
+    }
+
+    @OnClick(R.id.rejectBtn)
+    void rejectBtn() {
+        if (rejectBtn.getText().toString().toLowerCase().matches("delete")) {
+            finish();
+        } else {
+
+        }
     }
 
     @OnClick(R.id.fromDate)

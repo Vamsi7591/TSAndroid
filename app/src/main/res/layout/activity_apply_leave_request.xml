@@ -150,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bottom_line_grey"
                     android:orientation="horizontal"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -197,6 +197,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
+                            android:layout_marginBottom="@dimen/margin_10"
                             android:gravity="start|center"
                             android:maxLines="1"
                             android:paddingStart="@dimen/margin_10"
@@ -235,7 +236,7 @@
                             android:layout_marginTop="@dimen/margin_0"
                             android:background="@drawable/circle_grey"
                             android:maxLines="1"
-                            android:textColor="@color/cardview_dark_background"
+                            android:textColor="@color/black"
                             android:visibility="visible"
                             app:font="@string/roboto_light"
                             tools:ignore="RtlSymmetry"
@@ -412,9 +413,9 @@
                     android:id="@+id/appliedOnLL"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/inputs_height"
-                    android:layout_marginTop="@dimen/margin_0"
+                    android:layout_marginBottom="@dimen/margin_15"
                     android:gravity="center"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -430,6 +431,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:drawableEnd="@drawable/ic_calendar_edit_b"
+                        android:drawableRight="@drawable/ic_calendar_edit_b"
                         android:gravity="end|center"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/black" />
@@ -448,17 +451,10 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.Design.Error"
-                    android:textColor="@android:color/transparent"
-                    android:visibility="invisible" />
-
                 <LinearLayout
                     android:id="@+id/remarksLL"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="0dp"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -528,6 +524,7 @@
                     </LinearLayout>
 
                     <RelativeLayout
+                        android:id="@+id/submitRL"
                         android:layout_width="match_parent"
                         android:layout_height="68dp"
                         android:layout_marginStart="-19dp"
@@ -562,24 +559,24 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
-                        android:layout_marginTop="@dimen/margin_0"
+                        android:layout_marginTop="@dimen/margin_20"
                         android:layout_marginEnd="0dp"
                         android:layout_marginBottom="@dimen/margin_20"
                         android:gravity="center"
                         android:orientation="horizontal"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <com.android.timesheet.shared.widget.CustomFontTextView
-                            android:id="@+id/approveBtn"
+                            android:id="@+id/rejectBtn"
                             style="@style/AppTheme.Action.TextView"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
-                            android:layout_marginStart="@dimen/margin_5"
-                            android:layout_marginEnd="@dimen/margin_5"
+                            android:layout_marginStart="@dimen/margin_2"
+                            android:layout_marginEnd="@dimen/margin_2"
                             android:layout_weight="1"
-                            android:background="@drawable/bg_green_border_black"
+                            android:background="@drawable/bg_red_border_black"
                             android:gravity="center"
-                            android:text="@string/lb_approve"
+                            android:text="@string/lb_reject"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.Button.Inverse"
                             android:textColor="@color/white"
                             android:textStyle="bold"
@@ -587,16 +584,16 @@
                             app:fonts="@string/roboto_regular" />
 
                         <com.android.timesheet.shared.widget.CustomFontTextView
-                            android:id="@+id/rejectBtn"
+                            android:id="@+id/approveBtn"
                             style="@style/AppTheme.Action.TextView"
                             android:layout_width="match_parent"
                             android:layout_height="48dp"
-                            android:layout_marginStart="@dimen/margin_5"
-                            android:layout_marginEnd="@dimen/margin_5"
+                            android:layout_marginStart="@dimen/margin_2"
+                            android:layout_marginEnd="@dimen/margin_2"
                             android:layout_weight="1"
-                            android:background="@drawable/bg_red_border_black"
+                            android:background="@drawable/bg_green_border_black"
                             android:gravity="center"
-                            android:text="@string/lb_reject"
+                            android:text="@string/lb_approve"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.Button.Inverse"
                             android:textColor="@color/white"
                             android:textStyle="bold"

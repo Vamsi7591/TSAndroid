@@ -9,7 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.android.timesheet.R;
+import com.android.timesheet.shared.Constant;
 import com.android.timesheet.shared.interfaces.OnItemClickListener;
+import com.android.timesheet.shared.interfaces.OnItemLeaveActionsClickListener;
 import com.android.timesheet.shared.models.LeaveEntry;
 import com.android.timesheet.shared.widget.CustomFontTextView;
 import com.daimajia.swipe.SwipeLayout;
@@ -30,10 +32,9 @@ public class ApproveLeaveAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     List<LeaveEntry> leaveEntryList;
 
-    OnItemClickListener listener;
-    SwipeLayout swipeLayout;
+    OnItemLeaveActionsClickListener listener;
 
-    public ApproveLeaveAdapter(Context context, OnItemClickListener listener) {
+    public ApproveLeaveAdapter(Context context, OnItemLeaveActionsClickListener listener) {
         this.context = context;
         this.listener = listener;
         this.leaveEntryList = Collections.emptyList();
@@ -71,7 +72,6 @@ public class ApproveLeaveAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
     /*End*/
 
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.content_approve_leave_item, parent,
@@ -95,10 +95,13 @@ public class ApproveLeaveAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     static class MyLeaveViewHolder extends RecyclerView.ViewHolder {
 
         Context context;
-        OnItemClickListener listener;
+        OnItemLeaveActionsClickListener listener;
 
         @BindView(R.id.leaveTypeTV)
         CustomFontTextView leaveTypeTV;
+
+        @BindView(R.id.employeeNameTV)
+        CustomFontTextView employeeNameTV;
 
         @BindView(R.id.fromAndToDateTV)
         CustomFontTextView fromAndToDateTV;
@@ -112,15 +115,21 @@ public class ApproveLeaveAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         @BindView(R.id.leaveTypeIV)
         ImageView leaveTypeIV;
 
-        @BindView(R.id.trashLL)
-        LinearLayout trashLL;
+        @BindView(R.id.acceptLL)
+        LinearLayout acceptLL;
+
+        @BindView(R.id.rejectLL)
+        LinearLayout rejectLL;
 
         @BindView(R.id.swipeSL)
         SwipeLayout swipeSL;
 
+        @BindView(R.id.LeaveLL)
+        LinearLayout LeaveLL;
+
         View itemView;
 
-        MyLeaveViewHolder(Context context, View itemView, OnItemClickListener listener) {
+        MyLeaveViewHolder(Context context, View itemView, OnItemLeaveActionsClickListener listener) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             this.itemView = itemView;
@@ -130,28 +139,56 @@ public class ApproveLeaveAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         void bind(LeaveEntry entry, int position) {
 
+            employeeNameTV.setText(entry.getEmployeeName());
             leaveTypeTV.setText(entry.getLeaveType());
             noOfDaysTV.setText(entry.getNoOfDays());
-            fromAndToDateTV.setText(entry.getFromDate()+" - "+entry.getRemarks());
-            daysTV.setText("Days");
+            fromAndToDateTV.setText(entry.getFromDate() + " - " + entry.getRemarks());
 
-            if(entry.getLeaveType().contains("Sick")){
+            String s = "Day";
+            if (entry.getNoOfDays().contains(".")) {
+                if (Float.parseFloat(entry.getNoOfDays()) > 1.0)
+                    s = "Days";
+            } else {
+                if (Integer.parseInt(entry.getNoOfDays()) > 1)
+                    s = "Days";
+            }
+
+            daysTV.setText(s);
+
+            if (entry.getLeaveStatus().matches(Constant.LeaveApproved)) {
+                noOfDaysTV.setBackground(context.getResources().getDrawable(R.drawable.circle_green));
+                noOfDaysTV.setTextColor(context.getResources().getColor(R.color.white));
+            } else if (entry.getLeaveStatus().matches(Constant.LeaveRejected)) {
+                noOfDaysTV.setBackground(context.getResources().getDrawable(R.drawable.circle_red));
+                noOfDaysTV.setTextColor(context.getResources().getColor(R.color.white));
+            } else {
+                noOfDaysTV.setBackground(context.getResources().getDrawable(R.drawable.circle_grey));
+                noOfDaysTV.setTextColor(context.getResources().getColor(R.color.black));
+            }
+
+            if (entry.getLeaveType().matches(Constant.SickLeave)) {
                 leaveTypeIV.setBackground(context.getResources().getDrawable(R.drawable.ic_sick));
-            }else if(entry.getLeaveType().contains("Casual")){
+            } else if (entry.getLeaveType().matches(Constant.CasualLeave)) {
                 leaveTypeIV.setBackground(context.getResources().getDrawable(R.drawable.ic_casual));
-            }else{
+            } else {
                 leaveTypeIV.setBackground(context.getResources().getDrawable(R.drawable.ic_earned));
             }
 
-            leaveTypeTV.setOnClickListener(view -> {
+            LeaveLL.setOnClickListener(view -> {
                 if (listener != null) {
                     listener.onItemClick(view, position);
                 }
             });
 
-            trashLL.setOnClickListener(view -> {
+            acceptLL.setOnClickListener(view -> {
                 if (listener != null) {
-                    listener.onItemClickToDelete(view, position);
+                    listener.onItemClickToAccept(view, position);
+                }
+            });
+
+            rejectLL.setOnClickListener(view -> {
+                if (listener != null) {
+                    listener.onItemClickToReject(view, position);
                 }
             });
         }

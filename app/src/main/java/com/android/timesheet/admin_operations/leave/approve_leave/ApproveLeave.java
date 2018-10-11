@@ -20,6 +20,7 @@ import com.android.timesheet.shared.Constant;
 import com.android.timesheet.shared.activities.BaseActivity;
 import com.android.timesheet.shared.fragments.BaseFragment;
 import com.android.timesheet.shared.interfaces.OnItemClickListener;
+import com.android.timesheet.shared.interfaces.OnItemLeaveActionsClickListener;
 import com.android.timesheet.shared.models.LeaveEntry;
 import com.android.timesheet.shared.util.InternetUtils;
 import com.android.timesheet.shared.views.BaseViewBehavior;
@@ -32,7 +33,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 
-public class ApproveLeave extends BaseActivity<ApproveLeavePresenter> implements BaseViewBehavior<List<Object>>, OnItemClickListener {
+public class ApproveLeave extends BaseActivity<ApproveLeavePresenter> implements BaseViewBehavior<List<Object>>, OnItemLeaveActionsClickListener {
 
 
     List<LeaveEntry> leaveEntryList;
@@ -116,28 +117,33 @@ public class ApproveLeave extends BaseActivity<ApproveLeavePresenter> implements
              String employeeName,
              String appliedDate,
              String leaveStatus*/
-//        String fromDate, String toDate, String leaveType, String remarks, String empCode, String noOfDays
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "5-Jan-2018",
-                "Casual Leave", "Vacation", "1-Jan-2018",
-                "", "5", "", "Geetha", "1-Jan-2018", Constant.LeaveApproved));
+                Constant.CasualLeave, "Vacation", "1-Jan-2018",
+                "", "5", "", "Geetha", "1-Jan-2018", Constant.LeaveApproved,
+                "9:00 AM", "7:00 PM"));
+
+        leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "4-Jan-2018",
+                Constant.SickLeave, "Headache", "",
+                "", "4", "", "Radha", "1-Jan-2018", Constant.LeaveOnHold,
+                "9:00 AM", "7:00 PM"));
+
+        leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "3-Jan-2018",
+                Constant.EarnedLeave, "My Brothers Marriage", "1-Jan-2018",
+                "", "2.5", "", "Sudha", "1-Jan-2018", Constant.LeaveApproved,
+                "1:00 PM", "7:00 PM"));
+
+        leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "2-Jan-2018",
+                Constant.SickLeave, "Fever", "1-Jan-2018",
+                "", "2", "", "Pradha", "1-Jan-2018", Constant.LeaveRejected,
+                "9:00 AM", "7:00 PM"));
 
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "5-Jan-2018",
-                "Sick Leave", "Headache", "1-Jan-2018",
-                "", "4", "", "Geetha", "1-Jan-2018", Constant.LeaveOnHold));
-
-        leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "5-Jan-2018",
-                "Earned Leave", "My Brothers Marriage", "1-Jan-2018",
-                "", "3", "", "Geetha", "1-Jan-2018", Constant.LeaveApproved));
-
-        leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "5-Jan-2018",
-                "Sick Leave", "Fever", "1-Jan-2018",
-                "", "2", "", "Geetha", "1-Jan-2018", Constant.LeaveRejected));
-
-        leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "5-Jan-2018",
-                "Casual Leave", "Long tour", "1-Jan-2018",
-                "", "1", "", "Geetha", "1-Jan-2018", Constant.LeaveOnHold));
+                Constant.CasualLeave, "Long tour", "",
+                "", "4.5", "", "Jatha", "1-Jan-2018", Constant.LeaveOnHold,
+                "9:00 AM", "1:00 PM"));
 
 
+        //        String fromDate, String toDate, String leaveType, String remarks, String empCode, String noOfDays
         /*leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", "Casual Leave", "Village Festival", "", "3"));
         leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", "Sick Leave", "Fever", "", "4"));
         leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", "Earned Leave", "My Marriage", "", "10"));
@@ -242,7 +248,12 @@ public class ApproveLeave extends BaseActivity<ApproveLeavePresenter> implements
     }
 
     @Override
-    public void onItemClickToDelete(View view, int position) {
+    public void onItemClickToAccept(View view, int position) {
+
+    }
+
+    @Override
+    public void onItemClickToReject(View view, int position) {
 
     }
 }

@@ -25,9 +25,9 @@ public class Constant {
     public static final String LeaveOnHold = "On Hold";
 
 
-    public static final String SickLeave = "SickLeave";
-    public static final String CasualLeave = "CasualLeave";
-    public static final String EarnedLeave = "EarnedLeave";
+    public static final String SickLeave = "Sick Leave";
+    public static final String CasualLeave = "Casual Leave";
+    public static final String EarnedLeave = "Earned Leave";
 
     public static int calenderType = 0;
     //endregion
