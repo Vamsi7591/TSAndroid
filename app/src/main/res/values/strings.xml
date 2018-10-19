@@ -31,6 +31,7 @@
     <string name="hint_em_code">Employee Code</string>
     <string name="hint_password">Password</string>
     <string name="hint_remarks">Enter you remarks here…</string>
+    <string name="hint_reason">Enter you reason here…</string>
 
     <!--Authentication Validation errors-->
     <string name="emp_code_required">"Employee code is required"</string>
@@ -96,6 +97,7 @@
 
     <!--Labels-->
     <string name="lb_leave_type">Leave Type</string>
+    <string name="lb_duty_type">On Duty Type</string>
     <string name="lb_from_date">From Date</string>
     <string name="lb_to_date">To Date</string>
     <string name="lb_remarks">Remarks</string>
@@ -134,6 +136,7 @@
     <string name="lb_rejected">Rejected</string>
     <string name="lb_approved">Approved</string>
     <string name="lb_request_leave">Request Leave</string>
+    <string name="lb_request_on_duty">Request On Duty</string>
     <string name="lb_entitlement">Entitlement</string>
     <string name="lb_sick">Sick</string>
     <string name="lb_sick_leave">Sick Leave</string>
@@ -144,12 +147,18 @@
     <string name="lb_leave_calender_view">Leave Calender View</string>
     <string name="lb_holiday_calender">Holiday Calender</string>
     <string name="lb_search_hint">Search by Project Name</string>
+    <string name="lb_search_hint_on_duty">Search by On Duty</string>
     <string name="lb_used_leaves">Used Leaves</string>
+    <string name="lb_used_duties">Used Duties</string>
     <string name="lb_available_leaves">Available Leaves</string>
+    <string name="lb_available_duties">Available Duties</string>
     <string name="lb_approve_leave">Approve Leave</string>
     <string name="lb_requests">Requests</string>
     <string name="lb_applied_on">Applied On</string>
     <string name="lb_approve">Approve</string>
     <string name="lb_reject">Reject</string>
+    <string name="lb_space5" />
+    <string name="lb_my_on_duty">My On Duty</string>
+    <string name="lb_reason">Reason</string>
 
 </resources>

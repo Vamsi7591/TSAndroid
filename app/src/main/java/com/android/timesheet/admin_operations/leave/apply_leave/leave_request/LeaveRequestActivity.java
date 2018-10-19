@@ -103,7 +103,7 @@ public class LeaveRequestActivity extends BaseActivity<LeaveRequestPresenter> im
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            progressBarEntitlement.setProgress(70, true);
+            progressBarEntitlement.setProgress(70, false);
         } else {
             progressBarEntitlement.setProgress(70);
         }

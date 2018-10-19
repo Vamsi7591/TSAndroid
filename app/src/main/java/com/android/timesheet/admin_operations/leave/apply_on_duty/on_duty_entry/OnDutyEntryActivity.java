@@ -1,4 +1,4 @@
-package com.android.timesheet.admin_operations.leave.apply_leave.leave_entry;
+package com.android.timesheet.admin_operations.leave.apply_on_duty.on_duty_entry;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -51,7 +51,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implements BaseViewBehavior<Object>, AdapterView.OnItemSelectedListener {
+public class OnDutyEntryActivity extends BaseActivity<OnDutyEntryPresenter> implements BaseViewBehavior<Object>, AdapterView.OnItemSelectedListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -154,7 +154,7 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
 
     @Override
     protected String title() {
-        return "Leave Entry";
+        return "On Duty Entry";
     }
 
     @Override
@@ -163,8 +163,8 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
     }
 
     @Override
-    protected LeaveEntryPresenter providePresenter() {
-        return new LeaveEntryPresenter(this, this);
+    protected OnDutyEntryPresenter providePresenter() {
+        return new OnDutyEntryPresenter(this, this);
     }
 
     String TAG = "OnDutyEntryActivity";
@@ -209,12 +209,12 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
                 R.anim.text_anim_lr);
 
 
-        leaveTypesForSpinner.add(Constant.CasualLeave);
-        leaveTypesForSpinner.add(Constant.EarnedLeave);
-        leaveTypesForSpinner.add(Constant.SickLeave);
+        leaveTypesForSpinner.add(Constant.WorkFromClientSide);
+        leaveTypesForSpinner.add(Constant.WorkFromVendorSide);
+        leaveTypesForSpinner.add(Constant.WorkOnDuty);
 
 
-        ProjectsSpinnerAdapter projectsSpinnerAdapter = new ProjectsSpinnerAdapter(LeaveEntryActivity.this, leaveTypesForSpinner);
+        ProjectsSpinnerAdapter projectsSpinnerAdapter = new ProjectsSpinnerAdapter(OnDutyEntryActivity.this, leaveTypesForSpinner);
         leaveTypeSP.setAdapter(projectsSpinnerAdapter);
 
 
@@ -222,7 +222,7 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
         if (intentLeaveEntry != null && intentLeaveEntry.getEmployeeName() != null) {
             Log.d(TAG, "TS getEmployeeName: " + intentLeaveEntry.getEmployeeName());
 
-            toolbarTitleTv.setText("Leave Details");
+            toolbarTitleTv.setText("On Duty Details");
             leaveAction(intentLeaveEntry);
 
         } else if (intentLeaveEntry != null) {
@@ -420,7 +420,7 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
         int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
         int minute = mcurrentTime.get(Calendar.MINUTE);
         TimePickerDialog mTimePicker;
-        mTimePicker = new TimePickerDialog(LeaveEntryActivity.this, new TimePickerDialog.OnTimeSetListener() {
+        mTimePicker = new TimePickerDialog(OnDutyEntryActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 showTime(selectedHour, selectedMinute, true);
@@ -444,7 +444,7 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
         int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
         int minute = mcurrentTime.get(Calendar.MINUTE);
         TimePickerDialog mTimePicker;
-        mTimePicker = new TimePickerDialog(LeaveEntryActivity.this, new TimePickerDialog.OnTimeSetListener() {
+        mTimePicker = new TimePickerDialog(OnDutyEntryActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 showTime(selectedHour, selectedMinute, false);

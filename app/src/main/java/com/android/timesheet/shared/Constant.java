@@ -20,14 +20,17 @@ public class Constant {
 
     public static final String DataFormat = "yyyy/MM/dd";
 
-    public static final String LeaveApproved = "Approved";
-    public static final String LeaveRejected = "Rejected";
-    public static final String LeaveOnHold = "On Hold";
-
+    public static final String Approved = "Approved";
+    public static final String Rejected = "Rejected";
+    public static final String OnHold = "On Hold";
 
     public static final String SickLeave = "Sick Leave";
     public static final String CasualLeave = "Casual Leave";
     public static final String EarnedLeave = "Earned Leave";
+
+    public static final String WorkFromClientSide = "Work From Client Side";
+    public static final String WorkFromVendorSide = "Work From Vendor Side";
+    public static final String WorkOnDuty = "On Duty";
 
     public static int calenderType = 0;
     //endregion

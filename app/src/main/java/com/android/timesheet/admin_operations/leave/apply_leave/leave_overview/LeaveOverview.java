@@ -87,70 +87,70 @@ public class LeaveOverview extends BaseActivity<LeaveOverviewPresenter> implemen
 
         leaveEntryList = new ArrayList<>();
 //        String fromDate, String toDate, String leaveType, String remarks, String empCode, String noOfDays
-       /* leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", Constant.CasualLeave, "My Brothers Marriage", "", "5", Constant.LeaveOnHold));
-        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", Constant.CasualLeave, "Village Festival", "", "3", Constant.LeaveRejected));
-        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", Constant.SickLeave, "Fever", "", "4", Constant.LeaveApproved));
-        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", Constant.EarnedLeave, "My Marriage", "", "10", Constant.LeaveOnHold));
+       /* leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", Constant.CasualLeave, "My Brothers Marriage", "", "5", Constant.OnHold));
+        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", Constant.CasualLeave, "Village Festival", "", "3", Constant.Rejected));
+        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", Constant.SickLeave, "Fever", "", "4", Constant.Approved));
+        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", Constant.EarnedLeave, "My Marriage", "", "10", Constant.OnHold));
 
-        leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", Constant.CasualLeave, "My Brothers Marriage", "", "5", Constant.LeaveApproved));
-        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", Constant.EarnedLeave, "Village Festival", "", "3", Constant.LeaveRejected));
-        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", Constant.SickLeave, "Fever", "", "4", Constant.LeaveOnHold));
-        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", Constant.CasualLeave, "My Marriage", "", "10", Constant.LeaveApproved));
+        leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", Constant.CasualLeave, "My Brothers Marriage", "", "5", Constant.Approved));
+        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", Constant.EarnedLeave, "Village Festival", "", "3", Constant.Rejected));
+        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", Constant.SickLeave, "Fever", "", "4", Constant.OnHold));
+        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", Constant.CasualLeave, "My Marriage", "", "10", Constant.Approved));
 
-        leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", Constant.EarnedLeave, "My Brothers Marriage", "", "5", Constant.LeaveOnHold));
-        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", Constant.CasualLeave, "Village Festival", "", "3", Constant.LeaveApproved));
-        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", Constant.SickLeave, "Fever", "", "4", Constant.LeaveOnHold));
-        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", Constant.EarnedLeave, "My Marriage", "", "10", Constant.LeaveRejected));
+        leaveEntryList.add(new LeaveEntry("1-Jan-2018", "5-Jan-2018", Constant.EarnedLeave, "My Brothers Marriage", "", "5", Constant.OnHold));
+        leaveEntryList.add(new LeaveEntry("4-Feb-2018", "6-Feb-2018", Constant.CasualLeave, "Village Festival", "", "3", Constant.Approved));
+        leaveEntryList.add(new LeaveEntry("17-Mar-2018", "20-Mar-2018", Constant.SickLeave, "Fever", "", "4", Constant.OnHold));
+        leaveEntryList.add(new LeaveEntry("21-May-2018", "1-June-2018", Constant.EarnedLeave, "My Marriage", "", "10", Constant.Rejected));
 */
 
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "5-Jan-2018",
                 Constant.CasualLeave, "Vacation", "1-Jan-2018",
-                "", "5", "", "Geetha", "1-Jan-2018", Constant.LeaveApproved,
+                "", "5", "", "Geetha", "1-Jan-2018", Constant.Approved,
                 "9:00 AM", "7:00 PM"));
 
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "4-Jan-2018",
                 Constant.SickLeave, "Headache", "",
-                "", "4", "", "Radha", "1-Jan-2018", Constant.LeaveOnHold,
+                "", "4", "", "Radha", "1-Jan-2018", Constant.OnHold,
                 "9:00 AM", "7:00 PM"));
 
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "3-Jan-2018",
                 Constant.EarnedLeave, "My Brothers Marriage", "1-Jan-2018",
-                "", "2.5", "", "Sudha", "1-Jan-2018", Constant.LeaveApproved,
+                "", "2.5", "", "Sudha", "1-Jan-2018", Constant.Approved,
                 "1:00 PM", "7:00 PM"));
 
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "2-Jan-2018",
                 Constant.SickLeave, "Fever", "1-Jan-2018",
-                "", "2", "", "Pradha", "1-Jan-2018", Constant.LeaveRejected,
+                "", "2", "", "Pradha", "1-Jan-2018", Constant.Rejected,
                 "9:00 AM", "7:00 PM"));
 
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "5-Jan-2018",
                 Constant.CasualLeave, "Long tour", "",
-                "", "4.5", "", "Jatha", "1-Jan-2018", Constant.LeaveOnHold,
+                "", "4.5", "", "Jatha", "1-Jan-2018", Constant.OnHold,
                 "9:00 AM", "1:00 PM"));
 
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "5-Jan-2018",
                 Constant.CasualLeave, "Vacation", "1-Jan-2018",
-                "", "5", "", "Geetha", "1-Jan-2018", Constant.LeaveApproved,
+                "", "5", "", "Geetha", "1-Jan-2018", Constant.Approved,
                 "9:00 AM", "7:00 PM"));
 
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "5-Jan-2018",
                 Constant.CasualLeave, "Long tour", "",
-                "", "4.5", "", "Jatha", "1-Jan-2018", Constant.LeaveOnHold,
+                "", "4.5", "", "Jatha", "1-Jan-2018", Constant.OnHold,
                 "9:00 AM", "1:00 PM"));
 
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "4-Jan-2018",
                 Constant.SickLeave, "Headache", "",
-                "", "4", "", "Radha", "1-Jan-2018", Constant.LeaveOnHold,
+                "", "4", "", "Radha", "1-Jan-2018", Constant.OnHold,
                 "9:00 AM", "7:00 PM"));
 
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "3-Jan-2018",
                 Constant.EarnedLeave, "My Brothers Marriage", "1-Jan-2018",
-                "", "2.5", "", "Sudha", "1-Jan-2018", Constant.LeaveApproved,
+                "", "2.5", "", "Sudha", "1-Jan-2018", Constant.Approved,
                 "1:00 PM", "7:00 PM"));
 
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "2-Jan-2018",
                 Constant.SickLeave, "Fever", "1-Jan-2018",
-                "", "2", "", "Pradha", "1-Jan-2018", Constant.LeaveRejected,
+                "", "2", "", "Pradha", "1-Jan-2018", Constant.Rejected,
                 "9:00 AM", "7:00 PM"));
 
 

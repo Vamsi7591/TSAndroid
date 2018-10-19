@@ -3,6 +3,7 @@ package com.android.timesheet.common_operations.login;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -12,9 +13,13 @@ import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.ActionMode;
+import android.view.DisplayCutout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowInsets;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
@@ -31,9 +36,12 @@ import com.android.timesheet.shared.util.InternetUtils;
 import com.android.timesheet.shared.widget.CustomFontTextView;
 
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static android.os.Build.VERSION.SDK_INT;
 
 /**
  * Created by vamsikonanki on 8/18/2017.
@@ -103,7 +111,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
               ButterKnife.bind(this);
            }
          */
-
+        if (SDK_INT >= Build.VERSION_CODES.P) {
+            DisplayCutout displayCutout = getWindow().getDecorView().getRootWindowInsets().getDisplayCutout();
+        }
 
         try {
             editTextPassword.setOnClickListener(new View.OnClickListener() {
@@ -143,6 +153,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             e.printStackTrace();
         }
     }
+
 
     @Override
     protected void onResume() {

@@ -10,21 +10,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.android.common.AppConfig;
 import com.android.timesheet.R;
 import com.android.timesheet.admin_operations.leave.apply_leave.leave_entry.LeaveEntryActivity;
-import com.android.timesheet.admin_operations.leave.apply_leave.leave_overview.LeaveOverviewAdapter;
 import com.android.timesheet.shared.Constant;
 import com.android.timesheet.shared.activities.BaseActivity;
-import com.android.timesheet.shared.fragments.BaseFragment;
-import com.android.timesheet.shared.interfaces.OnItemClickListener;
 import com.android.timesheet.shared.interfaces.OnItemLeaveActionsClickListener;
 import com.android.timesheet.shared.models.LeaveEntry;
 import com.android.timesheet.shared.util.InternetUtils;
 import com.android.timesheet.shared.views.BaseViewBehavior;
-import com.android.timesheet.shared.widget.CustomFontTextView;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -119,27 +114,27 @@ public class ApproveLeave extends BaseActivity<ApproveLeavePresenter> implements
              String leaveStatus*/
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "5-Jan-2018",
                 Constant.CasualLeave, "Vacation", "1-Jan-2018",
-                "", "5", "", "Geetha", "1-Jan-2018", Constant.LeaveApproved,
+                "", "5", "", "Geetha", "1-Jan-2018", Constant.Approved,
                 "9:00 AM", "7:00 PM"));
 
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "4-Jan-2018",
                 Constant.SickLeave, "Headache", "",
-                "", "4", "", "Radha", "1-Jan-2018", Constant.LeaveOnHold,
+                "", "4", "", "Radha", "1-Jan-2018", Constant.OnHold,
                 "9:00 AM", "7:00 PM"));
 
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "3-Jan-2018",
                 Constant.EarnedLeave, "My Brothers Marriage", "1-Jan-2018",
-                "", "2.5", "", "Sudha", "1-Jan-2018", Constant.LeaveApproved,
+                "", "2.5", "", "Sudha", "1-Jan-2018", Constant.Approved,
                 "1:00 PM", "7:00 PM"));
 
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "2-Jan-2018",
                 Constant.SickLeave, "Fever", "1-Jan-2018",
-                "", "2", "", "Pradha", "1-Jan-2018", Constant.LeaveRejected,
+                "", "2", "", "Pradha", "1-Jan-2018", Constant.Rejected,
                 "9:00 AM", "7:00 PM"));
 
         leaveEntryList.add(new LeaveEntry(1313, "1-Jan-2018", "5-Jan-2018",
                 Constant.CasualLeave, "Long tour", "",
-                "", "4.5", "", "Jatha", "1-Jan-2018", Constant.LeaveOnHold,
+                "", "4.5", "", "Jatha", "1-Jan-2018", Constant.OnHold,
                 "9:00 AM", "1:00 PM"));
 
 

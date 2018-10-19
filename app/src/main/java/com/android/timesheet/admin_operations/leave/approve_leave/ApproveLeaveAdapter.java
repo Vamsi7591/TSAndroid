@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 
 import com.android.timesheet.R;
 import com.android.timesheet.shared.Constant;
-import com.android.timesheet.shared.interfaces.OnItemClickListener;
 import com.android.timesheet.shared.interfaces.OnItemLeaveActionsClickListener;
 import com.android.timesheet.shared.models.LeaveEntry;
 import com.android.timesheet.shared.widget.CustomFontTextView;
@@ -155,10 +154,10 @@ public class ApproveLeaveAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
             daysTV.setText(s);
 
-            if (entry.getLeaveStatus().matches(Constant.LeaveApproved)) {
+            if (entry.getLeaveStatus().matches(Constant.Approved)) {
                 noOfDaysTV.setBackground(context.getResources().getDrawable(R.drawable.circle_green));
                 noOfDaysTV.setTextColor(context.getResources().getColor(R.color.white));
-            } else if (entry.getLeaveStatus().matches(Constant.LeaveRejected)) {
+            } else if (entry.getLeaveStatus().matches(Constant.Rejected)) {
                 noOfDaysTV.setBackground(context.getResources().getDrawable(R.drawable.circle_red));
                 noOfDaysTV.setTextColor(context.getResources().getColor(R.color.white));
             } else {

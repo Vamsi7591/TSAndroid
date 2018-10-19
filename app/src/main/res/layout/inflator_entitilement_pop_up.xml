@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:padding="@dimen/padding_20"
     android:background="@drawable/cornors"
     android:orientation="vertical"
+    android:padding="@dimen/padding_10"
     android:visibility="visible">
 
     <com.android.timesheet.shared.widget.CustomFontTextView
@@ -31,19 +31,19 @@
         app:font="@string/aleo_regular" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_line"
         android:orientation="horizontal">
 
         <com.android.timesheet.shared.widget.CustomFontTextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
             android:drawableStart="@drawable/ic_sick"
             android:drawableLeft="@drawable/ic_sick"
             android:gravity="start|center"
+            android:minWidth="100dp"
             android:text="@string/lb_sick"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
@@ -51,10 +51,10 @@
             app:font="@string/aleo_regular" />
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:layout_gravity="center">
 
             <com.android.timesheet.shared.widget.CustomFontTextView
                 android:id="@+id/usedLeaves"
@@ -67,7 +67,7 @@
                 android:text="6"
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/padding_10"
+                android:textAppearance="@style/AppTheme.Text.TextView.Small"
                 android:visibility="visible"
                 app:font="@string/aleo_regular" />
 
@@ -82,7 +82,7 @@
                 android:text="Total: 18"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/black"
-                android:textSize="@dimen/padding_10"
+                android:textAppearance="@style/AppTheme.Text.TextView.Small"
                 android:visibility="visible"
                 app:font="@string/aleo_regular" />
 
@@ -111,13 +111,13 @@
         android:orientation="horizontal">
 
         <com.android.timesheet.shared.widget.CustomFontTextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
             android:drawableStart="@drawable/ic_casual"
             android:drawableLeft="@drawable/ic_casual"
             android:gravity="center"
+            android:minWidth="100dp"
             android:text="@string/lb_casual"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
@@ -128,8 +128,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1">
+            android:layout_gravity="center">
 
             <com.android.timesheet.shared.widget.CustomFontTextView
                 android:id="@+id/usedCasualLeaves"
@@ -142,7 +141,7 @@
                 android:text="9"
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/padding_10"
+                android:textAppearance="@style/AppTheme.Text.TextView.Small"
                 android:visibility="visible"
                 app:font="@string/aleo_regular" />
 
@@ -157,7 +156,7 @@
                 android:text="Total: 12"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/black"
-                android:textSize="@dimen/padding_10"
+                android:textAppearance="@style/AppTheme.Text.TextView.Small"
                 android:visibility="visible"
                 app:font="@string/aleo_regular" />
 
@@ -186,13 +185,13 @@
         android:orientation="horizontal">
 
         <com.android.timesheet.shared.widget.CustomFontTextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
             android:drawableStart="@drawable/ic_earned"
             android:drawableLeft="@drawable/ic_earned"
             android:gravity="center"
+            android:minWidth="100dp"
             android:text="@string/lb_earned"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
@@ -203,8 +202,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1">
+            android:layout_gravity="center">
 
             <com.android.timesheet.shared.widget.CustomFontTextView
                 android:id="@+id/usedEarnedLeaves"
@@ -217,7 +215,7 @@
                 android:text="8"
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/padding_10"
+                android:textAppearance="@style/AppTheme.Text.TextView.Small"
                 android:visibility="visible"
                 app:font="@string/aleo_regular" />
 
@@ -232,7 +230,7 @@
                 android:text="Total: 14"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/black"
-                android:textSize="@dimen/padding_10"
+                android:textAppearance="@style/AppTheme.Text.TextView.Small"
                 android:visibility="visible"
                 app:font="@string/aleo_regular" />
 

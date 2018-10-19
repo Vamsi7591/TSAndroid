@@ -3,6 +3,7 @@ package com.android.timesheet.common_operations.splash;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 
 import com.android.timesheet.R;
 import com.android.timesheet.shared.activities.BaseActivity;
@@ -10,21 +11,23 @@ import com.android.timesheet.shared.models.User;
 import com.android.timesheet.shared.views.BaseViewBehavior;
 import com.google.firebase.crash.FirebaseCrash;
 
+import static android.view.WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER;
+
 public class SplashActivity extends BaseActivity<SplashPresenter> implements BaseViewBehavior<User> {
 
     public String TAG = "SplashActivity";
 
- /*   .this.getLocalClassName();*/
+    /*   .this.getLocalClassName();*/
 
     /*
-    * It's VIPER design pattern
-    * -------------------------
-    * V --> View
-    * I --> Interactions
-    * P --> Presenter
-    * E --> Entity Model
-    * R --> Router
-    * */
+     * It's VIPER design pattern
+     * -------------------------
+     * V --> View
+     * I --> Interactions
+     * P --> Presenter
+     * E --> Entity Model
+     * R --> Router
+     * */
 
     @Override
     protected int layoutRestID() {
@@ -44,9 +47,11 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Bas
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-/*       setContentView(R.layout.activity_splash);*/
+        /*       setContentView(R.layout.activity_splash);*/
         Log.i(TAG, "onCreate");
 
+
+        //View.setSystemUiVisibility(LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER);
 
         FirebaseCrash.setCrashCollectionEnabled(false);
 

@@ -18,6 +18,15 @@ import java.util.HashMap;
 @Parcel
 public class LeaveEntry implements Serializable {
 
+    /*
+    * This Model is used for the following Activities
+    * ----------------
+    * Leave Entry
+    * Approve Leave
+    * Apply On Duty
+    * Approve On Duty*/
+
+
     @Nullable
     @SerializedName("leaveEntryId")
     public long leaveEntryId;
@@ -32,6 +41,8 @@ public class LeaveEntry implements Serializable {
     @SerializedName("leaveType")
     public String leaveType;
 
+
+    /*Reason*/
     @SerializedName("remarks")
     public String remarks;
 
@@ -40,6 +51,9 @@ public class LeaveEntry implements Serializable {
 
     @SerializedName("approvedRemarks")
     public String approvedRemarks;
+
+    @SerializedName("approvedBy")
+    public String approvedBy;
 
     @Nullable
     @SerializedName("empCode")
@@ -77,6 +91,7 @@ public class LeaveEntry implements Serializable {
     @SerializedName("endTime")
     public String endTime;
 
+    /*Apply Leave Entry*/
     public LeaveEntry(String fromDate, String toDate, String leaveType, String remarks, String empCode, String noOfDays) {
         this.fromDate = fromDate;
         this.toDate = toDate;
@@ -86,6 +101,7 @@ public class LeaveEntry implements Serializable {
         this.noOfDays = noOfDays;
     }
 
+    /*Apply Leave Entry & Apply On Duty*/
     public LeaveEntry(String fromDate, String toDate, String leaveType, String remarks, String empCode, String noOfDays, String leaveStatus) {
         this.fromDate = fromDate;
         this.toDate = toDate;
@@ -96,6 +112,7 @@ public class LeaveEntry implements Serializable {
         this.leaveStatus = leaveStatus;
     }
 
+    /*Approve Leave Details*/
     public LeaveEntry(@Nullable long leaveEntryId, @Nullable String fromDate, String toDate, String leaveType, String remarks, String approvedDate, String approvedRemarks, @Nullable String noOfDays, @Nullable String employeeURL, @Nullable String employeeName, @Nullable String appliedDate, @Nullable String leaveStatus, @Nullable String startTime, @Nullable String endTime) {
         this.leaveEntryId = leaveEntryId;
         this.fromDate = fromDate;
@@ -112,6 +129,17 @@ public class LeaveEntry implements Serializable {
         this.startTime = startTime;
         this.endTime = endTime;
     }
+
+    /*Apply On Duty*/
+    /*public LeaveEntry(@Nullable String fromDate, String toDate, String leaveType, String remarks, @Nullable String appliedDate, @Nullable String noOfDays) {
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.leaveType = leaveType;
+        this.remarks = remarks;
+        this.appliedDate = appliedDate;
+        this.leaveStatus = leaveStatus;
+        this.noOfDays = noOfDays;
+    }*/
 
     public LeaveEntry() {
     }

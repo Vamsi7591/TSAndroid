@@ -31,7 +31,7 @@
         <activity
             android:name=".common_operations.splash.SplashActivity"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/TimeSheet.AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -129,6 +129,9 @@
             android:theme="@style/TimeSheet.AppTheme" />
         <activity
             android:name=".admin_operations.leave.approve_leave.ApproveLeave"
+            android:theme="@style/TimeSheet.AppTheme" />
+        <activity
+            android:name=".admin_operations.leave.apply_on_duty.on_duty_entry.OnDutyEntryActivity"
             android:theme="@style/TimeSheet.AppTheme" />
 
         <service

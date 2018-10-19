@@ -39,7 +39,7 @@
                         android:gravity="start|center"
                         android:paddingStart="@dimen/padding_0"
                         android:paddingLeft="@dimen/padding_0"
-                        android:text="@string/lb_request_leave"
+                        android:text="@string/lb_request_on_duty"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/tv_font_size_22"
@@ -76,7 +76,7 @@
                     android:layout_marginLeft="@dimen/margin_5"
                     android:layout_weight="1"
                     android:gravity="start|center"
-                    android:text="@string/lb_used_leaves"
+                    android:text="@string/lb_used_duties"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
                     android:textColor="@color/white" />
 
@@ -108,7 +108,7 @@
                     android:layout_marginLeft="@dimen/margin_5"
                     android:layout_weight="1"
                     android:gravity="start|center"
-                    android:text="@string/lb_available_leaves"
+                    android:text="@string/lb_available_duties"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
                     android:textColor="@color/white" />
 
@@ -272,7 +272,7 @@
                         android:layout_height="match_parent"
                         android:gravity="start|center"
                         android:minWidth="100dp"
-                        android:text="@string/lb_leave_type"
+                        android:text="@string/lb_duty_type"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/colorGrayDark" />
 
@@ -286,10 +286,12 @@
                         android:gravity="end|center"
                         android:popupBackground="@color/white"
                         android:spinnerMode="dropdown"
+                        android:tooltipText="Select"
                         android:textAlignment="viewEnd"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/black"
-                        tools:ignore="RtlCompat" />
+                        tools:ignore="RtlCompat"
+                        tools:targetApi="o" />
 
                 </LinearLayout>
 
@@ -339,6 +341,7 @@
                         android:drawableEnd="@drawable/ic_time_start"
                         android:drawableRight="@drawable/ic_time_start"
                         android:gravity="end|center"
+                        android:visibility="gone"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/black" />
 
@@ -392,6 +395,7 @@
                         android:drawableEnd="@drawable/ic_time_pause_b"
                         android:drawableRight="@drawable/ic_time_pause_b"
                         android:gravity="end|center"
+                        android:visibility="gone"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/black" />
 
@@ -446,7 +450,7 @@
                         android:gravity="end|center"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/black"
-                        android:visibility="invisible" />
+                        android:visibility="gone" />
 
 
                 </LinearLayout>
@@ -464,7 +468,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="start|center"
-                        android:text="@string/lb_remarks"
+                        android:text="@string/lb_reason"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                         android:textColor="@color/colorGrayDark" />
 

@@ -5,6 +5,7 @@
     android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
@@ -17,7 +18,7 @@
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/white"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
@@ -26,6 +27,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
+                app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
                 <RelativeLayout
@@ -33,6 +35,7 @@
                     android:layout_height="?android:attr/actionBarSize"
                     android:layout_marginEnd="@dimen/layout_action_margin_50"
                     android:layout_marginRight="@dimen/layout_action_margin_50"
+                    android:visibility="gone"
                     app:layout_anchor="@+id/toolbar">
 
                     <com.android.timesheet.shared.widget.CustomFontTextView
@@ -60,23 +63,96 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <GridView
-        android:id="@+id/gridView"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/app_bar"
-        android:layout_gravity="center"
-        android:background="@color/white"
-        android:columnWidth="@dimen/logo_height"
-        android:fitsSystemWindows="true"
-        android:gravity="center"
-        android:horizontalSpacing="0dp"
-        android:listSelector="@color/colorPrimary"
-        android:numColumns="2"
-        android:stretchMode="spacingWidthUniform"
-        android:verticalSpacing="13dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:listitem="@layout/leave_grid_inflator" />
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/remaindersCV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:nestedScrollingEnabled="true"
+                app:cardCornerRadius="@dimen/margin_10"
+                app:layout_scrollFlags="scroll|enterAlways"
+                tools:targetApi="lollipop">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_5"
+                    android:orientation="vertical">
+
+                    <com.android.timesheet.shared.widget.CustomFontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bottom_line_grey"
+                        android:drawableStart="@drawable/icon_clock"
+                        android:drawableLeft="@drawable/icon_clock"
+                        android:paddingStart="@dimen/margin_10"
+                        android:paddingLeft="@dimen/margin_10"
+                        android:text="    Your have 2 remainders"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/tv_font_size_16"
+                        android:textStyle="bold"
+                        android:visibility="visible"
+                        app:font="@string/aleo_regular" />
+
+                    <com.android.timesheet.shared.widget.CustomFontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bottom_line_grey"
+                        android:drawableStart="@drawable/circle_red"
+                        android:drawableLeft="@drawable/circle_red"
+                        android:paddingStart="@dimen/margin_10"
+                        android:paddingLeft="@dimen/margin_10"
+                        android:text="     Your have 2 requests"
+                        android:textColor="@color/colorLightDark"
+                        android:textSize="@dimen/tv_font_size_16"
+                        android:visibility="visible"
+                        app:font="@string/aleo_regular" />
+
+                    <com.android.timesheet.shared.widget.CustomFontTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bottom_line_grey"
+                        android:drawableStart="@drawable/blue_circle"
+                        android:drawableLeft="@drawable/blue_circle"
+                        android:paddingStart="@dimen/margin_10"
+                        android:paddingLeft="@dimen/margin_10"
+                        android:text="     Your requests are pending"
+                        android:textColor="@color/colorLightDark"
+                        android:textSize="@dimen/tv_font_size_16"
+                        android:visibility="visible"
+                        app:font="@string/aleo_regular" />
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/gridView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/remaindersCV"
+                android:layout_margin="10dp"
+                android:listSelector="@color/colorPrimary"
+                android:nestedScrollingEnabled="true"
+                android:scrollbars="none"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:ignore="PrivateResource"
+                tools:listitem="@layout/leave_grid_inflator"
+                tools:targetApi="lollipop" />
+
+        </RelativeLayout>
+    </ScrollView>
 </android.support.design.widget.CoordinatorLayout>
-

@@ -80,8 +80,9 @@
     <!-- STEPPER Color Resource END-->
 
     <color name="chip">@color/colorPrimaryTransparent</color>
-    <color name="dark_grey">@color/colorPrimaryTransparent</color>
-    <color name="light_grey">#bbbbbb</color>
+    <color name="dark_grey">#bbbbbb</color>
+    <color name="light_grey">@color/colorPrimaryTransparent</color>
+    <color name="bg">@color/colorPrimaryTransparent</color>
 
     <color name="selected_color">#ffffaa</color>
     <color name="selected_font_color">#999933</color>

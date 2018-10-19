@@ -1,8 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/coordinator_layout"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    tools:context=".admin_operations.leave.apply_on_duty.ApplyOnDuty">
 
-</android.support.design.widget.CoordinatorLayout>
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/margin_15"
+                    android:layout_marginEnd="@dimen/margin_15">
+
+                    <com.android.timesheet.shared.widget.CustomFontTextView
+                        android:id="@+id/toolbarTitleTv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/margin_40"
+                        android:layout_marginRight="@dimen/margin_40"
+                        android:gravity="center"
+                        android:text="@string/lb_my_on_duty"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/tv_font_size_22"
+                        android:visibility="visible"
+                        app:font="@string/aleo_regular" />
+
+                    <ImageView
+                        android:id="@+id/addEntry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/add_gray_icon" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize">
+
+        <SearchView
+            android:id="@+id/my_leaves_SV"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/header_height"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/bg_border_green"
+            android:focusable="false"
+            android:iconifiedByDefault="false"
+            android:queryHint="@string/lb_search_hint_on_duty" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/header_height"
+            android:background="@color/white"
+            android:visibility="visible"
+            tools:listitem="@layout/content_leave_item" />
+
+        <!--empty view-->
+        <LinearLayout
+            android:id="@+id/noDataFound"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/no_invitation_state_ai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/rate_full" />
+
+            <TextView
+                android:id="@+id/body_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="No On-Duties taken"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textColor="@color/cardview_dark_background" />
+
+            <TextView
+                android:id="@+id/body_2"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_20"
+                android:layout_marginBottom="@dimen/margin_20"
+                android:gravity="center"
+                android:lines="3"
+                android:text="Change the month and try again"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Menu"
+                android:textColor="@color/cardview_dark_background"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <com.android.timesheet.shared.widget.CircularProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:circleColor="?attr/colorPrimary"
+            app:cp_circleWidth="5"
+            tools:ignore="RtlHardcoded" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/applyLeave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/margin_16"
+            android:elevation="@dimen/margin_16"
+            android:scaleType="center"
+            android:tooltipText="@string/tt_apply_leave"
+            android:visibility="gone"
+            app:fabSize="normal"
+            app:srcCompat="@drawable/ic_add_black_24dp"
+            tools:ignore="PrivateResource"
+            tools:targetApi="o" />
+
+    </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>
