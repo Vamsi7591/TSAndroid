@@ -466,7 +466,7 @@ public class OnDutyEntryActivity extends BaseActivity<OnDutyEntryPresenter> impl
 
         /*Validation required*/
         try {
-            HashMap<ValidationError, Integer> errors = intentLeaveEntry.validateLeaveEntry();
+            HashMap<ValidationError, Integer> errors = intentLeaveEntry.validateEntryNew();
 
             if (errors != null && errors.size() > 0) {
                 /*Display errors*/
@@ -732,7 +732,7 @@ public class OnDutyEntryActivity extends BaseActivity<OnDutyEntryPresenter> impl
                 showError(error_from_date, errorStr);
             } else if (error.equals(ValidationError.TO_DATE)) {
                 showError(error_to_date, errorStr);
-            } else if (error.equals(ValidationError.REMARKS)) {
+            } else if (error.equals(ValidationError.REASON)) {
                 showError(error_remarks, errorStr);
             }
         }

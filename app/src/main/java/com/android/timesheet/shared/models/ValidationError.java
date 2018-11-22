@@ -22,5 +22,6 @@ public enum ValidationError {
     LEAVE_TYPE,
     FROM_DATE,
     TO_DATE,
-    REMARKS
+    REMARKS,
+    REASON
 }

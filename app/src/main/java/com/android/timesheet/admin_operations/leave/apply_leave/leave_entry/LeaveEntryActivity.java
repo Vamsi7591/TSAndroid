@@ -466,7 +466,7 @@ public class LeaveEntryActivity extends BaseActivity<LeaveEntryPresenter> implem
 
         /*Validation required*/
         try {
-            HashMap<ValidationError, Integer> errors = intentLeaveEntry.validateLeaveEntry();
+            HashMap<ValidationError, Integer> errors = intentLeaveEntry.validateEntry();
 
             if (errors != null && errors.size() > 0) {
                 /*Display errors*/

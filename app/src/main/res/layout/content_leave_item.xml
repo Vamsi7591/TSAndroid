@@ -79,7 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_5"
-                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_marginBottom="@dimen/margin_0"
                     android:ellipsize="marquee"
                     android:gravity="start|center"
                     android:paddingStart="@dimen/margin_10"

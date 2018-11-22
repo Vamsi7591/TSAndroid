@@ -144,7 +144,7 @@ public class LeaveEntry implements Serializable {
     public LeaveEntry() {
     }
 
-    public HashMap<ValidationError, Integer> validateLeaveEntry() throws java.text.ParseException {
+    public HashMap<ValidationError, Integer> validateEntry() throws java.text.ParseException {
         HashMap<ValidationError, Integer> errors = new HashMap<>();
 
         if (TextUtils.isEmpty(leaveType)) {
@@ -161,6 +161,34 @@ public class LeaveEntry implements Serializable {
 
         if (TextUtils.isEmpty(remarks)) {
             errors.put(ValidationError.REMARKS, R.string.error_remarks);
+        }
+
+        if (!TextUtils.isEmpty(fromDate) && !TextUtils.isEmpty(toDate)) {
+            int error = validDate(fromDate, toDate);
+            if (error == 1)
+                errors.put(ValidationError.FROM_DATE, R.string.error_invalid_date_2);
+        }
+
+        return errors;
+    }
+
+    public HashMap<ValidationError, Integer> validateEntryNew() throws java.text.ParseException {
+        HashMap<ValidationError, Integer> errors = new HashMap<>();
+
+        if (TextUtils.isEmpty(leaveType)) {
+            errors.put(ValidationError.LEAVE_TYPE, R.string.error_leave_type);
+        }
+
+        if (TextUtils.isEmpty(fromDate)) {
+            errors.put(ValidationError.FROM_DATE, R.string.error_from_date);
+        }
+
+        if (TextUtils.isEmpty(toDate)) {
+            errors.put(ValidationError.TO_DATE, R.string.error_to_date);
+        }
+
+        if (TextUtils.isEmpty(remarks)) {
+            errors.put(ValidationError.REASON, R.string.error_reasons);
         }
 
         if (!TextUtils.isEmpty(fromDate) && !TextUtils.isEmpty(toDate)) {

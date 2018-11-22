@@ -498,7 +498,7 @@
                             android:background="@null"
                             android:ems="10"
                             android:gravity="start"
-                            android:hint="@string/hint_remarks"
+                            android:hint="@string/hint_reason"
                             android:inputType="textMultiLine"
                             android:maxLength="500"
                             android:minHeight="100dp"

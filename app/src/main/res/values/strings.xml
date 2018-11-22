@@ -91,6 +91,7 @@
     <string name="error_from_date">From date required</string>
     <string name="error_to_date">To date required</string>
     <string name="error_remarks">Remarks required</string>
+    <string name="error_reasons">Reasons required</string>
     <string name="error_invalid_date_2">From date should be less then To date</string>
     <string name="error_invalid_date_1">From and To dates should be different</string>
 
