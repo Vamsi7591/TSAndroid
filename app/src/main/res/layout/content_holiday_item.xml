@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/holidayLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_5"
+        android:layout_marginLeft="@dimen/margin_5"
+        android:layout_marginTop="@dimen/margin_5"
+        android:background="@color/colorAccent"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/holidayImage"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/margin_15"
+            android:src="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:layout_marginRight="@dimen/margin_20"
+            android:orientation="vertical">
+
+            <com.android.timesheet.shared.widget.CustomFontTextView
+                android:id="@+id/holiday"
+                style="@style/AppTheme.Text.TextView.Medium"
+                android:layout_width="match_parent"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                app:font="@string/roboto_light"
+                tools:ignore="RtlSymmetry"
+                tools:text="Holiday" />
+
+            <com.android.timesheet.shared.widget.CustomFontTextView
+                android:id="@+id/date"
+                style="@style/AppTheme.Text.TextView.Small"
+                android:layout_width="match_parent"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/margin_15"
+                android:paddingRight="@dimen/margin_15"
+                android:textColor="@color/white"
+                app:font="@string/roboto_light"
+                tools:ignore="RtlSymmetry"
+                tools:text="Date" />
+
+            <com.android.timesheet.shared.widget.CustomFontTextView
+                android:id="@+id/description"
+                style="@style/AppTheme.Text.TextView.Small"
+                android:layout_width="match_parent"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/margin_15"
+                android:paddingRight="@dimen/margin_15"
+                android:textColor="@color/white"
+                app:font="@string/roboto_light"
+                tools:ignore="RtlSymmetry"
+                tools:text="..." />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGray" />
+    </LinearLayout>
+
+</LinearLayout>
